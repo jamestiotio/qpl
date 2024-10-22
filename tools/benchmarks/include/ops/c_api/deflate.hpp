@@ -32,11 +32,13 @@ public:
     ~deflate_t() noexcept(false) { deinit_lib_impl(); }
 
 protected:
+    // WARNING: initializaiton of buffers must be re-done on copying or assigning object
     void init_buffers_impl(const params_t& params) {
         params_ = params;
         stream_.resize(params_.p_source_data_->buffer.size() * 1.5);
     }
 
+    // WARNING: initializaiton of lib params must be re-done on copying or assigning object
     void init_lib_params_impl() {
         job_->next_in_ptr   = const_cast<std::uint8_t*>(params_.p_source_data_->buffer.data());
         job_->available_in  = static_cast<std::uint32_t>(params_.p_source_data_->buffer.size());

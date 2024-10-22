@@ -39,6 +39,21 @@ private:
 public:
     operation_base_t() noexcept {}
     ~operation_base_t() noexcept {}
+    operation_base_t(const operation_base_t& other) {
+        cache_control_ = other.cache_control_;
+        numa_id_       = other.numa_id_;
+        if (other.job_) { init_lib_impl(); }
+    }
+
+    operation_base_t& operator=(const operation_base_t& other) {
+        if (this != &other) {
+            deinit_lib_impl();
+            cache_control_ = other.cache_control_;
+            numa_id_       = other.numa_id_;
+            if (other.job_) { init_lib_impl(); }
+        }
+        return *this;
+    }
 
     void init_lib_impl() {
         if (!cache_control_) throw std::runtime_error("manual cache control option is not supported in C API");

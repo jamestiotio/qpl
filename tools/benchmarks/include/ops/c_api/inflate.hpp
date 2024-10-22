@@ -32,6 +32,7 @@ public:
     ~inflate_t() noexcept(false) { deinit_lib_impl(); }
 
 protected:
+    // WARNING: initializaiton of buffers must be re-done on copying or assigning object
     void init_buffers_impl(const params_t& params) {
         params_ = params;
         if (params.original_size_)
@@ -40,6 +41,7 @@ protected:
             data_.resize(params_.p_stream_->buffer.size() * 10);
     }
 
+    // WARNING: initializaiton of lib params must be re-done on copying or assigning object
     void init_lib_params_impl() noexcept {
         job_->next_in_ptr   = const_cast<std::uint8_t*>(params_.p_stream_->buffer.data());
         job_->available_in  = static_cast<std::uint32_t>(params_.p_stream_->buffer.size());

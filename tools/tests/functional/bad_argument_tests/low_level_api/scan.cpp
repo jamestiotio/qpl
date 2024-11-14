@@ -109,9 +109,12 @@ QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(scan, drop_initial_bytes) {
 
 // If flag is set, output bit width is nominal, QPL_STS_OUT_FORMAT_ERR is expected
 QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(scan, force_array_output_nominal) {
+    // Force array output modification not available on Software or Auto Paths
+    QPL_SKIP_TEST_FOR(qpl_path_software);
+    QPL_SKIP_TEST_FOR(qpl_path_auto);
+
     QPL_SKIP_TEST_FOR_EXPR_VERBOSE(is_iaa_force_array_output_mod_supported() == false,
                                    "Force array output modification is not supported. Skip the test.");
-    QPL_SKIP_TEST_FOR_VERBOSE(qpl_path_software, "Force array output modification not available on software path");
 
     qpl::test::random random_scan_operation(qpl_op_scan_eq, qpl_op_scan_not_range,
                                             TestEnviroment::GetInstance().GetSeed());

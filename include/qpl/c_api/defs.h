@@ -186,7 +186,8 @@ extern "C" {
 #define QPL_FLAG_OMIT_AGGREGATES 0x00200000U
 
 /**
- * Filtering only: Force Array Output Mod
+ * Filtering only: Force output to be returned as an array of a bit width defined by the output_bit_width
+ * @note Only supported on the Hardware Path
 */
 #define QPL_FLAG_FORCE_ARRAY_OUTPUT 0x00800000U
 

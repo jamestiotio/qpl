@@ -103,8 +103,7 @@ auto main(int argc, char** argv) -> int {
     status = qpl_execute_job(job);
     if (status == QPL_STS_NOT_SUPPORTED_MODE_ERR) {
         std::cout
-                << "Force Array Output Modification is not supported. This feature is only available on Intel® In-Memory Analytics Accelerator (Intel® IAA) 2.0 with Hardware Path.\n";
-        std::cout << "Note that Force Array Output Modification is supported only in Hardware Path.\n";
+                << "Force Array Output Modification is not supported. This feature is only available on Intel® In-Memory Analytics Accelerator (Intel® IAA) 2.0 and Hardware Path.\n";
         return 0;
     } else if (status == QPL_STS_OUT_FORMAT_ERR) {
         std::cout

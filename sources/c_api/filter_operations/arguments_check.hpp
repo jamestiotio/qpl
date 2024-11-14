@@ -76,12 +76,6 @@ static inline qpl_status bad_arguments_check(const qpl_job* const job_ptr) {
         return QPL_STS_NOT_SUPPORTED_MODE_ERR;
     }
 
-    // Check if running on hardware path when the force array output flag is set
-    if ((job_ptr->flags & QPL_FLAG_FORCE_ARRAY_OUTPUT) && job_ptr->data_ptr.path != qpl_path_hardware) {
-        // If the force array output mod flag is set and NOT running on hardware path, return unsupported error
-        return QPL_STS_NOT_SUPPORTED_MODE_ERR;
-    }
-
     uint32_t   source_bit_width = job_ptr->src1_bit_width;
     const bool source_bit_width_is_unknown =
             (qpl_p_parquet_rle == job_ptr->parser && (QPL_FLAG_DECOMPRESS_ENABLE & job_ptr->flags));

@@ -392,12 +392,13 @@ QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_TC(scan, scan_range_initial_output_index, Sca
 // The test performs a scan operation with the Force Array Output Modification enabled.
 // The test checks if the output matches the reference value.
 QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_TC(scan, force_array_output_modification, ScanTest) {
+    // Force array output modification not available on Software or Auto Paths
+    QPL_SKIP_TEST_FOR(qpl_path_software);
+    QPL_SKIP_TEST_FOR(qpl_path_auto);
+
     // Assert that Force Array Output Modification is supported
     QPL_SKIP_TEST_FOR_EXPR_VERBOSE(is_iaa_force_array_output_mod_supported() == false,
                                    "Force array output modification not available on device, skipping test.");
-
-    // Skip test if on software path
-    QPL_SKIP_TEST_FOR_VERBOSE(qpl_path_software, "Force array output modification not available on software path");
 
     constexpr const uint32_t source_size         = 64; // 64 elements
     constexpr const uint32_t input_vector_width  = 8;  // 8-bit values
@@ -425,13 +426,13 @@ QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_TC(scan, force_array_output_modification, Sca
     }
 
     // Job initialization
-    qpl_status status = qpl_get_job_size(qpl_path_hardware, &size);
+    qpl_status status = qpl_get_job_size(GetExecutionPath(), &size);
     ASSERT_EQ(QPL_STS_OK, status) << "An error " << status << " acquired during job size getting.\n";
 
     job_buffer   = std::make_unique<uint8_t[]>(size);
     qpl_job* job = reinterpret_cast<qpl_job*>(job_buffer.get());
 
-    status = qpl_init_job(qpl_path_hardware, job);
+    status = qpl_init_job(GetExecutionPath(), job);
     ASSERT_EQ(QPL_STS_OK, status) << "An error " << status << " acquired during job initializing.\n";
 
     // Performing an operation

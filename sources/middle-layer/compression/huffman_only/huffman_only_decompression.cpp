@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
+#include <algorithm>
+
 #include "common/bit_reverse.hpp"
 #include "huffman_only.hpp"
 #include "simple_memory_ops.hpp"
@@ -14,8 +16,10 @@
 namespace qpl::ml::compression {
 
 static void
-restore_huffman_table(const qplc_huffman_table_flat_format&                      huffman_table,
-                      std::array<huffman_code, huffman_only_number_of_literals>& result_huffman_table) noexcept {
+initialize_huffman_table(const qplc_huffman_table_flat_format&                      huffman_table,
+                         std::array<huffman_code, huffman_only_number_of_literals>& result_huffman_table) noexcept {
+    std::fill(result_huffman_table.begin(), result_huffman_table.end(), huffman_code {});
+
     // Main cycle
     for (uint32_t current_code_length = 1U; current_code_length < 16U; current_code_length++) {
         // Getting number of codes, first code, index of first literal and symbol with Huffman code length "i"
@@ -125,7 +129,7 @@ auto decompress_huffman_only<execution_path_t::software>(
     bit_reader reader(source_ptr, source_end_ptr);
 
     // Restore huffman table and build the lookup table
-    restore_huffman_table(*decompression_table.get_sw_decompression_table(), restored_huffman_table);
+    initialize_huffman_table(*decompression_table.get_sw_decompression_table(), restored_huffman_table);
 
     build_lookup_table(restored_huffman_table, decompression_state.get_lookup_table());
 
@@ -163,7 +167,7 @@ auto verify_huffman_only<execution_path_t::software>(
 
     // Restore huffman table and build the lookup table
     std::array<huffman_code, huffman_only_number_of_literals> restored_huffman_table;
-    restore_huffman_table(*decompression_table.get_sw_decompression_table(), restored_huffman_table);
+    initialize_huffman_table(*decompression_table.get_sw_decompression_table(), restored_huffman_table);
     build_lookup_table(restored_huffman_table, state.get_lookup_table());
 
     const uint8_t* lookup_table_ptr = state.get_lookup_table();

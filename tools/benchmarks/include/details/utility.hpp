@@ -49,29 +49,8 @@ using registry_t      = std::vector<registry_call_t>;
 registry_t& get_registry();
 
 //
-// System information utils
+// Device utils
 //
-struct accel_info_t {
-    size_t                total_devices = 0;
-    std::map<int, size_t> devices_per_numa;
-};
-
-struct extended_info_t {
-    std::string   host_name;
-    std::string   kernel;
-    std::uint32_t cpu_model = 0U;
-    std::string   cpu_model_name;
-    std::uint32_t cpu_stepping            = 0U;
-    std::uint32_t cpu_microcode           = 0U;
-    std::uint32_t cpu_logical_cores       = 0U;
-    std::uint32_t cpu_physical_cores      = 0U;
-    std::uint32_t cpu_sockets             = 0U;
-    std::uint32_t cpu_physical_per_socket = 0U;
-    accel_info_t  accelerators;
-};
-
-const extended_info_t& get_sys_info();
-
 std::uint32_t get_number_of_devices_matching_numa_policy(std::uint32_t user_specified_numa_id) noexcept;
 
 constexpr std::uint64_t submitRetryWaitNs = 0U;

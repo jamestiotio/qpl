@@ -19,6 +19,9 @@
 
 #include <algorithm>
 
+// tool_common
+#include "system_info.hpp"
+
 namespace qpl::test {
 
 static inline void show_help() {
@@ -186,6 +189,9 @@ int main(int argc, char* argv[]) { //NOLINT(bugprone-exception-escape)
     using environment = qpl::test::util::TestEnvironment;
 
     environment::GetInstance().Initialize(arguments_list);
+
+    const qpl::test::extended_info_t& info = qpl::test::get_sys_info();
+    std::cout << info;
 
     int init_with_fork_status = 0;
 #if defined(__linux__)

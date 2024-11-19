@@ -15,11 +15,15 @@
 #include "test_hw_device.hpp"
 #include "test_hw_dispatcher.hpp"
 
+// tool_common
+#include "system_info.hpp"
+
 #if defined(__linux__)
 #include <sys/utsname.h>
 #endif
 #include <cstdarg>
 #include <fstream>
+#include <iostream>
 #include <memory>
 #include <mutex>
 #include <regex>
@@ -78,91 +82,6 @@ std::uint32_t get_number_of_devices_matching_numa_policy(std::uint32_t user_spec
     return counter;
 }
 
-static inline accel_info_t& get_accels_info() noexcept {
-    static accel_info_t info;
-
-    static auto& disp = qpl::test::hw_dispatcher::get_instance();
-
-    for (auto& device : disp) {
-        if (info.devices_per_numa.find(device.numa_id()) == info.devices_per_numa.end())
-            info.devices_per_numa[device.numa_id()] = 1;
-        else
-            info.devices_per_numa[device.numa_id()]++;
-    }
-
-    info.total_devices = disp.device_count();
-
-    return info;
-}
-
-const extended_info_t& get_sys_info() {
-    static extended_info_t info;
-    static bool            is_setup {false};
-    static std::mutex      guard;
-
-    guard.lock();
-    if (!is_setup) {
-#if defined(__linux__)
-        utsname uname_buf;
-        uname(&uname_buf);
-        info.host_name = uname_buf.nodename;
-        info.kernel    = uname_buf.release;
-
-        std::ifstream info_file("/proc/cpuinfo");
-        if (!info_file.is_open()) {
-            guard.unlock();
-            throw std::runtime_error("Failed to open /proc/cpuinfo");
-        }
-        std::string line;
-        while (std::getline(info_file, line)) {
-            if (line.empty()) continue;
-            auto del_index = line.find(':');
-            if (del_index == std::string::npos) continue;
-            auto key = line.substr(0, del_index);
-            auto val = line.substr(del_index + 1);
-            trim(key);
-            trim(val);
-
-            if (key == "processor")
-                info.cpu_logical_cores++;
-            else if (key == "physical id")
-                info.cpu_sockets = std::max(info.cpu_sockets, (std::uint32_t)atoi(val.c_str()) + 1);
-            else if (!info.cpu_physical_per_socket && key == "cpu cores")
-                info.cpu_physical_per_socket = std::max(info.cpu_physical_per_socket, (std::uint32_t)atoi(val.c_str()));
-            else if (info.cpu_model_name.empty() && key == "model name")
-                info.cpu_model_name = val;
-            else if (!info.cpu_model && key == "model")
-                info.cpu_model = atoi(val.c_str());
-            else if (!info.cpu_microcode && key == "microcode")
-                info.cpu_microcode = strtol(val.c_str(), NULL, 16);
-            else if (!info.cpu_stepping && key == "stepping")
-                info.cpu_stepping = atoi(val.c_str());
-        }
-        info.cpu_physical_cores = info.cpu_physical_per_socket * info.cpu_sockets;
-
-        info.accelerators = get_accels_info();
-
-        /* Benchmarks output for system configuration details */
-        printf("Host Name:            %s\n", info.host_name.c_str());
-        printf("Kernel:               %s\n", info.kernel.c_str());
-        printf("CPU:                  %s (%d)\n", info.cpu_model_name.c_str(), info.cpu_model);
-        printf("    Microcode:        0x%x\n", info.cpu_microcode);
-        printf("    Stepping:         %d\n", info.cpu_stepping);
-        printf("    Logical Cores:    %d\n", info.cpu_logical_cores);
-        printf("    Physical Cores:   %d\n", info.cpu_physical_cores);
-        printf("    Cores per Socket: %d\n", info.cpu_physical_per_socket);
-        printf("    Sockets:          %d\n", info.cpu_sockets);
-        printf("Accelerators:         %ld\n", info.accelerators.total_devices);
-        for (auto& it : info.accelerators.devices_per_numa) {
-            printf("    On NUMA %d:        %ld\n", it.first, it.second);
-        }
-#endif
-        is_setup = true;
-    }
-    guard.unlock();
-
-    return info;
-}
 } // namespace bench::details
 
 //
@@ -362,7 +281,8 @@ int main(int argc, char** argv) //NOLINT(bugprone-exception-escape)
     if (::benchmark::ReportUnrecognizedArguments(argc, argv)) return 1;
 
     // Retrieve system information
-    bench::details::get_sys_info();
+    auto& sys_info = qpl::test::get_sys_info();
+    std::cout << sys_info;
 
     // Initialize accelerator hardware if enabled
     if (!bench::cmd::FLAGS_no_hw) bench::details::init_hw();

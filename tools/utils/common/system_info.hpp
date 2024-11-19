@@ -7,19 +7,31 @@
 #ifndef QPL_TOOLS_UTILS_COMMON_SYSTEM_INFO_HPP_
 #define QPL_TOOLS_UTILS_COMMON_SYSTEM_INFO_HPP_
 
-#include <algorithm> // std::find_if
-#include <cctype>    // std::isspace, std::isdigit
-#include <fstream>   // std::ifstream
-#include <mutex>     // std::mutex
-#include <string>    // std::string, std::getline, substr, etc.
-#include <vector>    // std::vector
+#include <algorithm>
+#include <cctype>
+#include <fstream>
+#include <map>
+#include <mutex>
+#include <string>
+#include <vector>
 
 #if defined(__linux__)
 #include <sys/utsname.h>
 #include <x86intrin.h>
 #endif
 
+// tool_hw_dispatcher
+#include "test_hw_dispatcher.hpp"
+
 namespace qpl::test {
+
+/**
+ * @brief Structure to keep information about accelerators.
+ */
+struct accel_info_t {
+    size_t                total_devices = 0;
+    std::map<int, size_t> devices_per_numa;
+};
 
 /**
  * @brief Structure to keep system information not including accelerators.
@@ -39,6 +51,7 @@ struct extended_info_t {
     std::uint32_t         cpu_sockets             = 1U;
     std::uint32_t         cpu_physical_per_socket = 1U;
     std::uint32_t         cpu_numa_nodes          = 1U;
+    accel_info_t          accelerators;
 };
 
 static void trim(std::string& str) {
@@ -112,6 +125,10 @@ static std::ostream& operator<<(std::ostream& os, const extended_info_t& info) {
     os << "    Cores per Socket: " << info.cpu_physical_per_socket << "\n";
     os << "    Sockets:          " << info.cpu_sockets << "\n";
     os << "    NUMA Nodes:       " << info.cpu_numa_nodes << "\n";
+    os << "    Accelerators:     " << info.accelerators.total_devices << "\n";
+    for (auto& it : info.accelerators.devices_per_numa) {
+        os << "    On NUMA " << it.first << ":        " << it.second << "\n";
+    }
 
     return os;
 }
@@ -133,6 +150,28 @@ static uint32_t get_total_numa_nodes() {
 #endif
 
     return total_nodes;
+}
+
+/*
+ * @brief Structure to keep information about accelerators.
+ */
+static inline accel_info_t& get_accels_info() noexcept {
+    static accel_info_t info;
+
+#if defined(__linux__)
+    static auto& disp = qpl::test::hw_dispatcher::get_instance();
+
+    for (auto& device : disp) {
+        if (info.devices_per_numa.find(device.numa_id()) == info.devices_per_numa.end())
+            info.devices_per_numa[device.numa_id()] = 1;
+        else
+            info.devices_per_numa[device.numa_id()]++;
+    }
+
+    info.total_devices = disp.device_count();
+#endif
+
+    return info;
 }
 
 /**
@@ -194,6 +233,7 @@ static const extended_info_t& get_sys_info() {
     guard.unlock();
 
     info.cpu_numa_nodes = get_total_numa_nodes();
+    info.accelerators   = get_accels_info();
 
     return info;
 }

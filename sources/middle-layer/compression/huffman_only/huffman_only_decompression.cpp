@@ -20,26 +20,38 @@ initialize_huffman_table(const qplc_huffman_table_flat_format&                  
                          std::array<huffman_code, huffman_only_number_of_literals>& result_huffman_table) noexcept {
     std::fill(result_huffman_table.begin(), result_huffman_table.end(), huffman_code {});
 
-    // Main cycle
-    for (uint32_t current_code_length = 1U; current_code_length < 16U; current_code_length++) {
-        // Getting number of codes, first code, index of first literal and symbol with Huffman code length "i"
-        const uint16_t number_of_codes   = huffman_table.number_of_codes[current_code_length - 1];
-        const uint16_t first_code        = huffman_table.first_codes[current_code_length - 1];
-        const uint16_t first_table_index = huffman_table.first_table_indexes[current_code_length - 1U];
-        uint8_t        symbol            = huffman_table.index_to_char[first_table_index];
+    if (huffman_table.format_stored == ht_with_mapping_table) {
+        // Main cycle
+        for (uint32_t current_code_length = 1U; current_code_length < 16U; current_code_length++) {
+            // Getting number of codes, first code, index of first literal and symbol with Huffman code length "i"
+            const uint16_t number_of_codes   = huffman_table.number_of_codes[current_code_length - 1];
+            const uint16_t first_code        = huffman_table.first_codes[current_code_length - 1];
+            const uint16_t first_table_index = huffman_table.first_table_indexes[current_code_length - 1U];
+            uint8_t        symbol            = huffman_table.index_to_char[first_table_index];
 
-        if (0U == number_of_codes) {
-            // We have no reason to continue this iteration
-            continue;
+            if (0U == number_of_codes) {
+                // We have no reason to continue this iteration
+                continue;
+            }
+
+            // First iteration in outer scope
+            result_huffman_table[symbol].code   = first_code;
+            result_huffman_table[symbol].length = current_code_length;
+
+            // Generate other codes and lengths
+            for (uint32_t code_number = 1U; code_number < number_of_codes; code_number++) {
+                symbol = huffman_table.index_to_char[first_table_index + code_number];
+
+                result_huffman_table[symbol].code   = first_code + code_number;
+                result_huffman_table[symbol].length = current_code_length;
+            }
         }
-
-        // First iteration in outer scope
-        result_huffman_table[symbol].code   = first_code;
-        result_huffman_table[symbol].length = current_code_length;
-
-        // Generate other codes and lengths
-        for (uint32_t code_number = 1U; code_number < number_of_codes; code_number++) {
-            symbol = huffman_table.index_to_char[first_table_index + code_number];
+    } else { // huffman_table.format_stored == ht_with_mapping_cam
+        for (uint32_t symbol = 0U; symbol < huffman_only_number_of_literals; symbol++) {
+            const uint32_t current_code_length = huffman_table.lit_cam[symbol] & 0x0F;
+            if (0U == current_code_length) { continue; }
+            const uint32_t code_number = huffman_table.lit_cam[symbol] >> 4;
+            const uint16_t first_code  = huffman_table.first_codes[current_code_length - 1];
 
             result_huffman_table[symbol].code   = first_code + code_number;
             result_huffman_table[symbol].length = current_code_length;

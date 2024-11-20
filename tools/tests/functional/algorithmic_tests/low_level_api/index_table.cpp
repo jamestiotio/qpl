@@ -64,7 +64,7 @@ QPL_LOW_LEVEL_API_ALGORITHMIC_TEST(index_table, get_index_table_size) {
     EXPECT_EQ(*ret_size_ptr, calculate_table_size(2, 2));
 }
 
-QPL_LOW_LEVEL_API_ALGORITHMIC_TEST(index_table, DISABLED_set_mini_block_location) {
+QPL_LOW_LEVEL_API_ALGORITHMIC_TEST(index_table, set_mini_block_location) {
     uint32_t start_bit = 0U;
     uint32_t last_bit  = 1U;
 

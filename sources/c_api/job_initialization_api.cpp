@@ -102,12 +102,14 @@ QPL_FUN(qpl_status, qpl_init_job, (qpl_path_t qpl_path, qpl_job* qpl_job_ptr)) {
 
         core_sw::util::set_zeros((uint8_t*)hw_state_ptr, hw_size);
 
-        if (qpl_path_hardware == qpl_job_ptr->data_ptr.path) {
-            status = hw_accelerator_get_context(&hw_state_ptr->accel_context);
+        status = hw_accelerator_get_context(&hw_state_ptr->accel_context);
 
-            if (HW_ACCELERATOR_STATUS_OK != status) {
-                qpl_job_ptr->data_ptr.path = qpl_path_software;
-                status                     = ml::util::convert_hw_accelerator_status_to_qpl_status(status);
+        if (HW_ACCELERATOR_STATUS_OK != status) {
+            qpl_job_ptr->data_ptr.path = qpl_path_software;
+            if (qpl_path_hardware == qpl_path) {
+                status = ml::util::convert_hw_accelerator_status_to_qpl_status(status);
+            } else {
+                status = QPL_STS_OK;
             }
         }
     }

@@ -251,6 +251,13 @@ auto write_stored_block(deflate_state<execution_path_t::hardware>& state) noexce
 
     compression_operation_result_t result;
 
+    hw_iaa_aecs_compress* actual_aecs = hw_iaa_aecs_compress_get_aecs_ptr(
+            state.meta_data_->aecs_, state.meta_data_->aecs_index, state.meta_data_->aecs_size);
+    if (!actual_aecs) {
+        result.status_code_ = status_list::internal_error;
+        return result;
+    }
+
     uint8_t* input_ptr   = nullptr;
     uint32_t input_size  = 0U;
     uint8_t* output_ptr  = nullptr;
@@ -259,23 +266,27 @@ auto write_stored_block(deflate_state<execution_path_t::hardware>& state) noexce
     hw_iaa_descriptor_get_input_buffer(state.compress_descriptor_, &input_ptr, &input_size);
     hw_iaa_descriptor_get_output_buffer(state.compress_descriptor_, &output_ptr, &output_size);
 
-    // Check if output buffer enough
-    //@todo separate logic for header_inserting and compression: Stateful requirement (Fixed/Static only) + take into account eob size
-    constexpr bool is_block_continued = false;
-    const uint32_t actual_bits_in_aecs =
-            (is_block_continued) ?
-                                 // @todo Insert EOB
-                    hw_iaa_aecs_compress_accumulator_get_actual_bits(state.meta_data_->aecs_)
-                                 : state.meta_data_->stored_bits;
+    const bool is_block_continued = (!state.is_first_chunk() && !state.start_new_block);
+    uint32_t   bits_to_flush      = 0U;
 
-    if (calculate_size_needed(input_size, actual_bits_in_aecs) > output_size) {
+    if (!is_block_continued) {
+        bits_to_flush = state.meta_data_->stored_bits;
+    } else {
+        bits_to_flush = hw_iaa_aecs_compress_accumulator_get_actual_bits(actual_aecs);
+        hw_iaa_aecs_compress_accumulator_insert_eob(actual_aecs, state.meta_data_->eob_code);
+        bits_to_flush += state.meta_data_->eob_code.length;
+    }
+
+    auto stored_blocks_required_size = calculate_size_needed(input_size, bits_to_flush);
+
+    if (stored_blocks_required_size > output_size) {
         result.status_code_ = status_list::more_output_needed;
 
         return result;
     }
 
     // Flush AECS buffer
-    if (IAA_ACCUMULATOR_CAPACITY <= actual_bits_in_aecs) {
+    if (IAA_ACCUMULATOR_CAPACITY <= bits_to_flush) {
         result.status_code_ = status_list::internal_error;
 
         return result;
@@ -283,17 +294,10 @@ auto write_stored_block(deflate_state<execution_path_t::hardware>& state) noexce
 
     uint32_t bytes_written = 0U;
 
-    hw_iaa_aecs_compress* actual_aecs = hw_iaa_aecs_compress_get_aecs_ptr(
-            state.meta_data_->aecs_, state.meta_data_->aecs_index, state.meta_data_->aecs_size);
-    if (!actual_aecs) {
-        result.status_code_ = status_list::internal_error;
-        return result;
-    }
+    if (bits_to_flush) {
+        hw_iaa_aecs_compress_accumulator_flush(actual_aecs, &output_ptr, bits_to_flush);
 
-    if (actual_bits_in_aecs) {
-        hw_iaa_aecs_compress_accumulator_flush(actual_aecs, &output_ptr, actual_bits_in_aecs);
-
-        auto offset = actual_bits_in_aecs / byte_bit_size;
+        auto offset = bits_to_flush / byte_bit_size;
         bytes_written += offset;
         output_ptr += offset;
     } else {
@@ -302,7 +306,7 @@ auto write_stored_block(deflate_state<execution_path_t::hardware>& state) noexce
 
     // Write stored blocks
     const int64_t stored_block_bytes = write_stored_blocks(input_ptr, input_size, output_ptr, output_size,
-                                                           actual_bits_in_aecs & 7U, state.is_last_chunk());
+                                                           bits_to_flush & 7U, state.is_last_chunk());
 
     if (stored_block_bytes < 0) {
         result.status_code_ = status_list::more_output_needed;

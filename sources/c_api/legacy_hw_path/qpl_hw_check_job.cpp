@@ -104,13 +104,13 @@ qpl_status write_stored_block_and_update_job(qpl_job* qpl_job_ptr) {
 
     HW_IMMEDIATELY_RET(cfg_in_ptr == NULL || cfg_out_ptr == NULL, QPL_STS_LIBRARY_INTERNAL_ERR);
 
-    // Get AECS buffers accumulated bit size
-    uint32_t bits_to_flush = (qpl_task_execution_step_header_inserting == state_ptr->execution_history.execution_step)
-                                     ? state_ptr->saved_num_output_accum_bits
-                                     : hw_iaa_aecs_compress_accumulator_get_actual_bits(cfg_in_ptr);
+    uint32_t bits_to_flush = 0U;
 
-    // Insert EOB
-    if (qpl_task_execution_step_header_inserting != state_ptr->execution_history.execution_step) {
+    // Get AECS buffers accumulated bit size and insert EOB code if necessary
+    if (qpl_task_execution_step_header_inserting == state_ptr->execution_history.execution_step) {
+        bits_to_flush = state_ptr->saved_num_output_accum_bits;
+    } else {
+        bits_to_flush = hw_iaa_aecs_compress_accumulator_get_actual_bits(cfg_in_ptr);
         hw_iaa_aecs_compress_accumulator_insert_eob(cfg_in_ptr, state_ptr->eob_code);
         bits_to_flush += state_ptr->eob_code.length;
     }

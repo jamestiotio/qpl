@@ -43,6 +43,7 @@ uint32_t            own_get_job_size_middle_layer_buffer(qpl_path_t qpl_path);
 
 QPL_INLINE void own_init_compress(qpl_job* qpl_job_ptr);
 QPL_INLINE void own_init_analytics(qpl_job* qpl_job_ptr);
+QPL_INLINE void own_init_hw_state(qpl_hw_state* hw_state_ptr);
 
 QPL_FUN(qpl_status, qpl_get_job_size, (qpl_path_t qpl_path, uint32_t* job_size_ptr)) {
     using namespace qpl;
@@ -97,10 +98,8 @@ QPL_FUN(qpl_status, qpl_init_job, (qpl_path_t qpl_path, qpl_job* qpl_job_ptr)) {
     if (qpl_path_hardware == qpl_path || qpl_path_auto == qpl_path) {
         qpl_job_ptr->numa_id = -1;
 
-        auto* const    hw_state_ptr = (qpl_hw_state*)(qpl_job_ptr->data_ptr.hw_state_ptr);
-        const uint32_t hw_size      = QPL_ALIGNED_SIZE(hw_get_job_size(), QPL_DEFAULT_ALIGNMENT);
-
-        core_sw::util::set_zeros((uint8_t*)hw_state_ptr, hw_size);
+        auto* const hw_state_ptr = (qpl_hw_state*)(qpl_job_ptr->data_ptr.hw_state_ptr);
+        own_init_hw_state(hw_state_ptr);
 
         status = hw_accelerator_get_context(&hw_state_ptr->accel_context);
 
@@ -245,6 +244,16 @@ QPL_INLINE void own_init_analytics(qpl_job* qpl_job_ptr) {
     analytics_state_ptr->set_buf_ptr =
             (uint8_t*)analytics_state_ptr->unpack_buf_ptr + analytics_state_ptr->unpack_buf_size;
     analytics_state_ptr->src2_buf_ptr = (uint8_t*)analytics_state_ptr->set_buf_ptr + analytics_state_ptr->set_buf_size;
+}
+
+/** @todo Reuse own_hw_state_reset here */
+void own_init_hw_state(qpl_hw_state* hw_state_ptr) {
+    using namespace qpl;
+
+    const uint32_t hw_size = QPL_ALIGNED_SIZE(hw_get_job_size(), QPL_DEFAULT_ALIGNMENT);
+    core_sw::util::set_zeros((uint8_t*)hw_state_ptr, hw_size);
+
+    hw_state_ptr->async_job_status = QPL_STS_JOB_NOT_SUBMITTED;
 }
 
 #ifdef __cplusplus

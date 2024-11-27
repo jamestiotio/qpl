@@ -13,6 +13,7 @@
 #define QPL_UTIL_JOB_API_SERVICE_H_
 
 #include "qpl/c_api/job.h"
+#include "qpl/c_api/status.h"
 
 #include "common/defs.hpp"
 #include "compression_operations/compression_state_t.h"
@@ -51,6 +52,11 @@ static inline auto get_state(const qpl_job* const job_ptr) noexcept {
 static inline auto get_adler32(const qpl_job* const job_ptr) noexcept {
     auto* data_ptr = (own_compression_state_t*)job_ptr->data_ptr.compress_state_ptr;
     return data_ptr->adler32;
+}
+
+static inline auto get_async_job_status(const qpl_job* const job_ptr) noexcept {
+    auto* hw_state_ptr = reinterpret_cast<qpl_hw_state*>(job_ptr->data_ptr.hw_state_ptr);
+    return hw_state_ptr->async_job_status;
 }
 
 static inline bool is_indexing_enabled(const qpl_job* const job_ptr) noexcept {
@@ -187,6 +193,11 @@ static inline bool is_no_descriptor_completed(const qpl_job* const job_ptr) {
     }
 }
 
+static inline bool is_job_submitted(const qpl_job* const job_ptr) {
+    auto* state_ptr = reinterpret_cast<qpl_hw_state*>(job::get_state(job_ptr));
+    return (state_ptr->async_job_status != QPL_STS_JOB_NOT_SUBMITTED);
+}
+
 // ------ JOB SETTERS ------ //
 template <qpl_operation operation_type>
 static inline void reset(qpl_job* const qpl_job_ptr) noexcept {
@@ -261,6 +272,16 @@ static inline void update_is_sw_fallback(qpl_job* const qpl_job_ptr, bool is_sw_
 
     auto* state_ptr           = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
     state_ptr->is_sw_fallback = is_sw_fallback;
+}
+
+static inline void set_async_job_status(qpl_job* const qpl_job_ptr, qpl_status async_job_status) noexcept {
+    auto* state_ptr             = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
+    state_ptr->async_job_status = async_job_status;
+}
+
+static inline void set_job_to_in_progress(qpl_job* const qpl_job_ptr) noexcept {
+    auto* state_ptr             = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
+    state_ptr->async_job_status = QPL_STS_BEING_PROCESSED;
 }
 
 template <class result_t>

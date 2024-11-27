@@ -155,7 +155,7 @@ QPL_FUN("C" qpl_status, qpl_submit_job, (qpl_job * qpl_job_ptr)) {
             if (status == QPL_STS_OK) {
                 status = hw_submit_job(qpl_job_ptr);
 
-                if (status == QPL_STS_OK) { state_ptr->job_is_submitted = true; }
+                if (status == QPL_STS_OK) { qpl::job::set_job_to_in_progress(qpl_job_ptr); }
             }
 
             /**
@@ -179,10 +179,7 @@ QPL_FUN("C" qpl_status, qpl_submit_job, (qpl_job * qpl_job_ptr)) {
         status                     = sw_execute_job(qpl_job_ptr);
         qpl_job_ptr->data_ptr.path = path;
 
-        if (QPL_STS_OK == status && qpl_path_auto == path) {
-            auto* state_ptr             = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
-            state_ptr->job_is_submitted = true;
-        }
+        if (QPL_STS_OK == status && qpl_path_auto == path) { job::set_job_to_in_progress(qpl_job_ptr); }
     }
 
     return status;
@@ -194,11 +191,18 @@ QPL_FUN("C" qpl_status, qpl_check_job, (qpl_job * qpl_job_ptr)) {
     QPL_BAD_PTR_RET(qpl_job_ptr);
     uint32_t status = QPL_STS_OK;
 
-    // If job was submitted on the Auto Path, and fell back to SW, return OK
-    if (qpl_path_auto == qpl_job_ptr->data_ptr.path) {
-        auto* state_ptr = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
-        if (state_ptr->is_sw_fallback) { return QPL_STS_OK; }
+    // If job was submitted on Software Path, or on the Auto Path and fell back to SW,
+    // exit right away and return OK
+    if (qpl_path_software == qpl_job_ptr->data_ptr.path ||
+        (qpl_path_auto == qpl_job_ptr->data_ptr.path &&
+         reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr))->is_sw_fallback)) {
+        return QPL_STS_OK;
     }
+
+    // If job has already been processed, exit and return previous status
+    // This is to avoid re-processing the job
+    auto stored_status = job::get_async_job_status(qpl_job_ptr);
+    if (stored_status != QPL_STS_BEING_PROCESSED) { return stored_status; }
 
     if (job::is_supported_on_hardware(qpl_job_ptr)) { status = hw_check_job(qpl_job_ptr); }
 
@@ -216,6 +220,7 @@ QPL_FUN("C" qpl_status, qpl_check_job, (qpl_job * qpl_job_ptr)) {
         qpl_job_ptr->data_ptr.path = path;
     }
 
+    job::set_async_job_status(qpl_job_ptr, static_cast<qpl_status>(status));
     return static_cast<qpl_status>(status);
 }
 
@@ -226,11 +231,18 @@ QPL_FUN("C" qpl_status, qpl_wait_job, (qpl_job * qpl_job_ptr)) {
 
     uint32_t status = QPL_STS_OK;
 
-    // If job was submitted on the Auto Path, and fell back to SW, return OK
-    if (qpl_path_auto == qpl_job_ptr->data_ptr.path) {
-        auto* state_ptr = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
-        if (state_ptr->is_sw_fallback) { return QPL_STS_OK; }
+    // If job was submitted on Software Path, or on the Auto Path and fell back to SW,
+    // exit right away and return OK
+    if (qpl_path_software == qpl_job_ptr->data_ptr.path ||
+        (qpl_path_auto == qpl_job_ptr->data_ptr.path &&
+         reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr))->is_sw_fallback)) {
+        return QPL_STS_OK;
     }
+
+    // If job has already been processed, exit and return previous status
+    // This is to avoid re-processing the job
+    auto stored_status = job::get_async_job_status(qpl_job_ptr);
+    if (stored_status != QPL_STS_BEING_PROCESSED) { return stored_status; }
 
     // HW path doesn't support qpl_high_level compression ratio and ZLIB headers/trailers
     if (job::is_supported_on_hardware(qpl_job_ptr)) {
@@ -250,6 +262,7 @@ QPL_FUN("C" qpl_status, qpl_wait_job, (qpl_job * qpl_job_ptr)) {
         qpl_job_ptr->data_ptr.path = path;
     }
 
+    job::set_async_job_status(qpl_job_ptr, static_cast<qpl_status>(status));
     return static_cast<qpl_status>(status);
 }
 
@@ -316,8 +329,9 @@ QPL_FUN("C" qpl_status, qpl_execute_job, (qpl_job * qpl_job_ptr)) {
                     status = hw_submit_job(qpl_job_ptr);
 
                     if (QPL_STS_OK == status) {
-                        state_ptr->job_is_submitted = true;
-                        status                      = qpl_wait_job(qpl_job_ptr);
+                        job::set_job_to_in_progress(qpl_job_ptr);
+
+                        status = qpl_wait_job(qpl_job_ptr);
                     }
                 }
             }
@@ -336,8 +350,7 @@ QPL_FUN("C" qpl_status, qpl_execute_job, (qpl_job * qpl_job_ptr)) {
             qpl_job_ptr->data_ptr.path = path;
 
             if (QPL_STS_OK == status && qpl_path_auto == qpl_job_ptr->data_ptr.path) {
-                auto* state_ptr             = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
-                state_ptr->job_is_submitted = true;
+                job::set_job_to_in_progress(qpl_job_ptr);
             }
         }
 

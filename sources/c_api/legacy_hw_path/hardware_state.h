@@ -13,6 +13,7 @@
 #define HW_PATH_ML_HW_DEFINITIONS_H_
 
 #include "qpl/c_api/defs.h"
+#include "qpl/c_api/status.h"
 
 #include "core_deflate_api.h"
 #include "hw_aecs_api.h"
@@ -56,8 +57,13 @@ typedef struct {
 } qpl_buffer;
 
 /**
- * @todo
- * @note Structure is aligned to 64-bytes, put things that need alignment first
+ * @brief Structure that represents the hardware state.
+ *
+ * This structure holds various information related to the hardware state of the library.
+ * It includes descriptors, completion records, buffers, offsets, and various flags
+ * that are used for execution on the accelerator.
+ *
+ * @warning The structure is aligned to 64 bytes to ensure proper memory alignment for descriptors.
  */
 typedef struct {
     hw_decompress_analytics_descriptor desc_ptr; /**< @todo */
@@ -73,12 +79,12 @@ typedef struct {
     uint32_t                           saved_num_output_accum_bits; /**< @todo */
     hw_accelerator_context             accel_context;
     uint32_t                           descriptor_not_submitted;
-    bool                               job_is_submitted;
     uint32_t                           verify_aecs_hw_read_offset; /**< AECS read offset for verify AECS */
     bool                      is_page_fault_processed; /**< Flag to limit resubmissions due to Page Fault to 1 */
     bool                      is_sw_fallback;          /**< Fallback to the SW path when Auto path is used */
     hw_multidescriptor_status multi_desc_status;       /**< Steps to be skipped in resubmitted jobs in case of
                                                                                 QPL_STS_QUEUES_ARE_BUSY_ERR */
+    qpl_status                async_job_status; /**< For asynchronous execution, stores the latest status of the job */
 } qpl_hw_state;
 
 #ifdef __cplusplus

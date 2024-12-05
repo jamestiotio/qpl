@@ -158,17 +158,28 @@ static inline bool is_supported_on_hardware(const qpl_job* const qpl_ptr) {
 }
 
 /**
+ * @brief Check if fallback to qpl_path_software is supported.
+ *
+ * @warning Disallow falling back to the host execution if this is not the first chunk in a multi-chunk job
+ */
+static inline bool is_sw_fallback_supported(const qpl_job* const qpl_job_ptr) {
+    return (qpl_path_auto == qpl_job_ptr->data_ptr.path) &&
+           ((qpl_job_ptr->flags & QPL_FLAG_FIRST) || job::is_single_job(qpl_job_ptr));
+}
+
+/**
  * @brief Check if fallback to qpl_path_software is supported in case if qpl_path_hardware returns an error.
  *
  * @warning Disallow falling back to the host execution if failure is not on the
  * first chunk or if QPL_STS_MORE_OUTPUT_NEEDED (output buffer is too small) error happened.
 */
 static inline bool is_sw_fallback_supported(const qpl_job* const qpl_job_ptr, qpl_status status) {
-    return (QPL_STS_MORE_OUTPUT_NEEDED != status) && (qpl_path_auto == qpl_job_ptr->data_ptr.path) &&
-           ((qpl_job_ptr->flags & QPL_FLAG_FIRST) || job::is_single_job(qpl_job_ptr));
+    return (QPL_STS_MORE_OUTPUT_NEEDED != status) && is_sw_fallback_supported(qpl_job_ptr);
 }
 
-// Check if Force Array Output Modification is supported
+/**
+ * @brief Check if Force Array Output Modification is supported
+ */
 static inline bool is_force_array_output_supported(const qpl_job* const job_ptr) noexcept {
     // Check if job_ptr and hw_state_ptr are not null
     if (job_ptr != nullptr && job_ptr->data_ptr.path != qpl_path_software && job_ptr->data_ptr.path != qpl_path_auto &&
@@ -176,6 +187,19 @@ static inline bool is_force_array_output_supported(const qpl_job* const job_ptr)
         // Check if force array output modification is supported
         return ((qpl_hw_state*)job_ptr->data_ptr.hw_state_ptr)
                 ->accel_context.device_properties.force_array_output_mod_available;
+    }
+    return false;
+}
+
+/**
+ * @brief Check if Gen 2 Min Capabilities are available
+ */
+static inline bool are_gen_2_min_capabilities_available(const qpl_job* const job_ptr) noexcept {
+    // Check if job_ptr and hw_state_ptr are not null
+    if (job_ptr != nullptr && job_ptr->data_ptr.hw_state_ptr != nullptr) {
+        // Check if gen 2 min capabilities are available
+        return ((qpl_hw_state*)job_ptr->data_ptr.hw_state_ptr)
+                ->accel_context.device_properties.gen_2_min_capabilities_available;
     }
     return false;
 }
@@ -282,6 +306,22 @@ static inline void set_async_job_status(qpl_job* const qpl_job_ptr, qpl_status a
 static inline void set_job_to_in_progress(qpl_job* const qpl_job_ptr) noexcept {
     auto* state_ptr             = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
     state_ptr->async_job_status = QPL_STS_BEING_PROCESSED;
+}
+
+/**
+ * @brief Check if the job should immediately fall back to software path.
+ *  Essentially checks if job configuration is supported on sw path but not hw path.
+*/
+static inline bool is_unsupported_on_hw_supported_on_sw(qpl_job* job_ptr) noexcept {
+    if (!job::is_sw_fallback_supported(job_ptr)) { return false; }
+    if (job::is_huffman_only_decompression(job_ptr) && (job_ptr->flags & QPL_FLAG_HUFFMAN_BE)) {
+        // Intel® In-Memory Analytics Accelerator (Intel® IAA) generation 1.0 limitation,
+        // Huffman only decompression with BE16 format cannot work if ignore_end_bits is greater than 7
+        // Fallback to running on SW path in this case where limitation does not exist
+        return job_ptr->ignore_end_bits > 7U && !job::are_gen_2_min_capabilities_available(job_ptr);
+    }
+
+    return false;
 }
 
 template <class result_t>

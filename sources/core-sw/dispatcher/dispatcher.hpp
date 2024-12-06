@@ -95,6 +95,8 @@ public:
 
     auto operator=(const kernels_dispatcher& other) -> kernels_dispatcher& = delete;
 
+    ~kernels_dispatcher() = default;
+
     static auto get_instance() noexcept -> kernels_dispatcher&;
 
     [[nodiscard]] auto get_unpack_table() const noexcept -> const unpack_table_t&;

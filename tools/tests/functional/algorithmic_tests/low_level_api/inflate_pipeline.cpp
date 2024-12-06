@@ -29,7 +29,9 @@ public:
         auto dataset = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
 
         source = dataset[GetTestCase()];
-        compressed_source.resize(source.size() * 3, 0U);
+        // Huge size due to potentially tiny block compression
+        // Huge size is necessary due to overhead incurred by new block
+        compressed_source.resize(source.size() * 20, 0U);
         destination.resize(source.size(), 0U);
 
         auto status = qpl_init_job(GetExecutionPath(), deflate_job_ptr);

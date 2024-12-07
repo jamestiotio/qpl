@@ -49,16 +49,8 @@ auto main(int argc, char** argv) -> int {
     const int parse_ret = parse_execution_path(argc, argv, &execution_path);
     if (parse_ret != 0) { return 1; }
 
-    // Get compression buffer size estimate
-    const uint32_t compression_size = qpl_get_safe_deflate_compression_buffer_size(source_size);
-    if (compression_size == 0) {
-        std::cout << "Invalid source size. Source size exceeds the maximum supported size.\n";
-        return 1;
-    }
-
-    // Source and output containers.
+    // Source and decompressed containers.
     std::vector<uint8_t> source(source_size, 5);
-    std::vector<uint8_t> destination(compression_size, 4);
     std::vector<uint8_t> reference(source_size, 7);
 
     std::unique_ptr<uint8_t[]> job_buffer;
@@ -105,16 +97,6 @@ auto main(int argc, char** argv) -> int {
         return 1;
     }
 
-    // Initialize qpl_job structure before performing a compression operation.
-    job->op            = qpl_op_compress;
-    job->level         = qpl_default_level;
-    job->next_in_ptr   = source.data();
-    job->next_out_ptr  = destination.data();
-    job->available_in  = source_size;
-    job->available_out = static_cast<uint32_t>(destination.size());
-    job->flags         = QPL_FLAG_FIRST | QPL_FLAG_OMIT_VERIFY;
-    job->huffman_table = c_huffman_table;
-
     // In this example source data is split to 5 chunks with unequal chunk sizes.
     // Sum of all chunk sizes MUST be equal to source_size.
     std::vector<uint32_t> chunk_sizes {50, 250, 150, 350, 200};
@@ -124,18 +106,35 @@ auto main(int argc, char** argv) -> int {
         return 1;
     }
 
-    uint32_t source_bytes_processed_previously = 0U;
+    // Calculate the total size of the buffer required to safely compress multiple chunks of data.
+    uint32_t compressed_size_estimation = 0U;
+    for (size_t i = 0; i < chunk_sizes.size(); i++) {
+        const uint32_t compressed_chunk_size = qpl_get_safe_deflate_compression_buffer_size(chunk_sizes[i]);
+        if (compressed_chunk_size == 0) {
+            std::cout << "Invalid chunk size. Chunk size exceeds the maximum supported size.\n";
+            qpl_huffman_table_destroy(c_huffman_table);
+            return 1;
+        }
+        compressed_size_estimation += compressed_chunk_size;
+    }
+
+    // Container for compressed data.
+    std::vector<uint8_t> destination(compressed_size_estimation, 4);
+
+    // Static compression operation initialization.
+    job->op            = qpl_op_compress;
+    job->level         = qpl_default_level;
+    job->next_in_ptr   = source.data();
+    job->next_out_ptr  = destination.data();
+    job->flags         = QPL_FLAG_FIRST | QPL_FLAG_OMIT_VERIFY;
+    job->huffman_table = c_huffman_table;
+
     for (size_t iteration_count = 0; iteration_count < chunk_sizes.size(); iteration_count++) {
         // Set the job to LAST on the last iteration.
         if (iteration_count == chunk_sizes.size() - 1) { job->flags |= QPL_FLAG_LAST; }
 
-        // Advance `next_in_ptr` pointer for the next iteration by the amount
-        // of bytes processed previously.
-        // If writing into contiguous memory, this step is not necessary,
-        // as the `next_in_ptr` will be updated at the end of previous execution by
-        // number of bytes processed.
-        job->next_in_ptr  = source.data() + source_bytes_processed_previously;
-        job->available_in = chunk_sizes[iteration_count];
+        job->available_in  = chunk_sizes[iteration_count];
+        job->available_out = qpl_get_safe_deflate_compression_buffer_size(chunk_sizes[iteration_count]);
 
         // Execute compression operation.
         status = qpl_execute_job(job);
@@ -146,9 +145,6 @@ auto main(int argc, char** argv) -> int {
         }
 
         job->flags &= ~QPL_FLAG_FIRST;
-
-        // Update offset for `next_in_ptr` by the total size of previous chunks.
-        source_bytes_processed_previously += chunk_sizes[iteration_count];
     }
     const uint32_t compressed_size = job->total_out;
 

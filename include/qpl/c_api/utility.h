@@ -31,13 +31,13 @@ extern "C" {
 
 /**
  * @brief Calculate the maximum buffer size for compression, compression output should not exceed this size.
- * 
+ *
  * @param[in]  source_size  size of the input buffer
- * 
+ *
  * @note This only applies to deflate compressions, Huffman Only mode is not supported.
- * 
+ * @note When performing compression over multiple submissions, the user must call the API for each chunk of data.
  * @note This function does not include overhead for gzip/zlib headers and footers.
- * 
+ *
  * @return uint32_t
  */
 QPL_API(uint32_t, qpl_get_safe_deflate_compression_buffer_size, (uint32_t source_size))

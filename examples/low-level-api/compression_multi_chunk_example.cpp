@@ -7,6 +7,7 @@
 //* [QPL_LOW_LEVEL_COMPRESSION_MULTI_CHUNK_EXAMPLE] */
 
 #include <algorithm>
+#include <cstdint>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -100,6 +101,36 @@ int32_t get_min_max_transfer_size(uint64_t& max_transfer_size, int32_t numa_id =
 }
 
 /**
+ * @brief This function estimates the total compressed size for a given number of chunks,
+ * where each chunk has a specified size, and the last chunk may have a different size.
+ *
+ * @return The estimated compressed size in bytes. Returns 0 if any chunk size exceeds the maximum supported size.
+ */
+uint32_t calculate_compressed_size(uint32_t source_size, uint32_t chunk_count) {
+    // Calculate the chunk size.
+    const uint32_t chunk_size = (source_size + chunk_count - 1) / chunk_count;
+
+    // Calculate the size of the last chunk if not divisible by chunk size.
+    const uint32_t last_chunk_size = source_size - (chunk_count - 1) * chunk_size;
+
+    uint32_t buffer_size = qpl_get_safe_deflate_compression_buffer_size(chunk_size);
+    if (buffer_size == 0) {
+        std::cout << "Invalid chunk size. Chunk size exceeds the maximum supported size.\n";
+        return 0;
+    }
+    uint32_t compressed_size_estimation = (chunk_count - 1) * buffer_size;
+
+    buffer_size = qpl_get_safe_deflate_compression_buffer_size(last_chunk_size);
+    if (buffer_size == 0) {
+        std::cout << "Invalid last chunk size. Last chunk size exceeds the maximum supported size.\n";
+        return 0;
+    }
+    compressed_size_estimation += buffer_size;
+
+    return compressed_size_estimation;
+}
+
+/**
  * @brief This example requires a command line argument to set the execution path. Valid values are `software_path`
  * and `hardware_path`.
  * In QPL, @ref qpl_path_software (`Software Path`) means that computations will be done with CPU.
@@ -132,29 +163,28 @@ auto main(int argc, char** argv) -> int {
     if (parse_ret != 0) { return 1; }
 
     // Calculate chunk size for the compression.
-    uint32_t chunk_size = source_size / chunk_count;
+    uint32_t chunk_size = (source_size + chunk_count - 1) / chunk_count;
 
+    // Adjust chunk size if it exceeds the max_transfer_size.
     if (execution_path == qpl_path_hardware) {
         uint64_t max_transfer_size = 0U;
-        if (get_min_max_transfer_size(max_transfer_size) == 0) {
-            if (chunk_size > max_transfer_size) {
-                std::cout << "Chunk size(" << chunk_size << ") exceeds configured max transfer size ("
-                          << max_transfer_size << "), reducing chunk size.\n";
-                chunk_size = max_transfer_size;
-            }
+        if (get_min_max_transfer_size(max_transfer_size) == 0 && chunk_size > max_transfer_size) {
+            std::cout << "Chunk size(" << chunk_size << ") exceeds configured max transfer size (" << max_transfer_size
+                      << "), reducing chunk size.\n";
+            chunk_size = static_cast<uint32_t>(max_transfer_size);
         }
     }
 
-    // Get compression buffer size estimate
-    const uint32_t compression_size = qpl_get_safe_deflate_compression_buffer_size(source_size);
-    if (compression_size == 0) {
-        std::cout << "Invalid source size. Source size exceeds the maximum supported size.\n";
-        return 1;
-    }
+    // Adjust chunk count if chunk size was decreased to avoid exceeding max transfer size.
+    const uint32_t adjusted_chunk_count = std::max(1U, (source_size + chunk_size - 1) / chunk_size);
+
+    // Get compression buffer size estimate.
+    const uint32_t compressed_size_estimation = calculate_compressed_size(source_size, adjusted_chunk_count);
+    if (compressed_size_estimation == 0) { return 1; }
 
     // Source and output containers.
     std::vector<uint8_t> source(source_size, 5);
-    std::vector<uint8_t> destination(compression_size, 4);
+    std::vector<uint8_t> destination(compressed_size_estimation, 4);
     std::vector<uint8_t> reference(source_size, 7);
 
     std::unique_ptr<uint8_t[]> job_buffer;
@@ -176,26 +206,17 @@ auto main(int argc, char** argv) -> int {
         return 1;
     }
 
-    // Initialize qpl_job structure before performing a compression operation.
+    // Initialize qpl_job structure before performing fixed compression operation.
     job->op            = qpl_op_compress;
     job->level         = qpl_default_level;
     job->next_in_ptr   = source.data();
     job->next_out_ptr  = destination.data();
-    job->available_in  = source_size;
-    job->available_out = static_cast<uint32_t>(destination.size());
     job->flags         = QPL_FLAG_FIRST | QPL_FLAG_OMIT_VERIFY;
     job->huffman_table = NULL;
 
-    uint32_t iteration_count   = 0U;
     uint32_t source_bytes_left = static_cast<uint32_t>(source.size());
 
     while (source_bytes_left > 0) {
-        // Advance `next_in_ptr` pointer for the next iteration.
-        // If writing into contiguous memory, this step is not necessary,
-        // as the `next_in_ptr` will be updated at the end of previous execution by
-        // number of bytes processed.
-        job->next_in_ptr = source.data() + iteration_count * chunk_size;
-
         // In this example, all chunks are equal in size except for the last one.
         // So adjusting the size and setting the job to LAST.
         if (chunk_size >= source_bytes_left) {
@@ -203,11 +224,8 @@ auto main(int argc, char** argv) -> int {
             chunk_size = source_bytes_left;
         }
 
-        source_bytes_left -= chunk_size;
-        job->available_in = chunk_size;
-
-        // Hardware requires that job->available_out does not exceed max_transfer_size
-        job->available_out = std::min(chunk_size, job->available_out);
+        job->available_in  = chunk_size;
+        job->available_out = qpl_get_safe_deflate_compression_buffer_size(chunk_size);
 
         // Execute compression operation.
         status = qpl_execute_job(job);
@@ -216,8 +234,8 @@ auto main(int argc, char** argv) -> int {
             return 1;
         }
 
+        source_bytes_left -= chunk_size;
         job->flags &= ~QPL_FLAG_FIRST;
-        iteration_count++;
     }
 
     destination.resize(job->total_out);

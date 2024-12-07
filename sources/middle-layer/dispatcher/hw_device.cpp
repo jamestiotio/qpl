@@ -13,6 +13,7 @@
 #include "hw_descriptors_api.h"
 #include "hw_device.hpp"
 #include "util/topology.hpp"
+#include "util/util.hpp"
 
 #ifdef DYNAMIC_LOADING_LIBACCEL_CONFIG
 #include "hw_configuration_driver.h"
@@ -63,30 +64,27 @@ void hw_device::fill_hw_context(hw_accelerator_context* const hw_context_ptr) co
 }
 
 auto hw_device::enqueue_descriptor(void* desc_ptr) const noexcept -> hw_accelerator_status {
-    static thread_local std::uint32_t wq_idx                = 0;
-    bool                              is_op_supported_by_wq = false;
-    const uint32_t                    operation             = hw_iaa_descriptor_get_operation((hw_descriptor*)desc_ptr);
+    static thread_local std::uint32_t wq_idx = 0;
+
+    const uint32_t   operation             = hw_iaa_descriptor_get_operation((hw_descriptor*)desc_ptr);
+    util::bitmask128 bit_index_is_valid_wq = util::bitmask128(queue_count_);
+
+    // Must select only workqueues w/ operation enabled
+    queue_selection_.reduce_by_operation(operation, bit_index_is_valid_wq);
+    if (bit_index_is_valid_wq == 0U) { return HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ; }
 
     // For small low-latency cases WQ with small transfer size may be preferable
     // TODO: order WQs by priority and engines capacity, check transfer sizes and other possible features
     for (uint64_t try_count = 0U; try_count < queue_count_; ++try_count) {
-        hw_iaa_descriptor_set_block_on_fault((hw_descriptor*)desc_ptr, working_queues_[wq_idx].get_block_on_fault());
-        // If OPCFG functionality exists, check OPCFG register before submitting, otherwise try submission
-        if (!op_cfg_enabled_ || get_operation_supported_on_wq(wq_idx, operation)) {
-            // For submitting when OPCFG is supported, logic is :
-            //   If all WQs don't support operation, return HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ
-            //   If any WQ supports operation, but submission fails, then return HW_ACCELERATOR_WQ_IS_BUSY
+        if (bit_index_is_valid_wq[wq_idx]) {
+            hw_iaa_descriptor_set_block_on_fault((hw_descriptor*)desc_ptr,
+                                                 working_queues_[wq_idx].get_block_on_fault());
             const qpl_status enqueue_status = working_queues_[wq_idx].enqueue_descriptor(desc_ptr);
-            is_op_supported_by_wq           = true;
             if (QPL_STS_OK == enqueue_status) { return HW_ACCELERATOR_STATUS_OK; }
         }
         wq_idx = (wq_idx + 1) % queue_count_;
     }
-    if (!is_op_supported_by_wq) {
-        return HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ;
-    } else {
-        return HW_ACCELERATOR_WQ_IS_BUSY;
-    }
+    return HW_ACCELERATOR_WQ_IS_BUSY;
 }
 
 auto hw_device::get_indexing_support_enabled() const noexcept -> uint32_t {
@@ -131,10 +129,6 @@ auto hw_device::get_dict_compress_support() const noexcept -> bool {
 
 auto hw_device::get_force_array_output_support() const noexcept -> bool {
     return IC_FORCE_ARRAY(iaa_cap_register_);
-}
-
-auto hw_device::get_operation_supported_on_wq(const uint32_t wq_idx, const uint32_t operation) const noexcept -> bool {
-    return OC_GET_OP_SUPPORTED(op_configs_[wq_idx], operation);
 }
 
 auto hw_device::get_load_partial_aecs_support() const noexcept -> bool {
@@ -245,14 +239,8 @@ auto hw_device::initialize_new_device(descriptor_t* device_descriptor_ptr) noexc
 
     if (queue_count_ == 0) { return HW_ACCELERATOR_WORK_QUEUES_NOT_AVAILABLE; }
 
-    // Logic for op_cfg_enabled_ value
-    op_cfg_enabled_ = working_queues_[0].get_op_configuration_support();
-
-    for (uint32_t wq_idx = 0; wq_idx < queue_count_; wq_idx++) {
-        for (uint32_t register_index = 0; register_index < TOTAL_OP_CFG_BIT_GROUPS; register_index++) {
-            op_configs_[wq_idx] = working_queues_[wq_idx].get_op_config_register();
-        }
-    }
+    // Initialize queue_selection_ object
+    queue_selection_ = queue_selector(working_queues_, queue_count_);
 
     return HW_ACCELERATOR_STATUS_OK;
 }

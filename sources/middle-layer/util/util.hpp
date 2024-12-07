@@ -123,6 +123,37 @@ mask_type build_mask(uint32_t number_of_bits) {
     }
 }
 
+struct bitmask128 {
+    uint64_t low;
+    uint64_t high;
+
+    bitmask128() noexcept : low(0U), high(0U) {}
+    bitmask128(const uint32_t size) noexcept {
+        if (size < 64) {
+            low  = (1U << size) - 1U;
+            high = 0U;
+        } else if (size < 128) {
+            low  = UINT64_MAX;
+            high = (1U << (size - 64)) - 1U;
+        } else {
+            low  = UINT64_MAX;
+            high = UINT64_MAX;
+        }
+    }
+
+    bool operator[](const uint32_t idx) const noexcept {
+        if (idx < 64) {
+            return (low & (static_cast<uint64_t>(1U) << idx)) != 0U;
+        } else if (idx < 128) {
+            return (high & (static_cast<uint64_t>(1U) << (idx - 64))) != 0U;
+        } else {
+            return false;
+        }
+    }
+
+    bool operator==(const uint64_t& rhs) const noexcept { return low == rhs && high == 0U; }
+};
+
 } // namespace util
 } // namespace qpl::ml
 

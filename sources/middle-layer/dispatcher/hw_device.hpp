@@ -16,6 +16,7 @@
 #include "hw_devices.h"
 #include "hw_queue.hpp"
 #include "hw_status.h"
+#include "queue_selector.hpp"
 
 namespace qpl::ml::dispatcher {
 
@@ -25,9 +26,7 @@ class hw_device final {
 
     static constexpr uint32_t max_working_queues = MAX_NUM_WQ;
 
-    using queues_container_t   = std::array<hw_queue, max_working_queues>;
-    using op_config_register_t = std::array<uint32_t, TOTAL_OP_CFG_BIT_GROUPS>;
-    using opcfg_container_t    = std::array<op_config_register_t, max_working_queues>;
+    using queues_container_t = std::array<hw_queue, max_working_queues>;
 
 public:
     using descriptor_t = void;
@@ -72,24 +71,20 @@ public:
 
     [[nodiscard]] auto get_force_array_output_support() const noexcept -> bool;
 
-    [[nodiscard]] auto get_operation_supported_on_wq(const uint32_t wq_idx, const uint32_t operation) const noexcept
-            -> bool;
-
     [[nodiscard]] auto get_load_partial_aecs_support() const noexcept -> bool;
 
     [[nodiscard]] auto is_matching_user_numa_policy(int32_t user_specified_numa_id) const noexcept -> bool;
 
 private:
-    queues_container_t working_queues_ = {}; /**< Set of available HW working queues */
-    opcfg_container_t  op_configs_     = {}; /**< Array of OPCFG register content for each available HW working queue */
-    uint32_t           queue_count_    = 0U; /**< Number of working queues that are available */
-    uint64_t           gen_cap_register_ = 0U;    /**< GENCAP register content */
-    uint64_t           iaa_cap_register_ = 0U;    /**< IAACAP register content */
-    uint64_t           numa_node_id_     = 0U;    /**< NUMA node id of the device */
-    uint32_t           version_major_    = 0U;    /**< Major version of discovered device */
-    uint32_t           version_minor_    = 0U;    /**< Minor version of discovered device */
-    bool               op_cfg_enabled_   = false; /**< Need to check workqueue's OPCFG register */
-    uint64_t           socket_id_        = 0u;    /**< Socket id of the device */
+    queues_container_t working_queues_   = {}; /**< Set of available HW working queues */
+    uint32_t           queue_count_      = 0U; /**< Number of working queues that are available */
+    uint64_t           gen_cap_register_ = 0U; /**< GENCAP register content */
+    uint64_t           iaa_cap_register_ = 0U; /**< IAACAP register content */
+    uint64_t           numa_node_id_     = 0U; /**< NUMA node id of the device */
+    uint32_t           version_major_    = 0U; /**< Major version of discovered device */
+    uint32_t           version_minor_    = 0U; /**< Minor version of discovered device */
+    uint64_t           socket_id_        = 0u; /**< Socket id of the device */
+    queue_selector     queue_selection_;       /**< Queue Selection object */
 };
 
 #endif

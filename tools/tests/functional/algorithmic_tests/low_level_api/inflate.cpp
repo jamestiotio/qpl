@@ -49,7 +49,7 @@ public:
         job_ptr->op    = qpl_op_decompress;
         job_ptr->flags = QPL_FLAG_FIRST | QPL_FLAG_LAST;
 
-        auto dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
+        const auto& dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
 
         try {
             reference_data = dataset[decompressed_file_name];
@@ -108,7 +108,7 @@ public:
 
 private:
     void SetSourceFromFile(std::string& file_name) {
-        auto dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
+        const auto& dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
 
         source = dataset[file_name]; // store to original data to reference vector
 

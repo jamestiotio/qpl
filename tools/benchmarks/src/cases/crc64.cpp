@@ -57,7 +57,7 @@ BENCHMARK_SET_DELAYED(crc64) {
     const std::vector<crc_type_e> crc_types {crc_type_e::crc32_gzip, crc_type_e::crc32_wimax, crc_type_e::crc32_iscsi,
                                              crc_type_e::T10DIF,     crc_type_e::crc16_ccitt, crc_type_e::crc64};
 
-    auto dataset = data::read_dataset(cmd::FLAGS_dataset);
+    const auto& dataset = data::read_dataset(cmd::FLAGS_dataset);
     for (auto& data : dataset) {
         block_sizes = (cmd::get_block_size() >= 0)
                               ? std::vector<uint32_t> {static_cast<uint32_t>(cmd::get_block_size())}

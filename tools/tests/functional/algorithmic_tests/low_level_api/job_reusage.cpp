@@ -32,7 +32,7 @@ protected:
     void SetUpBeforeIteration() override {
         auto current_test_case = GetTestCase();
 
-        auto dataset = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
+        const auto& dataset = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
 
         source = dataset[current_test_case];
     }

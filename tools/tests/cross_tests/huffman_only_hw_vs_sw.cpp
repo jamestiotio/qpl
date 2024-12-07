@@ -191,7 +191,7 @@ public:
     void SetUpBeforeIteration() override {
         current_test_case = GetTestCase();
 
-        auto dataset = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
+        const auto& dataset = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
 
         reference_text = dataset[current_test_case.file_name];
 

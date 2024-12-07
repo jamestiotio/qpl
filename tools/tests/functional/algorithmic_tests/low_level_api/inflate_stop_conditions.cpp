@@ -64,8 +64,8 @@ protected:
 
 // 1.a Identical test to 1, except for the fact, that there's only one bfinal eob symbol
 QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_F(inflate_stop_conditions, dont_stop_on_eob, inflate_stop_condtition_test) {
-    auto dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
-    source       = dataset["file1"];
+    const auto& dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
+    source              = dataset["file1"];
 
     std::vector<uint8_t> compressed_source(source.size() * 2);
     destination.resize(compressed_source.size() * 2);
@@ -99,8 +99,8 @@ QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_F(inflate_stop_conditions, dont_stop_on_eob, 
 
 // 2. Stop on any EOB symbol
 QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_F(inflate_stop_conditions, stop_on_eob, inflate_stop_condtition_test) {
-    auto dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
-    source       = dataset["file1"];
+    const auto& dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
+    source              = dataset["file1"];
 
     std::vector<uint8_t> compressed_source(source.size() * 2);
     destination.resize(compressed_source.size() * 2);

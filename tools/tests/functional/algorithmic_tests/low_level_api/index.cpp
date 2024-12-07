@@ -189,7 +189,7 @@ public:
     void SetUpBeforeIteration() override {
         current_test_case = GetTestCase();
 
-        auto dataset = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
+        const auto& dataset = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
 
         std::vector<uint8_t> source_ptr = dataset[current_test_case.file_name];
 

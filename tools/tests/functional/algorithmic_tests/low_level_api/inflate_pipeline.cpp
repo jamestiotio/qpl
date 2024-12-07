@@ -26,7 +26,7 @@ public:
             deflate_job_ptr = reinterpret_cast<qpl_job*>(job_buffer.get());
         }
 
-        auto dataset = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
+        const auto& dataset = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
 
         source = dataset[GetTestCase()];
         // Huge size due to potentially tiny block compression

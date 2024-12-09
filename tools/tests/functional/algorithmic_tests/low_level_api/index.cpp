@@ -263,7 +263,7 @@ public:
 };
 
 QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_TC(deflate_index_extended, PerformOperation, IndexTest) {
-    auto                 dataset    = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
+    const auto&          dataset    = util::TestEnvironment::GetInstance().GetAlgorithmicDataset();
     std::vector<uint8_t> source     = dataset[current_test_case.file_name];
     const uint32_t       input_size = static_cast<uint32_t>(source.size());
 

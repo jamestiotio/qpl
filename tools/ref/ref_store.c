@@ -205,8 +205,6 @@ REF_INLINE qpl_status own_store_value_32(const uint32_t* const source_ptr, uint3
 
         if (QPL_ONE_32U == source_bit_width) {
             if (0U < value) {
-                if (UINT32_MAX < index) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-
                 REF_CHECK_PTR_END((uint8_t*)current_destination_ptr, destination_end_ptr, sizeof(uint32_t),
                                   QPL_STS_DST_IS_SHORT_ERR);
 

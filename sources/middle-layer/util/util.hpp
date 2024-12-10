@@ -130,11 +130,11 @@ struct bitmask128 {
     bitmask128() noexcept : low(0U), high(0U) {}
     bitmask128(const uint32_t size) noexcept {
         if (size < 64) {
-            low  = (1U << size) - 1U;
+            low  = (1ULL << size) - 1U;
             high = 0U;
         } else if (size < 128) {
             low  = UINT64_MAX;
-            high = (1U << (size - 64)) - 1U;
+            high = (1ULL << (size - 64)) - 1U;
         } else {
             low  = UINT64_MAX;
             high = UINT64_MAX;

@@ -43,6 +43,10 @@ QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(huffman_table, deflate_table_create) {
                                               &huffman_table);
 
     EXPECT_EQ(QPL_STS_OBJECT_ALLOCATION_ERR, status) << "bad allocator provided";
+
+    status = qpl_deflate_huffman_table_create(combined_table_type, GetExecutionPath(), {malloc, free}, nullptr);
+
+    EXPECT_EQ(QPL_STS_NULL_PTR_ERR, status) << "NULL table pointer provided";
 }
 
 QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(huffman_table, huffman_only_table_create) {
@@ -61,6 +65,10 @@ QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(huffman_table, huffman_only_table_create) {
     status = qpl_huffman_only_table_create(combined_table_type, GetExecutionPath(), {bad_malloc, free}, &huffman_table);
 
     EXPECT_EQ(QPL_STS_OBJECT_ALLOCATION_ERR, status) << "bad allocator provided";
+
+    status = qpl_huffman_only_table_create(combined_table_type, GetExecutionPath(), {malloc, free}, nullptr);
+
+    EXPECT_EQ(QPL_STS_NULL_PTR_ERR, status) << "NULL table pointer provided";
 }
 
 QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(huffman_table, destroy) {

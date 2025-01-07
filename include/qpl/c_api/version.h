@@ -16,6 +16,8 @@
 #pragma GCC visibility push(default)
 #endif
 
+#include "qpl/c_api/defs.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -23,7 +25,7 @@ extern "C" {
 /**
  * @brief Returns a string with a version of the library
  */
-const char* qpl_get_library_version();
+QPL_API(const char*, qpl_get_library_version, (void));
 
 #ifdef __cplusplus
 }

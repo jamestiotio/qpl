@@ -18,6 +18,7 @@
 
 #include <stdint.h>
 
+#include "qpl/c_api/defs.h"
 #include "qpl/c_api/serialization.h"
 #include "qpl/c_api/statistics.h"
 #include "qpl/c_api/status.h"
@@ -88,8 +89,9 @@ typedef enum {
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_deflate_huffman_table_create(const qpl_huffman_table_type_e type, const qpl_path_t path,
-                                            const allocator_t allocator, qpl_huffman_table_t* table_ptr);
+QPL_API(qpl_status, qpl_deflate_huffman_table_create,
+        (const qpl_huffman_table_type_e type, const qpl_path_t path, const allocator_t allocator,
+         qpl_huffman_table_t* table_ptr));
 
 /**
  * @brief Creates a @ref qpl_huffman_table_t object for Huffman Only. Allocate and markup of internal structures
@@ -101,8 +103,9 @@ qpl_status qpl_deflate_huffman_table_create(const qpl_huffman_table_type_e type,
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_huffman_only_table_create(const qpl_huffman_table_type_e type, const qpl_path_t path,
-                                         const allocator_t allocator, qpl_huffman_table_t* table_ptr);
+QPL_API(qpl_status, qpl_huffman_only_table_create,
+        (const qpl_huffman_table_type_e type, const qpl_path_t path, const allocator_t allocator,
+         qpl_huffman_table_t* table_ptr));
 
 /**
  * @brief Destroy an @ref qpl_huffman_table_t object. Deallocates internal structures
@@ -111,7 +114,7 @@ qpl_status qpl_huffman_only_table_create(const qpl_huffman_table_type_e type, co
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_huffman_table_destroy(qpl_huffman_table_t table);
+QPL_API(qpl_status, qpl_huffman_table_destroy, (qpl_huffman_table_t table));
 
 /** @} */
 
@@ -130,7 +133,8 @@ qpl_status qpl_huffman_table_destroy(qpl_huffman_table_t table);
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_huffman_table_init_with_histogram(qpl_huffman_table_t table, const qpl_histogram* const histogram_ptr);
+QPL_API(qpl_status, qpl_huffman_table_init_with_histogram,
+        (qpl_huffman_table_t table, const qpl_histogram* const histogram_ptr));
 
 /**
  * @brief Initializes huffman table with provided triplets
@@ -141,8 +145,8 @@ qpl_status qpl_huffman_table_init_with_histogram(qpl_huffman_table_t table, cons
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_huffman_table_init_with_triplets(qpl_huffman_table_t table, const qpl_huffman_triplet* const triplet_ptr,
-                                                const uint32_t triplet_count);
+QPL_API(qpl_status, qpl_huffman_table_init_with_triplets,
+        (qpl_huffman_table_t table, const qpl_huffman_triplet* const triplet_ptr, const uint32_t triplet_count));
 
 /**
  * @brief Initializes huffman table with information from another table
@@ -152,7 +156,7 @@ qpl_status qpl_huffman_table_init_with_triplets(qpl_huffman_table_t table, const
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_huffman_table_init_with_other(qpl_huffman_table_t table, const qpl_huffman_table_t other);
+QPL_API(qpl_status, qpl_huffman_table_init_with_other, (qpl_huffman_table_t table, const qpl_huffman_table_t other));
 
 /** @} */
 
@@ -171,7 +175,8 @@ qpl_status qpl_huffman_table_init_with_other(qpl_huffman_table_t table, const qp
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_huffman_table_get_type(const qpl_huffman_table_t table, qpl_huffman_table_type_e* const type_ptr);
+QPL_API(qpl_status, qpl_huffman_table_get_type,
+        (const qpl_huffman_table_t table, qpl_huffman_table_type_e* const type_ptr));
 
 /** @} */
 
@@ -194,8 +199,8 @@ qpl_status qpl_huffman_table_get_type(const qpl_huffman_table_t table, qpl_huffm
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_huffman_table_get_serialized_size(const qpl_huffman_table_t table, const serialization_options_t options,
-                                                 size_t* const size_ptr);
+QPL_API(qpl_status, qpl_huffman_table_get_serialized_size,
+        (const qpl_huffman_table_t table, const serialization_options_t options, size_t* const size_ptr));
 
 /**
  * @brief Serializes qpl_huffman_table_t object.
@@ -208,8 +213,9 @@ qpl_status qpl_huffman_table_get_serialized_size(const qpl_huffman_table_t table
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_huffman_table_serialize(const qpl_huffman_table_t table, uint8_t* const dump_buffer_ptr,
-                                       const size_t dump_buffer_size, const serialization_options_t options);
+QPL_API(qpl_status, qpl_huffman_table_serialize,
+        (const qpl_huffman_table_t table, uint8_t* const dump_buffer_ptr, const size_t dump_buffer_size,
+         const serialization_options_t options));
 
 /**
  * @brief Deserializes previously serialized huffman table
@@ -221,8 +227,9 @@ qpl_status qpl_huffman_table_serialize(const qpl_huffman_table_t table, uint8_t*
  *
  * @return status from @ref qpl_status
  */
-qpl_status qpl_huffman_table_deserialize(const uint8_t* const dump_buffer_ptr, const size_t dump_buffer_size,
-                                         allocator_t allocator, qpl_huffman_table_t* table_ptr);
+QPL_API(qpl_status, qpl_huffman_table_deserialize,
+        (const uint8_t* const dump_buffer_ptr, const size_t dump_buffer_size, allocator_t allocator,
+         qpl_huffman_table_t* table_ptr));
 
 /** @} */
 

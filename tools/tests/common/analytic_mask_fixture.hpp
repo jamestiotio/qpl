@@ -23,12 +23,12 @@ protected:
 
         ASSERT_NO_THROW(mask = mask_gen.get_source()); //NOLINT(cppcoreguidelines-avoid-goto)
 
-        uint32_t destination_bit_width = (1U == current_test_case.destination_bit_width)
-                                                 ? current_test_case.source_bit_width
-                                                 : current_test_case.destination_bit_width;
+        const uint32_t destination_bit_width = (1U == current_test_case.destination_bit_width)
+                                                       ? current_test_case.source_bit_width
+                                                       : current_test_case.destination_bit_width;
 
-        uint32_t destination_size = current_test_case.number_of_elements *
-                                    ((destination_bit_width + max_bit_index) >> bit_to_byte_shift_offset);
+        const uint32_t destination_size = current_test_case.number_of_elements *
+                                          ((destination_bit_width + max_bit_index) >> bit_to_byte_shift_offset);
 
         destination.resize(destination_size);
         reference_destination.resize(destination_size);

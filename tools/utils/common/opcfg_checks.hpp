@@ -45,8 +45,8 @@ inline bool is_opcfg_capabilities_present() {
 inline bool is_operation_disabled_on_all_wq_on_node(qpl_test_opcodes opcode) {
     if (!is_opcfg_capabilities_present()) { return false; }
 
-    bool    is_op_disabled = true;
-    int32_t numa_id        = get_numa_id();
+    const bool    is_op_disabled = true;
+    const int32_t numa_id        = get_numa_id();
 
 #if defined(__linux__)
     static auto& dispatcher = hw_dispatcher::get_instance();

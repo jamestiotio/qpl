@@ -172,7 +172,7 @@ class deflate_state_builder<execution_path_t::hardware> {
 
 public:
     static auto create(const util::linear_allocator& allocator) noexcept -> common_type {
-        bool        init_compress_body = true;
+        const bool  init_compress_body = true;
         common_type builder(allocator, init_compress_body);
 
         builder.state_.processing_step               = util::multitask_status::multi_chunk_first_chunk;
@@ -186,12 +186,12 @@ public:
     }
 
     static auto restore(const util::linear_allocator& allocator) noexcept -> common_type {
-        bool init_compress_body = false;
+        const bool init_compress_body = false;
         return common_type(allocator, init_compress_body);
     };
 
     static auto restore_with_init(const util::linear_allocator& allocator) noexcept -> common_type {
-        bool init_compress_body = true;
+        const bool init_compress_body = true;
         return common_type(allocator, init_compress_body);
     };
 

@@ -15,7 +15,7 @@ namespace qpl::test {
 static qpl_huffman_table_t deflate_huffman_table_maker(const qpl_huffman_table_type_e type, const qpl_path_t path,
                                                        const allocator_t allocator) {
     qpl_huffman_table_t table_ptr = nullptr;
-    qpl_status          status    = qpl_deflate_huffman_table_create(type, path, allocator, &table_ptr);
+    const qpl_status    status    = qpl_deflate_huffman_table_create(type, path, allocator, &table_ptr);
     if (status != QPL_STS_OK) table_ptr = nullptr;
     return table_ptr;
 }
@@ -23,7 +23,7 @@ static qpl_huffman_table_t deflate_huffman_table_maker(const qpl_huffman_table_t
 static qpl_huffman_table_t huffman_only_huffman_table_maker(const qpl_huffman_table_type_e type, const qpl_path_t path,
                                                             const allocator_t allocator) {
     qpl_huffman_table_t table_ptr = nullptr;
-    qpl_status          status    = qpl_huffman_only_table_create(type, path, allocator, &table_ptr);
+    const qpl_status    status    = qpl_huffman_only_table_create(type, path, allocator, &table_ptr);
     if (status != QPL_STS_OK) table_ptr = nullptr;
     return table_ptr;
 }

@@ -32,10 +32,10 @@ public:
 
         ASSERT_NO_THROW(source = source_gen.get_source()); //NOLINT(cppcoreguidelines-avoid-goto)
 
-        uint32_t actual_out_bit_width =
+        const uint32_t actual_out_bit_width =
                 (job_ptr->out_bit_width == qpl_ow_nom) ? job_ptr->src1_bit_width : 4U << (job_ptr->out_bit_width);
 
-        uint32_t dest_size =
+        const uint32_t dest_size =
                 job_ptr->num_input_elements * ((actual_out_bit_width + max_bit_index) >> bit_to_byte_shift_offset);
 
         std::fill(destination.begin(), destination.end(), 0);
@@ -81,7 +81,7 @@ public:
         status = run_job_api(deflate_job_ptr);
 
         if (QPL_STS_OK != status) {
-            std::string error_message = "Compression returned " + std::to_string(status) + " status\n";
+            const std::string error_message = "Compression returned " + std::to_string(status) + " status\n";
             throw std::runtime_error(error_message);
         }
 
@@ -129,7 +129,7 @@ public:
         job_ptr->available_in = static_cast<uint32_t>(source_is_short.size());
         job_ptr->next_in_ptr  = source_is_short.data();
 
-        testing::AssertionResult testStatus = RunStatusTest(QPL_STS_SRC_IS_SHORT_ERR);
+        const testing::AssertionResult testStatus = RunStatusTest(QPL_STS_SRC_IS_SHORT_ERR);
 
         job_ptr->available_in = static_cast<uint32_t>(source.size());
         job_ptr->next_in_ptr  = source.data();

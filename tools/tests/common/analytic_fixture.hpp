@@ -114,7 +114,7 @@ public:
         status = qpl_execute_job(deflate_job_ptr);
 
         if (QPL_STS_OK != status) {
-            std::string error_message = "Compression returned " + std::to_string(status) + " status\n";
+            const std::string error_message = "Compression returned " + std::to_string(status) + " status\n";
             throw std::runtime_error(error_message);
         }
 
@@ -182,8 +182,8 @@ protected:
             actual_out_bit_width = current_test_case.source_bit_width;
         }
 
-        uint32_t dest_size = current_test_case.number_of_elements *
-                             ((actual_out_bit_width + max_bit_index) >> bit_to_byte_shift_offset);
+        const uint32_t dest_size = current_test_case.number_of_elements *
+                                   ((actual_out_bit_width + max_bit_index) >> bit_to_byte_shift_offset);
 
         std::fill(destination.begin(), destination.end(), 0);
         std::fill(reference_destination.begin(), reference_destination.end(), 0);

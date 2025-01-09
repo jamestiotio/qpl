@@ -212,7 +212,7 @@ qpl_status ref_crc64(qpl_job* const qpl_job_ptr) {
 
     qpl_status status = QPL_STS_OK;
 
-    uint8_t* src       = (uint8_t*)qpl_job_ptr->next_in_ptr;
+    uint8_t* src       = qpl_job_ptr->next_in_ptr;
     uint32_t len       = qpl_job_ptr->available_in;
     uint32_t data      = 0U;
     uint64_t crc       = 0U;

@@ -131,7 +131,7 @@ REF_INLINE qpl_status own_store_value_8(const uint32_t* const source_ptr, uint32
             REF_CHECK_PTR_END((uint8_t*)current_destination_ptr, destination_end_ptr, sizeof(uint8_t),
                               QPL_STS_DST_IS_SHORT_ERR);
 
-            (*current_destination_ptr) = (uint8_t)value;
+            (*current_destination_ptr) = value;
             ++current_destination_ptr;
             ++last_element_index;
         }
@@ -166,7 +166,7 @@ REF_INLINE qpl_status own_store_value_16(const uint32_t* const source_ptr, uint3
                 REF_CHECK_PTR_END((uint8_t*)current_destination_ptr, destination_end_ptr, sizeof(uint16_t),
                                   QPL_STS_DST_IS_SHORT_ERR);
 
-                (*current_destination_ptr) = (output_be) ? ((uint16_t)ref_cvt_le_2_be_16u(index)) : ((uint16_t)index);
+                (*current_destination_ptr) = (output_be) ? (ref_cvt_le_2_be_16u(index)) : ((uint16_t)index);
                 ++current_destination_ptr;
                 ++last_element_index;
             }
@@ -175,7 +175,7 @@ REF_INLINE qpl_status own_store_value_16(const uint32_t* const source_ptr, uint3
             REF_CHECK_PTR_END((uint8_t*)current_destination_ptr, destination_end_ptr, sizeof(uint16_t),
                               QPL_STS_DST_IS_SHORT_ERR);
 
-            (*current_destination_ptr) = (output_be) ? ((uint16_t)ref_cvt_le_2_be_16u(value)) : ((uint16_t)value);
+            (*current_destination_ptr) = (output_be) ? (ref_cvt_le_2_be_16u(value)) : (value);
             ++current_destination_ptr;
             ++last_element_index;
         }
@@ -208,7 +208,7 @@ REF_INLINE qpl_status own_store_value_32(const uint32_t* const source_ptr, uint3
                 REF_CHECK_PTR_END((uint8_t*)current_destination_ptr, destination_end_ptr, sizeof(uint32_t),
                                   QPL_STS_DST_IS_SHORT_ERR);
 
-                (*current_destination_ptr) = (output_be) ? ((uint32_t)ref_cvt_le_2_be_32u(index)) : ((uint32_t)index);
+                (*current_destination_ptr) = (output_be) ? (ref_cvt_le_2_be_32u(index)) : (index);
                 ++current_destination_ptr;
                 ++last_element_index;
             }
@@ -217,7 +217,7 @@ REF_INLINE qpl_status own_store_value_32(const uint32_t* const source_ptr, uint3
             REF_CHECK_PTR_END((uint8_t*)current_destination_ptr, destination_end_ptr, sizeof(uint32_t),
                               QPL_STS_DST_IS_SHORT_ERR);
 
-            (*current_destination_ptr) = (output_be) ? ((uint32_t)ref_cvt_le_2_be_32u(value)) : ((uint32_t)value);
+            (*current_destination_ptr) = (output_be) ? (ref_cvt_le_2_be_32u(value)) : (value);
             ++current_destination_ptr;
             ++last_element_index;
         }

@@ -146,7 +146,7 @@ extern "C" qpl_status hw_submit_decompress_job(qpl_job* qpl_job_ptr, uint32_t la
         }
         auto status = hw_iaa_aecs_decompress_set_input_accumulator(
                 &aecs_ptr->inflate_options, desc_ptr->src1_ptr, qpl_job_ptr->available_in,
-                (uint8_t)qpl_job_ptr->ignore_start_bits, (uint8_t)qpl_job_ptr->ignore_end_bits);
+                qpl_job_ptr->ignore_start_bits, qpl_job_ptr->ignore_end_bits);
 
         if (qpl_job_ptr->available_in == 1U) {
             // Input accumulator already accounted for ignore end bits if only 1 byte in input

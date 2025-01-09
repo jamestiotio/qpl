@@ -127,7 +127,7 @@ uint32_t perform_decompress(qpl_job* const job_ptr) noexcept {
             state.input(job_ptr->next_in_ptr, job_ptr->next_in_ptr + job_ptr->available_in)
                     .output(job_ptr->next_out_ptr, job_ptr->next_out_ptr + job_ptr->available_out)
                     .crc_seed(job_ptr->crc)
-                    .input_access({static_cast<bool>(!(job_ptr->flags & QPL_FLAG_FIRST)), job_ptr->ignore_start_bits,
+                    .input_access({(!(job_ptr->flags & QPL_FLAG_FIRST)), job_ptr->ignore_start_bits,
                                    job_ptr->ignore_end_bits});
 
         } else {

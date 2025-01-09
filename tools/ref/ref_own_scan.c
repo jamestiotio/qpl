@@ -18,7 +18,7 @@ qpl_status ref_store_result(uint32_t dst_buf, uint32_t bit_idx, uint8_t** pp_dst
         case qpl_ow_nom: { // nominal bit vector - store 1 bit
             // "divide by 8" - index of byte in dst_ptr where to update/store bit
             uint32_t tIdx    = bit_idx >> REF_BIT_LEN_2_BYTE;
-            uint8_t* dst_ptr = (uint8_t*)*pp_dst;                               // destination pointer
+            uint8_t* dst_ptr = (*pp_dst);                                       // destination pointer
             uint8_t  r_bit   = REF_LOW_BIT_MASK << (bit_idx & REF_MAX_BIT_IDX); // result bit mask
             // as we store only 1 bit - dst_buf can have only 2 values - 0 or 1
             // we already have correct dst byte - so mask index with position inside this byte
@@ -28,18 +28,18 @@ qpl_status ref_store_result(uint32_t dst_buf, uint32_t bit_idx, uint8_t** pp_dst
         case qpl_ow_nom | QPL_FLAG_OUT_BE: {
             // "divide by 8" - index of byte in dst_ptr where to update/store bit
             uint32_t tIdx    = bit_idx >> REF_BIT_LEN_2_BYTE;
-            uint8_t* dst_ptr = (uint8_t*)*pp_dst;                  // destination pointer
+            uint8_t* dst_ptr = (*pp_dst);                          // destination pointer
             uint8_t  r_bit   = REF_HIGH_BIT_MASK >> (bit_idx & 7); // result bit mask
             // as we store only 1 bit - dst_buf can have only 2 values - 0 or 1
             // we already have correct dst byte - so mask index with position inside this byte
             dst_ptr[tIdx] = (0U < dst_buf) ? dst_ptr[tIdx] | r_bit : dst_ptr[tIdx] & (~r_bit);
             break;
         }
-        case qpl_ow_8:                            // output modification: store 8u idexes of non-zero bits in LE
-        case qpl_ow_8 | QPL_FLAG_OUT_BE: {        // or BE (same as LE for bytes)
-            uint8_t* dst_ptr = (uint8_t*)*pp_dst; // destination pointer
-            if (0U < dst_buf) {                   // skip zero values
-                if (*idx_ptr > UINT8_MAX) {       // 8u data type - index can't exceed max 8u
+        case qpl_ow_8:                      // output modification: store 8u idexes of non-zero bits in LE
+        case qpl_ow_8 | QPL_FLAG_OUT_BE: {  // or BE (same as LE for bytes)
+            uint8_t* dst_ptr = (*pp_dst);   // destination pointer
+            if (0U < dst_buf) {             // skip zero values
+                if (*idx_ptr > UINT8_MAX) { // 8u data type - index can't exceed max 8u
                     return QPL_STS_OUTPUT_OVERFLOW_ERR;
                 }
                 // we don't know initially required dst buf size - so check here
@@ -105,7 +105,7 @@ qpl_status ref_store_result(uint32_t dst_buf, uint32_t bit_idx, uint8_t** pp_dst
             } x, y;
             if (0U < dst_buf) {
                 REF_CHECK_PTR_END((uint8_t*)dst_ptr, dst_end_ptr, sizeof(uint32_t), QPL_STS_DST_IS_SHORT_ERR);
-                x.u_int     = (uint32_t)*idx_ptr; // swap bytes for BE
+                x.u_int     = (*idx_ptr); // swap bytes for BE
                 y.u_byte[0] = x.u_byte[3];
                 y.u_byte[1] = x.u_byte[2];
                 y.u_byte[2] = x.u_byte[1];
@@ -143,7 +143,7 @@ qpl_status ref_store_1_bit(uint32_t destination_buffer, uint32_t bit_index, uint
         // Nominal bit vector - store 1 bit
         case qpl_ow_nom: {
             byte_index         = (bit_index >> REF_BIT_LEN_2_BYTE);
-            destination_8u_ptr = (uint8_t*)(*pp_destination);
+            destination_8u_ptr = (*pp_destination);
             result_bit_mask    = (REF_LOW_BIT_MASK << (bit_index & REF_MAX_BIT_IDX));
 
             // As we store only 1 bit - destination_buffer can have only 2 values - 0 or 1
@@ -155,7 +155,7 @@ qpl_status ref_store_1_bit(uint32_t destination_buffer, uint32_t bit_index, uint
         } // The same as above, but BE output format
         case qpl_ow_nom | QPL_FLAG_OUT_BE: {
             byte_index         = (bit_index >> REF_BIT_LEN_2_BYTE);
-            destination_8u_ptr = (uint8_t*)(*pp_destination);
+            destination_8u_ptr = (*pp_destination);
             result_bit_mask    = (REF_HIGH_BIT_MASK >> (bit_index & REF_MAX_BIT_IDX));
 
             // Update destination byte
@@ -166,7 +166,7 @@ qpl_status ref_store_1_bit(uint32_t destination_buffer, uint32_t bit_index, uint
         }              // Output modification: store 8u idexes of non-zero bits in LE
         case qpl_ow_8: // Or BE (same as LE for bytes)
         case qpl_ow_8 | QPL_FLAG_OUT_BE: {
-            destination_8u_ptr = (uint8_t*)(*pp_destination);
+            destination_8u_ptr = (*pp_destination);
 
             // Skip zero values
             if (0U < destination_buffer) {
@@ -277,7 +277,7 @@ qpl_status ref_store_1_bit(uint32_t destination_buffer, uint32_t bit_index, uint
                                   QPL_STS_DST_IS_SHORT_ERR);
 
                 // Swap bytes for BE
-                x.u_int     = (uint32_t)(*index_ptr);
+                x.u_int     = (*index_ptr);
                 y.u_byte[0] = x.u_byte[3];
                 y.u_byte[1] = x.u_byte[2];
                 y.u_byte[2] = x.u_byte[1];

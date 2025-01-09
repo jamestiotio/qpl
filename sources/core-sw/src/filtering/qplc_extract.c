@@ -24,8 +24,8 @@ OWN_QPLC_FUN(uint32_t, qplc_extract_8u_i,
              (uint8_t * src_dst_ptr, uint32_t length, uint32_t* index_ptr, uint32_t low_value, uint32_t high_value)) {
     uint32_t start   = 0U;
     uint32_t stop    = 0U;
-    uint8_t* src_ptr = (uint8_t*)src_dst_ptr;
-    uint8_t* dst_ptr = (uint8_t*)src_dst_ptr;
+    uint8_t* src_ptr = src_dst_ptr;
+    uint8_t* dst_ptr = src_dst_ptr;
 
     if ((*index_ptr + length) < low_value) {
         *index_ptr += length;

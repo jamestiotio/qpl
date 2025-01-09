@@ -169,7 +169,7 @@ QPL_FUN("C" qpl_status, qpl_submit_job, (qpl_job * qpl_job_ptr)) {
             if (QPL_STS_OK != status && job::is_sw_fallback_supported(qpl_job_ptr, status)) {
                 job::update_is_sw_fallback(qpl_job_ptr, true);
             } else {
-                return static_cast<qpl_status>(status);
+                return status;
             }
         }
         is_sw_fallback = state_ptr->is_sw_fallback;

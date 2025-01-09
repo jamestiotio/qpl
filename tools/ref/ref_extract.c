@@ -269,7 +269,7 @@ REF_INLINE qpl_status own_extract_output_to_format(const uint32_t* const source_
     uint32_t output_bytes = 0U;
 
     // Output format
-    qpl_out_format output_format = (qpl_out_format)qpl_job_ptr->out_bit_width;
+    qpl_out_format output_format = qpl_job_ptr->out_bit_width;
 
     // Output LE or BE
     bool output_be = (bool)(qpl_job_ptr->flags & QPL_FLAG_OUT_BE);

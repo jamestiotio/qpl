@@ -40,7 +40,7 @@ public:
 
         // Source should contain single rle group + 1st byte as prle stream bit width
         source.resize(parquet_group.size() + 1);
-        source[0] = static_cast<uint32_t>(rle_element.bit_width);
+        source[0] = rle_element.bit_width;
 
         std::copy(parquet_group.begin(), parquet_group.end(), source.begin() + 1);
 
@@ -85,7 +85,7 @@ public:
 
         // Source should contain single rle group + 1st byte as prle stream bit width
         source.resize(parquet_group.size() + 1);
-        source[0] = static_cast<uint32_t>(rle_element.bit_width);
+        source[0] = rle_element.bit_width;
 
         std::copy(parquet_group.begin(), parquet_group.end(), source.begin() + 1);
 

@@ -23,7 +23,7 @@ static uint32_t ref_qplc_pack_index_8u(const uint8_t* src_ptr, uint32_t num_elem
                                        uint32_t dst_length, uint32_t* index_ptr) {
     uint32_t index   = *index_ptr;
     uint32_t status  = QPLC_STS_OK;
-    uint8_t* dst_ptr = (uint8_t*)*pp_dst;
+    uint8_t* dst_ptr = (*pp_dst);
     uint8_t* end_ptr = dst_ptr + dst_length;
 
     for (uint32_t i = 0U; i < num_elements; i++) {
@@ -133,7 +133,7 @@ QPL_UNIT_API_ALGORITHMIC_TEST(qplc_pack_idx_8u, base) {
             const uint32_t status = (uint32_t)qplc_pack_vector(fun_indx_pack_idx_8u)(source.data(), length, &p_dst_8u,
                                                                                      length_dst, &index);
             const uint32_t ref_status =
-                    (uint32_t)ref_qplc_pack_index_8u(source.data(), length, &p_ref_dst_8u, length_dst, &ref_index);
+                    ref_qplc_pack_index_8u(source.data(), length, &p_ref_dst_8u, length_dst, &ref_index);
             ASSERT_EQ(status, ref_status);
             ASSERT_EQ(index, ref_index);
             ASSERT_EQ((p_dst_8u - (uint8_t*)destination.data()), (p_ref_dst_8u - (uint8_t*)reference.data()));
@@ -153,7 +153,7 @@ QPL_UNIT_API_ALGORITHMIC_TEST(qplc_pack_idx_8u, base) {
                 const uint32_t status = (uint32_t)qplc_pack_vector(fun_indx_pack_idx_8u)(
                         source.data(), length, &p_dst_16u, length_dst, &index);
                 const uint32_t ref_status =
-                        (uint32_t)ref_qplc_pack_index_8u(source.data(), length, &p_ref_dst_16u, length_dst, &ref_index);
+                        ref_qplc_pack_index_8u(source.data(), length, &p_ref_dst_16u, length_dst, &ref_index);
                 ASSERT_EQ(status, ref_status);
                 ASSERT_EQ(index, ref_index);
                 ASSERT_EQ((p_dst_16u - (uint8_t*)destination.data()), (p_ref_dst_16u - (uint8_t*)reference.data()));
@@ -190,7 +190,7 @@ QPL_UNIT_API_ALGORITHMIC_TEST(qplc_pack_idx_8u16u, base) {
             const uint32_t status = (uint32_t)qplc_pack_vector(fun_indx_pack_idx_8u16u)(source.data(), length,
                                                                                         &p_dst_8u, length_dst, &index);
             const uint32_t ref_status =
-                    (uint32_t)ref_qplc_pack_index_8u16u(source.data(), length, &p_ref_dst_8u, length_dst, &ref_index);
+                    ref_qplc_pack_index_8u16u(source.data(), length, &p_ref_dst_8u, length_dst, &ref_index);
             ASSERT_EQ(status, ref_status);
             ASSERT_EQ(index, ref_index);
             ASSERT_EQ((p_dst_8u - (uint8_t*)destination.data()), (p_ref_dst_8u - (uint8_t*)reference.data()));
@@ -211,7 +211,7 @@ QPL_UNIT_API_ALGORITHMIC_TEST(qplc_pack_idx_8u16u, base) {
             const uint32_t status = (uint32_t)qplc_pack_vector(fun_indx_pack_idx_8u16u)(source.data(), length,
                                                                                         &p_dst_8u, length_dst, &index);
             const uint32_t ref_status =
-                    (uint32_t)ref_qplc_pack_index_8u16u(source.data(), length, &p_ref_dst_8u, length_dst, &ref_index);
+                    ref_qplc_pack_index_8u16u(source.data(), length, &p_ref_dst_8u, length_dst, &ref_index);
             ASSERT_EQ(status, ref_status);
             ASSERT_EQ(index, ref_index);
             ASSERT_EQ((p_dst_8u - (uint8_t*)destination.data()), (p_ref_dst_8u - (uint8_t*)reference.data()));
@@ -246,7 +246,7 @@ QPL_UNIT_API_ALGORITHMIC_TEST(qplc_pack_idx_8u32u, base) {
             const uint32_t status = (uint32_t)qplc_pack_vector(fun_indx_pack_idx_8u32u)(source.data(), length,
                                                                                         &p_dst_8u, length_dst, &index);
             const uint32_t ref_status =
-                    (uint32_t)ref_qplc_pack_index_8u32u(source.data(), length, &p_ref_dst_8u, length_dst, &ref_index);
+                    ref_qplc_pack_index_8u32u(source.data(), length, &p_ref_dst_8u, length_dst, &ref_index);
             ASSERT_EQ(status, ref_status);
             ASSERT_EQ(index, ref_index);
             ASSERT_EQ((p_dst_8u - (uint8_t*)destination.data()), (p_ref_dst_8u - (uint8_t*)reference.data()));
@@ -264,8 +264,8 @@ QPL_UNIT_API_ALGORITHMIC_TEST(qplc_pack_idx_8u32u, base) {
 
                 const uint32_t status = (uint32_t)qplc_pack_vector(fun_indx_pack_idx_8u32u)(
                         source.data(), length, &p_dst_8u, length_dst, &index);
-                const uint32_t ref_status = (uint32_t)ref_qplc_pack_index_8u32u(source.data(), length, &p_ref_dst_8u,
-                                                                                length_dst, &ref_index);
+                const uint32_t ref_status =
+                        ref_qplc_pack_index_8u32u(source.data(), length, &p_ref_dst_8u, length_dst, &ref_index);
                 ASSERT_EQ(status, ref_status);
                 ASSERT_EQ(index, ref_index);
                 ASSERT_EQ((p_dst_8u - (uint8_t*)destination.data()), (p_ref_dst_8u - (uint8_t*)reference.data()));

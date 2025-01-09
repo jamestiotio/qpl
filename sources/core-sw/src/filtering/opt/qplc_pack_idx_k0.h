@@ -644,7 +644,7 @@ OWN_OPT_FUN(qplc_status_t, k0_qplc_pack_index_8u,
              uint32_t* index_ptr)) {
     uint32_t      index                  = *index_ptr;
     qplc_status_t status                 = QPLC_STS_OK;
-    uint8_t*      dst_ptr                = (uint8_t*)*pp_dst;
+    uint8_t*      dst_ptr                = (*pp_dst);
     uint32_t      act_num_elements       = 0U;
     uint32_t      act_num_elements_align = 0U;
     uint32_t      num_elem_rem           = 0U;

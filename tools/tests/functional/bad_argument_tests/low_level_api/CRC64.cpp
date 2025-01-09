@@ -25,7 +25,7 @@ extern uint32_t perform_crc64(qpl_job* const job_ptr) noexcept;
 namespace qpl::test {
 
 static qpl_job* fill_job(qpl_job* job_ptr, uint8_t* src_ptr, int srcLength, uint64_t polynomial) {
-    job_ptr->next_in_ptr  = (uint8_t*)(src_ptr);
+    job_ptr->next_in_ptr  = src_ptr;
     job_ptr->available_in = srcLength;
     job_ptr->crc64_poly   = polynomial;
 

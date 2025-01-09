@@ -76,7 +76,7 @@ qpl_status ref_min_max_sum(const uint8_t* src_ptr, uint32_t len, uint32_t last_b
                     src_bit_len -= REF_BYTE_BIT_LEN; // update remaining source bit-counter
                 }
             }
-            elem = ((uint32_t)elem) & (uint32_t)s_bit_mask; // extract input value
+            elem = (elem) & (uint32_t)s_bit_mask; // extract input value
         }
 
         // now perform aggregate operations with received elem

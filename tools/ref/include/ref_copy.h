@@ -357,7 +357,7 @@ REF_INLINE uint16_t ref_cvt_le_2_be_16u(uint16_t z) {
         uint8_t  u_byte[2];
     } x, y;
 
-    x.u_int     = (uint16_t)z; // reverse bytes for BE
+    x.u_int     = z; // reverse bytes for BE
     y.u_byte[0] = x.u_byte[1];
     y.u_byte[1] = x.u_byte[0];
 
@@ -375,7 +375,7 @@ REF_INLINE uint32_t ref_cvt_le_2_be_32u(uint32_t z) {
         uint8_t  u_byte[4];
     } x, y;
 
-    x.u_int     = (uint32_t)z; // reverse bytes for BE
+    x.u_int     = z; // reverse bytes for BE
     y.u_byte[0] = x.u_byte[3];
     y.u_byte[1] = x.u_byte[2];
     y.u_byte[2] = x.u_byte[1];

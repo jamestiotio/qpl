@@ -70,7 +70,7 @@ qpl::test::random_base::operator float() {
 }
 
 qpl::test::random_base::operator double() {
-    return (double)gen();
+    return gen();
 }
 
 qpl::test::random_base::operator int8_t() {
@@ -221,13 +221,13 @@ double qpl::test::mean_random::gen() {
         do { //NOLINT(cppcoreguidelines-avoid-do-while)
             seed2  = 69069U * seed2 + 1013904243U;
             seed11 = seed13 - seed14 + carry;
-            carry  = (int)seed11 >> (int)31;
+            carry  = (int)seed11 >> 31;
             seed11 -= 18 & carry;
             seed14 = seed12;
             v2     = 0.4656612873077e-9 * (int)(seed11 + seed2);
             seed2  = 69069U * seed2 + 1013904243U;
             seed10 = seed12 - seed13 + carry;
-            carry  = (int)seed10 >> (int)31;
+            carry  = (int)seed10 >> 31;
             seed10 -= 18 & carry;
             seed13 = seed11;
             seed12 = seed10;
@@ -236,10 +236,10 @@ double qpl::test::mean_random::gen() {
         } while (radius >= 1.0 || radius == 0.0);
         status = 0;
         radius = sqrt(-2.0 * log(radius) / radius);
-        return (double)(m_mean + (m_stdev * radius * v1));
+        return (m_mean + (m_stdev * radius * v1));
     } else {
         status = 1;
-        return (double)(m_mean + (m_stdev * radius * v2));
+        return (m_mean + (m_stdev * radius * v2));
     }
 }
 
@@ -264,7 +264,7 @@ qpl::test::mean_random::operator float() {
 }
 
 qpl::test::mean_random::operator double() {
-    return (double)gen();
+    return gen();
 }
 
 qpl::test::mean_random::operator uint8_t() {

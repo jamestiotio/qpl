@@ -28,11 +28,11 @@ uint32_t perform_select(qpl_job* job_ptr, uint8_t* unpack_buffer_ptr, uint32_t u
     const auto crc_type = job_ptr->flags & QPL_FLAG_CRC32C ? analytics::input_stream_t::crc_t::iscsi
                                                            : analytics::input_stream_t::crc_t::gzip;
 
-    auto* src_begin  = const_cast<uint8_t*>(job_ptr->next_in_ptr);
+    auto* src_begin  = job_ptr->next_in_ptr;
     auto* src_end    = const_cast<uint8_t*>(job_ptr->next_in_ptr + job_ptr->available_in);
-    auto* dst_begin  = const_cast<uint8_t*>(job_ptr->next_out_ptr);
+    auto* dst_begin  = job_ptr->next_out_ptr;
     auto* dst_end    = const_cast<uint8_t*>(job_ptr->next_out_ptr + job_ptr->available_out);
-    auto* mask_begin = const_cast<uint8_t*>(job_ptr->next_src2_ptr);
+    auto* mask_begin = job_ptr->next_src2_ptr;
     auto* mask_end   = const_cast<uint8_t*>(job_ptr->next_src2_ptr + job_ptr->available_src2);
 
     auto* analytics_state_ptr     = reinterpret_cast<own_analytics_state_t*>(job_ptr->data_ptr.analytics_state_ptr);

@@ -30,7 +30,7 @@
 
 OWN_QPLC_FUN(void, deflate_hash_table_reset, (deflate_hash_table_t* const hash_table_ptr)) {
     CALL_CORE_FUN(qplc_set_32u)
-    ((uint32_t)OWN_UNINITIALIZED_INDEX_32u, (uint32_t*)hash_table_ptr->hash_table_ptr, OWN_HIGH_HASH_TABLE_SIZE);
+    ((uint32_t)OWN_UNINITIALIZED_INDEX_32u, hash_table_ptr->hash_table_ptr, OWN_HIGH_HASH_TABLE_SIZE);
 
     CALL_CORE_FUN(qplc_zero_8u)((uint8_t*)hash_table_ptr->hash_story_ptr, OWN_HIGH_HASH_TABLE_SIZE * 4U);
 }

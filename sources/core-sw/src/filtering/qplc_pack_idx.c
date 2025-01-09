@@ -44,7 +44,7 @@ OWN_QPLC_FUN(qplc_status_t, qplc_pack_index_8u,
 #else
     uint32_t      index   = *index_ptr;
     qplc_status_t status  = QPLC_STS_OK;
-    uint8_t*      dst_ptr = (uint8_t*)*pp_dst;
+    uint8_t*      dst_ptr = (*pp_dst);
     uint8_t*      end_ptr = dst_ptr + dst_length;
 
     for (uint32_t i = 0U; i < num_elements; i++) {

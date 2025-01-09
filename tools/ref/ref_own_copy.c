@@ -74,7 +74,7 @@ qpl_status ref_copy_le_le_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint8_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len
@@ -102,7 +102,7 @@ qpl_status ref_copy_le_le_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint16_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len
@@ -125,12 +125,12 @@ qpl_status ref_copy_le_le_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
             if (1U == s_bit) { // store non-zero value index for bit vector
                 if (0U < val) {
                     if (UINT32_MAX == idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                    *dst_ptr = (uint32_t)idx;
+                    *dst_ptr = idx;
                     dst_ptr++;
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint32_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len
@@ -209,7 +209,7 @@ qpl_status ref_copy_le_be_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint8_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len
@@ -233,12 +233,12 @@ qpl_status ref_copy_le_be_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
             if (1U == s_bit) { // store non-zero value index for bit vector
                 if (0U < val) {
                     if (UINT16_MAX < idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                    *dst16_ptr = (uint16_t)ref_cvt_le_2_be_16u(idx);
+                    *dst16_ptr = ref_cvt_le_2_be_16u(idx);
                     dst16_ptr++;
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst16_ptr = (uint16_t)ref_cvt_le_2_be_16u(val);
+                *dst16_ptr = ref_cvt_le_2_be_16u(val);
                 dst16_ptr++;
             }
         } // for len
@@ -262,12 +262,12 @@ qpl_status ref_copy_le_be_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
             if (1U == s_bit) { // store non-zero value index for bit vector
                 if (0U < val) {
                     if (UINT32_MAX == idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                    *dst32_ptr = (uint32_t)ref_cvt_le_2_be_32u(idx);
+                    *dst32_ptr = ref_cvt_le_2_be_32u(idx);
                     dst32_ptr++;
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst32_ptr = (uint32_t)ref_cvt_le_2_be_32u(val);
+                *dst32_ptr = ref_cvt_le_2_be_32u(val);
                 dst32_ptr++;
             }
         } // for len
@@ -342,7 +342,7 @@ qpl_status ref_copy_be_le_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint8_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len
@@ -373,7 +373,7 @@ qpl_status ref_copy_be_le_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
                 }
                 idx++;
             } else if (1U != s_bit) { // otherwise store all values itself
-                *dst16_ptr = (uint16_t)val;
+                *dst16_ptr = val;
                 dst16_ptr++;
             }
         } // for len
@@ -400,12 +400,12 @@ qpl_status ref_copy_be_le_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
             if (1U == s_bit) { // store non-zero value index for bit vector
                 if (0U < val) {
                     if (UINT32_MAX == idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                    *dst32_ptr = (uint32_t)idx;
+                    *dst32_ptr = idx;
                     dst32_ptr++;
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst32_ptr = (uint32_t)val;
+                *dst32_ptr = val;
                 dst32_ptr++;
             }
         } // for len
@@ -484,7 +484,7 @@ qpl_status ref_copy_be_be_nu(uint8_t* src_ptr, uint32_t src_bit_offset, uint8_t*
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint8_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len
@@ -605,7 +605,7 @@ qpl_status ref_store_val(uint32_t value, uint8_t* dst_ptr, uint32_t* idx_ptr, ui
         } else {
             if (0U < value) {
                 if (UINT16_MAX <= current_idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                *current_dst_ptr = (uint16_t)ref_cvt_le_2_be_16u(current_idx);
+                *current_dst_ptr = ref_cvt_le_2_be_16u(current_idx);
                 (*idx_ptr)++;
             }
         }
@@ -618,7 +618,7 @@ qpl_status ref_store_val(uint32_t value, uint8_t* dst_ptr, uint32_t* idx_ptr, ui
         } else {
             if (0U < value) {
                 if (UINT32_MAX == current_idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                *current_dst_ptr = (uint32_t)ref_cvt_le_2_be_32u(current_idx);
+                *current_dst_ptr = ref_cvt_le_2_be_32u(current_idx);
                 (*idx_ptr)++;
             }
         }
@@ -664,7 +664,7 @@ qpl_status ref_store_val(uint32_t value, uint8_t* dst_ptr, uint32_t* idx_ptr, ui
         } else {
             if (0U < value) {
                 if (UINT32_MAX == current_idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                *current_dst_ptr = (uint32_t)current_idx;
+                *current_dst_ptr = current_idx;
                 (*idx_ptr)++;
             }
         }
@@ -770,7 +770,7 @@ qpl_status ref_copy_mask_le_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                     if (REF_8U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;  // if upper boundary reached - than return error
                     }
-                    *dst_ptr = (uint8_t)val;
+                    *dst_ptr = val;
                     dst_ptr++;
                     *output_bits_ptr -= REF_8U_BITS; // for dst upper boundary check
                 }
@@ -820,7 +820,7 @@ qpl_status ref_copy_mask_le_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                     if (REF_16U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                     }
-                    *dst16_ptr = (uint16_t)val;
+                    *dst16_ptr = val;
                     dst16_ptr++;
                     *output_bits_ptr -= REF_16U_BITS; // for dst upper boundary check
                 }
@@ -863,7 +863,7 @@ qpl_status ref_copy_mask_le_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                             return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                         }
 
-                        *dst32_ptr = (uint32_t)idx;
+                        *dst32_ptr = idx;
                         dst32_ptr++;
                         *output_bits_ptr -= REF_32U_BITS; // for dst upper boundary check
                     }
@@ -872,7 +872,7 @@ qpl_status ref_copy_mask_le_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                     if (REF_32U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                     }
-                    *dst32_ptr = (uint32_t)val;
+                    *dst32_ptr = val;
                     dst32_ptr++;
                     *output_bits_ptr -= REF_32U_BITS; // for dst upper boundary check
                 }
@@ -995,7 +995,7 @@ qpl_status ref_copy_mask_le_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                     if (REF_8U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;  // if upper boundary reached - than return error
                     }
-                    *dst_ptr = (uint8_t)val;
+                    *dst_ptr = val;
                     dst_ptr++;
                     *output_bits_ptr -= REF_8U_BITS; // for dst upper boundary check
                 }
@@ -1037,7 +1037,7 @@ qpl_status ref_copy_mask_le_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                         if (REF_16U_BITS > *output_bits_ptr) { // control dst buffer
                             return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                         }
-                        *dst16_ptr = (uint16_t)ref_cvt_le_2_be_16u(idx);
+                        *dst16_ptr = ref_cvt_le_2_be_16u(idx);
                         dst16_ptr++;
                         *output_bits_ptr -= REF_16U_BITS; // for dst upper boundary check
                     }
@@ -1046,7 +1046,7 @@ qpl_status ref_copy_mask_le_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                     if (REF_16U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                     }
-                    *dst16_ptr = (uint16_t)ref_cvt_le_2_be_16u(val);
+                    *dst16_ptr = ref_cvt_le_2_be_16u(val);
                     dst16_ptr++;
                     *output_bits_ptr -= REF_16U_BITS; // for dst upper boundary check
                 }
@@ -1088,7 +1088,7 @@ qpl_status ref_copy_mask_le_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                         if (REF_32U_BITS > *output_bits_ptr) { // control dst buffer
                             return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                         }
-                        *dst32_ptr = (uint32_t)ref_cvt_le_2_be_32u(idx);
+                        *dst32_ptr = ref_cvt_le_2_be_32u(idx);
                         dst32_ptr++;
                         *output_bits_ptr -= REF_32U_BITS; // for dst upper boundary check
                     }
@@ -1097,7 +1097,7 @@ qpl_status ref_copy_mask_le_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                     if (REF_32U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                     }
-                    *dst32_ptr = (uint32_t)ref_cvt_le_2_be_32u(val);
+                    *dst32_ptr = ref_cvt_le_2_be_32u(val);
                     dst32_ptr++;
                     *output_bits_ptr -= REF_32U_BITS; // for dst upper boundary check
                 }
@@ -1213,7 +1213,7 @@ qpl_status ref_copy_mask_be_le__nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t
                     if (REF_8U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;  // if upper boundary reached - than return error
                     }
-                    *dst_ptr = (uint8_t)val;
+                    *dst_ptr = val;
                     dst_ptr++;
                     *output_bits_ptr -= REF_8U_BITS; // for dst upper boundary check
                 }
@@ -1264,7 +1264,7 @@ qpl_status ref_copy_mask_be_le__nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t
                     if (REF_16U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                     }
-                    *dst16_ptr = (uint16_t)val;
+                    *dst16_ptr = val;
                     dst16_ptr++;
                     *output_bits_ptr -= REF_16U_BITS; // for dst upper boundary check
                 }
@@ -1308,7 +1308,7 @@ qpl_status ref_copy_mask_be_le__nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t
                             return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                         }
 
-                        *dst32_ptr = (uint32_t)idx;
+                        *dst32_ptr = idx;
                         dst32_ptr++;
                         *output_bits_ptr -= REF_32U_BITS; // for dst upper boundary check
                     }
@@ -1317,7 +1317,7 @@ qpl_status ref_copy_mask_be_le__nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t
                     if (REF_32U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;   // if upper boundary reached - than return error
                     }
-                    *dst32_ptr = (uint32_t)val;
+                    *dst32_ptr = val;
                     dst32_ptr++;
                     *output_bits_ptr -= REF_32U_BITS; // for dst upper boundary check
                 }
@@ -1439,7 +1439,7 @@ qpl_status ref_copy_mask_be_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_t 
                     if (REF_8U_BITS > *output_bits_ptr) { // control dst buffer
                         return QPL_STS_DST_IS_SHORT_ERR;  // if upper boundary reached - than return error
                     }
-                    *dst_ptr = (uint8_t)val;
+                    *dst_ptr = val;
                     dst_ptr++;
                     *output_bits_ptr -= REF_8U_BITS; // for dst upper boundary check
                 }
@@ -1653,7 +1653,7 @@ qpl_status ref_expand_mask_le_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint8_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len
@@ -1699,7 +1699,7 @@ qpl_status ref_expand_mask_le_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst16_ptr = (uint16_t)val;
+                *dst16_ptr = val;
                 dst16_ptr++;
             }
         } // for len
@@ -1739,12 +1739,12 @@ qpl_status ref_expand_mask_le_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
             if (1U == s_bit) {                                // store non-zero value index for bit vector
                 if (0U < val) {
                     if (UINT32_MAX == idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                    *dst32_ptr = (uint32_t)idx;
+                    *dst32_ptr = idx;
                     dst32_ptr++;
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst32_ptr = (uint32_t)val;
+                *dst32_ptr = val;
                 dst32_ptr++;
             }
         } // for len
@@ -1864,7 +1864,7 @@ qpl_status ref_expand_mask_le_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint8_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len
@@ -1904,12 +1904,12 @@ qpl_status ref_expand_mask_le_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
             if (1U == s_bit) {                                // store non-zero value index for bit vector
                 if (0U < val) {
                     if (UINT16_MAX < idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                    *dst16_ptr = (uint16_t)ref_cvt_le_2_be_16u(idx);
+                    *dst16_ptr = ref_cvt_le_2_be_16u(idx);
                     dst16_ptr++;
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst16_ptr = (uint16_t)ref_cvt_le_2_be_16u(val);
+                *dst16_ptr = ref_cvt_le_2_be_16u(val);
                 dst16_ptr++;
             }
         } // for len
@@ -1949,12 +1949,12 @@ qpl_status ref_expand_mask_le_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
             if (1U == s_bit) {                                // store non-zero value index for bit vector
                 if (0U < val) {
                     if (UINT32_MAX == idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                    *dst32_ptr = (uint32_t)ref_cvt_le_2_be_32u(idx);
+                    *dst32_ptr = ref_cvt_le_2_be_32u(idx);
                     dst32_ptr++;
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst32_ptr = (uint32_t)ref_cvt_le_2_be_32u(val);
+                *dst32_ptr = ref_cvt_le_2_be_32u(val);
                 dst32_ptr++;
             }
         } // for len
@@ -2075,7 +2075,7 @@ qpl_status ref_expand_mask_be_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint8_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len
@@ -2122,7 +2122,7 @@ qpl_status ref_expand_mask_be_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
                 }
                 idx++;
             } else if (1U != s_bit) { // otherwise store all values itself
-                *dst16_ptr = (uint16_t)val;
+                *dst16_ptr = val;
                 dst16_ptr++;
             }
         } // for len
@@ -2165,12 +2165,12 @@ qpl_status ref_expand_mask_be_le_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
             if (1U == s_bit) {                                // store non-zero value index for bit vector
                 if (0U < val) {
                     if (UINT32_MAX == idx) { return QPL_STS_OUTPUT_OVERFLOW_ERR; }
-                    *dst32_ptr = (uint32_t)idx;
+                    *dst32_ptr = idx;
                     dst32_ptr++;
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst32_ptr = (uint32_t)val;
+                *dst32_ptr = val;
                 dst32_ptr++;
             }
         } // for len
@@ -2298,7 +2298,7 @@ qpl_status ref_expand_mask_be_be_nu(uint8_t* src_ptr, uint8_t* mask_ptr, uint32_
                 }
                 idx++;
             } else { // otherwise store all values itself
-                *dst_ptr = (uint8_t)val;
+                *dst_ptr = val;
                 dst_ptr++;
             }
         } // for len

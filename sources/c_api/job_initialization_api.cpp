@@ -117,10 +117,10 @@ QPL_FUN(qpl_status, qpl_init_job, (qpl_path_t qpl_path, qpl_job* qpl_job_ptr)) {
 #endif
 
     // set internal structures to zero
-    core_sw::util::set_zeros((uint8_t*)qpl_job_ptr->data_ptr.compress_state_ptr, comp_size);
-    core_sw::util::set_zeros((uint8_t*)qpl_job_ptr->data_ptr.decompress_state_ptr, decomp_size);
-    core_sw::util::set_zeros((uint8_t*)qpl_job_ptr->data_ptr.analytics_state_ptr, analytics_size);
-    core_sw::util::set_zeros((uint8_t*)qpl_job_ptr->data_ptr.middle_layer_buffer_ptr, middle_layer_buffer_size);
+    core_sw::util::set_zeros(qpl_job_ptr->data_ptr.compress_state_ptr, comp_size);
+    core_sw::util::set_zeros(qpl_job_ptr->data_ptr.decompress_state_ptr, decomp_size);
+    core_sw::util::set_zeros(qpl_job_ptr->data_ptr.analytics_state_ptr, analytics_size);
+    core_sw::util::set_zeros(qpl_job_ptr->data_ptr.middle_layer_buffer_ptr, middle_layer_buffer_size);
 
     // initialize internal structures
     // note: ml is just a raw buffer, so no need
@@ -239,11 +239,9 @@ QPL_INLINE void own_init_analytics(qpl_job* qpl_job_ptr) {
     analytics_state_ptr->src2_buf_size    = QPL_ALIGNED_SIZE(OWN_SRC2_BUF_SIZE, QPL_DEFAULT_ALIGNMENT);
     analytics_state_ptr->inflate_buf_ptr =
             (uint8_t*)analytics_state_ptr + QPL_ALIGNED_SIZE(sizeof(own_analytics_state_t), QPL_DEFAULT_ALIGNMENT);
-    analytics_state_ptr->unpack_buf_ptr =
-            (uint8_t*)analytics_state_ptr->inflate_buf_ptr + analytics_state_ptr->inflate_buf_size;
-    analytics_state_ptr->set_buf_ptr =
-            (uint8_t*)analytics_state_ptr->unpack_buf_ptr + analytics_state_ptr->unpack_buf_size;
-    analytics_state_ptr->src2_buf_ptr = (uint8_t*)analytics_state_ptr->set_buf_ptr + analytics_state_ptr->set_buf_size;
+    analytics_state_ptr->unpack_buf_ptr = analytics_state_ptr->inflate_buf_ptr + analytics_state_ptr->inflate_buf_size;
+    analytics_state_ptr->set_buf_ptr    = analytics_state_ptr->unpack_buf_ptr + analytics_state_ptr->unpack_buf_size;
+    analytics_state_ptr->src2_buf_ptr   = analytics_state_ptr->set_buf_ptr + analytics_state_ptr->set_buf_size;
 }
 
 /** @todo Reuse own_hw_state_reset here */

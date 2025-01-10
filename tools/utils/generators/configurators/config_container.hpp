@@ -31,7 +31,7 @@ public:
         m_configuration << "testmode " << std::to_string(testMode) << " " << std::to_string(testGroup) << '\n';
     }
 
-    void saveConfigToFile(std::string filename) {
+    void saveConfigToFile(const std::string& filename) {
         std::ofstream file;
         file.open(filename, std::ofstream::binary);
         file << m_configuration.str();

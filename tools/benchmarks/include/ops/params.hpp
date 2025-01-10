@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_PARAMS_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_PARAMS_HPP
 
 #include <memory>
 #include <types.hpp>
@@ -61,3 +61,5 @@ struct crc64_params_t {
 };
 
 } // namespace bench::ops
+
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_PARAMS_HPP

@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_C_API_BASE_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_C_API_BASE_HPP
 
 #include <memory.h>
 #include <ops/base.hpp>
@@ -89,3 +89,5 @@ protected:
     qpl_job* job_ {nullptr};
 };
 } // namespace bench::ops::c_api
+
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_C_API_BASE_HPP

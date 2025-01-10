@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_DETAILS_UTILITY_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_DETAILS_UTILITY_HPP
 
 #include "cmd_decl.hpp"
 
@@ -84,3 +84,5 @@ inline void mem_control(RangeT begin, RangeT end, mem_loc_e op) noexcept {
     __builtin_ia32_mfence();
 }
 } // namespace bench::details
+
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_DETAILS_UTILITY_HPP

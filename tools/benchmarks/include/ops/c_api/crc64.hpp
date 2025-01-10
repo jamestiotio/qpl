@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_C_API_CRC64_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_C_API_CRC64_HPP
 
 #include <ops/c_api/base.hpp>
 #include <stdexcept>
@@ -174,3 +174,5 @@ struct traits<operation_base_t<c_api::crc64_t<path>>> {
     using result_t = crc64_results_t;
 };
 } // namespace bench::ops
+
+#endif //QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_C_API_CRC64_HPP

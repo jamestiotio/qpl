@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_CMD_DECL_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_CMD_DECL_HPP
 
 #include <algorithm>
 #include <commandlineflags.h>
@@ -25,3 +25,4 @@ std::int32_t get_block_size();
 mem_loc_e    get_in_mem();
 mem_loc_e    get_out_mem();
 } // namespace bench::cmd
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_CMD_DECL_HPP

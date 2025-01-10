@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_DATA_PROVIDERS_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_DATA_PROVIDERS_HPP
 
 #include <algorithm>
 #include <cstdint>
@@ -83,3 +83,4 @@ static inline auto split_data(const data_t& data, std::size_t block_size) {
     return blocks;
 }
 } // namespace bench::data
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_DATA_PROVIDERS_HPP

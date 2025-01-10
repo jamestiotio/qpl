@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_MEASURE_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_MEASURE_HPP
 
 #include <benchmark/benchmark.h>
 #include <details/measure_async.hpp>
@@ -21,3 +21,5 @@ static inline statistics_t measure(benchmark::State& state, const case_params_t&
         return details::measure_sync<path>(state, common_params, operations, params);
 }
 } // namespace bench
+
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_MEASURE_HPP

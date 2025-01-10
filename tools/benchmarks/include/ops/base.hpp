@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_BASE_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_BASE_HPP
 
 #include <cstdint>
 #include <ops/results.hpp>
@@ -116,3 +116,5 @@ protected:
     std::size_t  bytes_written_ {0};
 };
 } // namespace bench::ops
+
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_BASE_HPP

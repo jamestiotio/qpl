@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_TYPES_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_TYPES_HPP
 
 #include <cstdint>
 #include <string>
@@ -77,3 +77,4 @@ static inline std::uint32_t operator|(mem_loc_mask_e lha, std::uint32_t rha) {
     return static_cast<std::uint32_t>(lha) | rha;
 }
 } // namespace bench
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_TYPES_HPP

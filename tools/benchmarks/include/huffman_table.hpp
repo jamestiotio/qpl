@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_HUFFMAN_TABLE_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_HUFFMAN_TABLE_HPP
 
 #include <cstdint>
 #include <string>
@@ -83,3 +83,5 @@ static qpl_huffman_table_t deflate_huffman_table_maker(const qpl_huffman_table_t
 */
 static auto any_huffman_table_deleter = [](qpl_huffman_table_t t) { qpl_huffman_table_destroy(t); };
 } // namespace bench
+
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_HUFFMAN_TABLE_HPP

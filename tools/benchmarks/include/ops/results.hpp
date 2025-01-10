@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_RESULTS_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_RESULTS_HPP
 
 #include <types.hpp>
 #include <utility.hpp>
@@ -35,3 +35,5 @@ struct crc64_results_t {
     data_type_t data_;
 };
 } // namespace bench::ops
+
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_RESULTS_HPP

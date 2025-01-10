@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_DISPATCHER_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_DISPATCHER_HPP
 
 #include <types.hpp>
 
@@ -29,3 +29,5 @@ struct api_dispatcher_t<api_e::c, path, operation_e::crc64> {
     using impl_t = c_api::crc64_t<path>;
 };
 } // namespace bench::ops
+
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_DISPATCHER_HPP

@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#pragma once
+#ifndef QPL_TOOLS_BENCHMARKS_INCLUDE_UTILITY_HPP
+#define QPL_TOOLS_BENCHMARKS_INCLUDE_UTILITY_HPP
 
 #include <algorithm> // vector search
 #include <cstdint>
@@ -335,3 +335,5 @@ static inline std::vector<huffman_type_e> to_huffman_type(const std::vector<std:
 }
 
 } // namespace bench
+
+#endif // QPL_TOOLS_BENCHMARKS_INCLUDE_UTILITY_HPP

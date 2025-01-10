@@ -3,9 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#ifndef __BITBUF2_H__
-#define __BITBUF2_H__
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_BITBUFFER_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_BITBUFFER_H
 
 #include <assert.h>
 #include <iostream>
@@ -48,4 +47,4 @@ private:
 };
 } // namespace gz_generator
 
-#endif // __BITBUF2_H__
+#endif // QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_BITBUFFER_H

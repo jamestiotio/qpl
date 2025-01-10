@@ -3,6 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_MYINTRIN_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_MYINTRIN_H
 
 #ifdef WIN32
 #include <intrin.h>
@@ -29,3 +31,5 @@ static int bsf(int val) {
     return (__builtin_ctz(val));
 }
 #endif
+
+#endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_MYINTRIN_H

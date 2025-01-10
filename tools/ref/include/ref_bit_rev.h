@@ -16,8 +16,8 @@
  * @{
  */
 
-#ifndef REF_BIT_REV_H__
-#define REF_BIT_REV_H__
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_BIT_REV_H
+#define QPL_TOOLS_REF_INCLUDE_REF_BIT_REV_H
 
 #include "own_ref_defs.h"
 
@@ -122,6 +122,6 @@ REF_INLINE uint32_t swap_bytes32(uint32_t x) {
 }
 #endif
 
-#endif /* //REF_BIT_REV_H__ */
+#endif //QPL_TOOLS_REF_INCLUDE_REF_BIT_REV_H
 
 /** @} */

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef __GZ_GENERATOR_H__
-#define __GZ_GENERATOR_H__
+#ifndef QPL_TOOLS_UTILS_GENERATORS_IGENERATOR_H
+#define QPL_TOOLS_UTILS_GENERATORS_IGENERATOR_H
 
 #include <memory>
 #include <vector>
@@ -21,4 +21,4 @@ public:
     static GenStatus generate(std::vector<Gen8u>& pBinaryData, std::vector<Gen8u>& pReferenceData, TestFactor& factor);
 };
 } // namespace gz_generator
-#endif //__GZ_GENERATOR_H__
+#endif //QPL_TOOLS_UTILS_GENERATORS_IGENERATOR_H

@@ -14,8 +14,8 @@
  *
  */
 
-#ifndef _QPL_REF_COPY_H_
-#define _QPL_REF_COPY_H_
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_COPY_H
+#define QPL_TOOLS_REF_INCLUDE_REF_COPY_H
 
 #include "own_ref_defs.h"
 
@@ -406,6 +406,6 @@ REF_INLINE uint32_t ref_fmt_2_bits(qpl_out_format fmt, uint32_t s_bit) {
 }
 #endif
 
-#endif // _QPL_REF_COPY_H_
+#endif // QPL_TOOLS_REF_INCLUDE_REF_COPY_H
 
 /** @} */

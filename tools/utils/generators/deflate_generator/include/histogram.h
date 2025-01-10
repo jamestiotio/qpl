@@ -3,9 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#ifndef __HISTOGRAM_H__
-#define __HISTOGRAM_H__
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HISTOGRAM_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HISTOGRAM_H
 
 #include <stdint.h>
 
@@ -46,4 +45,4 @@ public:
     }
 };
 
-#endif // ifndef __HISTOGRAM_H__
+#endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HISTOGRAM_H

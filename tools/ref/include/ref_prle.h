@@ -12,11 +12,10 @@
  * @ingroup REFERENCE_COMMONS
  * @{
  */
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_PRLE_H
+#define QPL_TOOLS_REF_INCLUDE_REF_PRLE_H
 
 #include "own_ref_defs.h"
-
-#ifndef _QPL_REF_PRLE_H_
-#define _QPL_REF_PRLE_H_
 
 #if defined(__cplusplus)
 extern "C" {
@@ -103,6 +102,6 @@ REF_INLINE qpl_status ref_get_format_and_count(const uint8_t** source_ptr, uint3
 }
 #endif
 
-#endif // _QPL_REF_PRLE_H_
+#endif // QPL_TOOLS_REF_INCLUDE_REF_PRLE_H
 
 /** @} */

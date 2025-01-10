@@ -3,9 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#ifndef __TOKEN_H__
-#define __TOKEN_H__
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_TOKEN_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_TOKEN_H
 
 #include <iosfwd>
 #include <sstream>
@@ -218,4 +217,4 @@ class TokenParser
 
 };*/
 
-#endif // ifndef __TOKEN_H__
+#endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_TOKEN_H

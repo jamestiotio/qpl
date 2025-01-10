@@ -3,9 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#ifndef __CONFIG_CONTAINER_H__
-#define __CONFIG_CONTAINER_H__
+#ifndef QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_CONFIG_CONTAINER_HPP
+#define QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_CONFIG_CONTAINER_HPP
 
 #include <fstream>
 #include <iostream>
@@ -40,4 +39,4 @@ public:
     }
 };
 } // namespace gz_generator
-#endif //__CONFIG_CONTAINER_H__
+#endif // QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_CONFIG_CONTAINER_HPP

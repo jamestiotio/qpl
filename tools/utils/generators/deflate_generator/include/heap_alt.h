@@ -3,6 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HEAP_ALT_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HEAP_ALT_H
 
 #include <stdint.h>
 
@@ -77,3 +79,4 @@ static void replace_min64(uint64_t* heap, uint32_t n, uint64_t new_val) {
     heap[1] = new_val;
     heapify64(heap, n, 1);
 }
+#endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HEAP_ALT_H

@@ -13,8 +13,8 @@
  * @{
  */
 
-#ifndef _QPL_REF_STORE_H_
-#define _QPL_REF_STORE_H_
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_STORE_H
+#define QPL_TOOLS_REF_INCLUDE_REF_STORE_H
 
 #include "own_ref_defs.h"
 #include "ref_copy.h"
@@ -138,6 +138,6 @@ qpl_status ref_store_values(const uint32_t* const source_ptr, uint32_t number_of
 }
 #endif
 
-#endif // _QPL_REF_STORE_H_
+#endif // QPL_TOOLS_REF_INCLUDE_REF_STORE_H
 
 /** @} */

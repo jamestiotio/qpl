@@ -3,6 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HUFF_CODES_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HUFF_CODES_H
 
 #include <stdint.h>
 #include <stdio.h>
@@ -26,3 +28,5 @@ void create_hufftables(BitBuffer* bit_buffer, uint32_t ll_codes[286], uint32_t d
 
 void expand_len_tree(uint32_t* codes);
 } // namespace gz_generator
+
+#endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HUFF_CODES_H

@@ -27,8 +27,8 @@
  * @{
  */
 
-#ifndef OWN_REF_DEFS_H__
-#define OWN_REF_DEFS_H__
+#ifndef QPL_TOOLS_REF_INCLUDE_OWN_REF_DEFS_H
+#define QPL_TOOLS_REF_INCLUDE_OWN_REF_DEFS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -194,6 +194,6 @@ extern "C" {
 }
 #endif
 
-#endif
+#endif //QPL_TOOLS_REF_INCLUDE_OWN_REF_DEFS_H
 
 /** @} */

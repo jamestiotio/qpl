@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef __TSRAND_H__
-#define __TSRAND_H__
+#ifndef QPL_TOOLS_UTILS_GENERATORS_RANDOM_GENERATOR_H
+#define QPL_TOOLS_UTILS_GENERATORS_RANDOM_GENERATOR_H
+
 #include <cstdint>
 #include <string>
 
@@ -108,4 +109,4 @@ protected:
     double gen();
 };
 } // namespace qpl::test
-#endif // __TSRAND_H__
+#endif // QPL_TOOLS_UTILS_GENERATORS_RANDOM_GENERATOR_H

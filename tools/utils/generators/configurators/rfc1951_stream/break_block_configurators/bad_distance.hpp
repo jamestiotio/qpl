@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef _CONFIGURATOR_BAD_DISTANCE_H_
-#define _CONFIGURATOR_BAD_DISTANCE_H_
+#ifndef QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_RFC1951_STREAM_BREAK_BLOCK_CONFIGURATORS_BAD_DISTANCE_HPP
+#define QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_RFC1951_STREAM_BREAK_BLOCK_CONFIGURATORS_BAD_DISTANCE_HPP
 
 #include "base_configurator.hpp"
 
@@ -19,4 +19,4 @@ public:
     GenStatus generate() override;
 };
 } // namespace gz_generator
-#endif //_CONFIGURATOR_BAD_DISTANCE_H_
+#endif //QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_RFC1951_STREAM_BREAK_BLOCK_CONFIGURATORS_BAD_DISTANCE_HPP

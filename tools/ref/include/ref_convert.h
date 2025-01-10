@@ -13,8 +13,8 @@
  *
  */
 
-#ifndef QPL_REF_CONVERT_H_
-#define QPL_REF_CONVERT_H_
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_CONVERT_H
+#define QPL_TOOLS_REF_INCLUDE_REF_CONVERT_H
 
 #include <stdlib.h>
 
@@ -54,6 +54,6 @@ qpl_status ref_convert_to_32u_prle(const uint8_t* const source_ptr, const uint8_
 }
 #endif
 
-#endif // QPL_REF_CONVERT_H_
+#endif // QPL_TOOLS_REF_INCLUDE_REF_CONVERT_H
 
 /** @} */

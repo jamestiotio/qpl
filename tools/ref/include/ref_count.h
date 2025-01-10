@@ -13,8 +13,8 @@
  * @{
  */
 
-#ifndef _QPL_REF_COUNT_H_
-#define _QPL_REF_COUNT_H_
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_COUNT_H
+#define QPL_TOOLS_REF_INCLUDE_REF_COUNT_H
 
 #include "own_ref_defs.h"
 #include "ref_prle.h"
@@ -46,6 +46,6 @@ uint32_t ref_count_non_zero_elements_32u(const uint32_t* const source_ptr, uint3
 }
 #endif
 
-#endif // _QPL_REF_COUNT_H_
+#endif // QPL_TOOLS_REF_INCLUDE_REF_COUNT_H
 
 /** @} */

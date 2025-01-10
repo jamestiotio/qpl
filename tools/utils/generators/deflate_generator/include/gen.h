@@ -3,9 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#ifndef _GZ_GENERATOR_H_
-#define _GZ_GENERATOR_H_
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GEN_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GEN_H
 
 #include <memory>
 #include <stdarg.h>
@@ -118,4 +117,4 @@ public:
     void warn(warn_t warn_id);
 };
 } // namespace gz_generator
-#endif //_GZ_GENERATOR_H_
+#endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GEN_H

@@ -3,11 +3,11 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_COMMON_METHODS_HPP
+#define QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_COMMON_METHODS_HPP
 
 #include "gendefs.hpp"
 
-#ifndef __COMMON_METHODS_H__
-#define __COMMON_METHODS_H__
 namespace gz_generator {
 class CommonMethods {
 public:
@@ -17,4 +17,4 @@ public:
     static Gen32u code2Match(Gen32u code, Gen32u seed);
 };
 } // namespace gz_generator
-#endif //__COMMON_METHODS_H__
+#endif //QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_COMMON_METHODS_HPP

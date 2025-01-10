@@ -13,8 +13,8 @@
  *
  */
 
-#ifndef QPL_REF_CHECKSUM_H
-#define QPL_REF_CHECKSUM_H
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_CHECKSUMS_H
+#define QPL_TOOLS_REF_INCLUDE_REF_CHECKSUMS_H
 
 #include "own_ref_defs.h"
 #include "qpl_api_ref.h"
@@ -29,6 +29,6 @@ void update_checksums(qpl_job* const qpl_job_ptr);
 }
 #endif
 
-#endif // QPL_REF_CHECKSUM_H
+#endif // QPL_TOOLS_REF_INCLUDE_REF_CHECKSUMS_H
 
 /** @} */

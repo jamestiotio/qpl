@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_PRLE_GENERATOR_HPP
-#define QPL_PRLE_GENERATOR_HPP
+#ifndef QPL_TOOLS_UTILS_GENERATORS_PRLE_GENERATOR_HPP
+#define QPL_TOOLS_UTILS_GENERATORS_PRLE_GENERATOR_HPP
 
 #include <array>
 #include <cstdint>
@@ -38,4 +38,4 @@ auto create_rle_group(rle_element_t rle_element) -> std::vector<uint8_t>;
 
 auto create_parquet_group(parquet_element_t parquet_element) -> std::vector<uint8_t>;
 } // namespace qpl::test
-#endif // QPL_PRLE_GENERATOR_HPP
+#endif // QPL_TOOLS_UTILS_GENERATORS_PRLE_GENERATOR_HPP

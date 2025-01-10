@@ -11,6 +11,8 @@
  * @addtogroup REFERENCE_SCAN
  * @{
  */
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_SCAN_H
+#define QPL_TOOLS_REF_INCLUDE_REF_SCAN_H
 
 #include "own_ref_defs.h"
 
@@ -58,5 +60,7 @@ qpl_status ref_store_1_bit(uint32_t destination_buffer, uint32_t bit_index, uint
 #if defined(__cplusplus)
 }
 #endif
+
+#endif // QPL_TOOLS_REF_INCLUDE_REF_SCAN_H
 
 /** @} */

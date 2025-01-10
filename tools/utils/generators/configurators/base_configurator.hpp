@@ -3,6 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_BASE_CONFIGURATOR_H
+#define QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_BASE_CONFIGURATOR_H
 
 #include <algorithm>
 #include <vector>
@@ -11,9 +13,6 @@
 #include "config_container.hpp"
 #include "igenerator.h"
 #include "random_generator.h"
-
-#ifndef __CONFIGURATOR_H__
-#define __CONFIGURATOR_H__
 
 namespace gz_generator {
 class ITestConfigurator {
@@ -97,4 +96,4 @@ public:
 };
 } // namespace gz_generator
 
-#endif //__CONFIGURATOR_H__
+#endif //QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_BASE_CONFIGURATOR_H

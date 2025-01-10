@@ -3,9 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#ifndef __GRAMMAR_H__
-#define __GRAMMAR_H__
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GRAMMAR_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GRAMMAR_H
 
 #include <iosfwd>
 #include <stdint.h>
@@ -59,4 +58,4 @@ protected:
     void parse_set();
 };
 } // namespace gz_generator
-#endif // ifndef __GRAMMAR_H__
+#endif // QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GRAMMAR_H

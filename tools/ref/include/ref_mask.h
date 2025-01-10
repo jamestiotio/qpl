@@ -13,8 +13,8 @@
  * @{
  */
 
-#ifndef _QPL_REF_MASK_H_
-#define _QPL_REF_MASK_H_
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_MASK_H
+#define QPL_TOOLS_REF_INCLUDE_REF_MASK_H
 
 #include "own_ref_defs.h"
 
@@ -64,6 +64,6 @@ REF_INLINE qpl_status ref_extract_mask_bits(const uint8_t* const source_ptr, uin
 }
 #endif
 
-#endif // _QPL_REF_MASK_H_
+#endif // QPL_TOOLS_REF_INCLUDE_REF_MASK_H
 
 /** @} */

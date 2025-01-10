@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_PROJECT_INDEX_TABLE_HPP
-#define QPL_PROJECT_INDEX_TABLE_HPP
+#ifndef QPL_TOOLS_UTILS_GENERATORS_INDEX_TABLE_HPP
+#define QPL_TOOLS_UTILS_GENERATORS_INDEX_TABLE_HPP
 
 #include <cstddef>
 #include <stdint.h>
@@ -62,4 +62,4 @@ public:
     void fillOffsets(std::vector<uint32_t> vector);
 };
 
-#endif //QPL_PROJECT_INDEX_TABLE_HPP
+#endif //QPL_TOOLS_UTILS_GENERATORS_INDEX_TABLE_HPP

@@ -3,9 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#ifndef __HUFFMAN_H__
-#define __HUFFMAN_H__
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HUFFMAN_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HUFFMAN_H
 
 #include "bitbuffer.h"
 #include "histogram.h"
@@ -95,4 +94,4 @@ public:
     std::vector<uint32_t> getIndexes();
 };
 } // namespace gz_generator
-#endif // ifndef __HUFFMAN_H__
+#endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HUFFMAN_H

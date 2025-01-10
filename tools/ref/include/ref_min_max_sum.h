@@ -12,11 +12,10 @@
  * @ingroup REFERENCE_PRIVATE
  * @{
  */
+#ifndef QPL_TOOLS_REF_INCLUDE_REF_MIN_MAX_SUM_H
+#define QPL_TOOLS_REF_INCLUDE_REF_MIN_MAX_SUM_H
 
 #include "own_ref_defs.h"
-
-#ifndef REF_MIN_MAX_SUM_H_
-#define REF_MIN_MAX_SUM_H_
 
 #define REF_BYTE_BIT_LEN     8                                     /**< @todo */
 #define REF_BIT_BUF_LEN      (sizeof(uint64_t) * REF_BYTE_BIT_LEN) /**< @todo */
@@ -67,6 +66,6 @@ qpl_status ref_min_max_sum(const uint8_t* src_ptr, uint32_t len, uint32_t last_b
 }
 #endif
 
-#endif // REF_MIN_MAX_SUM_H_
+#endif // QPL_TOOLS_REF_INCLUDE_REF_MIN_MAX_SUM_H
 
 /** @} */

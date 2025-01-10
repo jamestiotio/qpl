@@ -18,8 +18,8 @@
  *
  */
 
-#ifndef QPL_API_REF_H__
-#define QPL_API_REF_H__
+#ifndef QPL_TOOLS_REF_INCLUDE_QPL_API_REF_H
+#define QPL_TOOLS_REF_INCLUDE_QPL_API_REF_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -272,6 +272,6 @@ qpl_status ref_expand(qpl_job* const qpl_job_ptr);
 }
 #endif
 
-#endif //QPL_API_REF_H__
+#endif //QPL_TOOLS_REF_INCLUDE_QPL_API_REF_H
 
 /** @} */

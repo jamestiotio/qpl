@@ -3,9 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-
-#ifndef __SYMBOL_H__
-#define __SYMBOL_H__
+#ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_SYMBOL_H
+#define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_SYMBOL_H
 
 #include <stdint.h>
 #include <stdio.h>
@@ -93,4 +92,4 @@ public:
     }
 };
 
-#endif // ifndef __SYMBOL_H__
+#endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_SYMBOL_H

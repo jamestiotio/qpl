@@ -9,8 +9,8 @@
  *  Test data generator
  */
 
-#ifndef _GEN_DEFS_H_
-#define _GEN_DEFS_H_
+#ifndef QPL_TOOLS_UTILS_GENERATORS_GENDEFS_H
+#define QPL_TOOLS_UTILS_GENERATORS_GENDEFS_H
 
 #if defined(_WIN32) || defined(_WIN64)
 #define GEN_UINT64 unsigned __int64
@@ -159,4 +159,4 @@ struct TestFactor {
     SpecialTestOptions specialTestOptions;
 };
 
-#endif //_GEN_DEFS_
+#endif //QPL_TOOLS_UTILS_GENERATORS_GENDEFS_H

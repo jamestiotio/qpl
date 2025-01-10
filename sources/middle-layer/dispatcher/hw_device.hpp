@@ -83,7 +83,7 @@ private:
     uint64_t           numa_node_id_     = 0U; /**< NUMA node id of the device */
     uint32_t           version_major_    = 0U; /**< Major version of discovered device */
     uint32_t           version_minor_    = 0U; /**< Minor version of discovered device */
-    uint64_t           socket_id_        = 0u; /**< Socket id of the device */
+    uint64_t           socket_id_        = 0U; /**< Socket id of the device */
     queue_selector     queue_selection_;       /**< Queue Selection object */
 };
 

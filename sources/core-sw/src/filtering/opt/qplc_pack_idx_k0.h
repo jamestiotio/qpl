@@ -637,7 +637,7 @@ OWN_OPT_FUN(qplc_status_t, k0_qplc_pack_index_8u,
 
 #if defined(DEF_MM512v0)
 
-#define STEP_SRC_8U (64u)
+#define STEP_SRC_8U (64U)
 
 OWN_OPT_FUN(qplc_status_t, k0_qplc_pack_index_8u,
             (const uint8_t* src_ptr, uint32_t num_elements, uint8_t** pp_dst, uint32_t dst_length,
@@ -2113,7 +2113,7 @@ OWN_OPT_FUN(qplc_status_t, k0_qplc_pack_index_8u32u,
 #if defined(DEF_MM512_32U)
 // 512-bit intrinsics code (the Best)
 
-#define STEP_SRC_8U32U (64u)
+#define STEP_SRC_8U32U (64U)
 
 OWN_OPT_FUN(qplc_status_t, k0_qplc_pack_index_8u32u,
             (const uint8_t* src_ptr, uint32_t num_elements, uint8_t** pp_dst, uint32_t dst_length,

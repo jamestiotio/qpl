@@ -29,7 +29,7 @@ public:
 
     symbol_page() {
         m_next = NULL;
-        m_used = 0u;
+        m_used = 0U;
     }
 
     bool is_full() { return (m_used == PAGE_SIZE); }

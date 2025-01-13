@@ -141,7 +141,7 @@ static uint32_t get_total_numa_nodes() {
 
 #if defined(__linux__)
     std::ifstream numa_nodes("/sys/devices/system/node/online");
-    if (!numa_nodes.is_open()) { throw std::runtime_error("Failed to open /sys/devices/system/node/online"); }
+    if (!numa_nodes.is_open()) { return 1U; }
 
     std::string line;
     std::getline(numa_nodes, line);

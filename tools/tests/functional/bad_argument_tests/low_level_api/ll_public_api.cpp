@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
+#include <cstdint>
 #include <memory>
 
 #include "gtest/gtest.h"
@@ -198,4 +199,23 @@ QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(qpl_get_dictionary_id, test) {
     status = qpl_get_dictionary_id(dictionary_ptr, NULL);
     EXPECT_EQ(status, QPL_STS_NULL_PTR_ERR);
 }
+
+QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(qpl_get_safe_deflate_compression_buffer_size, test) {
+    const uint32_t FIRST_BLOCK_HEADER_SIZE = 1U;
+    const uint32_t OUTPUT_ACCUMULATOR_SIZE = 32U;
+    const uint32_t END_OF_BLOCK_SIZE       = 2U;
+
+    // Starting from a source size that is UINT32_MAX - FIRST_BLOCK_HEADER_SIZE - OUTPUT_ACCUMULATOR_SIZE - END_OF_BLOCK_SIZE
+    // the function should return 0 since the estimated buffer size would not fit in a uint32_t
+    uint32_t source_size = UINT32_MAX - FIRST_BLOCK_HEADER_SIZE - OUTPUT_ACCUMULATOR_SIZE - END_OF_BLOCK_SIZE;
+
+    uint32_t buffer_size = qpl_get_safe_deflate_compression_buffer_size(source_size);
+    EXPECT_EQ(buffer_size, 0U);
+
+    source_size = UINT32_MAX;
+
+    buffer_size = qpl_get_safe_deflate_compression_buffer_size(source_size);
+    EXPECT_EQ(buffer_size, 0U);
+}
+
 } // namespace qpl::test

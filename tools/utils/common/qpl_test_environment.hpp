@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TEST_ENVIRONMENT
-#define QPL_TEST_ENVIRONMENT
+#ifndef QPL_TOOLS_UTILS_COMMON_QPL_TEST_ENVIRONMENT_HPP
+#define QPL_TOOLS_UTILS_COMMON_QPL_TEST_ENVIRONMENT_HPP
 
 #include <cstdint>
 #include <filesystem>
@@ -90,4 +90,4 @@ private:
 };
 } // namespace qpl::test::util
 
-#endif //QPL_TEST_ENVIRONMENT
+#endif //QPL_TOOLS_UTILS_COMMON_QPL_TEST_ENVIRONMENT_HPP

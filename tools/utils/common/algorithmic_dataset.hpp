@@ -9,8 +9,8 @@
  *  Tools
  */
 
-#ifndef QPL_ALGORITHMIC_DATASET_HPP_
-#define QPL_ALGORITHMIC_DATASET_HPP_
+#ifndef QPL_TOOLS_UTILS_COMMON_ALGORITHMIC_DATASET_HPP
+#define QPL_TOOLS_UTILS_COMMON_ALGORITHMIC_DATASET_HPP
 
 #include "dataset.hpp"
 
@@ -20,4 +20,4 @@ public:
     explicit algorithmic_dataset_t(const std::string& path);
 };
 } // namespace qpl::tools
-#endif //QPL_ALGORITHMIC_DATASET_H
+#endif //QPL_TOOLS_UTILS_COMMON_ALGORITHMIC_DATASET_HPP

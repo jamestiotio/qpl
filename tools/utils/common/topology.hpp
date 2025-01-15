@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_TOPOLOGY_HPP_
-#define QPL_TOOLS_UTILS_HW_DISPATCHER_TOPOLOGY_HPP_
+#ifndef QPL_TOOLS_UTILS_COMMON_TOPOLOGY_HPP
+#define QPL_TOOLS_UTILS_COMMON_TOPOLOGY_HPP
 
 #include <cstdint>
 
@@ -19,4 +19,4 @@ uint64_t get_socket_id(int numa_node) noexcept;
 
 } // namespace qpl::test
 
-#endif // QPL_TOOLS_UTILS_HW_DISPATCHER_TOPOLOGY_HPP_
+#endif //QPL_TOOLS_UTILS_COMMON_TOPOLOGY_HPP

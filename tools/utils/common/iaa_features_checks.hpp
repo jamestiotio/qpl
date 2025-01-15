@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_UTILS_COMMON_IAA_FEATURES_CHECKS_HPP_
-#define QPL_TOOLS_UTILS_COMMON_IAA_FEATURES_CHECKS_HPP_
+#ifndef QPL_TOOLS_UTILS_COMMON_IAA_FEATURES_CHECKS_HPP
+#define QPL_TOOLS_UTILS_COMMON_IAA_FEATURES_CHECKS_HPP
 
 #include "test_hw_dispatcher.hpp"
 
@@ -67,7 +67,7 @@ inline bool is_iaa_dictionary_compress_supported() {
 /**
  * @brief Function to check IAACAP bit and return a boolean to
  * indicate whether force array output modification is supported.
- * 
+ *
  * @note It is safe to check IAACAP value on a single device only,
  * since we do not expect to have devices with different generations
  * available on the same host.
@@ -88,4 +88,4 @@ inline bool is_iaa_force_array_output_mod_supported() {
 
 } // namespace qpl::test
 
-#endif //QPL_TOOLS_UTILS_COMMON_IAA_FEATURES_CHECKS_HPP_
+#endif //QPL_TOOLS_UTILS_COMMON_IAA_FEATURES_CHECKS_HPP

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_CONFIGURATION_DRIVER_H_
-#define QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_CONFIGURATION_DRIVER_H_
+#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_CONFIGURATION_DRIVER_H
+#define QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_CONFIGURATION_DRIVER_H
 
 #if defined(__linux__)
 #include "qpl_test_libaccel_config.h"
@@ -162,4 +162,4 @@ int qpl_test_accfg_engine_get_group_id(accfg_eng* engine);
 #endif
 
 #endif //__linux__
-#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_CONFIGURATION_DRIVER_H_
+#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_CONFIGURATION_DRIVER_H

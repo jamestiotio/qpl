@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_UTILS_COMMON_OPCFG_CHECKS_HPP_
-#define QPL_TOOLS_UTILS_COMMON_OPCFG_CHECKS_HPP_
+#ifndef QPL_TOOLS_UTILS_COMMON_OPCFG_CHECKS_HPP
+#define QPL_TOOLS_UTILS_COMMON_OPCFG_CHECKS_HPP
 
 // tool_hw_dispatcher
 #include "test_hw_dispatcher.hpp"
@@ -65,4 +65,4 @@ inline bool is_operation_disabled_on_all_wq_on_node(qpl_test_opcodes opcode) {
 
 } // namespace qpl::test
 
-#endif // QPL_TOOLS_UTILS_COMMON_OPCFG_CHECKS_HPP_
+#endif // QPL_TOOLS_UTILS_COMMON_OPCFG_CHECKS_HPP

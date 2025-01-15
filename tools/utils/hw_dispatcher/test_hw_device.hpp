@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_DEVICE_HPP_
-#define QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_DEVICE_HPP_
+#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_DEVICE_HPP
+#define QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_DEVICE_HPP
 
 #if defined(__linux__)
 
@@ -101,4 +101,4 @@ bool is_device_matching_user_numa_policy(uint64_t numa_node_id_, uint64_t socket
 } // namespace qpl::test
 
 #endif //__linux__
-#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_DEVICE_HPP_
+#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_DEVICE_HPP

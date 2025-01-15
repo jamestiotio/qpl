@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TEST_HUFFMAN_TABLE_HPP
-#define QPL_TEST_HUFFMAN_TABLE_HPP
+#ifndef QPL_TOOLS_UTILS_COMMON_COMPRESSION_HUFFMAN_TABLE_HPP
+#define QPL_TOOLS_UTILS_COMMON_COMPRESSION_HUFFMAN_TABLE_HPP
 
 #include <cstdint>
 
@@ -129,4 +129,4 @@ namespace qpl::test
 
 // clang-format on
 
-#endif //QPL_TEST_HUFFMAN_TABLE_HPP
+#endif //QPL_TOOLS_UTILS_COMMON_COMPRESSION_HUFFMAN_TABLE_HPP

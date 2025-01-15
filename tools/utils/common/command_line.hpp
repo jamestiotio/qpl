@@ -9,8 +9,8 @@
  *  Tests
  */
 
-#ifndef QPL_TESTS_THREAD_TESTS_STRESS_COMMAND_LINE_HPP_
-#define QPL_TESTS_THREAD_TESTS_STRESS_COMMAND_LINE_HPP_
+#ifndef QPL_TOOLS_UTILS_COMMON_COMMAND_LINE_HPP
+#define QPL_TOOLS_UTILS_COMMON_COMMAND_LINE_HPP
 
 #include <cstdint>
 #include <map>
@@ -34,4 +34,4 @@ private:
     static argument_t convertType(const std::string& parsed_argument);
 };
 } // namespace qpl::test
-#endif //QPL_TESTS_THREAD_TESTS_STRESS_COMMAND_LINE_HPP_
+#endif //QPL_TOOLS_UTILS_COMMON_COMMAND_LINE_HPP

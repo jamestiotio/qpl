@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_UTILS_COMMON_SYSTEM_INFO_HPP_
-#define QPL_TOOLS_UTILS_COMMON_SYSTEM_INFO_HPP_
+#ifndef QPL_TOOLS_UTILS_COMMON_SYSTEM_INFO_HPP
+#define QPL_TOOLS_UTILS_COMMON_SYSTEM_INFO_HPP
 
 #include <algorithm>
 #include <cctype>
@@ -257,4 +257,4 @@ static inline bool is_madv_pageout_available() {
 
 } // namespace qpl::test
 
-#endif // QPL_TOOLS_UTILS_COMMON_SYSTEM_INFO_HPP_
+#endif // QPL_TOOLS_UTILS_COMMON_SYSTEM_INFO_HPP

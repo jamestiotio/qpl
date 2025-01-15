@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_QUEUE_HPP_
-#define QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_QUEUE_HPP_
+#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_QUEUE_HPP
+#define QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_QUEUE_HPP
 
 #if defined(__linux__)
 
@@ -66,4 +66,4 @@ private:
 } // namespace qpl::test
 
 #endif //__linux__
-#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_QUEUE_HPP_
+#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_QUEUE_HPP

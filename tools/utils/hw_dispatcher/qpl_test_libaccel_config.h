@@ -6,8 +6,8 @@
 /*
  * Accel-config APIs for tests
  */
-#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_QPL_TEST_LIBACCEL_CONFIG_H_
-#define QPL_TOOLS_UTILS_HW_DISPATCHER_QPL_TEST_LIBACCEL_CONFIG_H_
+#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_QPL_TEST_LIBACCEL_CONFIG_H
+#define QPL_TOOLS_UTILS_HW_DISPATCHER_QPL_TEST_LIBACCEL_CONFIG_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -80,4 +80,4 @@ int                  accfg_engine_get_group_id(struct accfg_engine* engine);
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
-#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_QPL_TEST_LIBACCEL_CONFIG_H_
+#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_QPL_TEST_LIBACCEL_CONFIG_H

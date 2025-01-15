@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_STATUS_H_
-#define QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_STATUS_H_
+#ifndef QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_STATUS_H
+#define QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_STATUS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -29,4 +29,4 @@ typedef enum {
 }
 #endif
 
-#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_STATUS_H_
+#endif //QPL_TOOLS_UTILS_HW_DISPATCHER_TEST_HW_STATUS_H

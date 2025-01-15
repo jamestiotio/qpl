@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TEST_TOOLS_UTILS_COMMON_HUFFMAN_TABLE_UNIQUE_HPP
-#define QPL_TEST_TOOLS_UTILS_COMMON_HUFFMAN_TABLE_UNIQUE_HPP
+#ifndef QPL_TOOLS_UTILS_COMMON_HUFFMAN_TABLE_UNIQUE_HPP
+#define QPL_TOOLS_UTILS_COMMON_HUFFMAN_TABLE_UNIQUE_HPP
 
 #include <memory>
 
@@ -34,4 +34,4 @@ using unique_huffman_table = std::unique_ptr<qpl_huffman_table, decltype(any_huf
 
 } // namespace qpl::test
 
-#endif //QPL_TEST_TOOLS_UTILS_COMMON_HUFFMAN_TABLE_UNIQUE_HPP
+#endif //QPL_TOOLS_UTILS_COMMON_HUFFMAN_TABLE_UNIQUE_HPP

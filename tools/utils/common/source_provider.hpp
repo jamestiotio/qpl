@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TEST_SOURCE_PROVIDER_HPP
-#define QPL_TEST_SOURCE_PROVIDER_HPP
+#ifndef QPL_TOOLS_UTILS_COMMON_SOURCE_PROVIDER_HPP
+#define QPL_TOOLS_UTILS_COMMON_SOURCE_PROVIDER_HPP
 
 /* Must provide with test_data */
 
@@ -71,4 +71,4 @@ private:
 auto generate_mask(uint32_t number_of_elements) -> std::vector<uint8_t>;
 } // namespace qpl::test
 
-#endif //QPL_TEST_SOURCE_PROVIDER_HPP
+#endif //QPL_TOOLS_UTILS_COMMON_SOURCE_PROVIDER_HPP

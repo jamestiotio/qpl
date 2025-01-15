@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TEST_COMPARE_HUFFMAN_TABLE_HPP
-#define QPL_TEST_COMPARE_HUFFMAN_TABLE_HPP
+#ifndef QPL_TOOLS_UTILS_COMMON_COMPARE_HUFFMAN_TABLE_HPP
+#define QPL_TOOLS_UTILS_COMMON_COMPARE_HUFFMAN_TABLE_HPP
 
 // qpl_huffman_table_t definition
 #include "qpl/c_api/huffman_table.h"
@@ -16,4 +16,4 @@ namespace qpl::test {
                                                    bool*                     are_huffman_tables_equal);
 }
 
-#endif
+#endif //QPL_TOOLS_UTILS_COMMON_COMPARE_HUFFMAN_TABLE_HPP

@@ -9,8 +9,8 @@
  *  Tests
  */
 
-#ifndef QPL_TEST_ARGUMENTS_LIST
-#define QPL_TEST_ARGUMENTS_LIST
+#ifndef QPL_TOOLS_UTILS_COMMON_ARGUMENTS_LIST_HPP
+#define QPL_TOOLS_UTILS_COMMON_ARGUMENTS_LIST_HPP
 
 #include <cstdint>
 #include <string>
@@ -40,4 +40,4 @@ struct arguments_list_t {
 };
 } // namespace qpl::test::util
 
-#endif //QPL_TEST_ARGUMENTS_LIST
+#endif //QPL_TOOLS_UTILS_COMMON_ARGUMENTS_LIST_HPP

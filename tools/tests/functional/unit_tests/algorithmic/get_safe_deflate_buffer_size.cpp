@@ -19,7 +19,7 @@ namespace qpl::test {
  */
 QPL_UNIT_API_ALGORITHMIC_TEST(get_safe_deflate_buffer_size, full_input_size_range) {
     for (uint32_t i = UINT32_MAX; i > 0; i--) {
-        uint32_t buffer_size = qpl_get_safe_deflate_compression_buffer_size(i);
+        const uint32_t buffer_size = qpl_get_safe_deflate_compression_buffer_size(i);
         ASSERT_TRUE(buffer_size > i || buffer_size == 0) << "Buffer size: " << buffer_size << " Input size: " << i;
     }
 }

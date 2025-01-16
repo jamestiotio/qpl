@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TESTS_FUNCTIONAL_STRESS_THREAD_TESTS_LOW_LEVEL_API_COMMON_H_
-#define QPL_TESTS_FUNCTIONAL_STRESS_THREAD_TESTS_LOW_LEVEL_API_COMMON_H_
+#ifndef QPL_TOOLS_TESTS_THREAD_TESTS_TT_COMMON_HPP
+#define QPL_TOOLS_TESTS_THREAD_TESTS_TT_COMMON_HPP
 
 // tests_common
 #include "check_result.hpp"
@@ -14,4 +14,4 @@
 
 #define QPL_LOW_LEVEL_API_ALGORITHMIC_TEST(operation, test) TEST(QPL_LOW_LEVEL_SUITE_NAME(tt, operation), test)
 
-#endif //QPL_TESTS_FUNCTIONAL_STRESS_THREAD_TESTS_LOW_LEVEL_API_COMMON_H_
+#endif //QPL_TOOLS_TESTS_THREAD_TESTS_TT_COMMON_HPP

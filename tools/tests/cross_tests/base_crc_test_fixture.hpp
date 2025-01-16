@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TESTS_CRC_TESTS_BASE_CRC_TEST_FIXTURE_HPP_
-#define QPL_TESTS_CRC_TESTS_BASE_CRC_TEST_FIXTURE_HPP_
+#ifndef QPL_TOOLS_TESTS_CROSS_TESTS_BASE_CRC_TEST_FIXTURE_HPP
+#define QPL_TOOLS_TESTS_CROSS_TESTS_BASE_CRC_TEST_FIXTURE_HPP
 
 #include <stdexcept>
 
@@ -59,4 +59,4 @@ private:
 
 } // namespace qpl::test
 
-#endif //QPL_TESTS_CRC_TESTS_BASE_CRC_TEST_FIXTURE_HPP_
+#endif //QPL_TOOLS_TESTS_CROSS_TESTS_BASE_CRC_TEST_FIXTURE_HPP

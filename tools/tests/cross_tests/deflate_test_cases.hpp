@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_DEFLATE_TEST_CASES_HPP_
-#define QPL_DEFLATE_TEST_CASES_HPP_
+#ifndef QPL_TOOLS_TESTS_CROSS_TESTS_DEFLATE_TEST_CASES_HPP
+#define QPL_TOOLS_TESTS_CROSS_TESTS_DEFLATE_TEST_CASES_HPP
 
 // tool_common
 #include "source_provider.hpp"
@@ -25,4 +25,4 @@ struct SimpleDeflateTestCase {
 std::ostream& operator<<(std::ostream& os, const SimpleDeflateTestCase& test_case);
 } // namespace qpl::test
 
-#endif //QPL_DEFLATE_TEST_CASES_HPP_
+#endif //QPL_TOOLS_TESTS_CROSS_TESTS_DEFLATE_TEST_CASES_HPP

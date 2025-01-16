@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_TESTS_COMMON_RUN_OPERATION_HPP_
-#define QPL_TOOLS_TESTS_COMMON_RUN_OPERATION_HPP_
+#ifndef QPL_TOOLS_TESTS_COMMON_RUN_OPERATION_HPP
+#define QPL_TOOLS_TESTS_COMMON_RUN_OPERATION_HPP
 
 #include "qpl/qpl.h"
 
@@ -62,4 +62,4 @@ qpl_status run_expand_op(qpl_path_t execution_path);
 
 } // namespace qpl::test
 
-#endif // QPL_TOOLS_TESTS_COMMON_RUN_OPERATION_HPP_
+#endif //QPL_TOOLS_TESTS_COMMON_RUN_OPERATION_HPP

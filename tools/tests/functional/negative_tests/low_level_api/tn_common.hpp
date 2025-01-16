@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TESTS_FUNCTIONAL_NEGATIVE_TESTS_LOW_LEVEL_API_COMMON_H_
-#define QPL_TESTS_FUNCTIONAL_NEGATIVE_TESTS_LOW_LEVEL_API_COMMON_H_
+#ifndef QPL_TOOLS_TESTS_FUNCTIONAL_NEGATIVE_TESTS_LOW_LEVEL_API_TN_COMMON_HPP
+#define QPL_TOOLS_TESTS_FUNCTIONAL_NEGATIVE_TESTS_LOW_LEVEL_API_TN_COMMON_HPP
 
 #include "gtest/gtest.h"
 
@@ -18,4 +18,4 @@
 
 #define QPL_LOW_LEVEL_API_NEGATIVE_TEST(test_suite_name, test_name) GTEST_TEST(tn_c_api_##test_suite_name, test_name)
 
-#endif //QPL_TESTS_FUNCTIONAL_NEGATIVE_TESTS_LOW_LEVEL_API_COMMON_H_
+#endif //QPL_TOOLS_TESTS_FUNCTIONAL_NEGATIVE_TESTS_LOW_LEVEL_API_TN_COMMON_HPP

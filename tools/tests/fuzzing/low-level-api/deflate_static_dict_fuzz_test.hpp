@@ -3,6 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_TOOLS_TESTS_FUZZING_LOW_LEVEL_API_DEFLATE_STATIC_DICT_FUZZ_TEST_HPP
+#define QPL_TOOLS_TESTS_FUZZING_LOW_LEVEL_API_DEFLATE_STATIC_DICT_FUZZ_TEST_HPP
 
 #include <iostream>
 #include <memory>
@@ -117,3 +119,4 @@ static inline int deflate_static_dict_fuzz(const uint8_t* Data, size_t Size, qpl
 
     return 0;
 }
+#endif //QPL_TOOLS_TESTS_FUZZING_LOW_LEVEL_API_DEFLATE_STATIC_DICT_FUZZ_TEST_HPP

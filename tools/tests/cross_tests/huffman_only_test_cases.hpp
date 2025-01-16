@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_HUFFMAN_ONLY_TEST_CASES_HPP_
-#define QPL_HUFFMAN_ONLY_TEST_CASES_HPP_
+#ifndef QPL_TOOLS_TESTS_CROSS_TESTS_HUFFMAN_ONLY_TEST_CASES_HPP
+#define QPL_TOOLS_TESTS_CROSS_TESTS_HUFFMAN_ONLY_TEST_CASES_HPP
 
 // tool_common
 #include "source_provider.hpp"
@@ -21,4 +21,4 @@ struct SimpleHuffmanOnlyTestCase {
 std::ostream& operator<<(std::ostream& os, const SimpleHuffmanOnlyTestCase& test_case);
 } // namespace qpl::test
 
-#endif //QPL_HUFFMAN_ONLY_TEST_CASES_HPP_
+#endif //QPL_TOOLS_TESTS_CROSS_TESTS_HUFFMAN_ONLY_TEST_CASES_HPP

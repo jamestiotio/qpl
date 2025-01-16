@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_CRC32_TEST_CASES_HPP_
-#define QPL_CRC32_TEST_CASES_HPP_
+#ifndef QPL_TOOLS_TESTS_CROSS_TESTS_CRC32_TEST_CASES_HPP
+#define QPL_TOOLS_TESTS_CROSS_TESTS_CRC32_TEST_CASES_HPP
 
 // tool_common
 #include "source_provider.hpp"
@@ -22,4 +22,4 @@ struct SimpleCRC32TestCase {
 std::ostream& operator<<(std::ostream& os, const SimpleCRC32TestCase& test_case);
 } // namespace qpl::test
 
-#endif //QPL_CRC32_TEST_CASES_HPP_
+#endif //QPL_TOOLS_TESTS_CROSS_TESTS_CRC32_TEST_CASES_HPP

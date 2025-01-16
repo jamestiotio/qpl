@@ -9,8 +9,8 @@
  *  Tests
  */
 
-#ifndef QPL_TESTS_COMMON_TEST_SOURCES_HPP_
-#define QPL_TESTS_COMMON_TEST_SOURCES_HPP_
+#ifndef QPL_TOOLS_TESTS_COMMON_TEST_SOURCES_HPP
+#define QPL_TOOLS_TESTS_COMMON_TEST_SOURCES_HPP
 
 #include <stdexcept>
 #include <vector>
@@ -99,4 +99,4 @@ private:
 
 } // namespace qpl::test
 
-#endif //QPL_TESTS_COMMON_TEST_SOURCES_HPP_
+#endif //QPL_TOOLS_TESTS_COMMON_TEST_SOURCES_HPP

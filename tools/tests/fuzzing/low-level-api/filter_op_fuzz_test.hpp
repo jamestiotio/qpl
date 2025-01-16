@@ -3,6 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_TOOLS_TESTS_FUZZING_LOW_LEVEL_API_FILTER_OP_FUZZ_TEST_HPP
+#define QPL_TOOLS_TESTS_FUZZING_LOW_LEVEL_API_FILTER_OP_FUZZ_TEST_HPP
 
 #include <memory>
 #include <vector>
@@ -233,3 +235,4 @@ static inline int expand_test_case(const uint8_t* data_ptr, size_t size, qpl_par
 
     return 0;
 }
+#endif //QPL_TOOLS_TESTS_FUZZING_LOW_LEVEL_API_FILTER_OP_FUZZ_TEST_HPP

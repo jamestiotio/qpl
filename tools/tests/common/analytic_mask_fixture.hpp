@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TEST_ANALYTICS_MASK_FIXTURE_HPP
-#define QPL_TEST_ANALYTICS_MASK_FIXTURE_HPP
+#ifndef QPL_TOOLS_TESTS_COMMON_ANALYTICS_MASK_FIXTURE_HPP
+#define QPL_TOOLS_TESTS_COMMON_ANALYTICS_MASK_FIXTURE_HPP
 
 #include "analytic_fixture.hpp"
 
@@ -56,4 +56,4 @@ protected:
 };
 } // namespace qpl::test
 
-#endif //QPL_TEST_ANALYTICS_MASK_FIXTURE_HPP
+#endif //QPL_TOOLS_TESTS_COMMON_ANALYTICS_MASK_FIXTURE_HPP

@@ -9,8 +9,8 @@
  *  Test API (private C++ API)
  */
 
-#ifndef QPL_TESTS_COMMON_EXECUTION_WRAPPER_HPP_
-#define QPL_TESTS_COMMON_EXECUTION_WRAPPER_HPP_
+#ifndef QPL_TOOLS_TESTS_COMMON_EXECUTION_WRAPPER_HPP
+#define QPL_TOOLS_TESTS_COMMON_EXECUTION_WRAPPER_HPP
 
 #include "qpl/qpl.h"
 
@@ -30,4 +30,4 @@ static inline auto run_job_api(qpl_job* job_ptr) {
 }
 } // namespace qpl::test
 
-#endif //QPL_TESTS_COMMON_EXECUTION_WRAPPER_HPP_
+#endif //QPL_TOOLS_TESTS_COMMON_EXECUTION_WRAPPER_HPP

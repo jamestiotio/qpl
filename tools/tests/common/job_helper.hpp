@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_JOB_HELPER_HPP
-#define QPL_JOB_HELPER_HPP
+#ifndef QPL_TOOLS_TESTS_COMMON_JOB_HELPER_HPP
+#define QPL_TOOLS_TESTS_COMMON_JOB_HELPER_HPP
 
 #include "qpl/qpl.h"
 
@@ -23,4 +23,4 @@ static inline auto is_two_source_filtering(qpl_job* const job_ptr) {
 
 } // namespace qpl::test::job_helper
 
-#endif // QPL_JOB_HELPER_HPP
+#endif // QPL_TOOLS_TESTS_COMMON_JOB_HELPER_HPP

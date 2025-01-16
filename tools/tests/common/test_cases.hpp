@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TEST_TEST_CASE_HPP
-#define QPL_TEST_TEST_CASE_HPP
+#ifndef QPL_TOOLS_TESTS_COMMON_TEST_CASES_HPP
+#define QPL_TOOLS_TESTS_COMMON_TEST_CASES_HPP
 
 #include <type_traits>
 #include <vector>
@@ -238,4 +238,4 @@ protected:
                     new testing::internal::TestFactoryImpl<GTEST_TEST_CLASS_NAME_(test_suite_name, test_name)>);   \
     void GTEST_TEST_CLASS_NAME_(test_suite_name, test_name)::RunSingleIteration()
 
-#endif //QPL_TEST_TEST_CASE_HPP
+#endif //QPL_TOOLS_TESTS_COMMON_TEST_CASES_HPP

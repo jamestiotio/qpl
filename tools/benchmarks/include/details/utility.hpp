@@ -60,7 +60,7 @@ inline void retry_sleep() {
         return;
     else {
 #ifdef __linux__
-        timespec spec {0, submitRetryWaitNs};
+        const timespec spec {0, submitRetryWaitNs};
         nanosleep(&spec, nullptr);
 #else
 #endif

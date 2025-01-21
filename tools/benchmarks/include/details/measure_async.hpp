@@ -30,9 +30,9 @@ static statistics_t measure_async(benchmark::State& state, const case_params_t& 
         res.queue_size = 1;
         res.operations = threads;
     } else {
-        std::uint32_t devices = get_number_of_devices_matching_numa_policy(common_params.node_);
-        res.queue_size        = common_params.queue_size_;
-        res.operations        = res.queue_size * devices;
+        const std::uint32_t devices = get_number_of_devices_matching_numa_policy(common_params.node_);
+        res.queue_size              = common_params.queue_size_;
+        res.operations              = res.queue_size * devices;
     }
 
     res.operations_per_thread = res.operations / threads;
@@ -49,8 +49,8 @@ static statistics_t measure_async(benchmark::State& state, const case_params_t& 
     // - Chunk at once. Measure each chunk independently one by one, gather aggregate in the end. Is this reasonable?
     // - File by chunks. Measure for the whole file processing different chunks in parallel (map file before processing). Like normal processing
 
-    size_t completion_limit = res.operations_per_thread; // Do at least qdepth tasks for each iteration
-    bool   first_iteration  = true;
+    const size_t completion_limit = res.operations_per_thread; // Do at least qdepth tasks for each iteration
+    bool         first_iteration  = true;
 #ifdef PER_THREAD_STAT
     std::chrono::high_resolution_clock::time_point timer_start;
     std::chrono::high_resolution_clock::time_point timer;

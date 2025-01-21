@@ -36,14 +36,14 @@ public:
      * @brief Initialize the queue_selector object.This constructor initializes the map of operation code to disabled wq.
      */
     queue_selector(const queues_container_t& working_queues, const uint8_t total_wq_size) {
-        bool op_cfg_enabled = working_queues[0].get_op_configuration_support();
+        const bool op_cfg_enabled = working_queues[0].get_op_configuration_support();
 
         if (!op_cfg_enabled) {
-            for (uint32_t operation : opcodes_list) {
+            for (const uint32_t operation : opcodes_list) {
                 wq_map_operation_enabled_to_bitmask_[operation] = util::bitmask128(total_wq_size);
             }
         } else {
-            for (uint32_t operation : opcodes_list) {
+            for (const uint32_t operation : opcodes_list) {
                 util::bitmask128 bit_index_is_valid_wq;
 
                 for (uint32_t wq_idx = 0; wq_idx < total_wq_size; wq_idx++) {

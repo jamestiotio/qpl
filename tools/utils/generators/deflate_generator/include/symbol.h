@@ -32,7 +32,7 @@ public:
         m_used = 0U;
     }
 
-    bool is_full() { return (m_used == PAGE_SIZE); }
+    bool is_full() const { return (m_used == PAGE_SIZE); }
 
     void push(uint32_t lit_len, uint32_t dist) {
         m_symbols[m_used].lit_len = lit_len;

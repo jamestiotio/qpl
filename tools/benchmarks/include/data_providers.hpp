@@ -45,7 +45,7 @@ static inline dataset_t read_dataset(const std::string& path) {
 // This function will return a vector of block sizes, from min_tested_block_size => max_tested_block_size
 // where only one size is larger/same size as the full data size (0 is considered larger/same size)
 static inline std::vector<std::uint32_t> generate_block_sizes(const data_t& data) {
-    uint32_t              max_block_size_for_data = std::min((size_t)max_tested_block_size, data.buffer.size());
+    const uint32_t        max_block_size_for_data = std::min((size_t)max_tested_block_size, data.buffer.size());
     std::vector<uint32_t> block_sizes;
     uint32_t              size = min_tested_block_size;
     for (size = min_tested_block_size; size <= max_block_size_for_data; size *= 2) {
@@ -63,7 +63,7 @@ static inline auto split_data(const data_t& data, std::size_t block_size) {
         blocks[0].name = data.name;
     } else {
         // Trim tail since it cannot be used in statistics
-        std::uint32_t count = data.buffer.size() / block_size;
+        const std::uint32_t count = data.buffer.size() / block_size;
         blocks.resize(count);
         for (std::uint32_t i = 0U; i < count; ++i) {
             auto begin = &data.buffer[i * block_size];

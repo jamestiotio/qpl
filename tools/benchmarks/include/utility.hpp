@@ -175,12 +175,12 @@ template <typename CaseT, typename CaseParamsT, typename... ArgsT>
 static ::benchmark::internal::Benchmark*
 register_benchmarks_common(const std::string& case_name, const std::string& case_name_ext, CaseT&& case_functor,
                            CaseParamsT&& case_common_params, const data_t& data, ArgsT&&... case_args) {
-    std::string api_name  = to_name(case_functor.api_v);
-    std::string exec_name = to_name(case_functor.exec_v);
-    std::string path_name = to_name(case_functor.path_v);
-    std::string in_mem    = to_name(case_common_params.in_mem_, "in_mem");
-    std::string out_mem   = to_name(case_common_params.out_mem_, "out_mem");
-    std::string timer_name;
+    const std::string api_name  = to_name(case_functor.api_v);
+    const std::string exec_name = to_name(case_functor.exec_v);
+    const std::string path_name = to_name(case_functor.path_v);
+    const std::string in_mem    = to_name(case_common_params.in_mem_, "in_mem");
+    const std::string out_mem   = to_name(case_common_params.out_mem_, "out_mem");
+    std::string       timer_name;
     if (case_common_params.full_time_)
         timer_name = "/timer:full";
     else
@@ -192,10 +192,10 @@ register_benchmarks_common(const std::string& case_name, const std::string& case
         else
             case_common_params.queue_size_ = 1;
     }
-    qsize_name            = to_name(case_common_params.queue_size_, "qsize");
-    std::string data_name = (data.name.size()) ? std::string("/data:") + data.name : std::string {};
-    std::string test_name = case_name + api_name + path_name + exec_name + qsize_name + in_mem + out_mem + timer_name +
-                            data_name + case_name_ext;
+    qsize_name                  = to_name(case_common_params.queue_size_, "qsize");
+    const std::string data_name = (data.name.size()) ? std::string("/data:") + data.name : std::string {};
+    const std::string test_name = case_name + api_name + path_name + exec_name + qsize_name + in_mem + out_mem +
+                                  timer_name + data_name + case_name_ext;
     if (case_functor.exec_v == execution_e::async) {
         return register_benchmark_proxy(test_name, std::forward<CaseT>(case_functor), case_common_params, data,
                                         std::forward<ArgsT>(case_args)...)

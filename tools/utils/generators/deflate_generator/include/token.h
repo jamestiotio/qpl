@@ -186,7 +186,7 @@ public:
         return type;
     }
 
-    uint32_t line_num() { return m_line_num; }
+    uint32_t line_num() const { return m_line_num; }
 };
 
 /*

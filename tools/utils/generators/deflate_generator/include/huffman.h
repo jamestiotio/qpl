@@ -73,7 +73,7 @@ public:
 
     void noeob() { m_noeob = true; }
 
-    bool get_noeob() { return m_noeob; }
+    bool get_noeob() const { return m_noeob; }
 
     void set_bout(bool bout) { m_bout = bout; }
 

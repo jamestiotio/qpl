@@ -52,7 +52,7 @@ public:
         return isal_stream_ptr_->hufftables;
     }
 
-    [[nodiscard]] inline auto get_last_bits_offset() noexcept -> uint32_t { return last_bits_offset_; }
+    [[nodiscard]] inline auto get_last_bits_offset() const noexcept -> uint32_t { return last_bits_offset_; }
 
     [[nodiscard]] static constexpr inline auto get_buffer_size() noexcept -> uint32_t {
         size_t size = 0;

@@ -146,11 +146,11 @@ protected:
 
     auto get_random_crc64_poly(uint32_t poly_shift, uint32_t seed) -> uint64_t {
         // auto number = rand() % UINT16_MAX + 1;
-        uint16_t number      = 65523;
-        uint64_t result_poly = (uint16_t)number;
-        result_poly          = (result_poly << 16U) ^ (uint16_t)number;
-        result_poly          = (result_poly << 16U) ^ (uint16_t)number;
-        result_poly          = (result_poly << 16U) ^ (uint16_t)number;
+        const uint16_t number      = 65523;
+        uint64_t       result_poly = (uint16_t)number;
+        result_poly                = (result_poly << 16U) ^ (uint16_t)number;
+        result_poly                = (result_poly << 16U) ^ (uint16_t)number;
+        result_poly                = (result_poly << 16U) ^ (uint16_t)number;
         result_poly |= 1U;
         result_poly <<= poly_shift;
 

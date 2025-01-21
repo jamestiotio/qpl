@@ -274,7 +274,7 @@ private:
     };
 
     inline void initialize_random_access(hw_iaa_aecs_analytic* aecs_ptr, hw_descriptor* descriptor, uint8_t* source_ptr,
-                                         uint32_t source_size, access_properties properties);
+                                         uint32_t source_size, access_properties properties) const;
 
     // TODO: Replace full descriptor zeroing by partial zeroing
     inline void reset() noexcept { core_sw::util::set_zeros(descriptor_, sizeof(hw_descriptor)); }
@@ -707,7 +707,7 @@ inline void inflate_state<execution_path_t::hardware>::initialize_random_access(
                                                                                 hw_descriptor* const        descriptor,
                                                                                 uint8_t*                    source_ptr,
                                                                                 uint32_t                    source_size,
-                                                                                access_properties properties) {
+                                                                                access_properties properties) const {
     aecs_ptr->inflate_options.idx_bit_offset = 7U & access_properties_.ignore_start_bits;
 
     hw_iaa_aecs_decompress_set_input_accumulator(&aecs_ptr->inflate_options, source_ptr, source_size,

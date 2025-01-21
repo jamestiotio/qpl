@@ -80,8 +80,11 @@ if (WIN32 AND "${QPL_LIBRARY_TYPE}" STREQUAL "SHARED")
 endif ()
 
 if (LIB_FUZZING_ENGINE)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-instr-generate -fcoverage-mapping")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-instr-generate -fcoverage-mapping")
+    option(QPL_BUILD_EXAMPLES "Builds examples" OFF)
+    option(QPL_BUILD_TESTS "Builds tests and benchmarks framework" OFF)
+
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-instr-generate -fcoverage-mapping -fsanitize=address,fuzzer -g -O1")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-instr-generate -fcoverage-mapping -fsanitize=address,fuzzer -g -O1")
 endif ()
 
 if (QPL_USE_CLANG_TIDY)

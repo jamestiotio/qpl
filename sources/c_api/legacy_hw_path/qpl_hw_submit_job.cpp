@@ -32,7 +32,6 @@
 #include "hw_descriptors_api.h"
 
 // Legacy
-#include "hardware_defs.h"
 #include "own_checkers.h"
 #include "own_defs.h"
 #include "own_ml_buffer_api.hpp"

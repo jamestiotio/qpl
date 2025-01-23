@@ -32,7 +32,6 @@
 #include "simple_memory_ops.hpp"
 
 // core-iaa
-#include "hardware_defs.h"
 #include "hw_aecs_api.h"
 #include "hw_definitions.h"
 #include "hw_descriptors_api.h"

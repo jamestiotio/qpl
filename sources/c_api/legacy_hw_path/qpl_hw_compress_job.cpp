@@ -15,7 +15,6 @@
 #include "compression/stream_decorators/zlib_decorator.hpp"
 #include "compression_operations/huffman_table.hpp"
 #include "dispatcher/hw_dispatcher.hpp"
-#include "hardware_defs.h"
 #include "hardware_state.h"
 #include "hw_aecs_api.h"
 #include "hw_definitions.h"

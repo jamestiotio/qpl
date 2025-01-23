@@ -14,7 +14,6 @@
 #include "compression/dictionary/dictionary_utils.hpp"
 #include "compression/stream_decorators/gzip_decorator.hpp"
 #include "compression/stream_decorators/zlib_decorator.hpp"
-#include "hardware_defs.h"
 #include "hardware_state.h"
 #include "hw_definitions.h"
 #include "hw_iaa_flags.h"

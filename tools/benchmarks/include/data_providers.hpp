@@ -21,7 +21,7 @@ static const uint32_t max_tested_block_size = 65536U;
 
 static inline dataset_t read_dataset(const std::string& path) {
     dataset_t dataset;
-    if (!path.size()) return dataset;
+    if (path.empty()) return dataset;
 
     auto real_path = std::filesystem::canonical(std::filesystem::absolute(std::filesystem::path(path.c_str())));
 

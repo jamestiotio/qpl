@@ -193,7 +193,7 @@ register_benchmarks_common(const std::string& case_name, const std::string& case
             case_common_params.queue_size_ = 1;
     }
     qsize_name                  = to_name(case_common_params.queue_size_, "qsize");
-    const std::string data_name = (data.name.size()) ? std::string("/data:") + data.name : std::string {};
+    const std::string data_name = (!data.name.empty()) ? std::string("/data:") + data.name : std::string {};
     const std::string test_name = case_name + api_name + path_name + exec_name + qsize_name + in_mem + out_mem +
                                   timer_name + data_name + case_name_ext;
     if (case_functor.exec_v == execution_e::async) {

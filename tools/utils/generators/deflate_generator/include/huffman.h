@@ -43,11 +43,7 @@ protected:
     void warn_no_huffman(const char* str, uint32_t val);
 
 public:
-    huffman_c() {
-        m_warn_no_huff_seen = false;
-        m_byte_count        = 0;
-        m_noeob             = false;
-        m_bout              = false;
+    huffman_c() : m_warn_no_huff_seen(false), m_byte_count(0U), m_noeob(false), m_bout(false) {
         //push zero-index
         m_indices.push_back(0);
     }

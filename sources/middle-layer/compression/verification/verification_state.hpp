@@ -73,8 +73,8 @@ public:
 private:
     inline void reset() noexcept { verify_state_ptr->state_ptr.disable_multisymbol_lookup_table = 1U; }
 
-    explicit verify_state(const qpl::ml::util::linear_allocator& allocator) {
-        verify_state_ptr = allocator.allocate<state_buffer, qpl::ml::util::memory_block_t::not_aligned>(1U);
+    explicit verify_state(const qpl::ml::util::linear_allocator& allocator)
+        : verify_state_ptr(allocator.allocate<state_buffer, qpl::ml::util::memory_block_t::not_aligned>(1U)) {
         verify_state_ptr->decompression_buffer_ptr =
                 allocator.allocate<uint8_t, util::memory_block_t::not_aligned>(32_kb);
         verify_state_ptr->decompression_buffer_size = 32_kb;

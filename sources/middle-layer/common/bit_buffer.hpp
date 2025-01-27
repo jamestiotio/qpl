@@ -14,13 +14,14 @@ class bit_reader {
 public:
     template <typename input_iterator>
     bit_reader(const input_iterator source_begin, const input_iterator source_end)
-        : source_begin_ptr_(source_begin), current_source_ptr_(source_begin), source_end_ptr_(source_end) {
-        buffer_           = 0U;
-        bits_in_buffer_   = 0U;
-        last_bits_offset_ = 0U;
-        is_overflowed_    = false;
-        is_big_endian_    = false;
-    }
+        : source_begin_ptr_(source_begin)
+        , current_source_ptr_(source_begin)
+        , source_end_ptr_(source_end)
+        , last_bits_offset_(0U)
+        , buffer_(0U)
+        , bits_in_buffer_(0U)
+        , is_overflowed_(false)
+        , is_big_endian_(false) {}
 
     template <typename input_iterator>
     void set_source(const input_iterator source_begin, const input_iterator source_end) noexcept {

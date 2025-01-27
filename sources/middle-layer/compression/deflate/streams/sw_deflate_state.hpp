@@ -124,9 +124,9 @@ protected:
     const util::linear_allocator& allocator_;
 
 private:
-    explicit deflate_state(const util::linear_allocator& allocator) : allocator_(allocator) {
+    explicit deflate_state(const util::linear_allocator& allocator)
+        : isal_stream_ptr_(allocator.allocate<isal_zstream>()), allocator_(allocator) {
         compression_mode_ = fixed_mode;
-        isal_stream_ptr_  = allocator.allocate<isal_zstream>();
     }
 
     friend auto write_stored_block_header(deflate_state<execution_path_t::software>& stream,

@@ -18,10 +18,9 @@ public:
 
     template <class iterator_t>
     limited_buffer_t(iterator_t buffer_begin, iterator_t buffer_end, const uint8_t bit_width)
-        : buffer_t(buffer_begin, buffer_end) {
-        max_elements_in_buffer_ = size() / util::bit_to_byte(util::bit_width_to_bits(bit_width));
-        bit_width_              = bit_width;
-    }
+        : buffer_t(buffer_begin, buffer_end)
+        , bit_width_(bit_width)
+        , max_elements_in_buffer_(size() / util::bit_to_byte(util::bit_width_to_bits(bit_width_))) {}
 
     [[nodiscard]] auto max_elements_count() const noexcept -> uint32_t;
 

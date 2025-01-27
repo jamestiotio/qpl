@@ -79,10 +79,7 @@ public:
     token_type_t m_type  = TT_EOF;
     uint32_t     m_value = 0;
 
-    token_c(token_type_t type, uint32_t value = 0) {
-        m_type  = type;
-        m_value = value;
-    }
+    token_c(token_type_t type, uint32_t value = 0U) : m_type(type), m_value(value) {}
 
     token_c() {};
 };

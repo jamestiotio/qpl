@@ -35,12 +35,10 @@ public:
         uint8_t  last_bits_offset;
     };
 
-    explicit huffman_only_decompression_state(const qpl::ml::util::linear_allocator& allocator) {
-        // Allocate internal buffers
-        state_ = allocator.allocate<internal_state_fields_t, qpl::ml::util::memory_block_t::not_aligned>(1U);
-
-        lookup_table_ptr_ =
-                allocator.allocate<uint8_t, qpl::ml::util::memory_block_t::not_aligned>(huffman_only_lookup_table_size);
+    explicit huffman_only_decompression_state(const qpl::ml::util::linear_allocator& allocator)
+        : state_(allocator.allocate<internal_state_fields_t, qpl::ml::util::memory_block_t::not_aligned>(1U))
+        , lookup_table_ptr_(allocator.allocate<uint8_t, qpl::ml::util::memory_block_t::not_aligned>(
+                  huffman_only_lookup_table_size)) {
 
         // Initialize internal state
         state_->current_source_ptr      = nullptr;
@@ -94,10 +92,11 @@ class huffman_only_decompression_state<execution_path_t::hardware> {
 public:
     uint8_t ignore_end_bits = 0U;
 
-    explicit huffman_only_decompression_state(const qpl::ml::util::linear_allocator& allocator) {
-        descriptor_        = allocator.allocate<hw_descriptor, qpl::ml::util::memory_block_t::aligned_64u>(1U);
-        completion_record_ = allocator.allocate<hw_completion_record, qpl::ml::util::memory_block_t::aligned_64u>(1U);
-    };
+    explicit huffman_only_decompression_state(const qpl::ml::util::linear_allocator& allocator)
+        : descriptor_(allocator.allocate<hw_descriptor, qpl::ml::util::memory_block_t::aligned_64u>(1U))
+        , completion_record_(allocator.allocate<hw_completion_record, qpl::ml::util::memory_block_t::aligned_64u>(1U)) {
+
+          };
 
     template <class iterator_t>
     inline auto output(iterator_t begin, iterator_t end) noexcept -> huffman_only_decompression_state&;

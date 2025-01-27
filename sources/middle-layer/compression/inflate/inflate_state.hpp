@@ -100,9 +100,8 @@ private:
     bool                   is_dictionary_set = false;
     qpl_dictionary*        dictionary_ptr    = nullptr;
 
-    explicit inflate_state(const util::linear_allocator& allocator) {
-        inflate_state_ = allocator.allocate<isal_inflate_state, util::memory_block_t::not_aligned>(1U);
-    };
+    explicit inflate_state(const util::linear_allocator& allocator)
+        : inflate_state_(allocator.allocate<isal_inflate_state, util::memory_block_t::not_aligned>(1U)) {};
 
     /**
      * @brief Hard resetting method which performs complex partial inflate_state zeroing.
@@ -230,15 +229,24 @@ private:
 
     inline void set_block_type(deflate_block_type_e block_type) noexcept;
 
+    struct execution_state {
+        uint8_t aecs_index;
+    };
+
+    struct decompression_state_t {
+        deflate_block_type_e block_type;
+    };
+
+    const util::linear_allocator& allocator_;
+    execution_state*              execution_state_ptr;
+    decompression_state_t*        decompression_state_ptr;
+
     hw_descriptor*                         descriptor_        = nullptr;
     HW_PATH_VOLATILE hw_completion_record* completion_record_ = nullptr;
     hw_iaa_aecs_analytic*                  decompress_aecs_   = nullptr;
     bool                                   is_gen1_hw_        = true;
-
-    bool            is_dictionary_set = false;
-    qpl_dictionary* dictionary_ptr    = nullptr;
-
-    const util::linear_allocator& allocator_;
+    bool                                   is_dictionary_set  = false;
+    qpl_dictionary*                        dictionary_ptr     = nullptr;
 
     struct {
         uint8_t* next_out  = nullptr;
@@ -254,24 +262,12 @@ private:
     access_properties          access_properties_        = {false, 0U, 0U};
     end_processing_condition_t end_processing_condition_ = stop_and_check_for_bfinal_eob;
 
-    struct execution_state {
-        uint8_t aecs_index;
-    };
-
-    execution_state* execution_state_ptr;
-
-    struct decompression_state_t {
-        deflate_block_type_e block_type;
-    };
-
-    decompression_state_t* decompression_state_ptr;
-
-    explicit inflate_state(const util::linear_allocator& allocator) : allocator_(allocator) {
-        execution_state_ptr     = allocator.allocate<execution_state>(1U);
-        decompression_state_ptr = allocator.allocate<decompression_state_t>(1);
-        descriptor_             = allocator.allocate<hw_descriptor, util::memory_block_t::aligned_64u>(1U);
-        completion_record_      = allocator.allocate<hw_completion_record, util::memory_block_t::aligned_64u>(1U);
-    };
+    explicit inflate_state(const util::linear_allocator& allocator)
+        : allocator_(allocator)
+        , execution_state_ptr(allocator.allocate<execution_state>(1U))
+        , decompression_state_ptr(allocator.allocate<decompression_state_t>(1))
+        , descriptor_(allocator.allocate<hw_descriptor, util::memory_block_t::aligned_64u>(1U))
+        , completion_record_(allocator.allocate<hw_completion_record, util::memory_block_t::aligned_64u>(1U)) {};
 
     inline void initialize_random_access(hw_iaa_aecs_analytic* aecs_ptr, hw_descriptor* descriptor, uint8_t* source_ptr,
                                          uint32_t source_size, access_properties properties) const;

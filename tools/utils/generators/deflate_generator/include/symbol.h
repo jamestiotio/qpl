@@ -27,10 +27,7 @@ public:
     uint32_t     m_used;
     symbol       m_symbols[PAGE_SIZE];
 
-    symbol_page() {
-        m_next = NULL;
-        m_used = 0U;
-    }
+    symbol_page() : m_next(NULL), m_used(0U) {}
 
     bool is_full() const { return (m_used == PAGE_SIZE); }
 
@@ -50,10 +47,7 @@ public:
     uint32_t     m_num_lit;
     uint32_t     m_num_sym;
 
-    symbol_list() {
-        m_head = m_tail = NULL;
-        m_num_lit = m_num_sym = 0U;
-    }
+    symbol_list() : m_head(m_tail = NULL), m_num_lit(m_num_sym = 0U) {}
 
     symbol_list(const symbol_list& other) = delete;
 

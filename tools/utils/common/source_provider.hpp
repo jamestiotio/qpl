@@ -31,9 +31,11 @@ class source_provider {
 public:
     source_provider(uint32_t number_of_elements, uint32_t bit_width, uint32_t seed,
                     qpl_parser parser = qpl_p_le_packed_array)
-        : m_number_of_elements(number_of_elements), m_bit_width(bit_width), m_seed(seed), m_parser(parser) {
-        m_byte_length = sizeof(uint8_t) * m_number_of_elements;
-    }
+        : m_number_of_elements(number_of_elements)
+        , m_bit_width(bit_width)
+        , m_seed(seed)
+        , m_byte_length(sizeof(uint8_t) * m_number_of_elements)
+        , m_parser(parser) {}
 
     auto get_source() -> std::vector<uint8_t>;
 

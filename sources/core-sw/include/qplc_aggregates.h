@@ -19,11 +19,10 @@
  * @ingroup SW_KERNELS_PRIVATE_API
  * @{
  */
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_AGGREGATES_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_AGGREGATES_H
 
 #include "qplc_defines.h"
-
-#ifndef QPLC_AGGREGATES_H_
-#define QPLC_AGGREGATES_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -88,5 +87,5 @@ OWN_QPLC_API(void, qplc_aggregates_32u,
 }
 #endif
 
-#endif // QPLC_AGGREGATES_H_
+#endif // QPL_SOURCES_CORE_SW_INCLUDE_AGGREGATES_H
 /** @} */

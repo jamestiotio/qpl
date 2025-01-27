@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef HW_PATH_HW_DEFINITIONS_H_
-#define HW_PATH_HW_DEFINITIONS_H_
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_HW_DEFINITIONS_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_HW_DEFINITIONS_H
 
 /**
  * @brief Types and Macro Definitions for Intel(R) Query Processing Library (Intel(R) QPL) Hardware Path.
@@ -198,6 +198,6 @@ static_assert(sizeof(hw_compress_descriptor) == HW_PATH_DESCRIPTOR_SIZE, "Descri
 }
 #endif
 
-#endif //HW_PATH_HW_DEFINITIONS_H_
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_HW_DEFINITIONS_H
 
 /** @} */

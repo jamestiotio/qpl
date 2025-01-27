@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_HW_PATH_INCLUDE_OWN_COMPRESSION_CORES_API_H_
-#define QPL_SOURCES_HW_PATH_INCLUDE_OWN_COMPRESSION_CORES_API_H_
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_CORE_DEFLATE_API_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_CORE_DEFLATE_API_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,4 +22,4 @@ extern const uint32_t fixed_offsets_table[OWN_DEFLATE_D_TABLE_SIZE];
 }
 #endif
 
-#endif //QPL_SOURCES_HW_PATH_INCLUDE_OWN_COMPRESSION_CORES_API_H_
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_CORE_DEFLATE_API_H

@@ -9,8 +9,8 @@
  *  Core API (private C++ API)
  */
 
-#ifndef QPL_SOURCES_CORE_INCLUDE_QPLC_COMPRESSION_H_
-#define QPL_SOURCES_CORE_INCLUDE_QPLC_COMPRESSION_H_
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_DEFLATE_UTILS_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_DEFLATE_UTILS_H
 
 #include "deflate_hash_table.h"
 #include "qplc_compression_consts.h"
@@ -43,4 +43,4 @@ typedef void (*qplc_setup_dictionary_t_ptr)(uint8_t* dictionary_ptr, uint32_t di
 }
 #endif
 
-#endif //QPL_SOURCES_CORE_INCLUDE_QPLC_COMPRESSION_H_
+#endif //QPL_SOURCES_CORE_SW_INCLUDE_QPLC_DEFLATE_UTILS_H

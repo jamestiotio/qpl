@@ -20,8 +20,8 @@
 
 #include "qplc_defines.h"
 
-#ifndef QPLC_SELECT_H__
-#define QPLC_SELECT_H__
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SELECT_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SELECT_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -84,5 +84,5 @@ OWN_QPLC_API(qplc_status_t, qplc_select_32u,
 }
 #endif
 
-#endif // QPLC_SELECT_H__
+#endif // QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SELECT_H
 /** @} */

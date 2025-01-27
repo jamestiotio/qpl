@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef CORE_SW_DISPATCHER_SIMPLE_MEMORY_OPS_HPP
-#define CORE_SW_DISPATCHER_SIMPLE_MEMORY_OPS_HPP
+#ifndef QPL_SOURCES_CORE_SW_DISPATCHER_SIMPLE_MEMORY_OPS_HPP
+#define QPL_SOURCES_CORE_SW_DISPATCHER_SIMPLE_MEMORY_OPS_HPP
 
 #include <cstddef>
 
@@ -87,4 +87,4 @@ inline void set_zeros(output_iterator_t destination_begin, size_t destination_by
 
 } // namespace qpl::core_sw::util
 
-#endif // CORE_SW_DISPATCHER_SIMPLE_MEMORY_OPS_HPP
+#endif // QPL_SOURCES_CORE_SW_DISPATCHER_SIMPLE_MEMORY_OPS_HPP

@@ -19,11 +19,10 @@
  *      -   Scan analytics operation out-of-place kernels for 8u, 16u and 32u input data and 8u output.
  *
  */
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SCAN_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SCAN_H
 
 #include "qplc_defines.h"
-
-#ifndef QPLC_SCAN_H__
-#define QPLC_SCAN_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -214,5 +213,5 @@ OWN_QPLC_API(void, qplc_scan_not_range_32u8u,
 }
 #endif
 
-#endif // QPLC_SCAN_H__
+#endif // QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SCAN_H
 /** @} */

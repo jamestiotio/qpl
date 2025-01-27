@@ -14,8 +14,8 @@
   *          - @ref k0_qplc_expand_32u
 *
   */
-#ifndef OWN_EXPAND_H
-#define OWN_EXPAND_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_EXPAND_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_EXPAND_K0_H
 
 #include "immintrin.h"
 #include "own_qplc_defs.h"
@@ -285,4 +285,4 @@ OWN_OPT_FUN(uint32_t, k0_qplc_qplc_expand_32u,
     return expanded;
 }
 
-#endif // OWN_EXPAND_H
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_EXPAND_K0_H

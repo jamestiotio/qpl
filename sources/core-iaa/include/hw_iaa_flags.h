@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_HW_PATH_INCLUDE_HW_IAA_FLAGS_H_
-#define QPL_SOURCES_HW_PATH_INCLUDE_HW_IAA_FLAGS_H_
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_HW_IAA_FLAGS_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_HW_IAA_FLAGS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -78,4 +78,4 @@ typedef enum {
 }
 #endif
 
-#endif //QPL_SOURCES_HW_PATH_INCLUDE_HW_IAA_FLAGS_H_
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_HW_IAA_FLAGS_H

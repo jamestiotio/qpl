@@ -9,8 +9,8 @@
  *  SW Core API (Private API)
  */
 
-#ifndef QPL_SOURCES_CORE_SRC_INCLUDE_OWN_QPLC_DATA_H_
-#define QPL_SOURCES_CORE_SRC_INCLUDE_OWN_QPLC_DATA_H_
+#ifndef QPL_SOURCES_CORE_SW_SRC_INCLUDE_OWN_QPLC_DATA_H
+#define QPL_SOURCES_CORE_SW_SRC_INCLUDE_OWN_QPLC_DATA_H
 
 #include <stdint.h>
 
@@ -36,4 +36,4 @@ static const uint8_t bit_reverse_table[256U] = {
         0x3F, 0xBF, 0x7F, 0xFF,
 };
 
-#endif //QPL_SOURCES_CORE_SRC_INCLUDE_OWN_QPLC_DATA_H_
+#endif //QPL_SOURCES_CORE_SW_SRC_INCLUDE_OWN_QPLC_DATA_H

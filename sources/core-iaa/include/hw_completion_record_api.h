@@ -12,8 +12,8 @@
  * @{
  */
 
-#ifndef HW_PATH_HW_COMPLETION_RECORD_API_H_
-#define HW_PATH_HW_COMPLETION_RECORD_API_H_
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_HW_COMPLETION_RECORD_API_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_HW_COMPLETION_RECORD_API_H
 
 #include <assert.h>
 #include <stdint.h>
@@ -96,6 +96,6 @@ hw_iaa_completion_record_get_fault_address(HW_PATH_VOLATILE hw_completion_record
 }
 #endif
 
-#endif //HW_PATH_INCLUDE_HW_COMPLETION_RECORD_API_H_
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_HW_COMPLETION_RECORD_API_H
 
 /** @} */

@@ -18,8 +18,8 @@
   *
   */
 
-#ifndef OWN_SELECT_H
-#define OWN_SELECT_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_SELECT_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_SELECT_K0_H
 
 #include "immintrin.h"
 #include "own_qplc_defs.h"
@@ -165,4 +165,4 @@ OWN_OPT_FUN(uint32_t, k0_qplc_select_32u,
     return selected;
 }
 
-#endif // OWN_SELECT_H
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_SCAN_K0_H

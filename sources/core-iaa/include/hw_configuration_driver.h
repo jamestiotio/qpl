@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_HW_PATH_INCLUDE_HW_CONFIGURATION_DRIVER_H_
-#define QPL_SOURCES_HW_PATH_INCLUDE_HW_CONFIGURATION_DRIVER_H_
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_HW_CONFIGURATION_DRIVER_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_HW_CONFIGURATION_DRIVER_H
 
 #if defined(DYNAMIC_LOADING_LIBACCEL_CONFIG)
 
@@ -102,4 +102,4 @@ typedef uint64_t (*accfg_wq_get_max_transfer_size_ptr)(accfg_wq* wq);
 #endif
 
 #endif //if defined ( DYNAMIC_LOADING_LIBACCEL_CONFIG )
-#endif //QPL_SOURCES_HW_PATH_INCLUDE_HW_CONFIGURATION_DRIVER_H_
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_HW_CONFIGURATION_DRIVER_H

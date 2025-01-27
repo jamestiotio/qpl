@@ -14,8 +14,8 @@
  * @{
  */
 
-#ifndef HW_PATH_HW_DEVICES_H_
-#define HW_PATH_HW_DEVICES_H_
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_HW_DEVICES_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_HW_DEVICES_H
 
 #include <inttypes.h>
 
@@ -158,6 +158,6 @@ typedef struct {
 }
 #endif
 
-#endif //HW_PATH_HW_DEVICES_H_
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_HW_DEVICES_H
 
 /** @} */

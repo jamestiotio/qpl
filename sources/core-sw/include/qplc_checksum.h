@@ -15,11 +15,10 @@
  *          - @ref qplc_xor_checksum_8u
  *
  */
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_CHECKSUM_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_CHECKSUM_H
 
 #include "qplc_defines.h"
-
-#ifndef QPLC_CHECKSUM_H_
-#define QPLC_CHECKSUM_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -63,5 +62,5 @@ OWN_QPLC_API(uint64_t, qplc_crc64,
 }
 #endif
 
-#endif // QPLC_CHECKSUM_H_
+#endif // QPL_SOURCES_CORE_SW_INCLUDE_QPLC_CHECKSUM_H_
 /** @} */

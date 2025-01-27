@@ -9,8 +9,8 @@
  * @{
  */
 
-#ifndef HW_PATH_HW_STATUS_H_
-#define HW_PATH_HW_STATUS_H_
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_HW_STATUS_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_HW_STATUS_H
 
 #include <stddef.h>
 #include <stdint.h>
@@ -115,6 +115,6 @@ typedef uint8_t hw_operation_error; /**< Error code type */
 #define AD_ERROR_CODE_TOO_MANY_D_CODES  36U /**< The number of D codes specified in the DEFLATE header exceed 30 */
 /** @} */
 
-#endif //HW_PATH_HW_STATUS_H_
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_HW_STATUS_H
 
 /** @} */

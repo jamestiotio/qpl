@@ -22,11 +22,10 @@
  *      -   Unpacking n-bit integers' vector in BE format to 8u, 16u or 32u integers.
  *
  */
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_UNPACK_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_UNPACK_H
 
 #include "qplc_defines.h"
-
-#ifndef QPLC_UNPACK_API_H_
-#define QPLC_UNPACK_API_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -288,5 +287,5 @@ OWN_QPLC_API(qplc_status_t, qplc_unpack_prle_32u,
 }
 #endif
 
-#endif // QPLC_UNPACK_API_H_
+#endif // QPL_SOURCES_CORE_SW_INCLUDE_QPLC_UNPACK_H
 /** @} */

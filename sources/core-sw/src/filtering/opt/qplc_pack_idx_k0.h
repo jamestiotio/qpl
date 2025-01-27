@@ -12,8 +12,8 @@
   *          - @ref qplc_pack_index_8u
   *
   */
-#ifndef OWN_PACK_INDEX_H
-#define OWN_PACK_INDEX_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_PACK_IDX_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_PACK_IDX_K0_H
 
 #include "immintrin.h"
 #include "own_qplc_defs.h"
@@ -2457,4 +2457,4 @@ OWN_OPT_FUN(qplc_status_t, k0_qplc_pack_index_8u32u,
 }
 #endif
 
-#endif // OWN_PACK_INDEX_H
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_PACK_IDX_K0_H

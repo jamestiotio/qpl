@@ -27,7 +27,8 @@
  *          - @ref k0_qplc_unpack_32u32u
  *
  */
-#pragma once
+#ifndef QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_UNPACK_32U_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_UNPACK_32U_K0_H
 
 #include "own_qplc_defs.h"
 
@@ -1020,3 +1021,5 @@ OWN_OPT_FUN(void, k0_qplc_unpack_31u32u,
 
     if (num_elements > 0) { px_qplc_unpack_Nu32u(src_ptr, num_elements, 0U, 31U, dst_ptr); }
 }
+
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_UNPACK_32U_K0_H

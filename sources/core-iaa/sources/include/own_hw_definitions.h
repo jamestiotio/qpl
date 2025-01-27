@@ -3,11 +3,10 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_SOURCES_CORE_IAA_SOURCES_INCLUDE_OWN_HW_DEFINITIONS_H
+#define QPL_SOURCES_CORE_IAA_SOURCES_INCLUDE_OWN_HW_DEFINITIONS_H
 
 #include "hw_definitions.h"
-
-#ifndef HW_PATH_OWN_HW_DEFINITIONS_H_
-#define HW_PATH_OWN_HW_DEFINITIONS_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -133,4 +132,4 @@ extern "C" {
 }
 #endif
 
-#endif //HW_PATH_OWN_HW_DEFINITIONS_H_
+#endif //QPL_SOURCES_CORE_IAA_SOURCES_INCLUDE_OWN_HW_DEFINITIONS_H

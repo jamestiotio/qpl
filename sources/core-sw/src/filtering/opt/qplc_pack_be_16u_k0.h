@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef OWN_PACK_BE_16U_H
-#define OWN_PACK_BE_16U_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_PACK_BE_16U_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_PACK_BE_16U_K0_H
 
 #include "own_qplc_defs.h"
 
@@ -1180,4 +1180,4 @@ OWN_OPT_FUN(void, k0_qplc_pack_be_16u32u, (const uint8_t* src_ptr, uint32_t num_
     }
 }
 
-#endif // OWN_PACK_BE_16U_H
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_PACK_BE_16U_K0_H

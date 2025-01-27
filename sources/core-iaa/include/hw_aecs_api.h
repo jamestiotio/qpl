@@ -17,13 +17,12 @@
  * @ingroup HW_PUBLIC_API
  * @{
  */
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_HW_AECS_API_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_HW_AECS_API_H
 
 #include "hw_definitions.h"
 #include "qplc_huffman_table.h"
 #include "stdbool.h"
-
-#ifndef HW_PATH_HW_AECS_API_H_
-#define HW_PATH_HW_AECS_API_H_
 
 #if !defined(HW_PATH_IAA_AECS_API)
 #define HW_PATH_IAA_AECS_API(type, name, arg) type HW_STDCALL hw_iaa_aecs_##name arg
@@ -611,6 +610,6 @@ static inline HW_PATH_IAA_AECS_API(void, decompress_state_set_aecs_format,
 }
 #endif
 
-#endif //HW_PATH_HW_AECS_API_H_
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_HW_AECS_API_H
 
 /** @} */

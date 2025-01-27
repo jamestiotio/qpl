@@ -16,8 +16,8 @@
 //  See details in the article
 // "Fast CRC Computation for Generic Polynomials Using PCLMULQDQ Instruction"
 
-#ifndef OWN_CHECKSUM_H
-#define OWN_CHECKSUM_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_CHECKSUMS_OPT_QPLC_CHECKSUM_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_CHECKSUMS_OPT_QPLC_CHECKSUM_K0_H
 
 #include "immintrin.h"
 #include "own_qplc_data.h"
@@ -814,4 +814,4 @@ OWN_OPT_FUN(uint64_t, k0_qplc_crc64_be,
 #endif
 #endif
 
-#endif // OWN_CHECKSUM_H
+#endif // QPL_SOURCES_CORE_SW_SRC_CHECKSUMS_OPT_QPLC_CHECKSUM_K0_H

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPLC_DEFLATE_DEFS_H_
-#define QPLC_DEFLATE_DEFS_H_
+#ifndef QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_DEFS_H
+#define QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_DEFS_H
 
 #include "encode_df.h"
 
@@ -69,4 +69,4 @@ struct deflate_icf_stream {
 }
 #endif
 
-#endif // QPLC_DEFLATE_DEFS_H_
+#endif //QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_DEFS_H

@@ -3,12 +3,11 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_SOURCES_CORE_IAA_SOURCES_INCLUDE_OWN_DEFLATE_H
+#define QPL_SOURCES_CORE_IAA_SOURCES_INCLUDE_OWN_DEFLATE_H
 
 #include <stddef.h>
 #include <stdint.h>
-
-#ifndef HW_PATH_OWN_DEFLATE_H_
-#define HW_PATH_OWN_DEFLATE_H_
 
 #define DYNAMIC_HDR           2U                          /**< @todo */
 #define DYNAMIC_HDR_SIZE      3U                          /**< @todo */
@@ -40,4 +39,4 @@
 #define DEF_STATE_LL_TOKEN 0U /**< @todo // looking at block header */
 /** @} */
 
-#endif //HW_PATH_OWN_DEFLATE_H_
+#endif //QPL_SOURCES_CORE_IAA_SOURCES_INCLUDE_OWN_DEFLATE_H

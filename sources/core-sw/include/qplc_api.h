@@ -3,6 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_API_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_API_H
 
 #include "qplc_aggregates.h"
 #include "qplc_checksum.h"
@@ -14,9 +16,6 @@
 #include "qplc_scan.h"
 #include "qplc_select.h"
 #include "qplc_unpack.h"
-
-#ifndef OWN_QPL_CORE_API_H_
-#define OWN_QPL_CORE_API_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -152,5 +151,5 @@ static const qplc_pack_bits_t_ptr qplc_pack_bits_array[] = {
 }
 #endif
 
-#endif //OWN_QPL_CORE_API_H_
+#endif //QPL_SOURCES_CORE_SW_INCLUDE_QPLC_API_H
 /** @} */

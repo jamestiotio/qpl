@@ -36,8 +36,8 @@
  *
  */
 
-#ifndef SCAN_OPT_H
-#define SCAN_OPT_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_SCAN_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_SCAN_K0_H
 
 #include "own_qplc_defs.h"
 #include "own_scan_intrin.h"
@@ -586,4 +586,4 @@ OWN_OPT_FUN(void, k0_qplc_scan_not_range_32u8u,
     }
 }
 
-#endif // SCAN_OPT_H
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_SCAN_K0_H

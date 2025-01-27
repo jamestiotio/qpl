@@ -978,4 +978,4 @@ OWN_OPT_FUN(void, k0_qplc_unpack_7u8u,
     if (num_elements > 0) { px_qplc_unpack_7u8u(src_ptr, num_elements, 0U, dst_ptr); }
 }
 
-#endif
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_UNPACK_8U_K0_H

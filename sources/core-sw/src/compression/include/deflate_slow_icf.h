@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPLC_DEFLATE_SLOW_ICF_H_
-#define QPLC_DEFLATE_SLOW_ICF_H_
+#ifndef QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_SLOW_ICF_H
+#define QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_SLOW_ICF_H
 
 #include "bitbuf2.h"
 #include "deflate_defs.h"
@@ -28,4 +28,4 @@ OWN_QPLC_FUN(uint32_t, slow_deflate_icf_body,
 }
 #endif
 
-#endif // QPLC_DEFLATE_SLOW_ICF_H_
+#endif //QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_SLOW_ICF_H

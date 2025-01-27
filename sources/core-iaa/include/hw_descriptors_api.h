@@ -17,8 +17,8 @@
  * @{
  */
 
-#ifndef HW_PATH_HW_DESCRIPTORS_API_H_
-#define HW_PATH_HW_DESCRIPTORS_API_H_
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_HW_DESCRIPTORS_API_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_HW_DESCRIPTORS_API_H
 
 #include "hw_aecs_api.h"
 #include "hw_definitions.h"
@@ -672,6 +672,6 @@ HW_PATH_IAA_API(void, descriptor_reset, (hw_descriptor* const descriptor_ptr));
 }
 #endif
 
-#endif //HW_PATH_HW_DESCRIPTORS_API_H_
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_HW_DESCRIPTORS_API_H
 
 /** @} */

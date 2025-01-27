@@ -15,8 +15,8 @@
   *          - @ref k0_qplc_copy_8u
   */
 
-#ifndef OWN_MEMOP_H
-#define OWN_MEMOP_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_OTHER_OPT_QPLC_MEMOP_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_OTHER_OPT_QPLC_MEMOP_K0_H
 
 #include "own_qplc_defs.h"
 #include "qplc_memop.h"
@@ -223,4 +223,4 @@ OWN_OPT_FUN(void, k0_qplc_move_8u, (const uint8_t* src_ptr, uint8_t* dst_ptr, ui
     }
 }
 
-#endif // OWN_MEMOP_H
+#endif //QPL_SOURCES_CORE_SW_SRC_OTHER_OPT_QPLC_MEMOP_K0_H

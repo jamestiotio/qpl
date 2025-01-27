@@ -9,8 +9,8 @@
  * @brief service functions for @link own_deflate_hash_table @endlink internal structure
  */
 
-#ifndef QPL_PROJECT_OWN_DEFLATE_HASH_TABLE_H
-#define QPL_PROJECT_OWN_DEFLATE_HASH_TABLE_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_HASH_TABLE_H
+#define QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_HASH_TABLE_H
 
 #include "qplc_defines.h"
 #include "stdint.h"
@@ -61,4 +61,4 @@ void own_deflate_hash_table_update(deflate_hash_table_t* const hash_table_ptr, c
 }
 #endif
 
-#endif // QPL_PROJECT_OWN_DEFLATE_HASH_TABLE_H
+#endif //QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_HASH_TABLE_H

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPLC_DEFLATE_SLOW_MATCHER_H_
-#define QPLC_DEFLATE_SLOW_MATCHER_H_
+#ifndef QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_SLOW_MATCHER_H
+#define QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_SLOW_MATCHER_H
 
 #include <stdint.h>
 
@@ -24,4 +24,4 @@ deflate_match_t get_lazy_best_match(const deflate_hash_table_t* const hash_table
 }
 #endif
 
-#endif // QPLC_DEFLATE_SLOW_MATCHER_H_
+#endif // QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_SLOW_MATCHER_H

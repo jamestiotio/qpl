@@ -16,11 +16,10 @@
  *      -   Expand analytics operation out-of-place kernels for 8u, 16u and 32u input/output data.
  *
  */
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_EXPAND_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_EXPAND_H
 
 #include "qplc_defines.h"
-
-#ifndef QPLC_EXPAND_H__
-#define QPLC_EXPAND_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -63,5 +62,5 @@ OWN_QPLC_API(qplc_status_t, qplc_expand_32u,
 }
 #endif
 
-#endif // QPLC_EXPAND_H__
+#endif // QPL_SOURCES_CORE_SW_INCLUDE_QPLC_EXPAND_H
 /** @} */

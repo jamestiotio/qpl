@@ -21,8 +21,8 @@
   *          - @ref k0_qplc_pack_8u32u
   *
   */
-#ifndef OWN_PACK_8U_H
-#define OWN_PACK_8U_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_PACK_8U_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_PACK_8U_K0_H
 
 #include "own_qplc_defs.h"
 #include "qplc_memop.h"
@@ -1132,4 +1132,4 @@ OWN_OPT_FUN(void, k0_qplc_pack_8u7u,
 
     if (tail > 0) { k0_qplc_pack_8u7u_tail(src_ptr, tail, dst_ptr); }
 }
-#endif // OWN_PACK_8U_H
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_PACK_8U_K0_H

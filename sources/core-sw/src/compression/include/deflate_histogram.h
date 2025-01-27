@@ -9,8 +9,8 @@
  *  Core API (private C++ API)
  */
 
-#ifndef QPL_DEFLATE_HISTOGRAM_H_
-#define QPL_DEFLATE_HISTOGRAM_H_
+#ifndef QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_HISTOGRAM_H
+#define QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_HISTOGRAM_H
 
 #include "deflate_defs.h"
 #include "deflate_hash_table.h"
@@ -82,4 +82,4 @@ void deflate_histogram_set_statistics(deflate_histogram_t* deflate_histogram_ptr
 }
 #endif
 
-#endif //QPL_DEFLATE_HISTOGRAM_H_
+#endif //QPL_SOURCES_CORE_SW_SRC_COMPRESSION_INCLUDE_DEFLATE_HISTOGRAM_H

@@ -23,11 +23,10 @@
  *      -   Packing kernels for 8u input data and index output data in 8u, 16u or 32u representation in BE format.
  *
  */
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_PACK_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_PACK_H
 
 #include "qplc_defines.h"
-
-#ifndef QPLC_PACK_API_H_
-#define QPLC_PACK_API_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -335,5 +334,5 @@ OWN_QPLC_API(qplc_status_t, qplc_pack_index_be_8u32u,
 }
 #endif
 
-#endif // QPLC_PACK_API_H_
+#endif // QPL_SOURCES_CORE_SW_INCLUDE_QPLC_PACK_H
 /** @}*/

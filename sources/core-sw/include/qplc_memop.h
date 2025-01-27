@@ -20,11 +20,10 @@
  *      -   memory set - fill with zeroes for 8u, 16u and 32u data types
  *
  */
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_MEMOP_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_MEMOP_H
 
 #include "qplc_defines.h"
-
-#ifndef QPLC_MEMOP_API_H_
-#define QPLC_MEMOP_API_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -115,5 +114,5 @@ OWN_QPLC_API(void, qplc_move_32u, (const uint32_t* src_ptr, uint32_t* dst_ptr, u
 }
 #endif
 
-#endif // QPLC_MEMOP_API_H_
+#endif // QPL_SOURCES_CORE_SW_INCLUDE_QPLC_MEMOP_H
 /** @} */

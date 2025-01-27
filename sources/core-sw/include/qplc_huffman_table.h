@@ -9,8 +9,8 @@
  *  Job API (public C API)
  */
 
-#ifndef QPL_QPLC_HUFFMAN_TABLE_H_
-#define QPL_QPLC_HUFFMAN_TABLE_H_
+#ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_HUFFMAN_TABLE_H
+#define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_HUFFMAN_TABLE_H
 
 #include <stdint.h>
 
@@ -129,4 +129,4 @@ inline uint8_t qplc_huffman_table_get_offset_code_length(const qplc_huffman_tabl
 }
 #endif
 
-#endif //QPL_QPLC_HUFFMAN_TABLE_H_
+#endif //QPL_SOURCES_CORE_SW_INCLUDE_QPLC_HUFFMAN_TABLE_H

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef OWN_SCAN_INTRIN_H
-#define OWN_SCAN_INTRIN_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_OWN_SCAN_INTRIN_H
+#define QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_OWN_SCAN_INTRIN_H
 
 #include <stdint.h>
 
@@ -531,4 +531,4 @@ static inline __mmask16 own_scan_RNE_32u_kernel(__m512i srcmm, __m512i lesser_va
     __mmask16 mask_GT = _mm512_cmp_epu32_mask(srcmm, greater_value, _MM_CMPINT_NLE);
     return mask_LT | mask_GT;
 }
-#endif // OWN_SCAN_INTRIN_H
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_OWN_SCAN_INTRIN_H

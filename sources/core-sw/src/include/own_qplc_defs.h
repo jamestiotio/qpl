@@ -17,14 +17,13 @@
  *
  *
  */
+#ifndef QPL_SOURCES_CORE_SW_SRC_INCLUDE_OWN_QPLC_DEFS_H
+#define QPL_SOURCES_CORE_SW_SRC_INCLUDE_OWN_QPLC_DEFS_H
 
 #include <stdint.h>
 
 #include "immintrin.h"
 #include "qplc_defines.h"
-
-#ifndef QPLC_OWN_CORE_DEFS_H_
-#define QPLC_OWN_CORE_DEFS_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -225,7 +224,7 @@ OWN_QPLC_INLINE(uint32_t, own_get_bit_width_from_index, (uint32_t pack_index)) {
 }
 #endif
 
-#endif // QPLC_OWN_CORE_DEFS_H_
+#endif //QPL_SOURCES_CORE_SW_SRC_INCLUDE_OWN_QPLC_DEFS_H
 /**
  * @}
  */

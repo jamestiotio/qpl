@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef CORE_SW_DISPATCHER_DISPATCHER_HPP_
-#define CORE_SW_DISPATCHER_DISPATCHER_HPP_
+#ifndef QPL_SOURCES_CORE_SW_DISPATCHER_DISPATCHER_HPP
+#define QPL_SOURCES_CORE_SW_DISPATCHER_DISPATCHER_HPP
 
 #include <array>
 #include <atomic>
@@ -169,4 +169,4 @@ private:
 
 } // namespace qpl::core_sw::dispatcher
 
-#endif // CORE_SW_DISPATCHER_DISPATCHER_HPP_
+#endif // QPL_SOURCES_CORE_SW_DISPATCHER_DISPATCHER_HPP

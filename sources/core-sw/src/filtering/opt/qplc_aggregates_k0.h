@@ -14,8 +14,8 @@
   *          - @ref qplc_aggregates_16u
   *          - @ref qplc_aggregates_32u
   */
-#ifndef OWN_AGGREGATES_H
-#define OWN_AGGREGATES_H
+#ifndef QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_AGGREGATES_K0_H
+#define QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_AGGREGATES_K0_H
 
 #include "immintrin.h"
 #include "own_qplc_defs.h"
@@ -486,4 +486,4 @@ There is the problem with compiler of MSVC2017.
 #endif
 #endif
 
-#endif // OWN_AGGREGATES_H
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_AGGREGATES_K0_H

@@ -513,4 +513,4 @@ OWN_OPT_FUN(void, k0_qplc_unpack_15u16u,
     if (num_elements > 0) { px_qplc_unpack_Nu16u(src_ptr, num_elements, 0U, 15U, dst_ptr); }
 }
 
-#endif
+#endif //QPL_SOURCES_CORE_SW_SRC_FILTERING_OPT_QPLC_UNPACK_16U_K0_H

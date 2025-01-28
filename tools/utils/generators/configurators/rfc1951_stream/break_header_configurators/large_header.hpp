@@ -19,7 +19,7 @@ public:
     GenStatus generate() override;
 
 private:
-    inline int caclulateNumberLiteralLengthsCodesEqualTo13(Gen32u headerHighBitBorder, Gen32u header_bit_size) {
+    inline int static caclulateNumberLiteralLengthsCodesEqualTo13(Gen32u headerHighBitBorder, Gen32u header_bit_size) {
         return (int)((headerHighBitBorder - header_bit_size) / 2U);
     }
 

@@ -49,7 +49,7 @@ private:
 };
 
 #define ASSERT_ERR_STATUS(status) \
-    if (status != QPL_STS_OK) return testing::AssertionFailure()
+    if ((status) != QPL_STS_OK) return testing::AssertionFailure()
 
 #define QPL_LOW_LEVEL_API_CRC_TEST(test_suite_name, test_fixture, test_name) \
     GTEST_TEST_(ll_##test_suite_name, tc_##test_name, test_fixture, testing::internal::GetTypeId<test_fixture>())

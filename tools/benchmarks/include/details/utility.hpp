@@ -30,7 +30,7 @@
 
 #define BENCHMARK_SET_DELAYED_INT(UNIQUE_REG, UNIQUE_SING)                \
     void UNIQUE_REG();                                                    \
-    class UNIQUE_SING {                                                   \
+    class UNIQUE_SING { /*NOLINT(bugprone-macro-parentheses)*/            \
     public:                                                               \
         UNIQUE_SING() {                                                   \
             auto& reg = bench::details::get_registry();                   \

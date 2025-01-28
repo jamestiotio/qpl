@@ -264,6 +264,7 @@ static inline int compare258(uint8_t* str1, uint8_t* str2, uint32_t max_length) 
         case 1:
             if (*str1 != *str2) return count;
             count++;
+        default: break;
     }
 
     return count;
@@ -317,6 +318,7 @@ static inline int compare(uint8_t* str1, uint8_t* str2, uint32_t max_length) {
         case 1:
             if (*str1 != *str2) return count;
             count++;
+        default: break;
     }
 
     return count;

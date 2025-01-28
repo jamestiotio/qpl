@@ -52,7 +52,9 @@ struct common_type_for_compression_stream<execution_path_t::hardware> {
 
 template <compression_mode_t mode>
 constexpr auto need_huffman_table_mode() noexcept -> bool {
-    if constexpr (static_mode == mode || canned_mode == mode) { return true; }
+    if constexpr (static_mode == mode || canned_mode == mode) {
+        return true; //NOLINT(readability-simplify-boolean-expr)
+    }
 
     return false;
 }

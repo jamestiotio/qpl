@@ -48,7 +48,7 @@ static inline std::string to_string(ArgT arg) {
     return std::to_string(arg);
 }
 template <typename ArgT>
-static inline std::string to_name(ArgT arg, std::string name) {
+static inline std::string to_name(ArgT arg, const std::string& name) {
     return std::string("/") + name + ":" + to_string(arg);
 }
 static inline std::string to_string(api_e api) {
@@ -158,7 +158,7 @@ static inline void base_arguments(benchmark::internal::Benchmark* b) {
 }
 
 template <typename LambdaT, typename... ArgsT>
-static ::benchmark::internal::Benchmark* register_benchmark_proxy(const std::string name, LambdaT&& fn,
+static ::benchmark::internal::Benchmark* register_benchmark_proxy(const std::string& name, LambdaT&& fn,
                                                                   ArgsT&&... args) {
     return ::benchmark::RegisterBenchmark(name.c_str(), std::forward<LambdaT>(fn), std::forward<ArgsT>(args)...);
 }

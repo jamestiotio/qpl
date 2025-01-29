@@ -8,10 +8,8 @@
  *  Intel® Query Processing Library (Intel® QPL)
  *  Serialization API for Huffman table
  */
-
-#include "huffman_table_serialization.hpp"
-
 #include "qpl/c_api/huffman_table.h"
+#include "qpl/c_api/serialization.h"
 
 #include "compression/huffman_table/huffman_table.hpp"
 #include "compression/huffman_table/huffman_table_utils.hpp" // qpl_{de}compression_huffman_table

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef JOB_PARSER_H
-#define JOB_PARSER_H
+#ifndef QPL_SOURCES_C_API_FILTER_OPERATIONS_FILTER_OPERATIONS_HPP
+#define QPL_SOURCES_C_API_FILTER_OPERATIONS_FILTER_OPERATIONS_HPP
 
 #include "qpl/c_api/job.h"
 
@@ -332,4 +332,4 @@ uint32_t perform_select(qpl_job* job_ptr, uint8_t* unpack_buffer_ptr, uint32_t u
 
 /** @} */
 
-#endif // JOB_PARSER_H
+#endif //QPL_SOURCES_C_API_FILTER_OPERATIONS_FILTER_OPERATIONS_HPP

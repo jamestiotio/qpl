@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_UTILS_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_UTILS_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_UTILS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_UTILS_HPP
 
 #include "compression/deflate/utils/compression_defs.hpp"
 #include "compression/huffman_table/inflate_huffman_table.hpp"
@@ -47,4 +47,4 @@ static inline auto reset_inflate_state(isal_inflate_state* state) {
 
 } // namespace qpl::ml::compression
 
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_UTILS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_UTILS_HPP

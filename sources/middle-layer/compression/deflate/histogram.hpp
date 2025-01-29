@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_HISTOGRAM_HPP_
-#define QPL_HISTOGRAM_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_HISTOGRAM_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_HISTOGRAM_HPP
 
 #include <cstddef>
 
@@ -25,4 +25,4 @@ auto update_histogram(iterator_t begin, iterator_t end, deflate_histogram& histo
                       deflate_level level = qpl_default_level) noexcept -> qpl_ml_status;
 } // namespace qpl::ml::compression
 
-#endif //QPL_HISTOGRAM_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_HISTOGRAM_HPP

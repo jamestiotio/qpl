@@ -9,8 +9,8 @@
  * @brief Types and Macro Definitions for Intel(R) Query Processing Library (Intel(R) QPL) Hardware Path.
  */
 
-#ifndef HW_PATH_ML_HW_DEFINITIONS_H_
-#define HW_PATH_ML_HW_DEFINITIONS_H_
+#ifndef QPL_SOURCES_C_API_LEGACY_HW_PATH_HARDWARE_STATE_H
+#define QPL_SOURCES_C_API_LEGACY_HW_PATH_HARDWARE_STATE_H
 
 #include "qpl/c_api/defs.h"
 #include "qpl/c_api/status.h"
@@ -91,4 +91,4 @@ typedef struct {
 }
 #endif
 
-#endif // HW_PATH_ML_HW_DEFINITIONS_H_
+#endif //QPL_SOURCES_C_API_LEGACY_HW_PATH_HARDWARE_STATE_H

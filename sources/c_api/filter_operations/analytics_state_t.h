@@ -9,8 +9,8 @@
  *  Own Includes
  */
 
-#ifndef OWN_ANALITICS_H_
-#define OWN_ANALITICS_H_
+#ifndef QPL_SOURCES_C_API_FILTER_OPERATIONS_ANALITICS_STATE_T_H
+#define QPL_SOURCES_C_API_FILTER_OPERATIONS_ANALITICS_STATE_T_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -87,5 +87,5 @@ typedef struct {
 }
 #endif
 
-#endif // OWN_ANALITICS_H_
+#endif //QPL_SOURCES_C_API_FILTER_OPERATIONS_ANALITICS_STATE_T_H
 /** @} */

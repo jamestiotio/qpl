@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_HW_TIMING_UTIL_HPP_
-#define QPL_SOURCES_MIDDLE_LAYER_UTIL_HW_TIMING_UTIL_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_HW_TIMING_UTIL_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_HW_TIMING_UTIL_HPP
 
 #ifdef QPL_LOG_IAA_TIME
 
@@ -138,4 +138,4 @@ inline void calculate_iaa_elapsed_time() {
 } // namespace qpl::ml::dispatcher
 
 #endif //QPL_LOG_IAA_TIME
-#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_HW_TIMING_UTIL_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_HW_TIMING_UTIL_HPP

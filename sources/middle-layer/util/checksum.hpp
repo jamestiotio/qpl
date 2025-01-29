@@ -9,8 +9,8 @@
  *  Middle Layer API (private C++ API)
  */
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKSUM_HPP_
-#define QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKSUM_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKSUM_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKSUM_HPP
 
 #include "crc.h"
 
@@ -134,4 +134,4 @@ inline uint32_t xor_checksum(const input_iterator_t source_begin, const input_it
 
 } // namespace qpl::ml::util
 
-#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKSUM_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKSUM_HPP

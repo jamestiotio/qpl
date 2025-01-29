@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_OWN_QPL_STRUCTURES_H_
-#define QPL_OWN_QPL_STRUCTURES_H_
+#ifndef QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_COMPRESSION_STATE_T_H
+#define QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_COMPRESSION_STATE_T_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,4 +30,4 @@ typedef struct {
 }
 #endif
 
-#endif //QPL_SOURCES_INCLUDE_OWN_QPL_STRUCTURES_H_
+#endif //QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_COMPRESSION_STATE_T_H

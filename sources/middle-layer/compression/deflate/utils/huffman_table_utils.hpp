@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_UTILS_HUFFMAN_TABLE_UTILS_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_UTILS_HUFFMAN_TABLE_UTILS_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_UTILS_HUFFMAN_TABLE_UTILS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_UTILS_HUFFMAN_TABLE_UTILS_HPP
 
 #include "bitbuf2.h"
 #include "huff_codes.h"
@@ -73,4 +73,4 @@ void generate_huffman_codes(heap_tree* heap_space, uint32_t heap_size, uint32_t*
 
 } // namespace qpl::ml::compression
 
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_UTILS_HUFFMAN_TABLE_UTILS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_UTILS_HUFFMAN_TABLE_UTILS_HPP

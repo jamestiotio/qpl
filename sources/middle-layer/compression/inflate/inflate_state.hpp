@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_CONTAINERS_DECOMPRESSION_STATE_HPP_
-#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_CONTAINERS_DECOMPRESSION_STATE_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_STATE_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_STATE_HPP
 
 // ML
 #include "common/linear_allocator.hpp"
@@ -716,4 +716,4 @@ inline void inflate_state<execution_path_t::hardware>::initialize_random_access(
 
 } // namespace qpl::ml::compression
 
-#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_CONTAINERS_DECOMPRESSION_STATE_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_STATE_HPP

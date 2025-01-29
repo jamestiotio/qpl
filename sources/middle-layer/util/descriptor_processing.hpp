@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_DESCRIPTOR_PROCESSING_HPP
-#define QPL_DESCRIPTOR_PROCESSING_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_DESCRIPTOR_PROCESSING_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_DESCRIPTOR_PROCESSING_HPP
 
 #include <array>
 #include <emmintrin.h>
@@ -159,4 +159,4 @@ inline auto process_descriptor(std::array<hw_descriptor, number_of_descriptors>&
 
 } // namespace qpl::ml::util
 
-#endif //QPL_DESCRIPTOR_PROCESSING_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_DESCRIPTOR_PROCESSING_HPP

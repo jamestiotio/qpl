@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef HW_PATH_ML_OWN_SUBMIT_OPERATION_API_H_
-#define HW_PATH_ML_OWN_SUBMIT_OPERATION_API_H_
+#ifndef QPL_SOURCES_C_API_LEGACY_HW_PATH_OWN_ML_SUBMIT_OPERATION_API_HPP
+#define QPL_SOURCES_C_API_LEGACY_HW_PATH_OWN_ML_SUBMIT_OPERATION_API_HPP
 
 #include "qpl/c_api/job.h"
 
@@ -47,4 +47,4 @@ qpl_status hw_descriptor_decompress_init_inflate_body(hw_descriptor* const descr
 }
 #endif
 
-#endif //HW_PATH_ML_OWN_SUBMIT_OPERATION_API_H_
+#endif //QPL_SOURCES_C_API_LEGACY_HW_PATH_OWN_ML_SUBMIT_OPERATION_API_HPP

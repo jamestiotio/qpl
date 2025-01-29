@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_CONTAINERS_HUFFMAN_TABLE_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_CONTAINERS_HUFFMAN_TABLE_HPP
 
 #include <array>
 
@@ -63,4 +63,4 @@ void prepare_histogram(isal_mod_hist* histogram) noexcept;
 
 } // namespace qpl::ml::compression
 
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_CONTAINERS_HUFFMAN_TABLE_HPP

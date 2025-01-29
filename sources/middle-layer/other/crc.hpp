@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef CRC_OPERATION_HPP_
-#define CRC_OPERATION_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_OTHER_CRC_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_OTHER_CRC_HPP
 
 #include "common/defs.hpp"
 #include "other/other_defs.hpp"
@@ -18,4 +18,4 @@ auto call_crc(const uint8_t* src_ptr, uint32_t length, uint64_t polynomial, bool
 
 } // namespace qpl::ml::other
 
-#endif // CRC_OPERATION_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_OTHER_CRC_HPP

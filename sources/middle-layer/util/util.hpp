@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef MIDDLE_LAYER_UTIL_HPP
-#define MIDDLE_LAYER_UTIL_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_UTIL_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_UTIL_HPP
 
 #include "common/defs.hpp"
 
@@ -157,4 +157,4 @@ struct bitmask128 {
 } // namespace util
 } // namespace qpl::ml
 
-#endif // MIDDLE_LAYER_UTIL_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_UTIL_HPP

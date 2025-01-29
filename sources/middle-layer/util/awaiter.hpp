@@ -9,8 +9,8 @@
  *  Middle Layer API (private C++ API)
  */
 
-#ifndef QPL_AWAITER_HPP
-#define QPL_AWAITER_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_AWAITER_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_AWAITER_HPP
 
 #include <cstdint>
 
@@ -46,4 +46,4 @@ private:
 
 } // namespace qpl::ml
 
-#endif //QPL_AWAITER_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_AWAITER_HPP

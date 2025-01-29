@@ -9,8 +9,8 @@
  *  Middle Layer API (private C++ API)
  */
 
-#ifndef QPL_COMPRESSION_DEFS_HPP_
-#define QPL_COMPRESSION_DEFS_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_COMPRESSION_DEFS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_COMPRESSION_DEFS_HPP
 
 #include "common/defs.hpp"
 #include "hw_definitions.h"
@@ -45,4 +45,4 @@ struct verification_pass_result_t {
 
 } // namespace qpl::ml::compression
 
-#endif //QPL_COMPRESSION_DEFS_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_COMPRESSION_DEFS_HPP

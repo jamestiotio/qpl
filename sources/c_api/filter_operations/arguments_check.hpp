@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_C_WRAPPER_ARGUMENTS_CHECK_HPP_
-#define QPL_SOURCES_MIDDLE_LAYER_C_WRAPPER_ARGUMENTS_CHECK_HPP_
+#ifndef QPL_SOURCES_C_API_FILTER_OPERATIONS_ARGUMENTS_CHECK_HPP
+#define QPL_SOURCES_C_API_FILTER_OPERATIONS_ARGUMENTS_CHECK_HPP
 
 #include "analytics/analytics_defs.hpp"
 #include "analytics/input_stream.hpp"
@@ -282,4 +282,4 @@ static inline auto update_job(qpl_job* job_ptr, const analytic_operation_result_
 }
 } // namespace qpl::ml::analytics
 
-#endif //QPL_SOURCES_MIDDLE_LAYER_C_WRAPPER_ARGUMENTS_CHECK_HPP_
+#endif //QPL_SOURCES_C_API_FILTER_OPERATIONS_ARGUMENTS_CHECK_HPP

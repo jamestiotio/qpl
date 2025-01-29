@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef INPUT_STREAM_HPP
-#define INPUT_STREAM_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_INPUT_STREAM_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_INPUT_STREAM_HPP
 
 #include <cstdint>
 #include <iterator>
@@ -288,4 +288,4 @@ private:
 
 } // namespace qpl::ml::analytics
 
-#endif // INPUT_STREAM_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_INPUT_STREAM_HPP

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_HW_ANALYTIC_DEFINITIONS_H_
-#define QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_HW_ANALYTIC_DEFINITIONS_H_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_DESCRIPTOR_BUILDER_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_DESCRIPTOR_BUILDER_HPP
 
 #include "qpl/c_api/defs.h"
 
@@ -141,4 +141,4 @@ inline auto descriptor_builder<qpl_op_select>::operation(const input_stream_t& m
 
 } // namespace qpl::ml::analytics
 
-#endif //QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_HW_ANALYTIC_DEFINITIONS_H_
+#endif //QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_DESCRIPTOR_BUILDER_HPP

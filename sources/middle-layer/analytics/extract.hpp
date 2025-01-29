@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef EXTRACT_OPERATION_HPP
-#define EXTRACT_OPERATION_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_EXTRACT_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_EXTRACT_HPP
 
 #include "input_stream.hpp"
 #include "output_stream.hpp"
@@ -19,4 +19,4 @@ auto call_extract(input_stream_t& input_stream, output_stream_t<array_stream>& o
 
 } // namespace qpl::ml::analytics
 
-#endif // EXTRACT_OPERATION_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_EXTRACT_HPP

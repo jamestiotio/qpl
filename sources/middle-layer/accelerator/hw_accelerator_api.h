@@ -17,8 +17,8 @@
  * @{
  */
 
-#ifndef HW_PATH_ACCELERATOR_API_H_
-#define HW_PATH_ACCELERATOR_API_H_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_ACCELERATOR_HW_ACCELERATOR_API_H
+#define QPL_SOURCES_MIDDLE_LAYER_ACCELERATOR_HW_ACCELERATOR_API_H
 
 #include "hw_definitions.h"
 #include "hw_descriptors_api.h"
@@ -67,6 +67,6 @@ hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t device_numa_
 }
 #endif
 
-#endif // HW_PATH_ACCELERATOR_API_H_
+#endif //QPL_SOURCES_MIDDLE_LAYER_ACCELERATOR_HW_ACCELERATOR_API_H
 
 /** @} */

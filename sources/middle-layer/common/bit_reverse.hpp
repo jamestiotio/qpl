@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-#ifndef QPL_BIT_REV_HPP
-#define QPL_BIT_REV_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMMON_BIT_REVERSE_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMMON_BIT_REVERSE_HPP
 
 #include <cstdint>
 #include <type_traits>
@@ -118,4 +118,4 @@ static inline uint32_t swap_bytes(uint32_t x) {
 
     return z.uint;
 }
-#endif // QPL_BIT_REV_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMMON_BIT_REVERSE_HPP

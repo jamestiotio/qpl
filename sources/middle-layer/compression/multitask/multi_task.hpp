@@ -9,8 +9,8 @@
  *  Middle Layer API (private C++ API)
  */
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_MULTITASK_MULTITASK_HPP_
-#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_MULTITASK_MULTITASK_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_MULTITASK_MULTI_TASK_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_MULTITASK_MULTI_TASK_HPP
 
 namespace qpl::ml::util {
 enum multitask_status : uint32_t {
@@ -26,4 +26,4 @@ extern std::array<uint16_t, 4U> aecs_verify_access_lookup_table;
 extern std::array<uint16_t, 4U> aecs_compress_access_lookup_table;
 } // namespace qpl::ml::util
 
-#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_MULTITASK_MULTITASK_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_MULTITASK_MULTI_TASK_HPP

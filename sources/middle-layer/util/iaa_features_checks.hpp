@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_ML_UTIL_IAA_FEATURES_CHECKS
-#define QPL_ML_UTIL_IAA_FEATURES_CHECKS
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_IAA_FEATURES_CHECKS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_IAA_FEATURES_CHECKS_HPP
 
 #include "dispatcher/hw_dispatcher.hpp"
 
@@ -44,4 +44,4 @@ inline bool are_iaa_gen_2_min_capabilities_present() {
 
 } // namespace qpl::ml::util
 
-#endif //QPL_ML_UTIL_IAA_FEATURES_CHECKS
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_IAA_FEATURES_CHECKS_HPP

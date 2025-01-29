@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef MIDDLE_LAYER_DEFS_HPP
-#define MIDDLE_LAYER_DEFS_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMMON_DEFS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMMON_DEFS_HPP
 
 /**
  * @defgroup MIDDLE_LAYER_API Private API: Middle Layer API
@@ -89,4 +89,4 @@ static_assert(set_buf_size == 4096U, "Intermediate buffer for size is too small"
 
 } // namespace qpl::ml
 
-#endif // MIDDLE_LAYER_DEFS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMMON_DEFS_HPP

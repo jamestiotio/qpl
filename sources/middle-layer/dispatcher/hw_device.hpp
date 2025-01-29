@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_HW_DEVICE_HPP_
-#define QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_HW_DEVICE_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_HW_DEVICE_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_HW_DEVICE_HPP
 
 #include <array>
 #include <atomic>
@@ -90,4 +90,4 @@ private:
 #endif
 
 } // namespace qpl::ml::dispatcher
-#endif //QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_HW_DEVICE_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_HW_DEVICE_HPP

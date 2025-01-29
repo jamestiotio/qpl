@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef HW_PATH_ML_HW_API_H_
-#define HW_PATH_ML_HW_API_H_
+#ifndef QPL_SOURCES_C_API_LEGACY_HW_PATH_ASYNK_HW_API_H
+#define QPL_SOURCES_C_API_LEGACY_HW_PATH_ASYNK_HW_API_H
 
 // middle-layer
 #include "accelerator/hw_accelerator_api.h"
@@ -24,4 +24,4 @@ QPL_API(uint32_t, hw_get_job_size, ());
 }
 #endif
 
-#endif //HW_PATH_ML_HW_API_H_
+#endif //QPL_SOURCES_C_API_LEGACY_HW_PATH_ASYNK_HW_API_H

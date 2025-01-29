@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_VERIFY_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_VERIFY_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_VERIFICATION_VERIFY_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_VERIFICATION_VERIFY_HPP
 
 #include <cstdint>
 
@@ -21,4 +21,4 @@ template <execution_path_t path, verification_mode_t mode>
 auto perform_verification(verify_state<path>& state) -> verification_result_t;
 }
 
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_VERIFY_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_VERIFICATION_VERIFY_HPP

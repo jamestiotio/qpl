@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_COMPRESSION_UNITS_AUXILIARY_UNITS_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_COMPRESSION_UNITS_AUXILIARY_UNITS_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_COMPRESSION_UNITS_AUXILIARY_UNITS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_COMPRESSION_UNITS_AUXILIARY_UNITS_HPP
 
 #include "common/defs.hpp"
 #include "compression/deflate/streams/sw_deflate_state.hpp"
@@ -37,4 +37,4 @@ auto deflate_body_with_dictionary(deflate_state<execution_path_t::software>& str
 
 } // namespace qpl::ml::compression
 
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_COMPRESSION_UNITS_AUXILIARY_UNITS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_COMPRESSION_UNITS_AUXILIARY_UNITS_HPP

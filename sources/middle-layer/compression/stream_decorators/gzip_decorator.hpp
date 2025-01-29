@@ -9,8 +9,8 @@
  *  Middle Layer API (private C++ API)
  */
 
-#ifndef QPL_GZIP_DECORATOR_HPP_
-#define QPL_GZIP_DECORATOR_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_STREAM_DECORATORS_GZIP_DECORATOR_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_STREAM_DECORATORS_GZIP_DECORATOR_HPP
 
 #include "common/defs.hpp"
 #include "compression/compression_defs.hpp"
@@ -79,4 +79,4 @@ public:
 
 } // namespace qpl::ml::compression
 
-#endif //QPL_GZIP_DECORATOR_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_STREAM_DECORATORS_GZIP_DECORATOR_HPP

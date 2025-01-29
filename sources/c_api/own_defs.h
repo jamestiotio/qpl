@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef OWN_DEFS_H__
-#define OWN_DEFS_H__
+#ifndef QPL_SOURCES_C_API_OWN_DEFS_H
+#define QPL_SOURCES_C_API_OWN_DEFS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,4 +65,4 @@ QPL_INLINE int64_t QPL_INT_PTR(const void* ptr) {
 }
 #endif
 
-#endif // OWN_DEFS_H__
+#endif //QPL_SOURCES_C_API_OWN_DEFS_H

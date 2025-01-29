@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_INCLUDE_OWN_QPL_CHECKERS_H_
-#define QPL_SOURCES_INCLUDE_OWN_QPL_CHECKERS_H_
+#ifndef QPL_SOURCES_C_API_OWN_CHECKERS_H
+#define QPL_SOURCES_C_API_OWN_CHECKERS_H
 
 #include "qpl/c_api/status.h"
 
@@ -60,4 +60,4 @@ extern "C" {
 }
 #endif
 
-#endif //QPL_SOURCES_INCLUDE_OWN_QPL_CHECKERS_H_
+#endif //QPL_SOURCES_C_API_OWN_CHECKERS_H

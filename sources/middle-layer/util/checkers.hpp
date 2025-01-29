@@ -9,8 +9,8 @@
  *  Middle Layer API (private C++ API)
  */
 
-#ifndef QPL_SOURCES_C_API_INCLUDE_CHECKERS_HPP_
-#define QPL_SOURCES_C_API_INCLUDE_CHECKERS_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKERS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKERS_HPP
 
 #include "common/defs.hpp"
 
@@ -48,4 +48,4 @@ static inline auto check_for_nullptr(first_arg_t first_arg, other_args_t... othe
 }
 } // namespace qpl::ml::bad_argument
 
-#endif //QPL_SOURCES_C_API_INCLUDE_CHECKERS_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKERS_HPP

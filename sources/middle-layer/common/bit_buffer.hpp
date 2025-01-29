@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_ML_COMMON_BIT_BUFFER_HPP
-#define QPL_ML_COMMON_BIT_BUFFER_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMMON_BIT_BUFFER_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMMON_BIT_BUFFER_HPP
 
 #include <cstdint>
 
@@ -64,4 +64,4 @@ private:
 };
 } // namespace qpl::ml
 
-#endif // QPL_ML_COMMON_BIT_BUFFER_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMMON_BIT_BUFFER_HPP

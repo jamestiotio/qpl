@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_TOPOLOGY_HPP_
-#define QPL_SOURCES_MIDDLE_LAYER_UTIL_TOPOLOGY_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_TOPOLOGY_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_TOPOLOGY_HPP
 
 #include <cstdint>
 
@@ -19,4 +19,4 @@ uint64_t get_socket_id(int numa_node) noexcept;
 
 } // namespace qpl::ml::util
 
-#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_TOPOLOGY_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_TOPOLOGY_HPP

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_QUEUE_SELECTOR_HPP_
-#define QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_QUEUE_SELECTOR_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_QUEUE_SELECTOR_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_QUEUE_SELECTOR_HPP
 
 #include <unordered_map>
 
@@ -84,4 +84,4 @@ private:
 
 } // namespace qpl::ml::dispatcher
 
-#endif // QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_QUEUE_SELECTOR_HPP_
+#endif // QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_QUEUE_SELECTOR_HPP

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef MIDDLE_LAYER_COMPRESSION_UTILS_COMPRESSION_TRAITS_HPP
-#define MIDDLE_LAYER_COMPRESSION_UTILS_COMPRESSION_TRAITS_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_UTILS_COMPRESSION_TRAITS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_UTILS_COMPRESSION_TRAITS_HPP
 
 #include "common/defs.hpp"
 #include "compression/deflate/streams/compression_stream.hpp"
@@ -63,4 +63,4 @@ constexpr auto need_huffman_table_mode() noexcept -> bool {
 
 } // namespace qpl::ml::compression
 
-#endif // MIDDLE_LAYER_COMPRESSION_UTILS_COMPRESSION_TRAITS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_UTILS_COMPRESSION_TRAITS_HPP

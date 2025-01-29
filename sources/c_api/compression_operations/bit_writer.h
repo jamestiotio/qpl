@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef OWN_BIT_WRITER_H_
-#define OWN_BIT_WRITER_H_
+#ifndef QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_BIT_WRITER_H
+#define QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_BIT_WRITER_H
 
 #include "stdint.h"
 
@@ -50,4 +50,4 @@ uint8_t bit_writer_available(bit_writer_t* const bit_writer_ptr);
 }
 #endif
 
-#endif // OWN_BIT_WRITER_H_
+#endif //QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_BIT_WRITER_H

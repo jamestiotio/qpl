@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_HPP
 
 #include <cstdint>
 
@@ -20,4 +20,4 @@ auto inflate(inflate_state<path>& decompression_state, end_processing_condition_
         -> decompression_operation_result_t;
 
 }
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_HPP

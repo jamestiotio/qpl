@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef SCAN_OPERATION_HPP
-#define SCAN_OPERATION_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_SCAN_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_SCAN_HPP
 
 #include "descriptor_builder.hpp"
 #include "input_stream.hpp"
@@ -316,4 +316,4 @@ auto call_scan(input_stream_t& input_stream, output_stream_t<bit_stream>& output
 
 } // namespace qpl::ml::analytics
 
-#endif // SCAN_OPERATION_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_SCAN_HPP

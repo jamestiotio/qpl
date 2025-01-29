@@ -3,14 +3,13 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMMON_LINEAR_ALLOCATOR_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMMON_LINEAR_ALLOCATOR_HPP
 
 #include <iterator>
 #include <memory>
 
 #include "allocation_buffer_t.hpp"
-
-#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_CONTAINERS_BUFFER_HPP_
-#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_CONTAINERS_BUFFER_HPP_
 
 namespace qpl::ml::util {
 
@@ -68,4 +67,4 @@ bool operator!=(const linear_allocator& /*unused*/, const linear_allocator& /*un
 
 } // namespace qpl::ml::util
 
-#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_CONTAINERS_BUFFER_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMMON_LINEAR_ALLOCATOR_HPP

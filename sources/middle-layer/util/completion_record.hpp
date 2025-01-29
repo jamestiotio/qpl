@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_COMPLETION_RECORD_HPP
-#define QPL_COMPLETION_RECORD_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_COMPLETION_RECORD_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_COMPLETION_RECORD_HPP
 
 #include "analytics/analytics_defs.hpp"
 #include "common/defs.hpp"
@@ -125,4 +125,4 @@ inline auto completion_record_convert_to_result<compression::verification_pass_r
 
 } // namespace qpl::ml::util
 
-#endif //QPL_COMPLETION_RECORD_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_COMPLETION_RECORD_HPP

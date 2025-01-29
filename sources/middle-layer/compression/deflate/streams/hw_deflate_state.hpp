@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_STREAMS_HW_DEFLATE_STATE_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_STREAMS_HW_DEFLATE_STATE_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_STREAMS_HW_DEFLATE_STATE_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_STREAMS_HW_DEFLATE_STATE_HPP
 
 #include <common/linear_allocator.hpp>
 #include <compression/multitask/multi_task.hpp>
@@ -159,4 +159,4 @@ inline auto deflate_state<execution_path_t::hardware>::crc() const noexcept -> u
 
 } // namespace qpl::ml::compression
 
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_STREAMS_HW_DEFLATE_STATE_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_STREAMS_HW_DEFLATE_STATE_HPP

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef ANALYTIC_DEFS_HPP
-#define ANALYTIC_DEFS_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_ANALYTICS_DEFS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_ANALYTICS_DEFS_HPP
 
 #include <climits>
 #include <cstdint>
@@ -45,4 +45,4 @@ void inline aggregates_empty_callback(const uint8_t* UNREFERENCED_PARAMETER(src_
 
 } // namespace qpl::ml::analytics
 
-#endif // ANALYTIC_DEFS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_ANALYTICS_DEFS_HPP

@@ -9,8 +9,8 @@
  *  Middle Layer API (private C++ API)
  */
 
-#ifndef QPL_ML_COMPRESSION_INFLATE_HUFFMAN_ONLY_DECOMPRESSION_HPP
-#define QPL_ML_COMPRESSION_INFLATE_HUFFMAN_ONLY_DECOMPRESSION_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_HUFFMAN_ONLY_HUFFMAN_ONLY_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_HUFFMAN_ONLY_HUFFMAN_ONLY_HPP
 
 #include <array>
 
@@ -40,4 +40,4 @@ auto verify_huffman_only(huffman_only_decompression_state<path>& state,
                          decompression_huffman_table& decompression_table, uint32_t required_crc) noexcept
         -> qpl_ml_status;
 } // namespace qpl::ml::compression
-#endif // QPL_ML_COMPRESSION_INFLATE_HUFFMAN_ONLY_DECOMPRESSION_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_HUFFMAN_ONLY_HUFFMAN_ONLY_HPP

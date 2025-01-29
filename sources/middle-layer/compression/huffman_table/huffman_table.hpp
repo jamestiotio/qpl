@@ -8,6 +8,8 @@
  *  Intel® Query Processing Library (Intel® QPL)
  *  Middle Layer API (private C++ API)
  */
+#ifndef QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_HUFFMAN_TABLE_HPP
+#define QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_HUFFMAN_TABLE_HPP
 
 #include <memory>
 
@@ -17,9 +19,6 @@
 #include "common/defs.hpp"
 #include "compression/compression_defs.hpp"
 #include "huffman_table_utils.hpp"
-
-#ifndef QPL_HUFFMAN_TABLE_HPP_
-#define QPL_HUFFMAN_TABLE_HPP_
 
 namespace qpl::ml::compression {
 
@@ -126,4 +125,4 @@ private:
 
 } // namespace qpl::ml::compression
 
-#endif //QPL_HUFFMAN_TABLE_HPP_
+#endif //QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_HUFFMAN_TABLE_HPP

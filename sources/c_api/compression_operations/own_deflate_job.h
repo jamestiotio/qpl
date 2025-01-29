@@ -9,8 +9,8 @@
  * @brief service functions for @link own_deflate_job @endlink internal structure
  */
 
-#ifndef QPL_PROJECT_OWN_DEFLATE_JOB_H
-#define QPL_PROJECT_OWN_DEFLATE_JOB_H
+#ifndef QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_OWN_DEFLATE_JOB_H
+#define QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_OWN_DEFLATE_JOB_H
 
 #include "qpl/c_api/statistics.h"
 
@@ -185,7 +185,7 @@ void own_deflate_job_process_literals_no_instructions(own_deflate_job* const job
 /**
  * @brief Performs statistics gathering for the found match could be actually discovered using "lazy" logic
  *        so it also has to know what to do with missed literals.
- * 
+ *
  * This functions does everything pretty much the same as @link own_deflate_job_process_match @endlink,
  * but doesn't update instructions logic field
  *
@@ -234,4 +234,4 @@ void own_update_deflate_histogram_high_level(own_deflate_job* deflate_job_ptr);
 }
 #endif
 
-#endif // QPL_PROJECT_OWN_DEFLATE_JOB_H
+#endif //QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_OWN_DEFLATE_JOB_H

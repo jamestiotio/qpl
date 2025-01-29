@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_STREAMS_SW_DEFLATE_STATE_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_STREAMS_SW_DEFLATE_STATE_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_STREAMS_SW_DEFLATE_STATE_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_STREAMS_SW_DEFLATE_STATE_HPP
 
 #include "common/linear_allocator.hpp"
 #include "compression/compression_defs.hpp"
@@ -214,4 +214,4 @@ private:
 
 } // namespace qpl::ml::compression
 
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_STREAMS_SW_DEFLATE_STATE_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_STREAMS_SW_DEFLATE_STATE_HPP

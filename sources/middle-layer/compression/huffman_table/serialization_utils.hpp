@@ -9,8 +9,8 @@
  *  Middle Layer API (private C++ API)
  */
 
-#ifndef QPL_SERIALIZATION_UTILS_HPP_
-#define QPL_SERIALIZATION_UTILS_HPP_
+#ifndef QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_SERIALIZATION_UTILS_HPP
+#define QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_SERIALIZATION_UTILS_HPP
 
 #include <cstring>
 #include <stdint.h>
@@ -85,4 +85,4 @@ void deserialize_table(const uint8_t* const buffer, canned_table& table);
 
 } // namespace qpl::ml::serialization
 
-#endif // QPL_SERIALIZATION_UTILS_HPP_
+#endif //QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_SERIALIZATION_UTILS_HPP

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef MIDDLE_LAYER_CONSTANTS_HPP
-#define MIDDLE_LAYER_CONSTANTS_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_UTILS_COMPRESSION_DEFS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_UTILS_COMPRESSION_DEFS_HPP
 
 #include <array>
 #include <cstdint>
@@ -117,4 +117,4 @@ constexpr std::array<uint32_t, 30> distance_code_extra_bits = {0x0, 0x0, 0x0, 0x
 
 } // namespace qpl::ml::compression
 
-#endif // MIDDLE_LAYER_CONSTANTS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_UTILS_COMPRESSION_DEFS_HPP

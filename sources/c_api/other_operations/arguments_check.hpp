@@ -9,8 +9,8 @@
  *  Job API (public C API)
  */
 
-#ifndef QPL_SOURCES_C_API_OTHER_OPERATIONS_ARGUMENTS_CHECK_HPP_
-#define QPL_SOURCES_C_API_OTHER_OPERATIONS_ARGUMENTS_CHECK_HPP_
+#ifndef QPL_SOURCES_C_API_OTHER_OPERATIONS_ARGUMENTS_CHECK_HPP
+#define QPL_SOURCES_C_API_OTHER_OPERATIONS_ARGUMENTS_CHECK_HPP
 
 #include "job.hpp"
 #include "own_checkers.h"
@@ -30,4 +30,4 @@ inline qpl_status validate_operation<qpl_op_crc64>(const qpl_job* const job_ptr)
 
 } // namespace qpl::job
 
-#endif //QPL_SOURCES_C_API_OTHER_OPERATIONS_ARGUMENTS_CHECK_HPP_
+#endif //QPL_SOURCES_C_API_OTHER_OPERATIONS_ARGUMENTS_CHECK_HPP

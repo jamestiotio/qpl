@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_HW_PATH_SOURCES_OWN_ML_QPL_BUFFER_API_H_
-#define QPL_SOURCES_HW_PATH_SOURCES_OWN_ML_QPL_BUFFER_API_H_
+#ifndef QPL_SOURCES_C_API_LEGACY_HW_PATH_OWN_ML_BUFFER_API_HPP
+#define QPL_SOURCES_C_API_LEGACY_HW_PATH_OWN_ML_BUFFER_API_HPP
 
 #include "hardware_state.h"
 
@@ -47,4 +47,4 @@ static inline bool own_qpl_buffer_touch(const qpl_buffer* const buffer_ptr, cons
 }
 #endif
 
-#endif //QPL_SOURCES_HW_PATH_SOURCES_OWN_ML_QPL_BUFFER_API_H_
+#endif //QPL_SOURCES_C_API_LEGACY_HW_PATH_OWN_ML_BUFFER_API_HPP

@@ -9,8 +9,8 @@
  *  Job API (private C++ API)
  */
 
-#ifndef QPL_SOURCES_C_API_OTHER_OPERATIONS_CRC64_HPP_
-#define QPL_SOURCES_C_API_OTHER_OPERATIONS_CRC64_HPP_
+#ifndef QPL_SOURCES_C_API_OTHER_OPERATIONS_CRC64_HPP
+#define QPL_SOURCES_C_API_OTHER_OPERATIONS_CRC64_HPP
 
 #include "qpl/c_api/defs.h"
 #include "qpl/c_api/job.h"
@@ -43,4 +43,4 @@
  */
 uint32_t perform_crc64(qpl_job* const job_ptr) noexcept;
 
-#endif //QPL_SOURCES_C_API_OTHER_OPERATIONS_CRC64_HPP_
+#endif //QPL_SOURCES_C_API_OTHER_OPERATIONS_CRC64_HPP

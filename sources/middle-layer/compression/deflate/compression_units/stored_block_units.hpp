@@ -3,13 +3,12 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_COMPRESSION_UNITS_STORED_BLOCK_UNITS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_COMPRESSION_UNITS_STORED_BLOCK_UNITS_HPP
 
 #include "common/defs.hpp"
 #include "compression/deflate/streams/sw_deflate_state.hpp"
 #include "compression/deflate/utils/compression_defs.hpp"
-
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_COMPRESSION_UNITS_STORED_BLOCK_UNITS_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_COMPRESSION_UNITS_STORED_BLOCK_UNITS_HPP
 
 namespace qpl::ml::compression {
 
@@ -36,4 +35,4 @@ static inline auto get_stored_blocks_size(uint32_t source_size) noexcept {
 
 } // namespace qpl::ml::compression
 
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_COMPRESSION_UNITS_STORED_BLOCK_UNITS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_COMPRESSION_UNITS_STORED_BLOCK_UNITS_HPP

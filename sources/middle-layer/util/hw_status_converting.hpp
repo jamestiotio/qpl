@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_HW_STATUS_CONVERTING
-#define QPL_HW_STATUS_CONVERTING
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_HW_STATUS_CONVERTING_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_HW_STATUS_CONVERTING_HPP
 
 #include "qpl/c_api/status.h"
 
@@ -29,4 +29,4 @@ inline qpl_status convert_hw_accelerator_status_to_qpl_status(const uint32_t sta
 
 } // namespace qpl::ml::util
 
-#endif //QPL_HW_STATUS_CONVERTING
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_HW_STATUS_CONVERTING_HPP

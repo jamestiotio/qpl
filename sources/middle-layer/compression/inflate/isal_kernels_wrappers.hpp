@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_ISAL_KERNELS_WRAPPERS_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_ISAL_KERNELS_WRAPPERS_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_ISAL_KERNELS_WRAPPERS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_ISAL_KERNELS_WRAPPERS_HPP
 
 #include <cstdint>
 
@@ -20,4 +20,4 @@ auto decode_huffman_code_block(isal_inflate_state& inflate_state, uint8_t* start
 auto check_gzip_checksum(isal_inflate_state& inflate_state) noexcept -> qpl_ml_status;
 } // namespace isal_kernels
 } // namespace qpl::ml::compression
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_ISAL_KERNELS_WRAPPERS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_ISAL_KERNELS_WRAPPERS_HPP

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef OTHER_DEFS_HPP_
-#define OTHER_DEFS_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_OTHER_OTHER_DEFS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_OTHER_OTHER_DEFS_HPP
 
 #include <cstdint>
 
@@ -19,4 +19,4 @@ struct crc_operation_result_t {
 
 } // namespace qpl::ml::other
 
-#endif // OTHER_DEFS_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_OTHER_OTHER_DEFS_HPP

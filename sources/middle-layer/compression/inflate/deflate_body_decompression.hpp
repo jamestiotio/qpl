@@ -15,4 +15,4 @@
 namespace qpl::ml::compression {
 auto decode_literal_block(isal_inflate_state& inflate_state) noexcept -> qpl_ml_status;
 }
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_DEFLATE_BODY_DECOMPRESSION_HPP
+#endif //QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_DEFLATE_BODY_DECOMPRESSION_HPP

@@ -9,8 +9,8 @@
  *  Middle-level layer
  */
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_CANNED_UTILS_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_CANNED_UTILS_HPP
+#ifndef QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_HUFFMAN_TABLE_UTILS_HPP
+#define QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_HUFFMAN_TABLE_UTILS_HPP
 
 #include <cstddef>
 #include <type_traits>
@@ -194,4 +194,4 @@ static inline auto get_allocator(const allocator_t allocator) {
 } // namespace details
 } // namespace qpl::ml::compression
 
-#endif // QPL_MIDDLE_LAYER_COMPRESSION_CANNED_UTILS_HPP
+#endif //QPL_MIDDLE_LAYER_COMPRESSION_HUFFMAN_TABLE_HUFFMAN_TABLE_UTILS_HPP

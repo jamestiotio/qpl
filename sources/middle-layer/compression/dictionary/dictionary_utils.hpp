@@ -9,8 +9,8 @@
  *  Middle Layer API (private C++ API)
  */
 
-#ifndef QPL_COMPRESSION_DICTIONARY_DICTIONARY_UTILS_HPP_
-#define QPL_COMPRESSION_DICTIONARY_DICTIONARY_UTILS_HPP_
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DICTIONARY_DICTIONARY_UTILS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DICTIONARY_DICTIONARY_UTILS_HPP
 
 #include "common/defs.hpp"
 #include "dictionary_defs.hpp"
@@ -36,4 +36,4 @@ auto get_dictionary_data(qpl_dictionary& dictionary) noexcept -> uint8_t*;
 auto get_dictionary_hw_hash_table(qpl_dictionary& dictionary) noexcept -> uint8_t*;
 } // namespace qpl::ml::compression
 
-#endif // QPL_COMPRESSION_DICTIONARY_DICTIONARY_UTILS_HPP_
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DICTIONARY_DICTIONARY_UTILS_HPP

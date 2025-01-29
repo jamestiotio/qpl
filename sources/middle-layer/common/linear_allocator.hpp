@@ -57,12 +57,12 @@ private:
 };
 
 template <class T, class U>
-bool operator==(const linear_allocator&, const linear_allocator&) {
+bool operator==(const linear_allocator& /*unused*/, const linear_allocator& /*unused*/) {
     return false;
 }
 
 template <class T, class U>
-bool operator!=(const linear_allocator&, const linear_allocator&) {
+bool operator!=(const linear_allocator& /*unused*/, const linear_allocator& /*unused*/) {
     return true;
 }
 

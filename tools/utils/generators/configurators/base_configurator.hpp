@@ -7,10 +7,10 @@
 #define QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_BASE_CONFIGURATOR_H
 
 #include <algorithm>
+#include <sstream>
 #include <vector>
 
 #include "common_methods.hpp"
-#include "config_container.hpp"
 #include "igenerator.h"
 #include "random_generator.h"
 

@@ -59,13 +59,12 @@ extern "C" qpl_status hw_submit_decompress_job(qpl_job* qpl_job_ptr, uint32_t la
     }
 
     HW_IMMEDIATELY_RET_NULLPTR(aecs_ptr);
-    last_job = (available_in > MAX_BUF_SIZE) ? 0U : last_job;
 
     // Descriptor buffers set
     desc_ptr->src1_ptr     = next_in_ptr;
-    desc_ptr->src1_size    = std::min(available_in, MAX_BUF_SIZE);
+    desc_ptr->src1_size    = available_in;
     desc_ptr->dst_ptr      = qpl_job_ptr->next_out_ptr;
-    desc_ptr->max_dst_size = std::min(qpl_job_ptr->available_out, MAX_BUF_SIZE);
+    desc_ptr->max_dst_size = qpl_job_ptr->available_out;
 
     uint32_t operation_flags =
             ADOF_OPCODE(QPL_OPCODE_DECOMPRESS) | ((qpl_job_ptr->flags & QPL_FLAG_CRC32C) ? ADOF_CRC32C : 0U);

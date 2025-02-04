@@ -21,8 +21,7 @@ extern "C" {
 #endif
 #endif
 
-#define IMMEDIATELY_COMPLETE 0xFFFFU                /**< @todo */
-#define MAX_BUF_SIZE         (1024U * 1024 * 1024U) /**< @todo */
+#define IMMEDIATELY_COMPLETE 0xFFFFU /**< @todo */
 
 /* ------ Operations ------ */
 /**

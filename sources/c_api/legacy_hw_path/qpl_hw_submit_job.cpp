@@ -352,8 +352,6 @@ extern "C" qpl_status hw_submit_job(qpl_job* qpl_job_ptr) {
         case qpl_op_scan_ge:
         case qpl_op_scan_range:
         case qpl_op_scan_not_range:
-            HW_IMMEDIATELY_RET((std::max(qpl_job_ptr->available_in, qpl_job_ptr->available_out) > MAX_BUF_SIZE),
-                               QPL_STS_BUFFER_TOO_LARGE_ERR);
             HW_IMMEDIATELY_RET((qpl_job_ptr->flags & QPL_FLAG_NO_HDRS) || (qpl_job_ptr->flags & QPL_FLAG_RND_ACCESS),
                                QPL_STS_OPERATION_ERR)
             return hw_submit_analytic_task(qpl_job_ptr);

@@ -9,8 +9,8 @@
  *  Job API (public C API)
  */
 
-#ifndef QPL_STATUS_H_
-#define QPL_STATUS_H_
+#ifndef QPL_C_API_STATUS_H
+#define QPL_C_API_STATUS_H
 
 #if defined(__GNUC__) || defined(__clang__)
 #pragma GCC visibility push(default)
@@ -235,4 +235,4 @@ typedef enum {
 #pragma GCC visibility pop
 #endif
 
-#endif //QPL_STATUS_H_
+#endif //QPL_C_API_STATUS_H

@@ -9,8 +9,8 @@
  *  Job API (public C API)
  */
 
-#ifndef QPL_VERSION_H_
-#define QPL_VERSION_H_
+#ifndef QPL_C_API_VERSION_H
+#define QPL_C_API_VERSION_H
 
 #if defined(__GNUC__) || defined(__clang__)
 #pragma GCC visibility push(default)
@@ -35,4 +35,4 @@ QPL_API(const char*, qpl_get_library_version, (void));
 #pragma GCC visibility pop
 #endif
 
-#endif //QPL_VERSION_H_
+#endif //QPL_C_API_VERSION_H

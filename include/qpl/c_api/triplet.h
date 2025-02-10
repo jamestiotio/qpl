@@ -9,8 +9,8 @@
  *  Job API (public C API)
  */
 
-#ifndef QPL_TRIPLET_H_
-#define QPL_TRIPLET_H_
+#ifndef QPL_C_API_TRIPLET_H
+#define QPL_C_API_TRIPLET_H
 
 #if defined(__GNUC__) || defined(__clang__)
 #pragma GCC visibility push(default)
@@ -40,4 +40,4 @@ typedef struct {
 #pragma GCC visibility pop
 #endif
 
-#endif //QPL_TRIPLET_H_
+#endif //QPL_C_API_TRIPLET_H

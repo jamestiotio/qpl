@@ -9,8 +9,8 @@
  *  Job API (public C API)
  */
 
-#ifndef QPL_DICTIONARY_H_
-#define QPL_DICTIONARY_H_
+#ifndef QPL_C_API_DICTIONARY_H
+#define QPL_C_API_DICTIONARY_H
 
 #include "qpl/c_api/defs.h"
 #include "qpl/c_api/status.h"
@@ -114,4 +114,4 @@ QPL_API(qpl_status, qpl_get_dictionary_id, (qpl_dictionary * dictionary_ptr, uin
 #pragma GCC visibility pop
 #endif
 
-#endif //QPL_DICTIONARY_H_
+#endif //QPL_C_API_DICTIONARY_H

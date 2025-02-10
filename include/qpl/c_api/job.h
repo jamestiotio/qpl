@@ -9,8 +9,8 @@
  *  Job API (public C++ API)
  */
 
-#ifndef QPL_JOB_API_H_
-#define QPL_JOB_API_H_
+#ifndef QPL_C_API_JOB_API_H
+#define QPL_C_API_JOB_API_H
 
 #if defined(__GNUC__) || defined(__clang__)
 #pragma GCC visibility push(default)
@@ -240,4 +240,4 @@ QPL_API(qpl_status, qpl_fini_job, (qpl_job * qpl_job_ptr))
 #pragma GCC visibility pop
 #endif
 
-#endif //QPL_JOB_API_H_
+#endif //QPL_C_API_JOB_API_H

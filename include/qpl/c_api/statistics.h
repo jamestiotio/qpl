@@ -9,8 +9,8 @@
  *  Job API (public C API)
  */
 
-#ifndef QPL_STATISTICS_HPP_
-#define QPL_STATISTICS_HPP_
+#ifndef QPL_C_API_STATISTICS_H
+#define QPL_C_API_STATISTICS_H
 
 #if defined(__GNUC__) || defined(__clang__)
 #pragma GCC visibility push(default)
@@ -86,4 +86,4 @@ QPL_API(qpl_status, qpl_gather_deflate_statistics,
 #pragma GCC visibility pop
 #endif
 
-#endif //QPL_STATISTICS_HPP_
+#endif //QPL_C_API_STATISTICS_H

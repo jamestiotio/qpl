@@ -16,8 +16,8 @@
  * @}
  */
 
-#ifndef QPL_H__
-#define QPL_H__
+#ifndef QPL_QPL_H
+#define QPL_QPL_H
 
 #include "c_api/defs.h"
 #include "c_api/index_table.h"
@@ -25,4 +25,4 @@
 #include "c_api/utility.h"
 #include "c_api/version.h"
 
-#endif /* //QPL_H__ */
+#endif //QPL_QPL_H

@@ -9,8 +9,8 @@
  *  Job API (public C API)
  */
 
-#ifndef QPL_HUFFMAN_TABLE_H_
-#define QPL_HUFFMAN_TABLE_H_
+#ifndef QPL_C_API_HUFFMAN_TABLE_H
+#define QPL_C_API_HUFFMAN_TABLE_H
 
 #if defined(__GNUC__) || defined(__clang__)
 #pragma GCC visibility push(default)
@@ -243,4 +243,4 @@ QPL_API(qpl_status, qpl_huffman_table_deserialize,
 #pragma GCC visibility pop
 #endif
 
-#endif //QPL_HUFFMAN_TABLE_H_
+#endif //QPL_C_API_HUFFMAN_TABLE_H

@@ -18,8 +18,8 @@
  * @{
  * @brief General definitions that can be used for task configuration
  */
-#ifndef QPL_DEFS_H__
-#define QPL_DEFS_H__
+#ifndef QPL_C_API_DEFS_H
+#define QPL_C_API_DEFS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -391,6 +391,6 @@ typedef enum {
 }
 #endif
 
-#endif /* QPL_DEFS_H__ */
+#endif //QPL_C_API_DEFS_H
 
 /** @} */

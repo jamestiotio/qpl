@@ -9,8 +9,8 @@
  *  Utility API (public C++ API)
  */
 
-#ifndef QPL_UTILITY_H_
-#define QPL_UTILITY_H_
+#ifndef QPL_C_API_UTILITY_H
+#define QPL_C_API_UTILITY_H
 
 #if defined(__GNUC__) || defined(__clang__)
 #pragma GCC visibility push(default)
@@ -52,4 +52,4 @@ QPL_API(uint32_t, qpl_get_safe_deflate_compression_buffer_size, (uint32_t source
 #pragma GCC visibility pop
 #endif
 
-#endif // QPL_UTILITY_H_
+#endif //QPL_C_API_UTILITY_H

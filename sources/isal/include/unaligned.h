@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef UNALIGNED_H
-#define UNALIGNED_H
+#ifndef QPL_SOURCES_ISAL_INCLUDE_UNALIGNED_H
+#define QPL_SOURCES_ISAL_INCLUDE_UNALIGNED_H
 
 #include "stdint.h"
 #include "string.h"
@@ -50,4 +50,4 @@ static inline void store_umax(uint8_t* buf, uintmax_t val) {
     memcpy(buf, &val, sizeof(val));
 }
 
-#endif
+#endif //QPL_SOURCES_ISAL_INCLUDE_UNALIGNED_H

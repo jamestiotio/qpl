@@ -9,8 +9,8 @@
  *  @brief CRC64 functions.
  */
 
-#ifndef _CRC64_H_
-#define _CRC64_H_
+#ifndef QPL_SOURCES_ISAL_INCLUDE_CRC64_H
+#define QPL_SOURCES_ISAL_INCLUDE_CRC64_H
 
 #include <stdint.h>
 
@@ -230,4 +230,4 @@ uint64_t qpl_crc64_jones_norm_base(uint64_t             init_crc, //!< initial C
 }
 #endif
 
-#endif // _CRC64_H_
+#endif //QPL_SOURCES_ISAL_INCLUDE_CRC64_H

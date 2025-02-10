@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef _IGZIP_REPEATED_8K_CHAR_RESULT_H_
-#define _IGZIP_REPEATED_8K_CHAR_RESULT_H_
+#ifndef QPL_SOURCES_ISAL_IGZIP_REPEATED_CHAR_RESULT_H
+#define QPL_SOURCES_ISAL_IGZIP_REPEATED_CHAR_RESULT_H
 
 /* The code for the literal being encoded */
 #define CODE_LIT        0x1
@@ -42,4 +42,4 @@ const uint32_t repeated_char_header[2][5] = {
 
 };
 
-#endif /*_IGZIP_REPEATED_8K_CHAR_RESULT_H_*/
+#endif //QPL_SOURCES_ISAL_IGZIP_REPEATED_CHAR_RESULT_H

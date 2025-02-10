@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef IGZIP_CHECKSUMS_H
-#define IGZIP_CHECKSUMS_H
+#ifndef QPL_SOURCES_ISAL_IGZIP_IGZIP_CHECKSUMS_H
+#define QPL_SOURCES_ISAL_IGZIP_IGZIP_CHECKSUMS_H
 
 #include <stdint.h>
 
@@ -22,4 +22,4 @@ uint32_t qpl_isal_adler32_bam1(uint32_t init_crc, const unsigned char* buf, uint
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif //QPL_SOURCES_ISAL_IGZIP_IGZIP_CHECKSUMS_H

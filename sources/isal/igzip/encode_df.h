@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef ENCODE_DF_H
-#define ENCODE_DF_H
+#ifndef QPL_SOURCES_ISAL_INCLUDE_ENCODE_DF_H
+#define QPL_SOURCES_ISAL_INCLUDE_ENCODE_DF_H
 
 #include <stdint.h>
 
@@ -41,4 +41,4 @@ struct deflate_icf* qpl_encode_deflate_icf(struct deflate_icf* next_in, struct d
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif //QPL_SOURCES_ISAL_INCLUDE_ENCODE_DF_H

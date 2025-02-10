@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef IGZIP_WRAPPER_H
-#define IGZIP_WRAPPER_H
+#ifndef QPL_SOURCES_ISAL_IGZIP_IGZIP_WRAPPER_H
+#define QPL_SOURCES_ISAL_IGZIP_IGZIP_WRAPPER_H
 
 #define DEFLATE_METHOD 8
 #define ZLIB_DICT_FLAG (1 << 5)
@@ -27,4 +27,4 @@
 #define ZLIB_LEVEL_OFFSET 6
 #define ZLIB_TRAILER_LEN  4
 
-#endif
+#endif //QPL_SOURCES_ISAL_IGZIP_IGZIP_WRAPPER_H

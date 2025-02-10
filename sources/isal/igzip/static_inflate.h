@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef STATIC_HEADER_H
-#define STATIC_HEADER_H
+#ifndef QPL_SOURCES_ISAL_IGZIP_STATIC_INFLATE_H
+#define QPL_SOURCES_ISAL_IGZIP_STATIC_INFLATE_H
 
 #include "igzip_lib.h"
 
@@ -2685,4 +2685,4 @@ struct inflate_huff_code_small pregen_dist_huff_code = {
 
 // clang-format on
 
-#endif
+#endif //QPL_SOURCES_ISAL_IGZIP_STATIC_INFLATE_H

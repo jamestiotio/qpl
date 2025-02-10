@@ -9,8 +9,8 @@
  *  @brief CRC functions.
  */
 
-#ifndef _CRC_H_
-#define _CRC_H_
+#ifndef QPL_SOURCES_ISAL_INCLUDE_CRC_H
+#define QPL_SOURCES_ISAL_INCLUDE_CRC_H
 
 #include <stdint.h>
 
@@ -165,4 +165,4 @@ uint32_t qpl_crc32_gzip_refl_base(uint32_t seed, //!< initial CRC value, 32 bits
 }
 #endif
 
-#endif // _CRC_H_
+#endif //QPL_SOURCES_ISAL_INCLUDE_CRC_H

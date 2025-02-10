@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef IGZIP_LEVEL_BUF_STRUCTS_H
-#define IGZIP_LEVEL_BUF_STRUCTS_H
+#ifndef QPL_SOURCES_ISAL_IGZIP_IGZIP_LEVEL_BUF_STRUCTS_H
+#define QPL_SOURCES_ISAL_IGZIP_IGZIP_LEVEL_BUF_STRUCTS_H
 
 #include "encode_df.h"
 #include "huff_codes.h"
@@ -51,4 +51,4 @@ struct level_buf {
     };
 };
 
-#endif
+#endif //QPL_SOURCES_ISAL_IGZIP_IGZIP_LEVEL_BUF_STRUCTS_H

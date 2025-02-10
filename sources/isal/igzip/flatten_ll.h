@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef FLATTEN_LL_H
-#define FLATTEN_LL_H
+#ifndef QPL_SOURCES_ISAL_INCLUDE_FLATTEN_LL_H
+#define QPL_SOURCES_ISAL_INCLUDE_FLATTEN_LL_H
 
 #include <stdint.h>
 
@@ -23,4 +23,4 @@ void qpl_flatten_ll(uint32_t* ll_hist);
 #endif
 #endif
 
-#endif // FLATTEN_LL_H
+#endif //QPL_SOURCES_ISAL_INCLUDE_FLATTEN_LL_H

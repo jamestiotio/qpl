@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef BITBUF2_H
-#define BITBUF2_H
+#ifndef QPL_SOURCES_ISAL_INCLUDE_BITBUF2_H
+#define QPL_SOURCES_ISAL_INCLUDE_BITBUF2_H
 
 #include "igzip_lib.h"
 #include "unaligned.h"
@@ -93,4 +93,4 @@ static inline void write_bits_flush(struct BitBuf2* me, uint64_t code,
     flush(me);
 }
 
-#endif //BITBUF2_H
+#endif //QPL_SOURCES_ISAL_INCLUDE_BITBUF2_H

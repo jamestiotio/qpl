@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef _IGZIP_H
-#define _IGZIP_H
+#ifndef QPL_SOURCES_ISAL_INCLUDE_IGZIP_LIB_H
+#define QPL_SOURCES_ISAL_INCLUDE_IGZIP_LIB_H
 
 /**
  * @file igzip_lib.h
@@ -1050,4 +1050,4 @@ int qpl_check_gzip_checksum(struct inflate_state* state);
 #ifdef __cplusplus
 }
 #endif
-#endif /* ifndef _IGZIP_H */
+#endif //QPL_SOURCES_ISAL_INCLUDE_IGZIP_LIB_H

@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 
 #include "huffman_table_unique.hpp"
 #include "source_provider.hpp"
@@ -13,7 +14,7 @@
 #include "util.hpp"
 
 namespace qpl::test {
-enum compression_mode { fixed_compression, static_compression, dynamic_compression, canned_compression };
+enum compression_mode : std::uint8_t { fixed_compression, static_compression, dynamic_compression, canned_compression };
 
 auto get_chunk_sizes() -> std::vector<uint32_t> {
     std::vector<uint32_t> result;

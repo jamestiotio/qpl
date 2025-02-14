@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 
 #include "huffman_table_unique.hpp"
 #include "iaa_features_checks.hpp"
@@ -15,7 +16,7 @@
 #include "util.hpp"
 
 namespace qpl::test {
-enum compression_mode { fixed_compression, static_compression, dynamic_compression, canned_compression };
+enum compression_mode : std::uint8_t { fixed_compression, static_compression, dynamic_compression, canned_compression };
 
 template <compression_mode mode>
 void compress_with_chunks(std::vector<uint8_t>& source, std::vector<uint8_t>& destination, uint32_t chunk_size,

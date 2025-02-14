@@ -12,7 +12,7 @@
  * @ingroup HW_PRIVATE_API
  * @{
  */
-
+#include <cstdint>
 // C API Definitions
 #include "compression_operations/arguments_check.hpp"
 #include "compression_operations/huffman_table.hpp"
@@ -37,7 +37,7 @@
 #include "own_ml_buffer_api.hpp"
 #include "own_ml_submit_operation_api.hpp"
 
-typedef enum {
+typedef enum : std::uint8_t {
     hw_scan_operator_eq = 0U,
     hw_scan_operator_ne = 1U,
     hw_scan_operator_lt = 2U,

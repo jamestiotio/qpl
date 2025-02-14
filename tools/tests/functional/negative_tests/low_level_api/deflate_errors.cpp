@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
+#include <cstdint>
 
 #include "tn_common.hpp"
 
@@ -20,7 +21,7 @@
 #include "random_generator.h"
 
 namespace qpl::test {
-enum compression_mode { fixed_compression, static_compression, dynamic_compression, canned_compression };
+enum compression_mode : std::uint8_t { fixed_compression, static_compression, dynamic_compression, canned_compression };
 
 constexpr uint32_t source_size      = 64 * 1024;
 constexpr uint32_t destination_size = source_size + 4;

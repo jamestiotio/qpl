@@ -36,9 +36,9 @@
 #endif
 
 namespace qpl::test {
-enum BitOrder { LE, BE };
+enum BitOrder : std::uint8_t { LE, BE };
 
-enum CRCDirection { crc_forward, crc_inverse };
+enum CRCDirection : std::uint8_t { crc_forward, crc_inverse };
 
 struct CRC64TestCase {
     uint32_t     length;

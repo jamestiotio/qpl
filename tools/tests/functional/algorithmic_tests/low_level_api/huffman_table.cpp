@@ -11,6 +11,7 @@
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <string>
 
 #include "ta_ll_common.hpp"
@@ -31,7 +32,7 @@
 
 namespace qpl::test {
 
-enum compression_algorithm_e {
+enum compression_algorithm_e : std::uint8_t {
     compression_algorithm_deflate      = 0,
     compression_algorithm_huffman_only = 1,
     compression_algorithm_canned       = 2,

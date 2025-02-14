@@ -8,7 +8,7 @@
  *  Intel® Query Processing Library (Intel® QPL)
  *  Tests
  */
-
+#include <cstdint>
 #include <map>
 
 // tests_common
@@ -18,9 +18,9 @@
 #include "test_cases.hpp"
 
 namespace qpl::test {
-enum CompressionMode { SINGLE_BUF_FIXED, SINGLE_BUF_DYNAMIC, MULT_BUF_FIXED, MULT_BUF_DYNAMIC };
+enum CompressionMode : std::uint8_t { SINGLE_BUF_FIXED, SINGLE_BUF_DYNAMIC, MULT_BUF_FIXED, MULT_BUF_DYNAMIC };
 
-enum BlockUsage { SINGLE_BLOCK, MULTIPLE_BLOCKS };
+enum BlockUsage : std::uint8_t { SINGLE_BLOCK, MULTIPLE_BLOCKS };
 
 struct IndexTestCase {
     BlockUsage          block_usage;

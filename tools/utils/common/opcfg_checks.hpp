@@ -7,6 +7,7 @@
 #ifndef QPL_TOOLS_UTILS_COMMON_OPCFG_CHECKS_HPP
 #define QPL_TOOLS_UTILS_COMMON_OPCFG_CHECKS_HPP
 
+#include <cstdint>
 // tool_hw_dispatcher
 #include "test_hw_dispatcher.hpp"
 
@@ -17,7 +18,7 @@ namespace qpl::test {
 
 // Operation codes for Intel® In-Memory Analytics Accelerator (Intel® IAA)
 // Used in testing to check OPCFG if operation is enabled/disabled
-enum qpl_test_opcodes {
+enum qpl_test_opcodes : std::uint8_t {
     opcode_decompress = 0x42U, /**< Intel® IAA decompress operation code */
     opcode_compress   = 0x43U, /**< Intel® IAA compress operation code */
     opcode_crc64      = 0x44U, /**< Intel® IAA crc64 operation code */

@@ -16,19 +16,19 @@
 extern "C" {
 #endif
 
-enum accfg_device_state {
+enum accfg_device_state { //NOLINT(performance-enum-size)
     ACCFG_DEVICE_DISABLED = 0,
     ACCFG_DEVICE_ENABLED  = 1,
     ACCFG_DEVICE_UNKNOWN  = -1,
 };
 
-enum accfg_wq_mode {
+enum accfg_wq_mode { //NOLINT(performance-enum-size)
     ACCFG_WQ_SHARED = 0,
     ACCFG_WQ_DEDICATED,
     ACCFG_WQ_MODE_UNKNOWN,
 };
 
-enum accfg_wq_state {
+enum accfg_wq_state { //NOLINT(performance-enum-size)
     ACCFG_WQ_DISABLED,
     ACCFG_WQ_ENABLED,
     ACCFG_WQ_QUIESCING,
@@ -36,7 +36,7 @@ enum accfg_wq_state {
     ACCFG_WQ_UNKNOWN = -1,
 };
 
-struct accfg_op_config {
+struct accfg_op_config { //NOLINT(performance-enum-size)
     uint32_t bits[8];
 };
 

@@ -7,6 +7,7 @@
 #define QPL_TOOLS_UTILS_GENERATORS_CONFIGURATORS_BASE_CONFIGURATOR_H
 
 #include <algorithm>
+#include <cstdint>
 #include <sstream>
 #include <vector>
 
@@ -28,7 +29,7 @@ static const unsigned int DEFAULT_TOKEN_COUNT       = 100U;
 
 class TestConfigurator : public ITestConfigurator {
 protected:
-    enum VectorTokenType {
+    enum VectorTokenType : std::uint8_t {
         LL_VECTOR,
         LL_ENCODED_VECTOR,
         D_VECTOR,

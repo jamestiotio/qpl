@@ -6,12 +6,12 @@
 #ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HISTOGRAM_H
 #define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_HISTOGRAM_H
 
-#include <stdint.h>
+#include <cstdint>
 
 class histogram {
 protected:
-    enum { NUM_DIST = 32768 };
-    enum { NUM_LIT_LEN = 257 + 258 - 2 };
+    enum : std::uint16_t { NUM_DIST = 32768 };
+    enum : std::uint16_t { NUM_LIT_LEN = 257 + 258 - 2 };
 
 public:
     uint32_t m_dist[NUM_DIST];

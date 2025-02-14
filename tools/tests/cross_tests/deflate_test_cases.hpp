@@ -7,6 +7,8 @@
 #ifndef QPL_TOOLS_TESTS_CROSS_TESTS_DEFLATE_TEST_CASES_HPP
 #define QPL_TOOLS_TESTS_CROSS_TESTS_DEFLATE_TEST_CASES_HPP
 
+#include <cstdint>
+
 // tool_common
 #include "source_provider.hpp"
 #include "util.hpp"
@@ -14,7 +16,7 @@
 namespace qpl::test {
 enum HeaderType { no_header = 0, gzip_header = QPL_FLAG_GZIP_MODE, zlib_header = QPL_FLAG_ZLIB_MODE };
 
-enum BlockType { block_fixed, block_dynamic, block_static };
+enum BlockType : std::uint8_t { block_fixed, block_dynamic, block_static };
 
 struct SimpleDeflateTestCase {
     HeaderType  header;

@@ -6,12 +6,12 @@
 #ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_TOKEN_H
 #define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_TOKEN_H
 
+#include <cstdint>
 #include <iosfwd>
 #include <sstream>
-#include <stdint.h>
 #include <stdio.h>
 
-enum token_type_t {
+enum token_type_t : std::uint8_t {
     TT_EOF,
     TT_NUM, // numeric
     TT_EOL,
@@ -44,7 +44,7 @@ enum token_type_t {
     //    TT_QUEST,   // '?'
 };
 
-enum char_type_t {
+enum char_type_t : std::uint8_t {
     CC_WHITE     = 0x0001,
     CC_EOL       = 0x0002,
     CC_ESCAPE    = 0x0004,

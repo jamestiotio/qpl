@@ -8,6 +8,7 @@
 #define QPL_TOOLS_TESTS_FUNCTIONAL_BAD_ARGUMENT_TESTS_LOW_LEVEL_API_TB_LL_COMMON_HPP
 
 #include <array>
+#include <cstdint>
 #include <memory>
 
 #include "qpl/qpl.h"
@@ -52,7 +53,7 @@ extern uint8_t reserved_op_codes[RESERVED_OPCODES_COUNT];
 
 using flags_t = uint32_t;
 
-enum class operation_group_e { filter_single_source, filter_double_source };
+enum class operation_group_e : std::uint8_t { filter_single_source, filter_double_source };
 
 void set_input_stream(qpl_job* job_ptr, uint8_t* source_ptr, uint32_t source_size, uint32_t input_bit_width,
                       uint32_t elements_to_process, qpl_parser parser);

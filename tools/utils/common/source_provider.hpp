@@ -8,7 +8,7 @@
 #define QPL_TOOLS_UTILS_COMMON_SOURCE_PROVIDER_HPP
 
 /* Must provide with test_data */
-
+#include <cstdint>
 #include <stdexcept>
 #include <vector>
 
@@ -44,7 +44,7 @@ public:
     auto get_count_expand_rle_value() const -> uint32_t;
 
 private:
-    enum class prle_encoding_t { parquet, run_length_encoding };
+    enum class prle_encoding_t : std::uint8_t { parquet, run_length_encoding };
 
     auto generate_expand_rle_prle_stream() -> std::vector<uint8_t>;
 

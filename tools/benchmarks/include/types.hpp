@@ -33,25 +33,25 @@ struct statistics_t {
     std::uint64_t data_written {0};
 };
 
-enum class api_e { c, ml };
+enum class api_e : std::uint8_t { c, ml };
 
-enum class path_e { cpu, iaa, auto_ };
+enum class path_e : std::uint8_t { cpu, iaa, auto_ };
 
-enum class execution_e { sync, async };
+enum class execution_e : std::uint8_t { sync, async };
 
-enum class operation_e { deflate, inflate, crc64 };
+enum class operation_e : std::uint8_t { deflate, inflate, crc64 };
 
-enum class stat_type_e { compression, decompression, crc64, filter };
+enum class stat_type_e : std::uint8_t { compression, decompression, crc64, filter };
 
-enum class huffman_type_e { fixed, static_, dynamic, canned };
+enum class huffman_type_e : std::uint8_t { fixed, static_, dynamic, canned };
 
-enum class crc_type_e { crc32_gzip, crc32_wimax, crc32_iscsi, T10DIF, crc16_ccitt, crc64 };
+enum class crc_type_e : std::uint8_t { crc32_gzip, crc32_wimax, crc32_iscsi, T10DIF, crc16_ccitt, crc64 };
 
-enum class task_status_e { retired, in_progress, completed };
+enum class task_status_e : std::uint8_t { retired, in_progress, completed };
 
-enum class mem_loc_e { cache, llc, ram, pmem, cc_ram, cc_pmem };
+enum class mem_loc_e : std::uint8_t { cache, llc, ram, pmem, cc_ram, cc_pmem };
 
-enum class mem_loc_mask_e : std::uint32_t {
+enum class mem_loc_mask_e : std::uint8_t {
     src1 = 0x01,
     src2 = 0x02,
     src  = 0x03,

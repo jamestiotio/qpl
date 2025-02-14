@@ -16,7 +16,7 @@ constexpr uint32_t parquet_group_size = 8;
 
 namespace qpl::test {
 
-enum class prle_encoding_t { run_length_encoding, parquet };
+enum class prle_encoding_t : std::uint8_t { run_length_encoding, parquet };
 
 struct rle_element_t {
     uint32_t repeat_count  = 0;

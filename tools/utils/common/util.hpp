@@ -40,7 +40,7 @@ constexpr uint32_t bib_eobs_bfinal_block_size = 3857U; // Every (except for the 
 constexpr uint32_t bib_eobs_decompressed_size =
         111261U; // Originally compressed file was bib, so assign bib file's size to this variable
 
-enum source_sizes_sequence_t { generic };
+enum source_sizes_sequence_t : std::uint8_t { generic };
 
 // Status printer
 class hw_accelerator_status {

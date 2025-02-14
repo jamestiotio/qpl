@@ -6,14 +6,14 @@
 #ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GRAMMAR_H
 #define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GRAMMAR_H
 
+#include <cstdint>
 #include <iosfwd>
-#include <stdint.h>
 #include <stdio.h>
 
 #include "token.h"
 
 namespace gz_generator {
-enum len_type_t { LT_LL, LT_D, LT_CL, LT_CL_ALT, LT_LLE, LT_DE, LT_CLE }; // encoded versions
+enum len_type_t : std::uint8_t { LT_LL, LT_D, LT_CL, LT_CL_ALT, LT_LLE, LT_DE, LT_CLE }; // encoded versions
 
 class gen_c;
 

@@ -6,9 +6,9 @@
 #ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GEN_H
 #define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GEN_H
 
+#include <cstdint>
 #include <memory>
 #include <stdarg.h>
-#include <stdint.h>
 #include <stdio.h>
 
 #include "grammar.h"
@@ -23,7 +23,7 @@ constexpr uint32_t NUM_ENC_LENS = 1024;
 
 class gen_c {
 protected:
-    enum warn_t { WARN_D_BEFORE_START, WARN_D_GREATER_HIST, WARN_NO_HUFF_CODE, NUM_WARN };
+    enum warn_t : std::uint8_t { WARN_D_BEFORE_START, WARN_D_GREATER_HIST, WARN_NO_HUFF_CODE, NUM_WARN };
 
     struct {
         bool in_block;
@@ -32,7 +32,7 @@ protected:
         bool raw;
     } m_state;
 
-    enum { BT_DYN, BT_FIXED, BT_STORED, BT_INVALID } m_blktype;
+    enum : std::uint8_t { BT_DYN, BT_FIXED, BT_STORED, BT_INVALID } m_blktype;
 
     huffman_c               m_huff;
     grammar_c               m_grammar;

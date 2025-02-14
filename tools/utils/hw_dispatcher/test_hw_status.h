@@ -14,7 +14,7 @@ extern "C" {
 /**
  * @brief Enumerates the hardware accelerator statuses
  */
-typedef enum {
+typedef enum {                                       //NOLINT(performance-enum-size)
     QPL_TEST_HW_ACCELERATOR_STATUS_OK          = 0U, /**< Accelerator returned success */
     QPL_TEST_HW_ACCELERATOR_SUPPORT_ERR        = 1U, /**< System doesn't support accelerator */
     QPL_TEST_HW_ACCELERATOR_LIBACCEL_NOT_FOUND = 2U, /**< Required version of libaccel-config is not found */

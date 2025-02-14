@@ -12,6 +12,8 @@
 #ifndef QPL_TOOLS_UTILS_GENERATORS_GENDEFS_H
 #define QPL_TOOLS_UTILS_GENERATORS_GENDEFS_H
 
+#include <cstdint>
+
 #if defined(_WIN32) || defined(_WIN64)
 #define GEN_UINT64 unsigned __int64
 #define GEN_INT64  __int64
@@ -90,7 +92,7 @@ typedef int            GenStatus;
 #define GEN_TEST_FACTOR_NEEDED    3U /**> Specified generator is needed in special parameters*/
 #define GEN_ALLOCATION_ERROR      4U /**> Specified generator can't allocate internal buffers*/
 
-typedef enum {
+typedef enum : std::uint8_t {
     NO_ERR_DYNAMIC_BLOCK,
     NO_ERR_STORED_BLOCK,
     NO_ERR_FIXED_BLOCK,
@@ -127,7 +129,7 @@ typedef enum {
     INDEX_DECOMPRESS_INCORRECT_BLOCK_SIZE
 } TestType;
 
-typedef enum {
+typedef enum : std::uint8_t {
     ht_with_mapping_table = 0U,
     ht_with_mapping_cam   = 1U,
 } GenHuffmanTableAecsFormat;

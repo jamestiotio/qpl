@@ -6,7 +6,7 @@
 #ifndef QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_SYMBOL_H
 #define QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_SYMBOL_H
 
-#include <stdint.h>
+#include <cstdint>
 #include <stdio.h>
 
 struct symbol {
@@ -20,7 +20,7 @@ const uint32_t DIST_LOG = (1U << 22U) - 1U;
 
 class symbol_page {
 protected:
-    enum { PAGE_SIZE = 1022U };
+    enum : std::uint16_t { PAGE_SIZE = 1022U };
 
 public:
     symbol_page* m_next;

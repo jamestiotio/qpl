@@ -28,9 +28,6 @@ public:
     uint32_t line_num() { return m_tp.line_num(); }
 
 protected:
-    token_parser_c m_tp;
-    gen_c*         m_gen;
-
     void syntax_error();
 
     void parse_l();
@@ -56,6 +53,10 @@ protected:
     void parse_pad();
 
     void parse_set();
+
+private:
+    token_parser_c m_tp;
+    gen_c*         m_gen;
 };
 } // namespace gz_generator
 #endif // QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GRAMMAR_H

@@ -40,7 +40,7 @@ public:
         return handlers_[static_cast<uint32_t>(state)](stream, state);
     }
 
-protected:
+private:
     std::array<handler_t, static_cast<int>(compression_state_t::count)> handlers_ {};
 };
 

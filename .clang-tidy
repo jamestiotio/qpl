@@ -93,7 +93,6 @@ Checks: '
     cppcoreguidelines-slicing,
     cppcoreguidelines-special-member-functions,
     cppcoreguidelines-virtual-class-destructor,
-    llvm-header-guard,
     llvm-prefer-isa-or-dyn-cast-in-conditionals,
     llvm-prefer-register-over-unsigned,
     llvm-twine-local,

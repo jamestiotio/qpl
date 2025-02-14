@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TEST_UTIL_HPP
-#define QPL_TEST_UTIL_HPP
+#ifndef QPL_TOOLS_UTILS_COMMON_UTIL_HPP
+#define QPL_TOOLS_UTILS_COMMON_UTIL_HPP
 
 #include <cstdint>
 #include <cstdlib>
@@ -281,4 +281,4 @@ static inline auto get_dictionary_lengths() {
 
 } // namespace qpl::test
 
-#endif // QPL_TEST_UTIL_HPP
+#endif //QPL_TOOLS_UTILS_COMMON_UTIL_HPP

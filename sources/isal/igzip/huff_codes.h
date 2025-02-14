@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_ISAL_INCLUDE_HUFF_CODES_H
-#define QPL_SOURCES_ISAL_INCLUDE_HUFF_CODES_H
+#ifndef QPL_SOURCES_ISAL_IGZIP_HUFF_CODES_H
+#define QPL_SOURCES_ISAL_IGZIP_HUFF_CODES_H
 
 #include <assert.h>
 #include <stdint.h>
@@ -156,4 +156,4 @@ uint64_t qpl_create_hufftables_icf(struct BitBuf2* bb, struct hufftables_icf* hu
 #endif
 #endif
 
-#endif //QPL_SOURCES_ISAL_INCLUDE_HUFF_CODES_H
+#endif //QPL_SOURCES_ISAL_IGZIP_HUFF_CODES_H

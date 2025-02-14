@@ -17,11 +17,10 @@
  *      -   Select analytics operation out-of-place kernels for 8u, 16u and 32u input/output data.
  *
  */
-
-#include "qplc_defines.h"
-
 #ifndef QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SELECT_H
 #define QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SELECT_H
+
+#include "qplc_defines.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -84,5 +83,5 @@ OWN_QPLC_API(qplc_status_t, qplc_select_32u,
 }
 #endif
 
-#endif // QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SELECT_H
+#endif //QPL_SOURCES_CORE_SW_INCLUDE_QPLC_SELECT_H
 /** @} */

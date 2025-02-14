@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MULTI_DESCRIPTOR_PROCESSING_HPP
-#define QPL_MULTI_DESCRIPTOR_PROCESSING_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_MULTI_DESCRIPTOR_PROCESSING_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_UTIL_MULTI_DESCRIPTOR_PROCESSING_HPP
 
 #include <array>
 
@@ -30,4 +30,4 @@ auto is_operation_splittable(const input_stream_t&                              
                              const output_stream_t<output_stream_type_t::bit_stream>& output_stream) noexcept -> bool;
 } // namespace qpl::ml::analytics
 
-#endif //QPL_MULTI_DESCRIPTOR_PROCESSING_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_UTIL_MULTI_DESCRIPTOR_PROCESSING_HPP

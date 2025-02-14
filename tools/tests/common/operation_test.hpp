@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_TESTS_OMMON_OPERATION_TEST_HPP
-#define QPL_TOOLS_TESTS_OMMON_OPERATION_TEST_HPP
+#ifndef QPL_TOOLS_TESTS_COMMON_OPERATION_TEST_HPP
+#define QPL_TOOLS_TESTS_COMMON_OPERATION_TEST_HPP
 
 #include "qpl/qpl.h"
 
@@ -136,4 +136,4 @@ private:
     GTEST_TEST_(test_suite, test_name, fixture, testing::internal::GetTypeId<fixture>())
 } // namespace qpl::test
 
-#endif //QPL_TOOLS_TESTS_OMMON_OPERATION_TEST_HPP
+#endif //QPL_TOOLS_TESTS_COMMON_OPERATION_TEST_HPP

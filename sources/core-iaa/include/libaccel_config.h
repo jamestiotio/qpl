@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_LIBACCFG_H
-#define QPL_SOURCES_CORE_IAA_INCLUDE_LIBACCFG_H
+#ifndef QPL_SOURCES_CORE_IAA_INCLUDE_LIBACCEL_CONFIG_H
+#define QPL_SOURCES_CORE_IAA_INCLUDE_LIBACCEL_CONFIG_H
 
 #include <errno.h>
 #include <limits.h>
@@ -317,4 +317,4 @@ int                  accfg_engine_set_group_id(struct accfg_engine* engine, int 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
-#endif //QPL_SOURCES_CORE_IAA_INCLUDE_LIBACCFG_H
+#endif //QPL_SOURCES_CORE_IAA_INCLUDE_LIBACCEL_CONFIG_H

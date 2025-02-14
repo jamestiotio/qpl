@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_VERIFICATION_VERIFY_STATE_HPP
-#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_VERIFICATION_VERIFY_STATE_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_VERIFICATION_VERIFICATION_STATE_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_VERIFICATION_VERIFICATION_STATE_HPP
 
 #include "common/defs.hpp"
 #include "common/linear_allocator.hpp"
@@ -207,4 +207,4 @@ inline auto verify_state<execution_path_t::software>::reset_state() noexcept -> 
 // implementation goes there
 
 } // namespace qpl::ml::compression
-#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_VERIFICATION_VERIFY_STATE_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_VERIFICATION_VERIFICATION_STATE_HPP

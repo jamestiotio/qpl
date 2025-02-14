@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_DEFS_HPP
-#define QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_DEFS_HPP
+#ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_DEFS_HPP
+#define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_DEFS_HPP
 
 #include <cstdint>
 
@@ -53,4 +53,4 @@ enum aecs_format { mapping_table, mapping_cam };
 
 } // namespace qpl::ml::compression
 
-#endif //QPL_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_DEFS_HPP
+#endif //QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_INFLATE_INFLATE_DEFS_HPP

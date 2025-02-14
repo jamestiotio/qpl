@@ -9,8 +9,8 @@
  *  Job API (public C API)
  */
 
-#ifndef QPL_SOURCES_C_API_JOB_H
-#define QPL_SOURCES_C_API_JOB_H
+#ifndef QPL_SOURCES_C_API_JOB_HPP
+#define QPL_SOURCES_C_API_JOB_HPP
 
 #include "qpl/c_api/job.h"
 #include "qpl/c_api/status.h"
@@ -328,4 +328,4 @@ template <class result_t>
 void inline update(qpl_job* job_ptr, result_t& result) noexcept;
 } // namespace qpl::job
 
-#endif //QPL_SOURCES_C_API_JOB_H
+#endif //QPL_SOURCES_C_API_JOB_HPP

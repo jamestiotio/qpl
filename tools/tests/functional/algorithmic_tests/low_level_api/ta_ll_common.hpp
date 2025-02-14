@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
 
-#ifndef QPL_TOOLS_TESTS_FUNCTIONAL_ALGORITHMIC_TESTS_LOW_LEVEL_API_TA_LLCOMMON_HPP
-#define QPL_TOOLS_TESTS_FUNCTIONAL_ALGORITHMIC_TESTS_LOW_LEVEL_API_TA_LLCOMMON_HPP
+#ifndef QPL_TOOLS_TESTS_FUNCTIONAL_ALGORITHMIC_TESTS_LOW_LEVEL_API_TA_LL_COMMON_HPP
+#define QPL_TOOLS_TESTS_FUNCTIONAL_ALGORITHMIC_TESTS_LOW_LEVEL_API_TA_LL_COMMON_HPP
 
 // tests_common
 #include "check_result.hpp"
@@ -21,4 +21,4 @@
 #define QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_TC(operation, test, test_fixture) \
     QPL_TEST_TC_(ta##_c_api_##operation, test, test_fixture, testing::internal::GetTypeId<test_fixture>())
 
-#endif //QPL_TOOLS_TESTS_FUNCTIONAL_ALGORITHMIC_TESTS_LOW_LEVEL_API_TA_LLCOMMON_HPP
+#endif //QPL_TOOLS_TESTS_FUNCTIONAL_ALGORITHMIC_TESTS_LOW_LEVEL_API_TA_LL_COMMON_HPP

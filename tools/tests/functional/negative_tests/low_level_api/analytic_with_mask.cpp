@@ -6,7 +6,7 @@
 
 #include "qpl/qpl.h"
 
-#include "base_analytic_negative_test_fixure.hpp"
+#include "base_analytic_negative_test_fixture.hpp"
 
 namespace qpl::test {
 template <qpl_operation operation, qpl_parser parser>

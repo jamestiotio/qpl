@@ -9,8 +9,8 @@
  *  Job API (private C API)
  */
 
-#ifndef QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_HEFFMAN_TABLE_HPP
-#define QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_HEFFMAN_TABLE_HPP
+#ifndef QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_HUFFMAN_TABLE_HPP
+#define QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_HUFFMAN_TABLE_HPP
 
 #include "qpl/c_api/huffman_table.h"
 
@@ -33,4 +33,4 @@ auto use_as_huffman_table(qpl_huffman_table_t table) {
     return reinterpret_cast<qpl::ml::compression::huffman_table_t<algorithm>*>(table);
 }
 
-#endif //QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_HEFFMAN_TABLE_HPP
+#endif //QPL_SOURCES_C_API_COMPRESSION_OPERATIONS_HUFFMAN_TABLE_HPP

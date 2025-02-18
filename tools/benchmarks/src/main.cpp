@@ -167,7 +167,7 @@ std::int32_t get_block_size() {
 
 mem_loc_e get_in_mem() {
     static mem_loc_e mem = (mem_loc_e)-1;
-    if ((std::int32_t)mem < 0) {
+    if ((std::int8_t)mem < 0) {
         auto str = FLAGS_in_mem;
         std::transform(str.begin(), str.end(), str.begin(), ::tolower);
         if (str == "cache")
@@ -186,7 +186,7 @@ mem_loc_e get_in_mem() {
 
 mem_loc_e get_out_mem() {
     static mem_loc_e mem = (mem_loc_e)-1;
-    if ((std::int32_t)mem < 0) {
+    if ((std::int8_t)mem < 0) {
         auto str = FLAGS_out_mem;
         std::transform(str.begin(), str.end(), str.begin(), ::tolower);
         if (str == "ram")

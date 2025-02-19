@@ -160,7 +160,7 @@ static inline void base_arguments(benchmark::internal::Benchmark* b) {
 template <typename LambdaT, typename... ArgsT>
 static ::benchmark::internal::Benchmark* register_benchmark_proxy(const std::string& name, LambdaT&& fn,
                                                                   ArgsT&&... args) {
-    return ::benchmark::RegisterBenchmark(name.c_str(), std::forward<LambdaT>(fn), std::forward<ArgsT>(args)...);
+    return ::benchmark::RegisterBenchmark(name, std::forward<LambdaT>(fn), std::forward<ArgsT>(args)...);
 }
 
 struct case_params_t {

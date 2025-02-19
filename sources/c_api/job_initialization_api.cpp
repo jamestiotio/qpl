@@ -86,8 +86,10 @@ QPL_FUN(qpl_status, qpl_init_job, (qpl_path_t qpl_path, qpl_job* qpl_job_ptr)) {
 
     // qpl_job_ptr can have any alignment when allocated,
     // therefore need to manually calculate and align pointers to the auxiliary buffers
+    //NOLINTBEGIN(bugprone-casting-through-void)
     qpl_job_ptr->data_ptr.compress_state_ptr =
             (uint8_t*)QPL_ALIGNED_PTR(((uint8_t*)qpl_job_ptr), QPL_DEFAULT_ALIGNMENT) + job_size;
+    //NOLINTEND(bugprone-casting-through-void)
     qpl_job_ptr->data_ptr.decompress_state_ptr    = qpl_job_ptr->data_ptr.compress_state_ptr + comp_size;
     qpl_job_ptr->data_ptr.analytics_state_ptr     = qpl_job_ptr->data_ptr.decompress_state_ptr + decomp_size;
     qpl_job_ptr->data_ptr.middle_layer_buffer_ptr = qpl_job_ptr->data_ptr.analytics_state_ptr + analytics_size;

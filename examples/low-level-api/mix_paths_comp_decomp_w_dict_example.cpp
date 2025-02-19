@@ -145,10 +145,12 @@ uint32_t compression(qpl_path_t execution_path, std::vector<uint8_t>& source, st
     // Update destination size
     destination.resize(compressed_size);
 
+    //NOLINTBEGIN(readability-avoid-nested-conditional-operator)
     std::cout << "Content was successfully compressed with dictionary on "
               << (execution_path == qpl_path_software ? "software"
                                                       : (execution_path == qpl_path_hardware ? "hardware" : "auto"))
               << " path.\n";
+    //NOLINTEND(readability-avoid-nested-conditional-operator)
 
     return 0;
 }

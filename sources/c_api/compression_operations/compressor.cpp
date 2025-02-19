@@ -119,12 +119,14 @@ uint32_t perform_compression(qpl_job* const job_ptr) noexcept {
     } else { // Deflate Mode
         auto hw_state = (qpl_hw_state*)job_ptr->data_ptr.hw_state_ptr;
 
+        //NOLINTBEGIN(readability-avoid-nested-conditional-operator)
         auto builder = ((job_ptr->flags & QPL_FLAG_FIRST) && job::is_no_descriptor_completed(job_ptr))
                                ? deflate_state_builder<path>::create(allocator)
                                : ((qpl::ml::execution_path_t::software != path &&
                                    hw_state->multi_desc_status == qpl_none_completed)
                                           ? deflate_state_builder<path>::restore_with_init(allocator)
                                           : deflate_state_builder<path>::restore(allocator));
+        //NOLINTEND(readability-avoid-nested-conditional-operator)
 
         // If HW path gets QPL_STS_QUEUES_ARE_BUSY_ERR, save the multidescriptor status
         // and expect application to resubmit the job.

@@ -30,10 +30,13 @@ HW_PATH_IAA_API(void, descriptor_inflate_set_aecs,
                  const hw_iaa_aecs_access_policy access_policy)) {
     hw_decompress_analytics_descriptor* const this_ptr = (hw_decompress_analytics_descriptor*)descriptor_ptr;
 
-    uint32_t read_flag  = (access_policy & hw_aecs_access_read) ? ADOF_READ_SRC2(AD_RDSRC2_AECS) : 0;
-    uint32_t write_flag = (access_policy & hw_aecs_access_write)         ? ADOF_WRITE_SRC2(AD_WRSRC2_ALWAYS)
-                          : (access_policy & hw_aecs_access_maybe_write) ? ADOF_WRITE_SRC2(AD_WRSRC2_MAYBE)
-                                                                         : 0U;
+    uint32_t read_flag  = (access_policy & hw_aecs_access_read) ? ADOF_READ_SRC2(AD_RDSRC2_AECS) : 0U;
+    uint32_t write_flag = 0U;
+    if (access_policy & hw_aecs_access_write) {
+        write_flag = ADOF_WRITE_SRC2(AD_WRSRC2_ALWAYS);
+    } else if (access_policy & hw_aecs_access_maybe_write) {
+        write_flag = ADOF_WRITE_SRC2(AD_WRSRC2_MAYBE);
+    }
 
     uint32_t toggle_aecs_flag = (access_policy & hw_aecs_toggle_rw) ? ADOF_AECS_SEL : 0U;
 

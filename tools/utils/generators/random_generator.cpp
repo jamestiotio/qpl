@@ -301,8 +301,8 @@ qpl::test::mean_random::operator uint64_t() {
 //}
 
 void qpl::test::random::set_range(double min, double max) {
-    m_mpy    = (max - min) / 2.0;
-    m_add    = (max + min) / 2.0;
-    m_valMin = std::min(-m_mpy + m_add, +m_mpy + m_add);
-    m_valMax = std::max(-m_mpy + m_add, +m_mpy + m_add);
+    set_m_mpy((max - min) / 2.0);
+    set_m_add((max + min) / 2.0);
+    set_m_valMin(std::min(-get_m_mpy() + get_m_add(), +get_m_mpy() + get_m_add()));
+    set_m_valMax(std::max(-get_m_mpy() + get_m_add(), +get_m_mpy() + get_m_add()));
 }

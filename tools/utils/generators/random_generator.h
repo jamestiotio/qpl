@@ -44,17 +44,28 @@ public:
 
     explicit operator uint64_t();
 
-    //friend std::ostream &operator<<(std::ostream &out, const random_base &instance);
+    double get_m_mpy() const { return this->m_mpy; }
 
+    double get_m_add() const { return this->m_add; }
+
+    void set_m_mpy(double m_mpy) { this->m_mpy = m_mpy; }
+
+    void set_m_add(double m_add) { this->m_add = m_add; }
+
+    void set_m_valMax(double m_valMax) { this->m_valMax = m_valMax; }
+
+    void set_m_valMin(double m_valMin) { this->m_valMin = m_valMin; }
+    //friend std::ostream &operator<<(std::ostream &out, const random_base &instance);
 protected:
+    double gen();
+
+private:
     uint32_t i_s1n3, i_s1n2, i_s1n1;
     uint32_t s1n3, s1n2, s1n1, c, s2n1;
     uint32_t m_seed;
     double   m_add;
     double   m_mpy;
     double   m_valMax, m_valMin;
-
-    double gen();
 };
 
 /// random generator with the range [min..max]
@@ -100,13 +111,14 @@ public:
     //friend std::ostream &operator<<(std::ostream &out, const mean_random &instance);
 
 protected:
+    double gen();
+
+private:
     uint32_t seed2, seed10, seed11, seed12, seed13, seed14, carry;
     int32_t  status;
     uint32_t m_seed;
     double   m_mean, m_stdev;
     double   v1, v2, radius;
-
-    double gen();
 };
 } // namespace qpl::test
 #endif // QPL_TOOLS_UTILS_GENERATORS_RANDOM_GENERATOR_H

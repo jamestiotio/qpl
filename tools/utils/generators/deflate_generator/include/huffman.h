@@ -17,7 +17,7 @@ namespace gz_generator {
 class gen_c;
 
 class huffman_c {
-protected:
+private:
     symbol_list m_syms;
     histogram   m_hist;
 
@@ -34,6 +34,7 @@ protected:
 
     std::vector<uint32_t> m_indices;
 
+protected:
     uint32_t get_lit_code(uint32_t lit, uint32_t* p_code);
 
     uint32_t get_len_code(uint32_t len, uint32_t* p_code);

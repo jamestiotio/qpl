@@ -186,32 +186,4 @@ public:
     uint32_t line_num() const { return m_line_num; }
 };
 
-/*
-class TokenParser
-{
-    public:
-        explicit TokenParser(std::stringstream *config);
-
-        TokenParser() = delete;
-
-        ~TokenParser() = default;
-
-        token_type_t nextToken(token_c *token);
-
-        uint32_t getLine();
-
-    private:
-        std::stringstream *m_config;
-        std::string        m_currentConfigLine;
-        struct
-        {
-            uint32_t          m_currentConfigLineNumber ;
-            token_c           m_trackedToken;
-            bool              m_tokenOnTrack;
-        }m_state;
-
-
-
-};*/
-
 #endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_TOKEN_H

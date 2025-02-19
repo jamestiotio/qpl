@@ -56,7 +56,7 @@ enum char_type_t : std::uint8_t {
 };
 
 class char_type_c {
-protected:
+private:
     uint32_t m_array[0x100];
     char     m_tolower[0x100];
 
@@ -85,11 +85,6 @@ public:
 };
 
 class token_parser_c {
-protected:
-    std::stringstream* m_config;
-    token_c            m_on_deck;
-    bool               m_on_deck_valid;
-    uint32_t           m_line_num;
 
     int getc() {
         char c = 0;
@@ -184,6 +179,12 @@ public:
     }
 
     uint32_t line_num() const { return m_line_num; }
+
+private:
+    std::stringstream* m_config;
+    token_c            m_on_deck;
+    bool               m_on_deck_valid;
+    uint32_t           m_line_num;
 };
 
 #endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_TOKEN_H

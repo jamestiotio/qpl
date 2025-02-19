@@ -11,6 +11,10 @@
 
 #include "qpl/qpl.h"
 
+#ifndef QPL_EXECUTION_PATH
+#define QPL_EXECUTION_PATH qpl_path_software
+#endif
+
 struct inflate_properties {
     size_t destination_size;
     size_t compr_level;
@@ -21,6 +25,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* Data, size_t Size) {
     size_t                 source_size       = Size;
     size_t                 destination_size  = Size;
     qpl_compression_levels compression_level = qpl_default_level;
+    qpl_path_t             execution_path    = QPL_EXECUTION_PATH;
 
     if (0 == Size) { return 0; }
 
@@ -47,11 +52,11 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* Data, size_t Size) {
         qpl_status status = QPL_STS_OK;
 
         status = qpl_gather_deflate_statistics(source.data(), source.size(), &histogram, compression_level,
-                                               qpl_path_software);
+                                               execution_path);
 
         if (status != QPL_STS_OK) { return 0; }
 
-        status = qpl_deflate_huffman_table_create(combined_table_type, qpl_path_software, DEFAULT_ALLOCATOR_C,
+        status = qpl_deflate_huffman_table_create(combined_table_type, execution_path, DEFAULT_ALLOCATOR_C,
                                                   &huffman_table);
         if (status != QPL_STS_OK) { return 0; }
 
@@ -65,14 +70,14 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* Data, size_t Size) {
         // Get size of the job
         uint32_t job_size = 0;
 
-        status = qpl_get_job_size(qpl_path_software, &job_size);
+        status = qpl_get_job_size(execution_path, &job_size);
         if (status != QPL_STS_OK) { return 0; }
 
         // Initialize the job
         auto job_buffer = std::make_unique<uint8_t[]>(job_size);
         auto job_ptr    = reinterpret_cast<qpl_job*>(job_buffer.get());
 
-        status = qpl_init_job(qpl_path_software, job_ptr);
+        status = qpl_init_job(execution_path, job_ptr);
         if (status != QPL_STS_OK) {
             qpl_huffman_table_destroy(huffman_table);
             return 0;

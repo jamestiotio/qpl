@@ -18,7 +18,8 @@ struct deflate_properties {
     size_t dictionary_size;
 };
 
-static inline int deflate_static_dict_fuzz(const uint8_t* Data, size_t Size, qpl_compression_levels compression_level) {
+static inline int deflate_static_dict_fuzz(const uint8_t* Data, size_t Size, qpl_compression_levels compression_level,
+                                           qpl_path_t execution_path) {
     const uint8_t* source_data_ptr     = Data;
     const uint8_t* dictionary_data_ptr = Data;
     size_t         source_size         = Size;
@@ -55,11 +56,11 @@ static inline int deflate_static_dict_fuzz(const uint8_t* Data, size_t Size, qpl
         qpl_status          status = QPL_STS_OK;
 
         status = qpl_gather_deflate_statistics(source.data(), source.size(), &histogram, compression_level,
-                                               qpl_path_software);
+                                               execution_path);
 
         if (status != QPL_STS_OK) { return 0; }
 
-        status = qpl_deflate_huffman_table_create(combined_table_type, qpl_path_software, DEFAULT_ALLOCATOR_C,
+        status = qpl_deflate_huffman_table_create(combined_table_type, execution_path, DEFAULT_ALLOCATOR_C,
                                                   &huffman_table);
         if (status != QPL_STS_OK) { return 0; }
 
@@ -84,7 +85,7 @@ static inline int deflate_static_dict_fuzz(const uint8_t* Data, size_t Size, qpl
         // Get size of the job
         uint32_t job_size = 0;
 
-        status = qpl_get_job_size(qpl_path_software, &job_size);
+        status = qpl_get_job_size(execution_path, &job_size);
         if (status != QPL_STS_OK) {
             qpl_huffman_table_destroy(huffman_table);
             return 0;
@@ -94,7 +95,7 @@ static inline int deflate_static_dict_fuzz(const uint8_t* Data, size_t Size, qpl
         auto job_buffer = std::make_unique<uint8_t[]>(job_size);
         auto job_ptr    = reinterpret_cast<qpl_job*>(job_buffer.get());
 
-        status = qpl_init_job(qpl_path_software, job_ptr);
+        status = qpl_init_job(execution_path, job_ptr);
         if (status != QPL_STS_OK) {
             qpl_huffman_table_destroy(huffman_table);
             return 0;

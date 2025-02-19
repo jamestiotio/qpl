@@ -18,7 +18,7 @@ struct deflate_properties {
 };
 
 static inline int deflate_nodict_fuzz(const uint8_t* Data, size_t Size, uint32_t compression_mode,
-                                      qpl_compression_levels compression_level) {
+                                      qpl_compression_levels compression_level, qpl_path_t execution_path) {
     const uint8_t* source_data_ptr  = Data;
     size_t         source_size      = Size;
     size_t         destination_size = Size;
@@ -41,14 +41,14 @@ static inline int deflate_nodict_fuzz(const uint8_t* Data, size_t Size, uint32_t
         // Get size of the job
         uint32_t job_size = 0;
 
-        qpl_status status = qpl_get_job_size(qpl_path_software, &job_size);
+        qpl_status status = qpl_get_job_size(execution_path, &job_size);
         if (status != QPL_STS_OK) { return 0; }
 
         // Initialize the job
         auto job_buffer = std::make_unique<uint8_t[]>(job_size);
         auto job_ptr    = reinterpret_cast<qpl_job*>(job_buffer.get());
 
-        status = qpl_init_job(qpl_path_software, job_ptr);
+        status = qpl_init_job(execution_path, job_ptr);
         if (status != QPL_STS_OK) { return 0; }
 
         job_ptr->next_in_ptr   = source.data();

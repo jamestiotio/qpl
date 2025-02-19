@@ -72,7 +72,7 @@ static inline qpl_operation convert_comparator_to_scan_operation(scan_comparator
     return result;
 }
 
-static inline int scan_test_case(const uint8_t* data_ptr, size_t size, qpl_parser parser) {
+static inline int scan_test_case(const uint8_t* data_ptr, size_t size, qpl_parser parser, qpl_path_t execution_path) {
     if (size > sizeof(scan_properties)) {
         auto*                properties_ptr = reinterpret_cast<const scan_properties*>(data_ptr);
         std::vector<uint8_t> source(data_ptr + sizeof(scan_properties), data_ptr + size);
@@ -82,13 +82,13 @@ static inline int scan_test_case(const uint8_t* data_ptr, size_t size, qpl_parse
         uint32_t   job_size = 0;
 
         // Job initialization
-        status = qpl_get_job_size(qpl_path_software, &job_size);
+        status = qpl_get_job_size(execution_path, &job_size);
         if (status != QPL_STS_OK) { return 0; }
 
         auto     job_buffer = std::make_unique<uint8_t[]>(job_size);
         qpl_job* job_ptr    = reinterpret_cast<qpl_job*>(job_buffer.get());
 
-        status = qpl_init_job(qpl_path_software, job_ptr);
+        status = qpl_init_job(execution_path, job_ptr);
         if (status != QPL_STS_OK) { return 0; }
 
         qpl_operation operation = convert_comparator_to_scan_operation(properties_ptr->comparator);
@@ -111,7 +111,8 @@ static inline int scan_test_case(const uint8_t* data_ptr, size_t size, qpl_parse
     return 0;
 }
 
-static inline int extract_test_case(const uint8_t* data_ptr, size_t size, qpl_parser parser) {
+static inline int extract_test_case(const uint8_t* data_ptr, size_t size, qpl_parser parser,
+                                    qpl_path_t execution_path) {
     if (size > sizeof(extract_properties)) {
         auto*                properties_ptr = reinterpret_cast<const extract_properties*>(data_ptr);
         std::vector<uint8_t> source(data_ptr + sizeof(extract_properties), data_ptr + size);
@@ -121,13 +122,13 @@ static inline int extract_test_case(const uint8_t* data_ptr, size_t size, qpl_pa
         uint32_t   job_size = 0;
 
         // Job initialization
-        status = qpl_get_job_size(qpl_path_software, &job_size);
+        status = qpl_get_job_size(execution_path, &job_size);
         if (status != QPL_STS_OK) { return 0; }
 
         auto     job_buffer = std::make_unique<uint8_t[]>(job_size);
         qpl_job* job_ptr    = reinterpret_cast<qpl_job*>(job_buffer.get());
 
-        status = qpl_init_job(qpl_path_software, job_ptr);
+        status = qpl_init_job(execution_path, job_ptr);
         if (status != QPL_STS_OK) { return 0; }
 
         job_ptr->next_in_ptr        = source.data();
@@ -148,7 +149,7 @@ static inline int extract_test_case(const uint8_t* data_ptr, size_t size, qpl_pa
     return 0;
 }
 
-static inline int select_test_case(const uint8_t* data_ptr, size_t size, qpl_parser parser) {
+static inline int select_test_case(const uint8_t* data_ptr, size_t size, qpl_parser parser, qpl_path_t execution_path) {
     if (size > sizeof(select_properties)) {
         auto* properties_ptr   = reinterpret_cast<const select_properties*>(data_ptr);
         auto  mask_byte_length = properties_ptr->mask_byte_length % 4096;
@@ -163,13 +164,13 @@ static inline int select_test_case(const uint8_t* data_ptr, size_t size, qpl_par
             uint32_t   job_size = 0;
 
             // Job initialization
-            status = qpl_get_job_size(qpl_path_software, &job_size);
+            status = qpl_get_job_size(execution_path, &job_size);
             if (status != QPL_STS_OK) { return 0; }
 
             auto     job_buffer = std::make_unique<uint8_t[]>(job_size);
             qpl_job* job_ptr    = reinterpret_cast<qpl_job*>(job_buffer.get());
 
-            status = qpl_init_job(qpl_path_software, job_ptr);
+            status = qpl_init_job(execution_path, job_ptr);
             if (status != QPL_STS_OK) { return 0; }
 
             job_ptr->next_in_ptr        = source.data();
@@ -192,7 +193,7 @@ static inline int select_test_case(const uint8_t* data_ptr, size_t size, qpl_par
     return 0;
 }
 
-static inline int expand_test_case(const uint8_t* data_ptr, size_t size, qpl_parser parser) {
+static inline int expand_test_case(const uint8_t* data_ptr, size_t size, qpl_parser parser, qpl_path_t execution_path) {
     if (size > sizeof(expand_properties)) {
         auto* properties_ptr   = reinterpret_cast<const expand_properties*>(data_ptr);
         auto  mask_byte_length = properties_ptr->mask_byte_length % 4096;
@@ -207,13 +208,13 @@ static inline int expand_test_case(const uint8_t* data_ptr, size_t size, qpl_par
             uint32_t   job_size = 0;
 
             // Job initialization
-            status = qpl_get_job_size(qpl_path_software, &job_size);
+            status = qpl_get_job_size(execution_path, &job_size);
             if (status != QPL_STS_OK) { return 0; }
 
             auto     job_buffer = std::make_unique<uint8_t[]>(job_size);
             qpl_job* job_ptr    = reinterpret_cast<qpl_job*>(job_buffer.get());
 
-            status = qpl_init_job(qpl_path_software, job_ptr);
+            status = qpl_init_job(execution_path, job_ptr);
             if (status != QPL_STS_OK) { return 0; }
 
             job_ptr->next_in_ptr        = source.data();

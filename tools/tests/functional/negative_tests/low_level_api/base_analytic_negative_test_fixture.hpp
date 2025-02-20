@@ -157,6 +157,7 @@ protected:
         }
     }
 
+private:
     std::vector<uint8_t> m_compressed_source;
 };
 

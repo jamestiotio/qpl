@@ -61,7 +61,7 @@ public:
 
     static inline void write_header_unsafe(const uint8_t* destination_ptr,
                                            uint32_t       UNREFERENCED_PARAMETER(size)) noexcept {
-        *(uint64_t*)(destination_ptr)      = *(uint64_t*)(&default_gzip_header[0]);
+        *(uint64_t*)(destination_ptr)      = *(uint64_t*)(default_gzip_header.data());
         *(uint16_t*)(destination_ptr + 8U) = *(uint16_t*)(&default_gzip_header[8]);
     }
 

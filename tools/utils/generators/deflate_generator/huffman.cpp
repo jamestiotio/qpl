@@ -137,7 +137,7 @@ void huffman_c::wr_block(BitBuffer& bit_buffer) {
     // push index for start of block
     writeIndex(&bit_buffer);
 
-    for (sp = m_syms.m_head; sp; sp = sp->m_next) {
+    for (sp = m_syms.get_m_head(); sp; sp = sp->m_next) {
         for (uint32_t i = 0U; i < sp->m_used; i++) {
             s = &sp->m_symbols[i];
             if (s->dist == 0U) {
@@ -185,8 +185,8 @@ void huffman_c::wr_stored_blocks(BitBuffer& bb, bool b_final, gen_c* gen, uint32
     symbol_page* sp = nullptr;
     symbol*      s  = nullptr;
 
-    sp             = m_syms.m_head;
-    uint32_t count = m_syms.m_num_lit;
+    sp             = m_syms.get_m_head();
+    uint32_t count = m_syms.get_m_num_lit();
 
     do { //NOLINT(cppcoreguidelines-avoid-do-while)
         lcount = count;

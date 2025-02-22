@@ -42,11 +42,6 @@ public:
 
 class symbol_list {
 public:
-    symbol_page* m_head;
-    symbol_page* m_tail;
-    uint32_t     m_num_lit;
-    uint32_t     m_num_sym;
-
     symbol_list() : m_head(m_tail = NULL), m_num_lit(m_num_sym = 0U) {}
 
     symbol_list(const symbol_list& other) = delete;
@@ -84,6 +79,16 @@ public:
         else
             m_num_sym++;
     }
+
+    symbol_page* get_m_head() const { return m_head; }
+
+    uint32_t get_m_num_lit() const { return m_num_lit; }
+
+private:
+    symbol_page* m_head;
+    symbol_page* m_tail;
+    uint32_t     m_num_lit;
+    uint32_t     m_num_sym;
 };
 
 #endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_SYMBOL_H

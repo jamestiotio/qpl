@@ -189,7 +189,6 @@ int                     accfg_device_get_errors(struct accfg_device* device, str
 enum accfg_device_state accfg_device_get_state(struct accfg_device* device);
 unsigned int            accfg_device_get_max_tokens(struct accfg_device* device) __attribute((deprecated));
 unsigned int            accfg_device_get_max_read_buffers(struct accfg_device* device);
-unsigned int            accfg_device_get_max_batch_size(struct accfg_device* device);
 unsigned int            accfg_device_get_token_limit(struct accfg_device* device) __attribute((deprecated));
 unsigned int            accfg_device_get_read_buffer_limit(struct accfg_device* device);
 unsigned int            accfg_device_get_cdev_major(struct accfg_device* device);

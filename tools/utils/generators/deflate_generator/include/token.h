@@ -74,14 +74,19 @@ public:
 };
 
 class token_c {
-protected:
 public:
-    token_type_t m_type  = TT_EOF;
-    uint32_t     m_value = 0;
-
     token_c(token_type_t type, uint32_t value = 0U) : m_type(type), m_value(value) {}
 
     token_c() {};
+
+    void set_m_type(token_type_t m_type) { this->m_type = m_type; }
+    void set_m_value(uint32_t m_value) { this->m_value = m_value; }
+
+    uint32_t get_m_value() const { return m_value; }
+
+private:
+    token_type_t m_type  = TT_EOF;
+    uint32_t     m_value = 0;
 };
 
 class token_parser_c {
@@ -174,7 +179,7 @@ public:
 
     token_type_t get_token(token_c* token) {
         const token_type_t type = get_token_(token);
-        token->m_type           = type;
+        token->set_m_type(type);
         return type;
     }
 

@@ -81,7 +81,7 @@ token_type_t token_parser_c::get_token_(token_c* token) {
     switch (c) {
         case '*': return TT_STAR;
         case '?': {
-            token->m_value = 0xFFFFFFFFU;
+            token->set_m_value(0xFFFFFFFFU);
             return TT_NUM;
         }
         default: break;
@@ -429,7 +429,7 @@ token_type_t token_parser_c::parse_number(token_c* token, int c) {
         ctype = CTYPE(c);
         if (ctype & CC_NUMBER) return parse_octal(token, c);
         ungetc(c);
-        token->m_value = 0U;
+        token->set_m_value(0U);
         return TT_NUM;
     }
     return parse_decimal(token, c);
@@ -447,7 +447,7 @@ token_type_t token_parser_c::parse_decimal(token_c* token, int c) {
             continue;
         }
         ungetc(c);
-        token->m_value = value;
+        token->set_m_value(value);
         return TT_NUM;
     }
 }
@@ -480,7 +480,7 @@ token_type_t token_parser_c::parse_hex(token_c* token) {
             continue;
         }
         ungetc(c);
-        token->m_value = value;
+        token->set_m_value(value);
         return TT_NUM;
     }
 }
@@ -505,7 +505,7 @@ token_type_t token_parser_c::parse_octal(token_c* token, int c) {
             continue;
         }
         ungetc(c);
-        token->m_value = value;
+        token->set_m_value(value);
         return TT_NUM;
     }
 }

@@ -59,7 +59,7 @@ void grammar_c::parse_m() {
 
     type = m_tp.get_token(&token);
     if (type != TT_NUM) syntax_error();
-    for (uint32_t i = 0U; i < token.m_value; i++) {
+    for (uint32_t i = 0U; i < token.get_m_value(); i++) {
         m_gen->proc_rand();
     }
 
@@ -75,7 +75,7 @@ void grammar_c::parse_l() {
     token_type_t type = m_tp.get_token(&token);
     while (1U) {
         if (type != TT_NUM) syntax_error();
-        lit = token.m_value;
+        lit = token.get_m_value();
 
         type = m_tp.get_token(&token);
         if ((type == TT_EOL) || (type == TT_EOF)) {
@@ -90,7 +90,7 @@ void grammar_c::parse_l() {
 
         type = m_tp.get_token(&token);
         if (type != TT_NUM) syntax_error();
-        for (uint32_t i = 0U; i < token.m_value; i++) {
+        for (uint32_t i = 0U; i < token.get_m_value(); i++) {
             m_gen->proc_lit(lit);
         }
 
@@ -106,11 +106,11 @@ void grammar_c::parse_r() {
     token_type_t type = m_tp.get_token(&token);
     while (1U) {
         if (type != TT_NUM) syntax_error();
-        len = token.m_value;
+        len = token.get_m_value();
 
         type = m_tp.get_token(&token);
         if (type != TT_NUM) syntax_error();
-        dist = token.m_value;
+        dist = token.get_m_value();
 
         type = m_tp.get_token(&token);
         if ((type == TT_EOL) || (type == TT_EOF)) {
@@ -126,7 +126,7 @@ void grammar_c::parse_r() {
 
         type = m_tp.get_token(&token);
         if (type != TT_NUM) syntax_error();
-        for (uint32_t i = 0U; i < token.m_value; i++) {
+        for (uint32_t i = 0U; i < token.get_m_value(); i++) {
             m_gen->proc_len_dist(len, dist);
         }
 
@@ -159,7 +159,7 @@ void grammar_c::parse_lens(len_type_t ltype) {
 
     while (true) {
         if (type != TT_NUM) syntax_error();
-        lit = token.m_value;
+        lit = token.get_m_value();
 
         type = m_tp.get_token(&token);
         if ((type == TT_EOL) || (type == TT_EOF)) {
@@ -174,7 +174,7 @@ void grammar_c::parse_lens(len_type_t ltype) {
 
         type = m_tp.get_token(&token);
         if (type != TT_NUM) syntax_error();
-        for (uint32_t i = 0U; i < token.m_value; i++) {
+        for (uint32_t i = 0U; i < token.get_m_value(); i++) {
             m_gen->proc_lens(ltype, lit);
         }
 
@@ -187,7 +187,7 @@ void grammar_c::parse_bfinal() {
     token_c      token;
     token_type_t type = m_tp.get_token(&token);
     if (type != TT_NUM) syntax_error();
-    if (token.m_value == 0U)
+    if (token.get_m_value() == 0U)
         m_gen->set_bfinal(false);
     else
         m_gen->set_bfinal(true);
@@ -200,7 +200,7 @@ void grammar_c::parse_bout() {
     token_c      token;
     token_type_t type = m_tp.get_token(&token);
     if (type != TT_NUM) syntax_error();
-    if (token.m_value == 0U)
+    if (token.get_m_value() == 0U)
         m_gen->set_bout(false);
     else
         m_gen->set_bout(true);
@@ -213,7 +213,7 @@ void grammar_c::parse_pad() {
     token_c      token;
     token_type_t type = m_tp.get_token(&token);
     if (type != TT_NUM) syntax_error();
-    m_gen->set_pad(token.m_value);
+    m_gen->set_pad(token.get_m_value());
 
     type = m_tp.get_token(&token);
     if ((type != TT_EOL) && (type != TT_EOF)) syntax_error();
@@ -235,7 +235,7 @@ void grammar_c::parse_log() {
 
     token_type_t type = m_tp.get_token(&token);
     if (type != TT_NUM) syntax_error();
-    const uint32_t val = token.m_value;
+    const uint32_t val = token.get_m_value();
     type               = m_tp.get_token(&token);
     if ((type != TT_EOL) && (type != TT_EOF)) syntax_error();
     m_gen->log(val);
@@ -254,10 +254,10 @@ void grammar_c::parse_testmode() {
 
     token_type_t type = m_tp.get_token(&token);
     if (type != TT_NUM) syntax_error();
-    const uint32_t val = token.m_value;
+    const uint32_t val = token.get_m_value();
     type               = m_tp.get_token(&token);
     if (type == TT_NUM) {
-        param = token.m_value;
+        param = token.get_m_value();
         type  = m_tp.get_token(&token);
     }
     if ((type != TT_EOL) && (type != TT_EOF)) syntax_error();

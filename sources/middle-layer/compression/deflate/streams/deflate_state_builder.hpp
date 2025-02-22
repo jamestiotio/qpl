@@ -126,9 +126,8 @@ protected:
 
     void init() noexcept;
 
-    state_type stream_;
-
 private:
+    state_type stream_;
     explicit deflate_state_builder(const qpl::ml::util::linear_allocator& allocator) noexcept : stream_(allocator) {
 
         // allocations required for internal isal stream buffers
@@ -222,11 +221,10 @@ public:
 
     inline auto multidescriptor_status(const qpl_job* const job_ptr) noexcept -> common_type&;
 
-protected:
+private:
     state_type                             state_;
     const qpl::ml::util::linear_allocator& allocator_;
 
-private:
     explicit deflate_state_builder(const qpl::ml::util::linear_allocator& allocator, bool init_compress_body) noexcept
         : state_(allocator, init_compress_body), allocator_(allocator) {
         // No actions required

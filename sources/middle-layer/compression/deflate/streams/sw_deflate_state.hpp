@@ -102,6 +102,7 @@ protected:
         index_table_.index_bit_offset += size * byte_bit_size;
     }
 
+private:
     isal_zstream*        isal_stream_ptr_        = nullptr;
     isal_hufftables*     isal_huffman_table_ptr_ = nullptr;
     huffman_table_icf    huffman_table_icf_      = {};
@@ -123,7 +124,6 @@ protected:
     // Other
     const util::linear_allocator& allocator_;
 
-private:
     explicit deflate_state(const util::linear_allocator& allocator)
         : isal_stream_ptr_(allocator.allocate<isal_zstream>()), allocator_(allocator) {
         compression_mode_ = fixed_mode;

@@ -67,6 +67,7 @@ protected:
 
     inline void set_output_prologue(uint32_t size) noexcept;
 
+private:
     hw_descriptor*                         collect_statistic_descriptor_ = nullptr;
     hw_descriptor*                         compress_descriptor_          = nullptr;
     hw_descriptor*                         verify_descriptor_            = nullptr;
@@ -110,6 +111,7 @@ protected:
 
     const util::linear_allocator& allocator_;
 
+protected:
     explicit deflate_state(const qpl::ml::util::linear_allocator& allocator, bool init_compress_body)
         : allocator_(allocator) {
         meta_data_           = allocator.allocate<deflate_state<execution_path_t::hardware>::meta_data>();

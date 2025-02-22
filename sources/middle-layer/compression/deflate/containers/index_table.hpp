@@ -34,7 +34,7 @@ public:
 
     auto delete_last_index() noexcept -> bool;
 
-protected:
+private:
     index_table_t() noexcept = default;
 
     uint64_t* index_ptr_;

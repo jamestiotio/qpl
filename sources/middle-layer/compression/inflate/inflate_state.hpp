@@ -87,18 +87,18 @@ public:
 
     [[nodiscard]] inline auto get_dictionary() -> qpl_dictionary*;
 
-    static constexpr auto execution_path = execution_path_t::software;
+    [[nodiscard]] inline auto get_access_properties() -> access_properties;
 
-    // todo make private
-    access_properties access_properties_ = {false, 0U, 0U};
+    static constexpr auto execution_path = execution_path_t::software;
 
     inflate_state() noexcept = default;
 
 private:
-    isal_inflate_state*    inflate_state_    = nullptr;
-    util::multitask_status processing_step   = util::multitask_status::ready;
-    bool                   is_dictionary_set = false;
-    qpl_dictionary*        dictionary_ptr    = nullptr;
+    access_properties      access_properties_ = {false, 0U, 0U};
+    isal_inflate_state*    inflate_state_     = nullptr;
+    util::multitask_status processing_step    = util::multitask_status::ready;
+    bool                   is_dictionary_set  = false;
+    qpl_dictionary*        dictionary_ptr     = nullptr;
 
     explicit inflate_state(const util::linear_allocator& allocator)
         : inflate_state_(allocator.allocate<isal_inflate_state, util::memory_block_t::not_aligned>(1U)) {};
@@ -416,6 +416,10 @@ inline auto inflate_state<execution_path_t::software>::flush_out() noexcept -> i
 
 [[nodiscard]] inline auto inflate_state<execution_path_t::software>::get_dictionary() -> qpl_dictionary* {
     return dictionary_ptr;
+}
+
+[[nodiscard]] inline auto inflate_state<execution_path_t::software>::get_access_properties() -> access_properties {
+    return access_properties_;
 }
 
 /* ------ HARDWARE STATE METHODS ------ */

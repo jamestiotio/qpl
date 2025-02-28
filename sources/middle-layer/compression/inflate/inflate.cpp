@@ -53,13 +53,13 @@ auto inflate(inflate_state<path>& decompression_state, end_processing_condition_
     auto                             saved_next_out_ptr = inflate_state->next_out;
 
     // Work with mini-blocks
-    if (decompression_state.access_properties_.is_random) {
+    if (decompression_state.get_access_properties().is_random) {
         result = own_inflate_random(decompression_state);
     } else {
         result = own_inflate(decompression_state, end_processing_condition);
     }
 
-    utility::ignore_last_bits(*inflate_state, decompression_state.access_properties_.ignore_end_bits);
+    utility::ignore_last_bits(*inflate_state, decompression_state.get_access_properties().ignore_end_bits);
 
     result.completed_bytes_ = static_cast<uint32_t>(inflate_state->next_in - saved_next_in_ptr);
     result.output_bytes_    = static_cast<uint32_t>(inflate_state->next_out - saved_next_out_ptr);
@@ -230,12 +230,12 @@ auto own_inflate_random(inflate_state<execution_path_t::software>& decompression
 
     if (inflate_state_ptr->avail_in > 0U) {
         tail_bytes = inflate_state_ptr->next_in[inflate_state_ptr->avail_in - 1U] &
-                     ((1U << (byte_bits_size - decompression_state.access_properties_.ignore_end_bits)) - 1U);
+                     ((1U << (byte_bits_size - decompression_state.get_access_properties().ignore_end_bits)) - 1U);
 
         // Avoiding the decoding of the last byte
         inflate_state_ptr->avail_in--;
-        bit_count = (byte_bits_size - decompression_state.access_properties_.ignore_end_bits) + eob_code_length;
-        tail_bytes |= (eob_code << (byte_bits_size - decompression_state.access_properties_.ignore_end_bits));
+        bit_count = (byte_bits_size - decompression_state.get_access_properties().ignore_end_bits) + eob_code_length;
+        tail_bytes |= (eob_code << (byte_bits_size - decompression_state.get_access_properties().ignore_end_bits));
     } else {
         bit_count  = eob_code_length;
         tail_bytes = eob_code;

@@ -62,12 +62,12 @@ public:
         auto          status = qpl_get_job_size(to_qpl_path<DerivedT::path_v>(), &size);
         if (QPL_STS_OK != status) throw std::runtime_error(format("qpl_get_job_size() failed with status %d", status));
 
-        job_ = (qpl_job*)malloc(size);
+        job_ = (qpl_job*)malloc(size); //NOLINT(cppcoreguidelines-no-malloc)
         if (!job_) throw std::runtime_error("malloc() failed");
 
         status = qpl_init_job(to_qpl_path<DerivedT::path_v>(), job_);
         if (QPL_STS_OK != status) {
-            free(job_);
+            free(job_); //NOLINT(cppcoreguidelines-no-malloc)
             job_ = nullptr;
             throw std::runtime_error(format("qpl_init_job() failed with status %d", status));
         }
@@ -77,7 +77,7 @@ public:
     void deinit_lib_impl() {
         if (job_) {
             auto status = qpl_fini_job(job_);
-            free(job_);
+            free(job_); //NOLINT(cppcoreguidelines-no-malloc)
             job_ = nullptr;
             if (QPL_STS_OK != status) throw std::runtime_error(format("qpl_fini_job() failed with status %d", status));
         }

@@ -319,6 +319,7 @@ auto deflate_body_with_dictionary(deflate_state<execution_path_t::software>& str
     uint32_t       avail_in       = stream.isal_stream_ptr_->avail_in;
     int32_t        buf_hist_start = 0;
     uint32_t       size           = 0;
+    uint16_t       flush_start    = stream.isal_stream_ptr_->flush;
 
     update_hash(stream, isal_state->buffer, isal_state->b_bytes_processed);
     uint32_t history_size = get_history_size(stream, start_in, buf_hist_start);
@@ -418,6 +419,7 @@ auto deflate_body_with_dictionary(deflate_state<execution_path_t::software>& str
 
             stream.isal_stream_ptr_->next_in  = next_in;
             stream.isal_stream_ptr_->avail_in = avail_in;
+            stream.isal_stream_ptr_->flush    = flush_start;
         }
 
         state = internal_state;

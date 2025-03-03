@@ -65,9 +65,11 @@ protected:
     /**
         * Following fields are visible from test level
         */
+    //NOLINTBEGIN(misc-non-private-member-variables-in-classes)
     qpl_job*             job_ptr;
     std::vector<uint8_t> source;
     std::vector<uint8_t> destination;
+    //NOLINTEND(misc-non-private-member-variables-in-classes)
 
 private:
     uint8_t*   m_job_buffer = nullptr;

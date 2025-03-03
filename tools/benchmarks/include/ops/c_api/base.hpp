@@ -86,7 +86,7 @@ public:
 protected:
     friend class ops::operation_base_t<DerivedT>;
 
-    qpl_job* job_ {nullptr};
+    qpl_job* job_ {nullptr}; //NOLINT(misc-non-private-member-variables-in-classes)
 };
 } // namespace bench::ops::c_api
 

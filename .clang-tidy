@@ -177,3 +177,5 @@ Checks: '
 CheckOptions:
 - key: readability-uppercase-literal-suffix.IgnoreMacros
   value: 'false'
+- key: misc-non-private-member-variables-in-classes.IgnorePublicMemberVariables
+  value: 'true'

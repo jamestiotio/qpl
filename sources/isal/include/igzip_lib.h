@@ -105,6 +105,7 @@ extern "C" {
 #define IGZIP_LVL3_HASH_SIZE IGZIP_HASH_MAP_HASH_SIZE
 
 #ifdef LONGER_HUFFTABLE
+//NOLINTBEGIN(performance-enum-size)
 enum { IGZIP_DIST_TABLE_SIZE = 8 * 1024 };
 
 /* DECODE_OFFSET is dist code index corresponding to DIST_TABLE_SIZE + 1 */
@@ -116,6 +117,7 @@ enum { IGZIP_DECODE_OFFSET = 0 };
 #endif
 enum { IGZIP_LEN_TABLE_SIZE = 256 };
 enum { IGZIP_LIT_TABLE_SIZE = ISAL_DEF_LIT_SYMBOLS };
+//NOLINTEND(performance-enum-size)
 
 #define IGZIP_HUFFTABLE_CUSTOM  0
 #define IGZIP_HUFFTABLE_DEFAULT 1
@@ -156,7 +158,7 @@ enum { IGZIP_LIT_TABLE_SIZE = ISAL_DEF_LIT_SYMBOLS };
 /* When the state is set to ZSTATE_NEW_HDR or TMP_ZSTATE_NEW_HEADER, the
  * hufftable being used for compression may be swapped
  */
-enum isal_zstate_state {
+enum isal_zstate_state {      //NOLINT(performance-enum-size)
     ZSTATE_NEW_HDR,           //!< Header to be written
     ZSTATE_HDR,               //!< Header state
     ZSTATE_CREATE_HDR,        //!< Header to be created
@@ -193,7 +195,7 @@ enum isal_zstate_state {
 #define ISAL_DECODE_SHORT_BITS 10
 
 /* Current state of decompression */
-enum isal_block_state {
+enum isal_block_state {    //NOLINT(performance-enum-size)
     ISAL_BLOCK_NEW_HDR,    /* Just starting a new block */
     ISAL_BLOCK_HDR,        /* In the middle of reading in a block header */
     ISAL_BLOCK_TYPE0,      /* Decoding a type 0 block */
@@ -214,9 +216,9 @@ enum isal_block_state {
  * @briеf Defines type (lit/len or distance) of input code in dynamic header
  *
  */
-typedef enum { llTable, dTable } OwnTableType;
+typedef enum { llTable, dTable } OwnTableType; //NOLINT(performance-enum-size)
 
-enum inflate_end_proc {
+enum inflate_end_proc { //NOLINT(performance-enum-size)
     DECOMP_STOP_AND_CHECK_FOR_BFINAL_EOB = 0,
     DECOMP_DONT_STOP_OR_CHECK            = 1,
     DECOMP_STOP_AND_CHECK_FOR_ANY_EOB    = 2,

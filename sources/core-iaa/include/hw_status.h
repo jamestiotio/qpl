@@ -18,7 +18,7 @@
 /**
  * @todo
  */
-typedef enum {
+typedef enum {                                     //NOLINT(performance-enum-size)
     HW_ACCELERATOR_STATUS_OK                 = 0U, /**< Accelerator returned success */
     HW_ACCELERATOR_SUPPORT_ERR               = 1U, /**< System doesn't support accelerator */
     HW_ACCELERATOR_LIBACCEL_NOT_FOUND        = 2U, /**< Required version of libaccel-config is not found */

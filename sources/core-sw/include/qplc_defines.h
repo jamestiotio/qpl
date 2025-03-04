@@ -62,7 +62,7 @@ extern "C" {
 /**
  * @brief Re-definition of Intel QPL status type for internal core needs
  */
-typedef enum {
+typedef enum { //NOLINT(performance-enum-size)
     QPLC_STS_OK                      = 0U,
     QPLC_STS_OUTPUT_OVERFLOW_ERR     = 221U,
     QPLC_STS_DST_IS_SHORT_ERR        = 225U,

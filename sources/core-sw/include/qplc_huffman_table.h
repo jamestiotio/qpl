@@ -24,7 +24,7 @@ extern "C" {
  * @brief Flag to specify whether Mapping Table or Mapping CAM
  * is stored in Huffman Table of qplc_huffman_table_flat_format type.
 */
-typedef enum {
+typedef enum { //NOLINT(performance-enum-size)
     ht_with_mapping_table = 0U,
     ht_with_mapping_cam   = 1U,
 } huffman_table_aecs_format;

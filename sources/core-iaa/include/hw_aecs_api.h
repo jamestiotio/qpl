@@ -73,7 +73,7 @@ typedef struct {
 /**
  * @brief Enumerates all possible access modes for AECS.
  */
-typedef enum {
+typedef enum { //NOLINT(performance-enum-size)
     /**
      * @brief Toggle AECS R/W policy. Default one read from the first AECS and write to the second AECS.
      * If no write then this policy mustn't be used.
@@ -87,7 +87,7 @@ typedef enum {
 /**
 * @brief @todo add description
 */
-typedef enum {
+typedef enum {                                      //NOLINT(performance-enum-size)
     hw_aecs_at_ll_token_non_final_block     = 0x0U, /**< @todo add description */
     hw_aecs_at_ll_token_final_block         = 0x4U, /**< @todo add description */
     hw_aecs_at_stored_block_non_final_block = 0x2U, /**< @todo add description */

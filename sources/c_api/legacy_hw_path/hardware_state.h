@@ -29,7 +29,7 @@ extern "C" {
 #define QPL_INTERNAL_BUFFER_SIZE 1024U /**< Max size of internal buffer */
 #define FLIP_AECS_OFFSET(p)      ((p)->aecs_hw_read_offset = (p)->aecs_size - (p)->aecs_hw_read_offset) /**< @todo */
 
-typedef enum {
+typedef enum { //NOLINT(performance-enum-size)
     qpl_task_execution_step_statistic_collection,
     qpl_task_execution_step_header_inserting,
     qpl_task_execution_step_data_processing,
@@ -37,7 +37,7 @@ typedef enum {
     qpl_task_execution_step_completed,
 } qpl_task_execution_step;
 
-typedef enum { qpl_cst_fixed, qpl_cst_static, qpl_cst_dynamic } qpl_comp_style;
+typedef enum { qpl_cst_fixed, qpl_cst_static, qpl_cst_dynamic } qpl_comp_style; //NOLINT(performance-enum-size)
 
 typedef struct {
     bool                    first_job_has_been_submitted;

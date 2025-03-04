@@ -35,13 +35,13 @@ typedef uint64_t hw_operation_flags_t; /**< Represents operation's flags */
 
 /* ################# FILTER FLAGS ################# */
 
-typedef enum {
+typedef enum { //NOLINT(performance-enum-size)
     hw_iaa_input_format_le   = 0U,
     hw_iaa_input_format_be   = 1U,
     hw_iaa_input_format_prle = 2U,
 } hw_iaa_input_format;
 
-typedef enum {
+typedef enum { //NOLINT(performance-enum-size)
     hw_iaa_output_format_nominal       = 0U,
     hw_iaa_output_format_8U            = 1U,
     hw_iaa_output_format_16U           = 2U,
@@ -51,9 +51,14 @@ typedef enum {
     hw_iaa_output_modifier_force_array = (1U << 27U),
 } hw_iaa_output_format;
 
-typedef enum { none = 0U, end_of_block = 1U, stored_end_of_block = 2U, final_end_of_block = 3U } hw_iaa_terminator_t;
+typedef enum { //NOLINT(performance-enum-size)
+    none                = 0U,
+    end_of_block        = 1U,
+    stored_end_of_block = 2U,
+    final_end_of_block  = 3U
+} hw_iaa_terminator_t;
 
-typedef enum {
+typedef enum {                 //NOLINT(performance-enum-size)
     mini_block_size_none = 0U, /**< Disable indexing for the deflate stream */
     mini_block_size_512  = 1U, /**< Put index into the deflate stream each 512   bytes */
     mini_block_size_1k   = 2U, /**< Put index into the deflate stream each 1024  bytes */
@@ -64,7 +69,7 @@ typedef enum {
     mini_block_size_32k  = 7U  /**< Put index into the deflate stream each 32768 bytes */
 } hw_iaa_mini_block_size_t;
 
-typedef enum {
+typedef enum {                          //NOLINT(performance-enum-size)
     stop_and_check_for_bfinal_eob = 0U, /**< Stop condition: b_final EOB; Check condition: b_final EOB */
     dont_stop_or_check,                 /**< Stop condition: none;       Check condition: none */
     stop_and_check_for_any_eob,         /**< Stop condition: EOB;        Check condition: EOB */

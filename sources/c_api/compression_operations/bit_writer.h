@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-typedef enum { available, overflowing } writer_status_e;
+typedef enum { available, overflowing } writer_status_e; //NOLINT(performance-enum-size)
 
 typedef struct {
     uint64_t        buffer;         /**< Bits in the bit buffer */

@@ -32,7 +32,7 @@ typedef struct isal_hufftables isal_huffman_table;
 /**
  * @brief Common enumeration that is used for block types definitions
  */
-typedef enum {
+typedef enum {           //NOLINT(performance-enum-size)
     initial_status = 0U, /**< Informs that encoding is just starting */
     final_status   = 1U, /**< Informs that encoding should be finished */
     running_status = 2U, /**< Informs that encoding was already started but is not yet final*/

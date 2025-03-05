@@ -18,7 +18,7 @@ struct GzHuffmanTriplet {
 };
 
 class HuffmanOnlyNoErrorConfigurator : public TestConfigurator {
-    GenDecompressionHuffmanTable& m_huffmanTable;
+    GenDecompressionHuffmanTable& m_huffmanTable; //NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
 
 public:
     HuffmanOnlyNoErrorConfigurator(Gen32u seed, GenDecompressionHuffmanTable& table, bool is_aecs_format2_expected)

@@ -122,7 +122,7 @@ private:
     qpl_compression_huffman_table* compression_table_       = nullptr;
 
     // Other
-    const util::linear_allocator& allocator_;
+    const util::linear_allocator& allocator_; //NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
 
     explicit deflate_state(const util::linear_allocator& allocator)
         : isal_stream_ptr_(allocator.allocate<isal_zstream>()), allocator_(allocator) {

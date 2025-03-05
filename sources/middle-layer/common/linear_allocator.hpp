@@ -52,7 +52,7 @@ public:
     }
 
 private:
-    allocation_buffer_t& buffer_;
+    allocation_buffer_t& buffer_; //NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
 };
 
 template <class T, class U>

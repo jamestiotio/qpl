@@ -223,7 +223,7 @@ public:
 
 private:
     state_type                             state_;
-    const qpl::ml::util::linear_allocator& allocator_;
+    const qpl::ml::util::linear_allocator& allocator_; //NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
 
     explicit deflate_state_builder(const qpl::ml::util::linear_allocator& allocator, bool init_compress_body) noexcept
         : state_(allocator, init_compress_body), allocator_(allocator) {

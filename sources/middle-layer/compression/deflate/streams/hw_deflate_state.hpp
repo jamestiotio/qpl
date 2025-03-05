@@ -109,7 +109,7 @@ private:
     // Verify State
     hw_iaa_aecs_analytic* aecs_verify_ = nullptr;
 
-    const util::linear_allocator& allocator_;
+    const util::linear_allocator& allocator_; //NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
 
 protected:
     explicit deflate_state(const qpl::ml::util::linear_allocator& allocator, bool init_compress_body)

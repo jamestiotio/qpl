@@ -52,7 +52,7 @@ public:
 
 private:
     huffman_only_state<execution_path_t::software> stream_;
-    const qpl::ml::util::linear_allocator&         allocator_;
+    const qpl::ml::util::linear_allocator& allocator_; //NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
 };
 
 template <>
@@ -90,7 +90,7 @@ public:
 
 private:
     huffman_only_state<execution_path_t::hardware> stream_;
-    const qpl::ml::util::linear_allocator&         allocator_;
+    const qpl::ml::util::linear_allocator& allocator_; //NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
 };
 
 // ------ Software ------ //

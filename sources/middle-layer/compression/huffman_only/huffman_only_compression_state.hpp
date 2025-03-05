@@ -84,7 +84,7 @@ private:
     bool is_verification_enabled_ = false;
 
     // Other
-    const util::linear_allocator& allocator_;
+    const util::linear_allocator& allocator_; //NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
 
     explicit huffman_only_state(const util::linear_allocator& allocator) noexcept : allocator_(allocator) {
         isal_stream_ptr_             = allocator_.allocate<isal_zstream>();

@@ -237,7 +237,7 @@ private:
         deflate_block_type_e block_type;
     };
 
-    const util::linear_allocator& allocator_;
+    const util::linear_allocator& allocator_; //NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
     execution_state*              execution_state_ptr;
     decompression_state_t*        decompression_state_ptr;
 

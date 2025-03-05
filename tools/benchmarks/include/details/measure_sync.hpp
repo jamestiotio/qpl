@@ -24,6 +24,10 @@ static statistics_t measure_sync(benchmark::State& state, const case_params_t& c
         res.operations = res.queue_size;
     }
 
+    if (res.queue_size != 1 && common_params.use_sync_api_) {
+        throw std::runtime_error("Using --sync_api for measurements do not support queue size > 1");
+    }
+
     res.operations_per_thread = res.operations;
     if (state.threads() > 1) throw std::runtime_error("Synchronous measurements do not support threading");
 
@@ -33,29 +37,40 @@ static statistics_t measure_sync(benchmark::State& state, const case_params_t& c
         operation.mem_control(common_params.in_mem_, mem_loc_mask_e::src);
     }
 
-    // Strategies:
-    // - File at once. Each operation works on same file independently.
-    // - Chunk at once. Measure each chunk independently one by one, gather aggregate in the end. Is this reasonable?
-    // - File by chunks. Measure for the whole file processing different chunks in parallel (map file before processing). Like normal processing
-
+    // Non-timed warm-up
     for (auto& operation : operations) {
-        operation.async_submit();
-        operation.async_wait();
+        if (common_params.use_sync_api_) {
+            operation.sync_execute();
+        } else {
+            operation.async_submit();
+            operation.async_wait();
+        }
         operation.light_reset();
     }
 
+    // Timed measurements
     for (auto _ : state) {
-        for (auto& operation : operations) {
-            operation.async_submit();
-        }
+        if (common_params.use_sync_api_) {
+            for (auto& operation : operations) {
+                operation.sync_execute();
+                operation.light_reset();
 
-        for (auto& operation : operations) {
-            operation.async_wait();
-            operation.light_reset();
+                res.completed_operations++;
+                res.data_read += operation.get_bytes_read();
+                res.data_written += operation.get_bytes_written();
+            }
+        } else {
+            for (auto& operation : operations) {
+                operation.async_submit();
+            }
+            for (auto& operation : operations) {
+                operation.async_wait();
+                operation.light_reset();
 
-            res.completed_operations++;
-            res.data_read += operation.get_bytes_read();
-            res.data_written += operation.get_bytes_written();
+                res.completed_operations++;
+                res.data_read += operation.get_bytes_read();
+                res.data_written += operation.get_bytes_written();
+            }
         }
     }
 

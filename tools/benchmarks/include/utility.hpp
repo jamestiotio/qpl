@@ -169,6 +169,7 @@ struct case_params_t {
     bool         full_time_ {cmd::FLAGS_full_time};
     std::int32_t queue_size_ {cmd::FLAGS_queue_size};
     std::int32_t node_ {cmd::FLAGS_node};
+    bool         use_sync_api_ {cmd::FLAGS_sync_api};
 };
 
 template <typename CaseT, typename CaseParamsT, typename... ArgsT>

@@ -98,6 +98,7 @@ BM_DEFINE_string(in_mem, "llc");
 BM_DEFINE_string(out_mem, "cс_ram");
 BM_DEFINE_bool(full_time, false);
 BM_DEFINE_bool(no_hw, false);
+BM_DEFINE_bool(sync_api, false);
 
 /**
  * Print the help message that includes information about the input parameters that can be used to configure the benchmark.
@@ -120,7 +121,8 @@ static void print_help() {
             "          [--in_mem=<location>]         - Input memory type: cache, llc or ram. Set to llc by default. \n"
             "          [--out_mem=<location>]        - Output memory type: cache_ram or ram. Set to cache_ram by default. \n"
             "          [--full_time]                 - Include initialization and destruction into measured time. Off by default.\n"
-            "          [--no_hw]                     - Skip accelerator initialization check and run only using qpl_software_path. Off by default.\n");
+            "          [--no_hw]                     - Skip accelerator initialization check and run only using qpl_software_path. Off by default.\n"
+            "          [--sync_api]                  - (Experimental) Use synchronous API for execution. Default is Off. Only applicable for single-threaded runs.\n");
 }
 
 static void parse_cmd_line(int* argc, char** argv) {
@@ -133,7 +135,8 @@ static void parse_cmd_line(int* argc, char** argv) {
             benchmark::ParseStringFlag(argv[i], "in_mem", &FLAGS_in_mem) ||
             benchmark::ParseStringFlag(argv[i], "out_mem", &FLAGS_out_mem) ||
             benchmark::ParseBoolFlag(argv[i], "full_time", &FLAGS_full_time) ||
-            benchmark::ParseBoolFlag(argv[i], "no_hw", &FLAGS_no_hw)) {
+            benchmark::ParseBoolFlag(argv[i], "no_hw", &FLAGS_no_hw) ||
+            benchmark::ParseBoolFlag(argv[i], "sync_api", &FLAGS_sync_api)) {
             for (int j = i; j != *argc - 1; ++j)
                 argv[j] = argv[j + 1];
 

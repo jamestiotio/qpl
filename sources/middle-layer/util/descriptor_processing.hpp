@@ -8,6 +8,7 @@
 #define QPL_SOURCES_MIDDLE_LAYER_UTIL_DESCRIPTOR_PROCESSING_HPP
 
 #include <array>
+#include <cstdint>
 #include <emmintrin.h>
 
 #include "hw_definitions.h"
@@ -24,7 +25,7 @@
 
 namespace qpl::ml::util {
 
-enum class execution_mode_t { sync, async };
+enum class execution_mode_t : std::uint8_t { sync, async };
 
 template <typename return_t>
 inline auto wait_descriptor_result(HW_PATH_VOLATILE hw_completion_record* const completion_record_ptr) -> return_t {

@@ -7,6 +7,8 @@
 #ifndef QPL_SOURCES_C_API_LEGACY_HW_PATH_OWN_ML_SUBMIT_OPERATION_API_HPP
 #define QPL_SOURCES_C_API_LEGACY_HW_PATH_OWN_ML_SUBMIT_OPERATION_API_HPP
 
+#include <cstdint>
+
 #include "qpl/c_api/job.h"
 
 #include "hw_definitions.h"
@@ -15,7 +17,7 @@
 extern "C" {
 #endif
 
-enum class execution_mode_e { single_chunk, multi_chunk };
+enum class execution_mode_e : std::uint8_t { single_chunk, multi_chunk };
 
 /* ====== Compress ====== */
 qpl_status hw_descriptor_compress_init_deflate_base(qpl_job*                                  qpl_job_ptr,

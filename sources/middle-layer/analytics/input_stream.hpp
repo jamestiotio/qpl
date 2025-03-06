@@ -59,7 +59,7 @@ public:
         uint32_t            ignore_last_bits;
     };
 
-    enum class crc_t : uint32_t { gzip = 0U, iscsi = 1U };
+    enum class crc_t : std::uint8_t { gzip = 0U, iscsi = 1U };
 
     template <analytic_pipeline pipeline>
     auto unpack(limited_buffer_t& output_buffer) noexcept -> unpack_result_t;

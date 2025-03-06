@@ -66,7 +66,7 @@ struct aggregates_t {
     uint32_t index_     = 0U;
 };
 
-enum class execution_path_t { auto_detect, hardware, software };
+enum class execution_path_t : std::uint8_t { auto_detect, hardware, software };
 
 constexpr uint32_t bit_bits_size                = 1U;
 constexpr uint32_t byte_bits_size               = 8U;

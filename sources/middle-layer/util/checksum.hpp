@@ -12,6 +12,8 @@
 #ifndef QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKSUM_HPP
 #define QPL_SOURCES_MIDDLE_LAYER_UTIL_CHECKSUM_HPP
 
+#include <cstdint>
+
 #include "crc.h"
 
 // core-sw
@@ -31,7 +33,7 @@ struct checksum_accumulator {
 /**
  * @brief Contains supported CRC calculation types for many operations
  */
-enum class crc_type_t {
+enum class crc_type_t : std::uint8_t {
     none,   /**< Do not calculate checksum */
     crc_32, /**< To use 0x104c11db7 polynomial for crc calculation */
     crc_32c /**< To use 0x11edc6f41 polynomial for crc calculation, which is the one used by iSCSI */

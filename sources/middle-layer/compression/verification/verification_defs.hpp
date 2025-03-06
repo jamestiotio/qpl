@@ -12,11 +12,18 @@
 #include "compression/huffman_table/inflate_huffman_table.hpp"
 
 namespace qpl::ml::compression {
-enum verification_mode_t { verify_deflate_default, verify_deflate_no_headers };
+enum verification_mode_t : std::uint8_t { verify_deflate_default, verify_deflate_no_headers };
 
-enum parser_position_t { verify_header, verify_body };
+enum parser_position_t : std::uint8_t { verify_header, verify_body };
 
-enum class parser_status_t { ok, need_more_input, end_of_block, end_of_mini_block, final_end_of_block, error };
+enum class parser_status_t : std::uint8_t {
+    ok,
+    need_more_input,
+    end_of_block,
+    end_of_mini_block,
+    final_end_of_block,
+    error
+};
 
 struct verification_result_t {
     uint32_t        bits_read     = 0;

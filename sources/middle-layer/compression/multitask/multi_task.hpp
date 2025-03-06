@@ -12,8 +12,10 @@
 #ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_MULTITASK_MULTI_TASK_HPP
 #define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_MULTITASK_MULTI_TASK_HPP
 
+#include <cstdint>
+
 namespace qpl::ml::util {
-enum multitask_status : uint32_t {
+enum multitask_status : std::uint8_t {
     ready                   = 0U,
     multi_chunk_in_progress = 0U,
     multi_chunk_last_chunk  = 1U,

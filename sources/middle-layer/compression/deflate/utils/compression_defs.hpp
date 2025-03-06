@@ -12,11 +12,11 @@
 
 namespace qpl::ml::compression {
 
-enum header_t : uint32_t { no_header_t, gzip_header_t, zlib_header_t };
+enum header_t : std::uint8_t { no_header_t, gzip_header_t, zlib_header_t };
 
-enum compression_mode_t : uint32_t { dynamic_mode, fixed_mode, static_mode, canned_mode };
+enum compression_mode_t : std::uint8_t { dynamic_mode, fixed_mode, static_mode, canned_mode };
 
-enum compression_level_t : uint32_t {
+enum compression_level_t : std::uint8_t {
     level_1       = 1U,
     level_2       = 2U,
     level_3       = 3U,
@@ -30,10 +30,10 @@ enum compression_level_t : uint32_t {
     high_level    = level_3
 };
 
-enum endianness_t : uint32_t { little_endian, big_endian };
+enum endianness_t : std::uint8_t { little_endian, big_endian };
 
 // In case of changing the number of states, update @compression_states constant
-enum class compression_state_t {
+enum class compression_state_t : std::uint8_t {
     init_compression,
     preprocess_new_block,
     start_new_block,
@@ -51,7 +51,7 @@ enum class compression_state_t {
     count
 };
 
-enum mini_block_size_t : uint32_t {
+enum mini_block_size_t : std::uint8_t {
     mini_block_size_none = 0U, /**< No mini-blocks */
     mini_block_size_512  = 1U, /**< Each 512 bytes are compressed independently */
     mini_block_size_1k   = 2U, /**< Each 1 kb is compressed independently */
@@ -62,11 +62,11 @@ enum mini_block_size_t : uint32_t {
     mini_block_size_32k  = 7U  /**< Each 32 kb are compressed independently */
 };
 
-enum class block_type_t { deflate_block, mini_block };
+enum class block_type_t : std::uint8_t { deflate_block, mini_block };
 
-enum class mini_blocks_support_t { disabled, enabled };
+enum class mini_blocks_support_t : std::uint8_t { disabled, enabled };
 
-enum class dictionary_support_t { disabled, enabled };
+enum class dictionary_support_t : std::uint8_t { disabled, enabled };
 
 struct chunk_type {
     bool is_first = false;

@@ -6,6 +6,7 @@
 #ifndef QPL_SOURCES_MIDDLE_LAYER_COMMON_LINEAR_ALLOCATOR_HPP
 #define QPL_SOURCES_MIDDLE_LAYER_COMMON_LINEAR_ALLOCATOR_HPP
 
+#include <cstdint>
 #include <iterator>
 #include <memory>
 
@@ -13,7 +14,7 @@
 
 namespace qpl::ml::util {
 
-enum class memory_block_t {
+enum class memory_block_t : std::uint8_t {
     not_aligned,
     aligned_64u,
 };

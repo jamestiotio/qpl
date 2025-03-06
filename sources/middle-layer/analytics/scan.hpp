@@ -7,6 +7,8 @@
 #ifndef QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_SCAN_HPP
 #define QPL_SOURCES_MIDDLE_LAYER_ANALYTICS_SCAN_HPP
 
+#include <cstdint>
+
 #include "descriptor_builder.hpp"
 #include "input_stream.hpp"
 #include "output_stream.hpp"
@@ -18,7 +20,7 @@
 
 namespace qpl::ml::analytics {
 
-enum comparator_t {
+enum comparator_t : std::uint8_t {
     equals         = 0,
     not_equals     = 1,
     less_than      = 2,

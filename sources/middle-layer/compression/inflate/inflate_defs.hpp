@@ -13,7 +13,7 @@
 #include "compression/huffman_table/inflate_huffman_table.hpp"
 
 namespace qpl::ml::compression {
-enum inflate_mode_t {
+enum inflate_mode_t : std::uint8_t {
     inflate_default,
     inflate_header,
     inflate_body,
@@ -22,9 +22,9 @@ enum inflate_mode_t {
 template <execution_path_t path>
 class inflate_state;
 
-enum compressed_data_format_t { raw_data, gzip, zlib, gzip_no_header, zlib_no_header };
+enum compressed_data_format_t : std::uint8_t { raw_data, gzip, zlib, gzip_no_header, zlib_no_header };
 
-enum deflate_block_type_e : uint16_t { undefined, stored, coded };
+enum deflate_block_type_e : std::uint8_t { undefined, stored, coded };
 
 enum end_processing_condition_t : uint8_t {
     stop_and_check_for_bfinal_eob = 0, /**< Stop condition: b_final EOB; Check condition: b_final EOB */
@@ -49,7 +49,7 @@ struct huffman_code {
     uint8_t  length;          /**< Huffman code length */
 };
 
-enum aecs_format { mapping_table, mapping_cam };
+enum aecs_format : std::uint8_t { mapping_table, mapping_cam };
 
 } // namespace qpl::ml::compression
 

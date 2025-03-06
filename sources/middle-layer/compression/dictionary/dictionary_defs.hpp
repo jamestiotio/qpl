@@ -17,7 +17,7 @@
 
 constexpr int dict_none = -1;
 
-enum class software_compression_level {
+enum class software_compression_level : std::int8_t {
     SW_NONE = dict_none,
     LEVEL_0 = 0,
     LEVEL_1 = 1,
@@ -27,7 +27,7 @@ enum class software_compression_level {
     LEVEL_9 = 9
 };
 
-enum class hardware_dictionary_level {
+enum class hardware_dictionary_level : std::int8_t {
     HW_NONE = dict_none,
     LEVEL_1 = 0, /* 2K dictionary w/ hash table built w/ 2 pointers per entry */
     LEVEL_2 = 1, /* 4K dictionary w/ hash table built w/ 2 pointers per entry */

@@ -26,7 +26,7 @@
 #define BITS_2_DATA_TYPE_INDEX(x) (OWN_MIN_((((x)-1U) >> 3U), 2U))
 
 namespace qpl::core_sw::dispatcher {
-enum arch_t { px_arch = 0, avx2_arch = 1, avx512_arch = 2 };
+enum arch_t : std::uint8_t { px_arch = 0, avx2_arch = 1, avx512_arch = 2 };
 
 auto detect_platform() -> arch_t;
 

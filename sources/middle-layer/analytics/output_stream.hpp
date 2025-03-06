@@ -19,7 +19,7 @@
 
 namespace qpl::ml::analytics {
 
-enum output_stream_type_t { array_stream = 0, bit_stream = 1 };
+enum output_stream_type_t : std::uint8_t { array_stream = 0, bit_stream = 1 };
 
 template <output_stream_type_t output_stream_type>
 class output_stream_t final : public buffer_t {

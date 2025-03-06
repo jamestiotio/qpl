@@ -13,6 +13,7 @@
 #ifndef QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_DEFLATE_HPP
 #define QPL_SOURCES_MIDDLE_LAYER_COMPRESSION_DEFLATE_DEFLATE_HPP
 
+#include <cstdint>
 #include <type_traits>
 
 #include "common/defs.hpp"
@@ -22,7 +23,7 @@
 
 namespace qpl::ml::compression {
 
-enum class deflate_mode_t {
+enum class deflate_mode_t : std::uint8_t {
     deflate_no_headers,
     deflate_default,
 };

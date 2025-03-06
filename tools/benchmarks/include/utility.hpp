@@ -328,10 +328,9 @@ static inline huffman_type_e to_huffman_type(const std::string& val) {
  * @return The resulting vector of huffman_type_e values.
  */
 static inline std::vector<huffman_type_e> to_huffman_type(const std::vector<std::string>& vec) {
-    std::vector<huffman_type_e> res;
-    for (const auto& val : vec)
-        res.push_back(to_huffman_type(val));
-
+    std::vector<huffman_type_e> res(vec.size());
+    for (size_t i = 0; i < vec.size(); i++)
+        res[i] = (to_huffman_type(vec[i]));
     return res;
 }
 

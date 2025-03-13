@@ -44,6 +44,8 @@ void inline job::update<operation_result_t>(qpl_job* job_ptr, operation_result_t
 
     if (job::is_indexing_enabled(job_ptr)) { job::update_index_table(job_ptr, result.indexes_written_); }
 
+    job::update_execution_record(job_ptr, result.record_);
+
     if (result.status_code_ == ml::status_list::ok) { job::update_input_stream(job_ptr, job_ptr->available_in); }
 }
 

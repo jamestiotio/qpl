@@ -24,6 +24,9 @@
 #include "hw_descriptors_api.h"
 #include "hw_devices.h"
 
+// ml
+#include "util/hw_timing_util.hpp"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -58,11 +61,14 @@ HW_PATH_GENERAL_API(hw_accelerator_status, accelerator_submit_descriptor,
  *
  * @param[in]   desc_ptr        - pointer to descriptor
  * @param[in]   device_numa_id  - preferred NUMA node ID (-1 for automatic choice)
+ * @param[in]   record          - pointer to execution record
  *
  * @return 0 in case of success execution, or non-zero value, otherwise
  *
  */
-hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t device_numa_id);
+hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t device_numa_id,
+                                            qpl::ml::util::execution_record_ext_t* record);
+
 #ifdef __cplusplus
 }
 #endif

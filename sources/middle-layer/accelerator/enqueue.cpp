@@ -12,8 +12,10 @@
 #include "dispatcher/hw_dispatcher.hpp"
 #include "hw_definitions.h"
 #include "hw_descriptors_api.h"
+#include "util/hw_timing_util.hpp"
 
-extern "C" hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t user_specified_numa_id) {
+extern "C" hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t user_specified_numa_id,
+                                                       qpl::ml::util::execution_record_ext_t* record) {
     hw_accelerator_status result = HW_ACCELERATOR_WORK_QUEUES_NOT_AVAILABLE;
 
 #if defined(__linux__)
@@ -31,7 +33,7 @@ extern "C" hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t u
 
         hw_iaa_descriptor_hint_cpu_cache_as_destination((hw_descriptor*)desc_ptr, device.get_cache_write_available());
 
-        const hw_accelerator_status enqueue_result = device.enqueue_descriptor(desc_ptr);
+        const hw_accelerator_status enqueue_result = device.enqueue_descriptor(desc_ptr, record);
         if (enqueue_result == HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ &&
             result == HW_ACCELERATOR_WORK_QUEUES_NOT_AVAILABLE) {
             result = HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ;
@@ -39,6 +41,9 @@ extern "C" hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t u
             result = HW_ACCELERATOR_WQ_IS_BUSY;
         } else if (enqueue_result == HW_ACCELERATOR_STATUS_OK) {
             result = HW_ACCELERATOR_STATUS_OK;
+#if QPL_EXPERIMENTAL_LOG_IAA
+            qpl::ml::util::record_device_idx(record, device_idx);
+#endif
             break;
         }
     }
@@ -48,11 +53,4 @@ extern "C" hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t u
 #endif
 
     return result;
-}
-
-extern "C" hw_accelerator_status
-hw_accelerator_submit_descriptor(hw_accelerator_context* const        UNREFERENCED_PARAMETER(accel_context_ptr),
-                                 const hw_descriptor* const           descriptor_ptr,
-                                 hw_accelerator_submit_options* const submit_options) {
-    return hw_enqueue_descriptor((void*)descriptor_ptr, submit_options->numa_id);
 }

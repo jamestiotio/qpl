@@ -15,10 +15,15 @@
 #include "qpl/c_api/job.h"
 #include "qpl/c_api/status.h"
 
+// c_api
+#include "legacy_hw_path/hardware_state.h"
+
+// core-iaa
+#include "hw_definitions.h"
+
+// ml
 #include "common/defs.hpp"
 #include "compression_operations/compression_state_t.h"
-#include "hw_definitions.h"
-#include "legacy_hw_path/hardware_state.h"
 
 namespace qpl::job {
 
@@ -293,9 +298,18 @@ static inline void update_output_stream(qpl_job* const qpl_job_ptr, const uint32
 }
 
 static inline void update_is_sw_fallback(qpl_job* const qpl_job_ptr, bool is_sw_fallback) noexcept {
-
     auto* state_ptr           = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
     state_ptr->is_sw_fallback = is_sw_fallback;
+}
+
+static inline void update_execution_record(qpl_job* const qpl_job_ptr, const qpl_execution_record ml_record) noexcept {
+    // Do not update execution record for software path
+    if (qpl_job_ptr->data_ptr.path == qpl_path_software) return;
+
+    auto* state_ptr                           = reinterpret_cast<qpl_hw_state*>(job::get_state(qpl_job_ptr));
+    state_ptr->execution_record.elapsed_time_ = ml_record.elapsed_time_;
+    state_ptr->execution_record.wq_idx_       = ml_record.wq_idx_;
+    state_ptr->execution_record.device_idx_   = ml_record.device_idx_;
 }
 
 static inline void set_async_job_status(qpl_job* const qpl_job_ptr, qpl_status async_job_status) noexcept {

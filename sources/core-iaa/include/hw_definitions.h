@@ -194,6 +194,16 @@ static_assert(sizeof(hw_decompress_analytics_descriptor) == HW_PATH_DESCRIPTOR_S
 static_assert(sizeof(hw_compress_descriptor) == HW_PATH_DESCRIPTOR_SIZE, "Descriptor size is not correct");
 /// \endcond
 
+/**
+ * @struct qpl_execution_record
+ * @brief Structure to record the execution details of an operation.
+ */
+typedef struct {
+    double   elapsed_time_; /**< The elapsed time of the execution in nano seconds. */
+    uint32_t wq_idx_;       /**< The index of the work queue used for the operation. */
+    uint32_t device_idx_;   /**< The index of the device used for the operation. */
+} qpl_execution_record;
+
 #ifdef __cplusplus
 }
 #endif

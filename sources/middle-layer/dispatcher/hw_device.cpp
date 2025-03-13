@@ -12,6 +12,7 @@
 
 #include "hw_descriptors_api.h"
 #include "hw_device.hpp"
+#include "util/hw_timing_util.hpp"
 #include "util/topology.hpp"
 #include "util/util.hpp"
 
@@ -63,7 +64,8 @@ void hw_device::fill_hw_context(hw_accelerator_context* const hw_context_ptr) co
     hw_context_ptr->device_properties.force_array_output_mod_available = hw_device::get_force_array_output_support();
 }
 
-auto hw_device::enqueue_descriptor(void* desc_ptr) const noexcept -> hw_accelerator_status {
+auto hw_device::enqueue_descriptor(void* desc_ptr, qpl::ml::util::execution_record_ext_t* record) const noexcept
+        -> hw_accelerator_status {
     static thread_local std::uint32_t wq_idx = 0;
 
     const uint32_t   operation             = hw_iaa_descriptor_get_operation((hw_descriptor*)desc_ptr);
@@ -79,8 +81,15 @@ auto hw_device::enqueue_descriptor(void* desc_ptr) const noexcept -> hw_accelera
         if (bit_index_is_valid_wq[wq_idx]) {
             hw_iaa_descriptor_set_block_on_fault((hw_descriptor*)desc_ptr,
                                                  working_queues_[wq_idx].get_block_on_fault());
-            const qpl_status enqueue_status = working_queues_[wq_idx].enqueue_descriptor(desc_ptr);
-            if (QPL_STS_OK == enqueue_status) { return HW_ACCELERATOR_STATUS_OK; }
+
+            const qpl_status enqueue_status = working_queues_[wq_idx].enqueue_descriptor(desc_ptr, record);
+
+            if (QPL_STS_OK == enqueue_status) {
+#ifdef QPL_EXPERIMENTAL_LOG_IAA
+                qpl::ml::util::record_wq_idx(record, wq_idx);
+#endif
+                return HW_ACCELERATOR_STATUS_OK;
+            }
         }
         wq_idx = (wq_idx + 1) % queue_count_;
     }

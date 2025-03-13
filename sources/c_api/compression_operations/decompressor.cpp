@@ -38,6 +38,7 @@ void inline job::update<operation_result_t>(qpl_job* job_ptr, operation_result_t
     job::update_input_stream(job_ptr, result.completed_bytes_);
     job::update_output_stream(job_ptr, result.output_bytes_, 0U);
     job::update_checksums(job_ptr, result.checksums_.crc32_, result.checksums_.xor_);
+    job::update_execution_record(job_ptr, result.record_);
 }
 
 void inline set_representation_flags(qpl_decompression_huffman_table* qpl_decompression_table_ptr,

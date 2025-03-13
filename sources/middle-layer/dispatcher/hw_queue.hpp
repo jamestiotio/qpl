@@ -13,6 +13,7 @@
 #include "qpl/c_api/status.h"
 
 #include "hw_status.h"
+#include "util/hw_timing_util.hpp"
 
 #define TOTAL_OP_CFG_BIT_GROUPS 8U // 256 bits / 32 bit groups
 
@@ -38,7 +39,8 @@ public:
 
     [[nodiscard]] auto get_portal_ptr() const noexcept -> void*;
 
-    [[nodiscard]] auto enqueue_descriptor(void* desc_ptr) const noexcept -> qpl_status;
+    [[nodiscard]] auto enqueue_descriptor(void* desc_ptr, qpl::ml::util::execution_record_ext_t* record) const noexcept
+            -> qpl_status;
 
     [[nodiscard]] auto priority() const noexcept -> int32_t;
 

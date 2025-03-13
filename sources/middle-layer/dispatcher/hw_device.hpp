@@ -13,10 +13,14 @@
 
 #include "qpl/c_api/defs.h"
 
+// core-iaa
 #include "hw_devices.h"
 #include "hw_queue.hpp"
 #include "hw_status.h"
+
+// ml
 #include "queue_selector.hpp"
+#include "util/hw_timing_util.hpp"
 
 namespace qpl::ml::dispatcher {
 
@@ -35,7 +39,8 @@ public:
 
     void fill_hw_context(hw_accelerator_context* hw_context_ptr) const noexcept;
 
-    [[nodiscard]] auto enqueue_descriptor(void* desc_ptr) const noexcept -> hw_accelerator_status;
+    [[nodiscard]] auto enqueue_descriptor(void* desc_ptr, qpl::ml::util::execution_record_ext_t* record) const noexcept
+            -> hw_accelerator_status;
 
     [[nodiscard]] auto initialize_new_device(descriptor_t* device_descriptor_ptr) noexcept -> hw_accelerator_status;
 

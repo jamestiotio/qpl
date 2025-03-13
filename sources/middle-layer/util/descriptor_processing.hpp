@@ -10,6 +10,7 @@
 #include <array>
 #include <cstdint>
 #include <emmintrin.h>
+#include <memory>
 
 #include "hw_definitions.h"
 
@@ -18,18 +19,22 @@
 #include "util/awaiter.hpp"
 #include "util/completion_record.hpp"
 #include "util/hw_status_converting.hpp"
-
-#ifdef QPL_LOG_IAA_TIME
 #include "util/hw_timing_util.hpp"
-#endif
 
 namespace qpl::ml::util {
 
 enum class execution_mode_t : std::uint8_t { sync, async };
 
 template <typename return_t>
-inline auto wait_descriptor_result(HW_PATH_VOLATILE hw_completion_record* const completion_record_ptr) -> return_t {
+inline auto wait_descriptor_result(HW_PATH_VOLATILE hw_completion_record* const completion_record_ptr,
+                                   execution_record_ext_t*                      record) -> return_t {
     awaiter::wait_for(&completion_record_ptr->status, AD_STATUS_INPROG);
+
+#ifdef QPL_EXPERIMENTAL_LOG_IAA
+    ml::util::record_end_time(record);
+#else
+    (void)record;
+#endif
 
     return ml::util::completion_record_convert_to_result<return_t>(completion_record_ptr);
 }
@@ -43,7 +48,9 @@ inline auto process_descriptor(hw_descriptor* const                         desc
     hw_iaa_descriptor_set_completion_record(descriptor_ptr, completion_record_ptr);
     completion_record_ptr->status = AD_STATUS_INPROG; // Mark completion record as not completed
 
-    auto accel_status = hw_enqueue_descriptor(descriptor_ptr, numa_id);
+    std::unique_ptr<execution_record_ext_t> record_ptr = std::make_unique<execution_record_ext_t>();
+
+    auto accel_status = hw_enqueue_descriptor(descriptor_ptr, numa_id, record_ptr.get());
 
     if constexpr (mode == execution_mode_t::sync) {
         uint32_t status = convert_hw_accelerator_status_to_qpl_status(accel_status); //NOLINT(misc-const-correctness)
@@ -56,7 +63,7 @@ inline auto process_descriptor(hw_descriptor* const                         desc
             }
         }
 
-        operation_result = wait_descriptor_result<return_t>(completion_record_ptr);
+        operation_result = wait_descriptor_result<return_t>(completion_record_ptr, record_ptr.get());
 
         // Simple Page Faults handling: if status AD_STATUS_READ_PAGE_FAULT or AD_STATUS_WRITE_PAGE_FAULT,
         // check that the Fault Address is available, touch the memory and resubmit descriptor again.
@@ -85,7 +92,7 @@ inline auto process_descriptor(hw_descriptor* const                         desc
                 // Mark completion record as not completed for awaiter
                 completion_record_ptr->status = AD_STATUS_INPROG;
 
-                auto     enqueue_status = hw_enqueue_descriptor(descriptor_ptr, numa_id);
+                auto     enqueue_status = hw_enqueue_descriptor(descriptor_ptr, numa_id, record_ptr.get());
                 uint32_t status         = //NOLINT(misc-const-correctness)
                         convert_hw_accelerator_status_to_qpl_status(enqueue_status);
                 if (status_list::ok != status) {
@@ -97,7 +104,7 @@ inline auto process_descriptor(hw_descriptor* const                         desc
                     }
                 }
 
-                operation_result = wait_descriptor_result<return_t>(completion_record_ptr);
+                operation_result = wait_descriptor_result<return_t>(completion_record_ptr, record_ptr.get());
             }
         }
 
@@ -105,6 +112,8 @@ inline auto process_descriptor(hw_descriptor* const                         desc
             operation_result.processed_bytes_ =
                     reinterpret_cast<hw_decompress_analytics_descriptor*>(descriptor_ptr)->src1_size;
         }
+
+        qpl::ml::util::store_execution_record_to_result(record_ptr.get(), operation_result);
     } else {
         // Async path
 #ifdef QPL_LOG_IAA_TIME
@@ -143,7 +152,7 @@ inline auto process_descriptor(std::array<hw_descriptor, number_of_descriptors>&
     }
 
     for (uint32_t i = 0; i < descriptors.size(); i++) {
-        auto execution_status = ml::util::wait_descriptor_result<return_t>(&completion_records[i]);
+        auto execution_status = ml::util::wait_descriptor_result<return_t>(&completion_records[i], nullptr);
 
         if (execution_status.status_code_ != status_list::ok) {
             operation_result.status_code_ = execution_status.status_code_;

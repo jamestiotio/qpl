@@ -85,6 +85,7 @@ typedef struct {
     hw_multidescriptor_status multi_desc_status;       /**< Steps to be skipped in resubmitted jobs in case of
                                                                                 QPL_STS_QUEUES_ARE_BUSY_ERR */
     qpl_status                async_job_status; /**< For asynchronous execution, stores the latest status of the job */
+    qpl_execution_record      execution_record; /**< Execution information for logging */
 } qpl_hw_state;
 
 #ifdef __cplusplus

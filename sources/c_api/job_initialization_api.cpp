@@ -250,7 +250,7 @@ QPL_INLINE void own_init_analytics(qpl_job* qpl_job_ptr) {
 void own_init_hw_state(qpl_hw_state* hw_state_ptr) {
     using namespace qpl;
 
-    const uint32_t hw_size = QPL_ALIGNED_SIZE(hw_get_job_size(), QPL_DEFAULT_ALIGNMENT);
+    const size_t hw_size = QPL_ALIGNED_SIZE(hw_get_job_size(), QPL_DEFAULT_ALIGNMENT);
     core_sw::util::set_zeros((uint8_t*)hw_state_ptr, hw_size);
 
     hw_state_ptr->async_job_status = QPL_STS_JOB_NOT_SUBMITTED;

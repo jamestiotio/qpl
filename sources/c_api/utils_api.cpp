@@ -13,6 +13,7 @@
 
 #include "qpl/qpl.h"
 
+#include "job.hpp"
 #include "own_defs.h"
 
 #ifdef __cplusplus
@@ -64,6 +65,45 @@ QPL_FUN(uint32_t, qpl_get_safe_deflate_compression_buffer_size, (uint32_t source
     if (num_bytes % 2 != 0) { num_bytes++; }
 
     return num_bytes;
+}
+
+/**
+ * @enum qpl_execution_record_t
+ * @brief Enumeration for types of execution information.
+ *
+ * This enumeration defines the various types of execution information that can be queried
+ * from the Intel® Query Processing Library (Intel® QPL).
+ */
+typedef enum { // NOLINT(performance-enum-size)
+    QPL_EXECUTION_INFO_ELAPSED_TIME = 0,
+    QPL_EXECUTION_INFO_WQ_IDX,
+    QPL_EXECUTION_INFO_DEVICE_IDX
+} qpl_execution_record_t;
+
+/**
+ * @brief Get execution record information for the given job.
+ */
+QPL_FUN(qpl_status, qpl_get_execution_record,
+        (const qpl_job* const job_ptr, qpl_execution_record_t info_type, void* info_value)) {
+    if (job_ptr == nullptr || info_value == nullptr) { return QPL_STS_NULL_PTR_ERR; }
+
+    qpl_hw_state* state_ptr = reinterpret_cast<qpl_hw_state*>(qpl::job::get_state(job_ptr));
+    if (state_ptr == nullptr) { return QPL_STS_LIBRARY_INTERNAL_ERR; }
+
+    switch (info_type) {
+        case QPL_EXECUTION_INFO_ELAPSED_TIME:
+            *reinterpret_cast<double*>(info_value) = state_ptr->execution_record.elapsed_time_;
+            break;
+        case QPL_EXECUTION_INFO_WQ_IDX:
+            *reinterpret_cast<uint32_t*>(info_value) = state_ptr->execution_record.wq_idx_;
+            break;
+        case QPL_EXECUTION_INFO_DEVICE_IDX:
+            *reinterpret_cast<uint32_t*>(info_value) = state_ptr->execution_record.device_idx_;
+            break;
+        default: return QPL_STS_INVALID_PARAM_ERR;
+    }
+
+    return QPL_STS_OK;
 }
 
 #ifdef __cplusplus

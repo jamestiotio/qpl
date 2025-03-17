@@ -127,8 +127,8 @@ protected:
     /**
         * Following fields are visible from test level
         */
-    qpl_job*             reference_job_ptr;
-    std::vector<uint8_t> reference_destination;
+    qpl_job*             reference_job_ptr;     //NOLINT(misc-non-private-member-variables-in-classes)
+    std::vector<uint8_t> reference_destination; //NOLINT(misc-non-private-member-variables-in-classes)
 
 private:
     uint8_t* m_reference_job_buffer;

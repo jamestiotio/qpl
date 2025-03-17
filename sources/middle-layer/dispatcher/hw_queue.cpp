@@ -127,14 +127,6 @@ auto hw_queue::enqueue_descriptor(void* desc_ptr, qpl::ml::util::execution_recor
                 : "=r"(retry)
                 : "a"(current_place_ptr), "d"(desc_ptr));
 
-#ifdef QPL_LOG_IAA_TIME
-        if (!retry) {
-            // If enqueue is successful, record the start time and meta data
-            record_meta_data(desc_ptr);
-            record_iaa_start_time();
-        }
-#endif
-
 #ifdef QPL_EXPERIMENTAL_LOG_IAA
         if (!retry) qpl::ml::util::record_start_time(record);
 #endif
@@ -150,11 +142,6 @@ auto hw_queue::enqueue_descriptor(void* desc_ptr, qpl::ml::util::execution_recor
         // DIAG(" write submitted\n");
 
         if (ret == sizeof(hw_decompress_analytics_descriptor)) {
-#ifdef QPL_LOG_IAA_TIME
-            // If enqueue is successful, record the start time and meta data
-            record_meta_data(desc_ptr);
-            record_iaa_start_time();
-#endif
 #ifdef QPL_EXPERIMENTAL_LOG_IAA
             qpl::ml::util::record_start_time(record);
 #endif
@@ -180,10 +167,6 @@ auto hw_queue::execute_noop() const noexcept -> qpl_status {
     hw_iaa_descriptor_set_completion_record(&desc, &completion_record);
 
     const qpl_status status = enqueue_descriptor(&desc, nullptr);
-
-#ifdef QPL_LOG_IAA_TIME
-    record_invalid_end_time_to_skip_iaa_timing();
-#endif
 
     if (QPL_STS_OK == status) {
         while (completion_record.status == 0) {

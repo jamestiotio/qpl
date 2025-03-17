@@ -44,7 +44,6 @@ set(QPL_USE_CLANG_SANITIZER "" CACHE STRING
     THREAD: Enables ThreadSanitizer
     ALL_COMPATIBLE: Enables most of the currently compatible checks (Note: this option is for convenience and may change).")
 option(LOG_HW_INIT "Enables HW initialization log" OFF)
-option(QPL_LOG_IAA_TIME "(Experimental feature) Enables timestamps to track IAA execution time in single-threaded application" OFF)
 option(QPL_EXPERIMENTAL_LOG_IAA "Enables logging of execution information on the accelerator to the job structure" OFF)
 option(EFFICIENT_WAIT "Enables usage of efficient wait instructions" OFF)
 option(LIB_FUZZING_ENGINE "Enables fuzzy testing" OFF)
@@ -71,7 +70,6 @@ endif ()
 # Print user's settings
 message(STATUS "Sanitizer used for build and testing: ${QPL_USE_CLANG_SANITIZER}")
 message(STATUS "Hardware initialization logging: ${LOG_HW_INIT}")
-message(STATUS "IAA execution time logging: ${QPL_LOG_IAA_TIME}")
 message(STATUS "IAA execution information logging to job structure: ${QPL_EXPERIMENTAL_LOG_IAA}")
 message(STATUS "Efficient wait instructions: ${EFFICIENT_WAIT}")
 message(STATUS "Fuzz testing build: ${LIB_FUZZING_ENGINE}")

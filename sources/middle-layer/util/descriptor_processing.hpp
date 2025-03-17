@@ -116,10 +116,6 @@ inline auto process_descriptor(hw_descriptor* const                         desc
         qpl::ml::util::store_execution_record_to_result(record_ptr.get(), operation_result);
     } else {
         // Async path
-#ifdef QPL_LOG_IAA_TIME
-        qpl::ml::dispatcher::record_invalid_end_time_to_skip_iaa_timing();
-#endif
-
         if constexpr (std::is_same<other::crc_operation_result_t, return_t>::value) {
             operation_result.status_code_ = convert_hw_accelerator_status_to_qpl_status(accel_status);
         } else {

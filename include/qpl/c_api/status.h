@@ -96,7 +96,7 @@ typedef enum {
     QPL_STS_INVALID_PARAM_ERR      = QPL_PARAMETER_ERROR(5U), /**< Invalid combination of fields in the qpl_job structure */
     QPL_STS_FLAG_CONFLICT_ERR      = QPL_PARAMETER_ERROR(6U), /**< qpl_job flags field contains conflicted values */
     QPL_STS_SIZE_ERR               = QPL_PARAMETER_ERROR(7U), /**< Incorrect size error */
-    QPL_STS_BUFFER_TOO_LARGE_ERR   = QPL_PARAMETER_ERROR(8U), /**< Buffer exceeds max size supported by library */
+    QPL_STS_BUFFER_TOO_LARGE_ERR   __attribute__ ((deprecated ("QPL_STS_BUFFER_TOO_LARGE_ERR is deprecated, use QPL_STS_TRANSFER_SIZE_INVALID for buffers exceeding max size errors"))) = QPL_PARAMETER_ERROR(8U), /**< Buffer exceeds max size supported by library */
     QPL_STS_BUFFER_OVERLAP_ERR     = QPL_PARAMETER_ERROR(9U), /**< Buffers overlap */
 
 // <-- Simple Operations
@@ -185,7 +185,7 @@ typedef enum {
     QPL_STS_INTL_UNSUPPORTED_OPCODE     = QPL_OPERATION_STATUS(16U),  /**< Internal Status Code */
     QPL_STS_INTL_INVALID_OP_FLAG        = QPL_OPERATION_STATUS(17U),  /**< Internal Status Code */
     QPL_STS_INTL_NONZERO_RESERVED_FIELD = QPL_OPERATION_STATUS(18U),  /**< Internal Status Code */
-    QPL_STS_TRANSFER_SIZE_INVALID       = QPL_OPERATION_STATUS(19U),  /**< Invalid value for transfer size or maximum destination size */
+    QPL_STS_TRANSFER_SIZE_INVALID       = QPL_OPERATION_STATUS(19U),  /**< Invalid value for transfer size or maximum destination size, can be returned by QPL on submission if no available workqueues support transfer size */
     QPL_STS_INTL_OVERLAPPING_BUFFERS    = QPL_OPERATION_STATUS(22U),  /**< Internal Status Code */
     QPL_STS_INTL_INVALID_COMP_HANDLE    = QPL_OPERATION_STATUS(25U),  /**< Internal Status Code */
     QPL_STS_INTL_TRANSLATION_PAGE_FAULT = QPL_OPERATION_STATUS(26U),  /**< Internal Status Code */

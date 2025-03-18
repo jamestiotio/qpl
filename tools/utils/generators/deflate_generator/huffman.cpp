@@ -83,16 +83,16 @@ uint32_t huffman_c::get_dist_code(uint32_t dist, uint32_t* p_code) {
 
 void huffman_c::wr_dyn_hdr(BitBuffer* buffer, bool b_final, gen_c* gen) {
     uint32_t *ll_hist = nullptr, *d_hist = nullptr;
-    if ((gen->m_num_ll_lens == 0U) || (gen->m_num_d_lens == 0U)) m_hist.consolidate();
+    if ((gen->get_m_num_ll_lens() == 0U) || (gen->get_m_num_d_lens() == 0U)) m_hist.consolidate();
 
-    if (gen->m_num_ll_lens == 0U)
+    if (gen->get_m_num_ll_lens() == 0U)
         ll_hist = m_hist.m_llcodes;
     else
-        ll_hist = gen->m_ll_lens;
-    if (gen->m_num_d_lens == 0U)
+        ll_hist = gen->get_m_ll_lens();
+    if (gen->get_m_num_d_lens() == 0U)
         d_hist = m_hist.m_distcodes;
     else
-        d_hist = gen->m_d_lens;
+        d_hist = gen->get_m_d_lens();
 
     create_hufftables(buffer, m_ll_codes, m_d_codes, b_final ? 1 : 0, ll_hist, d_hist, gen);
 }
@@ -208,8 +208,8 @@ void huffman_c::wr_stored_blocks(BitBuffer& bb, bool b_final, gen_c* gen, uint32
             }
         }
         bb.write(lcountx, 16U);
-        if (gen->m_testmode & 8U)
-            bb.write(gen->m_testparam ^ 0xFFFFU ^ lcountx, 16U);
+        if (gen->get_m_testmode() & 8U)
+            bb.write(gen->get_m_testparam() ^ 0xFFFFU ^ lcountx, 16U);
         else
             bb.write(0xFFFFU ^ lcountx, 16U);
 

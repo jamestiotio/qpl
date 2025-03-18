@@ -493,10 +493,10 @@ uint32_t create_header(BitBuffer* bb, uint32_t* ll_codes, uint32_t num_ll_codes,
     //    assert(num_d_codes != 0);
     if (num_d_codes == 0U) num_d_codes = 1U;
 
-    if (gen->m_testmode & 16U) { testmode_16 = gen->m_testparam; }
+    if (gen->get_m_testmode() & 16U) { testmode_16 = gen->get_m_testparam(); }
 
     memset(cl_counts, 0U, sizeof(cl_counts));
-    if ((gen->m_testmode & 0x0001U) && (ll_is_lens) && (d_is_lens)) {
+    if ((gen->get_m_testmode() & 0x0001U) && (ll_is_lens) && (d_is_lens)) {
         // combine LL and D when making CL tokens
         uint32_t lld_lens[286U + 32U];
         for (uint32_t i = 0U; i < num_ll_codes; i++) {
@@ -507,15 +507,15 @@ uint32_t create_header(BitBuffer* bb, uint32_t* ll_codes, uint32_t num_ll_codes,
         }
         num_cl_tokens = rl_encode_lens(lld_lens, num_ll_codes + num_d_codes, cl_counts, cl_tokens);
     } else {
-        if ((gen->m_testmode & 4U) && (gen->m_testparam == 0U)) testmode_4 = true;
-        if ((gen->m_testmode & 32U) && (gen->m_testparam & 1U)) testmode_32 = true;
+        if ((gen->get_m_testmode() & 4U) && (gen->get_m_testparam() == 0U)) testmode_4 = true;
+        if ((gen->get_m_testmode() & 32U) && (gen->get_m_testparam() & 1U)) testmode_32 = true;
         if (ll_is_lens)
             num_cl_tokens = rl_encode_lens(ll_codes, num_ll_codes, cl_counts, cl_tokens);
         else
             num_cl_tokens = rl_encode(ll_codes, num_ll_codes, cl_counts, cl_tokens);
 
-        if ((gen->m_testmode & 4U) && (gen->m_testparam != 0U)) testmode_4 = true;
-        if ((gen->m_testmode & 32U) && (gen->m_testparam & 2U)) testmode_32 = true;
+        if ((gen->get_m_testmode() & 4U) && (gen->get_m_testparam() != 0U)) testmode_4 = true;
+        if ((gen->get_m_testmode() & 32U) && (gen->get_m_testparam() & 2U)) testmode_32 = true;
         if (d_is_lens)
             num_cl_tokens += rl_encode_lens(d_codes, num_d_codes, cl_counts, cl_tokens + num_cl_tokens);
         else
@@ -543,16 +543,16 @@ uint32_t create_header(BitBuffer* bb, uint32_t* ll_codes, uint32_t num_ll_codes,
     // 3 <= max_cl_code <= 18  (4 <= num_cl_code <= 19)
     if (num_cl_enc_lens) max_cl_code = num_cl_enc_lens - 1U;
 
-    if (gen->m_testmode & 2U) num_d_codes -= gen->m_testparam;
+    if (gen->get_m_testmode() & 2U) num_d_codes -= gen->get_m_testparam();
 
-    limit = gen->m_extra_len ? 288U : 286U;
+    limit = gen->get_m_extra_len() ? 288U : 286U;
     if (num_ll_codes > limit) {
 #if defined(DEBUG) || (_DEBUG)
         fprintf(stderr, "num ll codes (%d) being truncated to %d\n", num_ll_codes, limit);
 #endif
         num_ll_codes = limit;
     }
-    limit = gen->m_extra_len ? 32U : 30U;
+    limit = gen->get_m_extra_len() ? 32U : 30U;
     if (num_d_codes > limit) {
 #if defined(DEBUG) || (_DEBUG)
         fprintf(stderr, "num d codes (%d) being truncated to %d\n", num_d_codes, limit);
@@ -630,7 +630,7 @@ void create_hufftables(BitBuffer* bb, uint32_t ll_codes[286], uint32_t d_codes[3
     uint32_t  num_cl_lens = 0U;
     bool      cl_alt      = false;
 
-    const uint32_t num_ll_lens = gen->m_num_ll_lens;
+    const uint32_t num_ll_lens = gen->get_m_num_ll_lens();
     if (num_ll_lens == 0U) {
         // make sure EOB is present
         if (ll_hist[256U] == 0U) ll_hist[256U] = 1U;
@@ -643,7 +643,7 @@ void create_hufftables(BitBuffer* bb, uint32_t ll_codes[286], uint32_t d_codes[3
 
     if ((num_ll_lens != 0U) && (num_ll_lens - 1U > max_ll_code)) max_ll_code = num_ll_lens - 1U;
 
-    const uint32_t num_d_lens = gen->m_num_d_lens;
+    const uint32_t num_d_lens = gen->get_m_num_d_lens();
     if (num_d_lens == 0U) {
         create_huff_tree(d_hist, 32U, bl_count, d_codes, MAX_CODE_LEN);
     } else {
@@ -662,27 +662,27 @@ void create_hufftables(BitBuffer* bb, uint32_t ll_codes[286], uint32_t d_codes[3
     uint32_t num_ll_codes = max_ll_code + 1U;
     uint32_t num_d_codes  = max_d_code + 1U;
     bool     ll_is_lens = false, d_is_lens = false;
-    if (gen->m_num_ll_enc_lens) {
-        ll_codes     = gen->m_ll_enc_lens;
-        num_ll_codes = gen->m_num_ll_enc_lens;
+    if (gen->get_m_num_ll_enc_lens()) {
+        ll_codes     = gen->get_m_ll_enc_lens();
+        num_ll_codes = gen->get_m_num_ll_enc_lens();
         ll_is_lens   = true;
     }
-    if (gen->m_num_d_enc_lens) {
-        d_codes     = gen->m_d_enc_lens;
-        num_d_codes = gen->m_num_d_enc_lens;
+    if (gen->get_m_num_d_enc_lens()) {
+        d_codes     = gen->get_m_d_enc_lens();
+        num_d_codes = gen->get_m_num_d_enc_lens();
         d_is_lens   = true;
     }
-    if (gen->m_num_cl_lens_alt) {
-        cl_lens     = gen->m_cl_lens_alt;
-        num_cl_lens = gen->m_num_cl_lens_alt;
+    if (gen->get_m_num_cl_lens_alt()) {
+        cl_lens     = gen->get_m_cl_lens_alt();
+        num_cl_lens = gen->get_m_num_cl_lens_alt();
         cl_alt      = true;
     } else {
-        cl_lens     = gen->m_cl_lens;
-        num_cl_lens = gen->m_num_cl_lens;
+        cl_lens     = gen->get_m_cl_lens();
+        num_cl_lens = gen->get_m_num_cl_lens();
         cl_alt      = false;
     }
     if (bb)
         create_header(bb, ll_codes, num_ll_codes, ll_is_lens, d_codes, num_d_codes, d_is_lens, cl_lens, num_cl_lens,
-                      cl_alt, gen->m_cl_enc_lens, gen->m_num_cl_enc_lens, end_of_block, gen);
+                      cl_alt, gen->get_m_cl_enc_lens(), gen->get_m_num_cl_enc_lens(), end_of_block, gen);
 }
 } // namespace gz_generator

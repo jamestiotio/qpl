@@ -25,51 +25,6 @@ class gen_c {
 protected:
     enum warn_t : std::uint8_t { WARN_D_BEFORE_START, WARN_D_GREATER_HIST, WARN_NO_HUFF_CODE, NUM_WARN };
 
-    struct {
-        bool in_block;
-        bool bfinal;
-        bool bout;
-        bool raw;
-    } m_state;
-
-    enum : std::uint8_t { BT_DYN, BT_FIXED, BT_STORED, BT_INVALID } m_blktype;
-
-    huffman_c               m_huff;
-    grammar_c               m_grammar;
-    gz_generator::BitBuffer m_binaryBitBuffer;
-    std::vector<uint8_t>*   m_pReferenceBitBuffer;
-    uint32_t                m_cum_bytes;
-
-public:
-    uint32_t m_ll_lens[NUM_LL_LENS];
-    uint32_t m_num_ll_lens;
-    uint32_t m_d_lens[NUM_D_LENS];
-    uint32_t m_num_d_lens;
-    uint32_t m_cl_lens[NUM_CL_LENS];
-    uint32_t m_num_cl_lens;
-    uint32_t m_cl_lens_alt[NUM_CL_LENS];
-    uint32_t m_num_cl_lens_alt;
-    uint32_t m_ll_enc_lens[NUM_ENC_LENS];
-    uint32_t m_num_ll_enc_lens;
-    uint32_t m_d_enc_lens[NUM_ENC_LENS];
-    uint32_t m_num_d_enc_lens;
-    uint32_t m_cl_enc_lens[NUM_CL_LENS];
-    uint32_t m_num_cl_enc_lens;
-    uint32_t m_testmode;
-    uint32_t m_testparam;
-    bool     m_extra_len;
-
-protected:
-    uint8_t  m_hist[HIST_SIZE];
-    uint32_t m_hist_ptr;
-    uint32_t m_byte_count;
-    bool     m_warn_printed[NUM_WARN];
-    uint32_t m_pad;
-
-    uint32_t line_num();
-
-    void end_block();
-
 public:
     // fp_in is text file with description
     // fp_bout is the binary output file to get the deflate stream
@@ -115,6 +70,74 @@ public:
     void die(const char* format, ...);
 
     void warn(warn_t warn_id);
+
+    uint32_t* get_m_ll_lens() { return m_ll_lens; }
+
+    uint32_t get_m_num_ll_lens() { return m_num_ll_lens; }
+
+    uint32_t* get_m_d_lens() { return m_d_lens; }
+
+    uint32_t get_m_num_d_lens() { return m_num_d_lens; }
+
+    uint32_t* get_m_cl_lens() { return m_cl_lens; }
+    uint32_t  get_m_num_cl_lens() { return m_num_cl_lens; }
+    uint32_t* get_m_cl_lens_alt() { return m_cl_lens_alt; }
+
+    uint32_t  get_m_num_cl_lens_alt() { return m_num_cl_lens_alt; }
+    uint32_t* get_m_ll_enc_lens() { return m_ll_enc_lens; }
+
+    uint32_t get_m_num_ll_enc_lens() { return m_num_ll_enc_lens; }
+
+    uint32_t* get_m_d_enc_lens() { return m_d_enc_lens; }
+    uint32_t  get_m_num_d_enc_lens() { return m_num_d_enc_lens; }
+    uint32_t* get_m_cl_enc_lens() { return m_cl_enc_lens; }
+    uint32_t  get_m_num_cl_enc_lens() { return m_num_cl_enc_lens; }
+    uint32_t  get_m_testmode() { return m_testmode; }
+    uint32_t  get_m_testparam() { return m_testparam; }
+    bool      get_m_extra_len() { return m_extra_len; }
+
+protected:
+    uint32_t line_num();
+
+    void end_block();
+
+private:
+    struct {
+        bool in_block;
+        bool bfinal;
+        bool bout;
+        bool raw;
+    } m_state;
+
+    enum : std::uint8_t { BT_DYN, BT_FIXED, BT_STORED, BT_INVALID } m_blktype;
+
+    huffman_c               m_huff;
+    grammar_c               m_grammar;
+    gz_generator::BitBuffer m_binaryBitBuffer;
+    std::vector<uint8_t>*   m_pReferenceBitBuffer;
+    uint32_t                m_cum_bytes;
+    uint32_t                m_ll_lens[NUM_LL_LENS];
+    uint32_t                m_num_ll_lens;
+    uint32_t                m_d_lens[NUM_D_LENS];
+    uint32_t                m_num_d_lens;
+    uint32_t                m_cl_lens[NUM_CL_LENS];
+    uint32_t                m_num_cl_lens;
+    uint32_t                m_cl_lens_alt[NUM_CL_LENS];
+    uint32_t                m_num_cl_lens_alt;
+    uint32_t                m_ll_enc_lens[NUM_ENC_LENS];
+    uint32_t                m_num_ll_enc_lens;
+    uint32_t                m_d_enc_lens[NUM_ENC_LENS];
+    uint32_t                m_num_d_enc_lens;
+    uint32_t                m_cl_enc_lens[NUM_CL_LENS];
+    uint32_t                m_num_cl_enc_lens;
+    uint32_t                m_testmode;
+    uint32_t                m_testparam;
+    bool                    m_extra_len;
+    uint8_t                 m_hist[HIST_SIZE];
+    uint32_t                m_hist_ptr;
+    uint32_t                m_byte_count;
+    bool                    m_warn_printed[NUM_WARN];
+    uint32_t                m_pad;
 };
 } // namespace gz_generator
 #endif //QPL_TOOLS_UTILS_GENERATORS_DEFLATE_GENERATOR_INCLUDE_GEN_H

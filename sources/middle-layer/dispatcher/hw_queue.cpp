@@ -233,8 +233,9 @@ auto hw_queue::initialize_new_queue(void* wq_descriptor_ptr) noexcept -> hw_acce
     }
     DIAGA("\n");
 
-    priority_       = accfg_wq_get_priority(work_queue_ptr);
-    block_on_fault_ = accfg_wq_get_block_on_fault(work_queue_ptr);
+    priority_          = accfg_wq_get_priority(work_queue_ptr);
+    block_on_fault_    = accfg_wq_get_block_on_fault(work_queue_ptr);
+    max_transfer_size_ = accfg_wq_get_max_transfer_size(work_queue_ptr);
 
     accfg_op_config op_cfg;
     int32_t get_op_cfg_status = accfg_wq_get_op_config(work_queue_ptr, &op_cfg); //NOLINT(misc-const-correctness)
@@ -268,6 +269,7 @@ auto hw_queue::initialize_new_queue(void* wq_descriptor_ptr) noexcept -> hw_acce
     DIAG("     %7s: priority:    %d\n", work_queue_dev_name, priority_);
     DIAG("     %7s: bof:         %d\n", work_queue_dev_name, block_on_fault_);
     DIAG("     %7s: fd:          %d\n", work_queue_dev_name, fd_);
+    DIAG("     %7s: transfer size: %lu\n", work_queue_dev_name, max_transfer_size_);
 #endif
 
     hw_queue::set_portal_ptr(region_ptr);
@@ -293,6 +295,10 @@ auto hw_queue::get_op_config_register() const noexcept -> op_config_register_t {
 
 auto hw_queue::is_wq_mmaped() const noexcept -> bool {
     return mmap_done_;
+}
+
+auto hw_queue::get_max_transfer_size() const noexcept -> uint64_t {
+    return max_transfer_size_;
 }
 } // namespace qpl::ml::dispatcher
 #endif //__linux__

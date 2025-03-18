@@ -7,6 +7,8 @@
 #ifndef QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_QUEUE_SELECTOR_HPP
 #define QPL_SOURCES_MIDDLE_LAYER_DISPATCHER_QUEUE_SELECTOR_HPP
 
+#include <array>
+#include <map>
 #include <unordered_map>
 
 #include "hw_devices.h"
@@ -25,9 +27,7 @@ class queue_selector {
                                                 QPL_OPCODE_SCAN,       QPL_OPCODE_EXTRACT,  QPL_OPCODE_SELECT,
                                                 QPL_OPCODE_EXPAND};
 
-    using queues_container_t   = std::array<hw_queue, max_working_queues>;
-    using op_config_register_t = std::array<uint32_t, TOTAL_OP_CFG_BIT_GROUPS>;
-    using opcfg_container_t    = std::array<op_config_register_t, max_working_queues>;
+    using queues_container_t = std::array<hw_queue, max_working_queues>;
 
 public:
     queue_selector() = default;
@@ -38,6 +38,7 @@ public:
     queue_selector(const queues_container_t& working_queues, const uint8_t total_wq_size) {
         const bool op_cfg_enabled = working_queues[0].get_op_configuration_support();
 
+        // Initializing operation to enabled WQ indexes map structure
         if (!op_cfg_enabled) {
             for (const uint32_t operation : opcodes_list) {
                 wq_map_operation_enabled_to_bitmask_[operation] = util::bitmask128(total_wq_size);
@@ -59,6 +60,28 @@ public:
                 wq_map_operation_enabled_to_bitmask_[operation] = bit_index_is_valid_wq;
             }
         }
+
+        // Initializing max_transfer_size to enabled WQ indexes map structure
+        for (uint32_t wq_idx = 0; wq_idx < total_wq_size; wq_idx++) {
+            const uint64_t max_transfer_size = working_queues[wq_idx].get_max_transfer_size();
+            if (wq_map_max_transfer_size_to_bitmask_.find(max_transfer_size) ==
+                wq_map_max_transfer_size_to_bitmask_.end()) {
+                wq_map_max_transfer_size_to_bitmask_[max_transfer_size] = util::bitmask128();
+            }
+
+            if (wq_idx < 64) {
+                wq_map_max_transfer_size_to_bitmask_[max_transfer_size].low |= static_cast<uint64_t>(1U) << wq_idx;
+            } else {
+                wq_map_max_transfer_size_to_bitmask_[max_transfer_size].high |= static_cast<uint64_t>(1U)
+                                                                                << (wq_idx - 64);
+            }
+            util::bitmask128 cumulative_bitmask;
+            for (auto r_iter = wq_map_max_transfer_size_to_bitmask_.rbegin();
+                 r_iter != wq_map_max_transfer_size_to_bitmask_.rend(); r_iter++) {
+                r_iter->second     = r_iter->second | cumulative_bitmask;
+                cumulative_bitmask = r_iter->second;
+            }
+        }
     }
 
     /**
@@ -74,12 +97,27 @@ public:
         }
     }
 
+    void reduce_by_transfer_size(const uint64_t transfer_size, util::bitmask128& bit_index_is_valid_wq) const noexcept {
+        auto lower_bound_iter = wq_map_max_transfer_size_to_bitmask_.lower_bound(transfer_size);
+        if (lower_bound_iter == wq_map_max_transfer_size_to_bitmask_.end()) {
+            bit_index_is_valid_wq = util::bitmask128();
+        } else {
+            bit_index_is_valid_wq = bit_index_is_valid_wq & lower_bound_iter->second;
+        }
+    }
+
 private:
     /* Map of operation to enabled WQ indexes
      * Key: Operation code
      * Value: LE-64 Bitmask of size 128 bits of WQ indexes where operation is enabled
      */
     std::unordered_map<uint32_t, util::bitmask128> wq_map_operation_enabled_to_bitmask_;
+
+    /* Map of transfer size boundaries to enabled WQ indexes
+     * Key: Transfer size
+     * Value: LE-64 Bitmask of size 128 bits of WQ indexes where transfer size is supported
+     */
+    std::map<uint64_t, util::bitmask128> wq_map_max_transfer_size_to_bitmask_;
 };
 
 } // namespace qpl::ml::dispatcher

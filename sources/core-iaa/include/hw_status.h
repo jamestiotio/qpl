@@ -25,9 +25,10 @@ typedef enum {                                     //NOLINT(performance-enum-siz
     HW_ACCELERATOR_LIBACCEL_ERROR            = 3U, /**< Accelerator instance can not be found */
     HW_ACCELERATOR_WORK_QUEUES_NOT_AVAILABLE = 4U, /**< Enabled work queues are not found or no enabled devices */
     /* Not exposed to external API */
-    HW_ACCELERATOR_NULL_PTR_ERR        = 5U, /**< Null pointer error */
-    HW_ACCELERATOR_WQ_IS_BUSY          = 6U, /**< Work queue is busy with task processing */
-    HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ = 7U, /**< Work queue OPCFG doesn't support operation */
+    HW_ACCELERATOR_NULL_PTR_ERR           = 5U, /**< Null pointer error */
+    HW_ACCELERATOR_WQ_IS_BUSY             = 6U, /**< Work queue is busy with task processing */
+    HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ    = 7U, /**< Work queue OPCFG doesn't support operation */
+    HW_ACCELERATOR_TRANSFER_SIZE_EXCEEDED = 8U, /**< Transfer size exceeded */
 } hw_accelerator_status;
 
 /**

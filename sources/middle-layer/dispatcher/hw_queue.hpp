@@ -54,20 +54,23 @@ public:
 
     [[nodiscard]] auto execute_noop() const noexcept -> qpl_status;
 
+    [[nodiscard]] auto get_max_transfer_size() const noexcept -> uint64_t;
+
     void set_portal_ptr(void* portal_ptr) noexcept;
 
     virtual ~hw_queue() noexcept;
 
 private:
-    bool                          block_on_fault_  = false;
-    int32_t                       priority_        = 0U;
-    uint64_t                      portal_mask_     = 0U; /**< Mask for incrementing portals */
-    mutable void*                 portal_ptr_      = nullptr;
-    mutable std::atomic<uint64_t> portal_offset_   = 0U; /**< Portal for enqcmd (mod page size)*/
-    bool                          op_cfg_enabled_  = false;
-    op_config_register_t          op_cfg_register_ = {};    /**< OPCFG register content */
-    bool                          mmap_done_       = false; /**< Flag to check whether mmap happened */
-    int                           fd_              = -1;    /**< File descriptor for submission via write */
+    bool                          block_on_fault_    = false;
+    int32_t                       priority_          = 0U;
+    uint64_t                      portal_mask_       = 0U; /**< Mask for incrementing portals */
+    mutable void*                 portal_ptr_        = nullptr;
+    mutable std::atomic<uint64_t> portal_offset_     = 0U; /**< Portal for enqcmd (mod page size)*/
+    bool                          op_cfg_enabled_    = false;
+    op_config_register_t          op_cfg_register_   = {};    /**< OPCFG register content */
+    bool                          mmap_done_         = false; /**< Flag to check whether mmap happened */
+    int                           fd_                = -1;    /**< File descriptor for submission via write */
+    uint64_t                      max_transfer_size_ = 0U;    /**< Maximum transfer size */
 };
 
 } // namespace qpl::ml::dispatcher

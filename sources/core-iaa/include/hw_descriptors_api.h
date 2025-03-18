@@ -662,6 +662,19 @@ static inline HW_PATH_IAA_API(void, descriptor_get_input_buffer,
 }
 
 /**
+ * @brief Get max buffer size from descriptor
+ */
+static inline HW_PATH_IAA_API(uint32_t, descriptor_get_max_buffer_size, (hw_descriptor* const descriptor_ptr)) {
+    hw_decompress_analytics_descriptor* const this_ptr = (hw_decompress_analytics_descriptor*)descriptor_ptr;
+
+    uint32_t max_size = this_ptr->src1_size;
+    if (this_ptr->src2_size > max_size) { max_size = this_ptr->src2_size; }
+    if (this_ptr->max_dst_size > max_size) { max_size = this_ptr->max_dst_size; }
+
+    return max_size;
+}
+
+/**
  * @todo API will be described after refactoring completed
  */
 HW_PATH_IAA_API(void, descriptor_reset, (hw_descriptor* const descriptor_ptr));

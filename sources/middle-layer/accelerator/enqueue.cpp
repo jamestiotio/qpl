@@ -9,10 +9,25 @@
  * @brief Internal HW API functions for @ref hw_enqueue_descriptor API implementation
  */
 
+#include <unordered_map>
+
 #include "dispatcher/hw_dispatcher.hpp"
 #include "hw_definitions.h"
 #include "hw_descriptors_api.h"
 #include "util/hw_timing_util.hpp"
+
+/* If we didn't successfully submit, we need to prioritize the return value
+ * Priority is as follows:
+ *   HW_ACCELERATOR_WQ_IS_BUSY                (found a workqueue that supports our descriptor, but it was busy)
+ *   HW_ACCELERATOR_TRANSFER_SIZE_EXCEEDED    (found a workqueue that supports our operation, but the transfer size was too large)
+ *   HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ       (found an available workqueue, but it didn't support our operation)
+ *   HW_ACCELERATOR_WORK_QUEUES_NOT_AVAILABLE (never found an available workqueue)
+*/
+static const std::unordered_map<hw_accelerator_status, uint8_t> hw_status_to_priority = {
+        {HW_ACCELERATOR_WQ_IS_BUSY, 1U},
+        {HW_ACCELERATOR_TRANSFER_SIZE_EXCEEDED, 2U},
+        {HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ, 3U},
+        {HW_ACCELERATOR_WORK_QUEUES_NOT_AVAILABLE, 4U}};
 
 extern "C" hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t user_specified_numa_id,
                                                        qpl::ml::util::execution_record_ext_t* record) {
@@ -34,18 +49,14 @@ extern "C" hw_accelerator_status hw_enqueue_descriptor(void* desc_ptr, int32_t u
         hw_iaa_descriptor_hint_cpu_cache_as_destination((hw_descriptor*)desc_ptr, device.get_cache_write_available());
 
         const hw_accelerator_status enqueue_result = device.enqueue_descriptor(desc_ptr, record);
-        if (enqueue_result == HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ &&
-            result == HW_ACCELERATOR_WORK_QUEUES_NOT_AVAILABLE) {
-            result = HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ;
-        } else if (enqueue_result == HW_ACCELERATOR_WQ_IS_BUSY) {
-            result = HW_ACCELERATOR_WQ_IS_BUSY;
-        } else if (enqueue_result == HW_ACCELERATOR_STATUS_OK) {
-            result = HW_ACCELERATOR_STATUS_OK;
+        // if we successfully submitted return OK immediately
+        if (enqueue_result == HW_ACCELERATOR_STATUS_OK) {
 #if QPL_EXPERIMENTAL_LOG_IAA
             qpl::ml::util::record_device_idx(record, device_idx);
 #endif
-            break;
+            return HW_ACCELERATOR_STATUS_OK;
         }
+        if (hw_status_to_priority.at(enqueue_result) < hw_status_to_priority.at(result)) { result = enqueue_result; }
     }
 #else
     // Not supported on Windows yet

@@ -68,12 +68,16 @@ auto hw_device::enqueue_descriptor(void* desc_ptr, qpl::ml::util::execution_reco
         -> hw_accelerator_status {
     static thread_local std::uint32_t wq_idx = 0;
 
-    const uint32_t   operation             = hw_iaa_descriptor_get_operation((hw_descriptor*)desc_ptr);
+    const uint32_t   desc_operation        = hw_iaa_descriptor_get_operation((hw_descriptor*)desc_ptr);
+    const uint32_t   desc_transfer_size    = hw_iaa_descriptor_get_max_buffer_size((hw_descriptor*)desc_ptr);
     util::bitmask128 bit_index_is_valid_wq = util::bitmask128(queue_count_);
 
     // Must select only workqueues w/ operation enabled
-    queue_selection_.reduce_by_operation(operation, bit_index_is_valid_wq);
+    queue_selection_.reduce_by_operation(desc_operation, bit_index_is_valid_wq);
     if (bit_index_is_valid_wq == 0U) { return HW_ACCELERATOR_NOT_SUPPORTED_BY_WQ; }
+
+    queue_selection_.reduce_by_transfer_size(desc_transfer_size, bit_index_is_valid_wq);
+    if (bit_index_is_valid_wq == 0U) { return HW_ACCELERATOR_TRANSFER_SIZE_EXCEEDED; }
 
     // For small low-latency cases WQ with small transfer size may be preferable
     // TODO: order WQs by priority and engines capacity, check transfer sizes and other possible features

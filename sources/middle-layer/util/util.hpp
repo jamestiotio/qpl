@@ -151,6 +151,20 @@ struct bitmask128 {
         }
     }
 
+    bitmask128 operator|(const bitmask128& other) const noexcept {
+        bitmask128 out;
+        out.low  = low | other.low;
+        out.high = high | other.high;
+        return out;
+    }
+
+    bitmask128 operator&(const bitmask128& other) const noexcept {
+        bitmask128 out;
+        out.low  = low & other.low;
+        out.high = high & other.high;
+        return out;
+    }
+
     bool operator==(const uint64_t& rhs) const noexcept { return low == rhs && high == 0U; }
 };
 

@@ -94,6 +94,8 @@ auto hw_queue::initialize_new_queue(void* wq_descriptor_ptr) noexcept -> qpl_tes
         op_cfg_enabled_ = true;
     }
 
+    transfer_size_ = qpl_test_accfg_wq_get_max_transfer_size(work_queue_ptr);
+
     hw_queue::set_portal_ptr(region_ptr);
 
     return QPL_TEST_HW_ACCELERATOR_STATUS_OK;
@@ -113,6 +115,10 @@ auto hw_queue::get_op_config_register() const noexcept -> op_config_register_t {
 
 auto hw_queue::get_size() const noexcept -> uint64_t {
     return size_;
+}
+
+auto hw_queue::get_transfer_size() const noexcept -> uint64_t {
+    return transfer_size_;
 }
 
 } // namespace qpl::test

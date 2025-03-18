@@ -49,6 +49,8 @@ public:
 
     [[nodiscard]] auto get_size() const noexcept -> uint64_t;
 
+    [[nodiscard]] auto get_transfer_size() const noexcept -> uint64_t;
+
     void set_portal_ptr(void* portal_ptr) noexcept;
 
     virtual ~hw_queue() noexcept;
@@ -61,6 +63,7 @@ private:
     bool                          op_cfg_enabled_  = false;
     op_config_register_t          op_cfg_register_ = {}; /**< OPCFG register content */
     uint64_t                      size_            = 0U; /**< Size of queue */
+    uint64_t                      transfer_size_   = 0U; /**< Transfer size for WQ */
 };
 
 } // namespace qpl::test

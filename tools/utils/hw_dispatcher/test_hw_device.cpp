@@ -76,6 +76,15 @@ auto hw_device::get_operation_supported_on_wq(const uint32_t wq_idx, const uint3
     return QPL_TEST_OC_GET_OP_SUPPORTED(op_configs_[wq_idx], operation);
 }
 
+auto hw_device::get_max_transfer_size() const noexcept -> uint64_t {
+    uint64_t max_transfer_size = 0;
+    for (int i = 0; i < queue_count_; i++) {
+        max_transfer_size = std::max(max_transfer_size, wq_transfer_sizes_[i]);
+    }
+    if (dev_transfer_size_ < max_transfer_size) { max_transfer_size = dev_transfer_size_; }
+    return max_transfer_size;
+}
+
 auto hw_device::initialize_new_device(descriptor_t* device_descriptor_ptr) noexcept -> qpl_test_hw_accelerator_status {
     // Device initialization stage
     auto*       device_ptr    = reinterpret_cast<accfg_device*>(device_descriptor_ptr);
@@ -90,8 +99,9 @@ auto hw_device::initialize_new_device(descriptor_t* device_descriptor_ptr) noexc
         return QPL_TEST_HW_ACCELERATOR_WORK_QUEUES_NOT_AVAILABLE;
     }
 
-    numa_node_id_ = qpl_test_accfg_device_get_numa_node(device_ptr);
-    socket_id_    = qpl::test::get_socket_id();
+    numa_node_id_      = qpl_test_accfg_device_get_numa_node(device_ptr);
+    socket_id_         = qpl::test::get_socket_id();
+    dev_transfer_size_ = qpl_test_accfg_device_get_max_transfer_size(device_ptr);
 
     // Retrieve IAACAP if available
     uint64_t      iaa_cap            = 0U;
@@ -143,6 +153,9 @@ auto hw_device::initialize_new_device(descriptor_t* device_descriptor_ptr) noexc
         for (uint32_t register_index = 0; register_index < QPL_TEST_TOTAL_OP_CFG_BIT_GROUPS; register_index++) {
             op_configs_[wq_idx] = working_queues_[wq_idx].get_op_config_register();
         }
+
+        // set transfer_size for each WQ
+        wq_transfer_sizes_[wq_idx] = working_queues_[wq_idx].get_transfer_size();
     }
 
     return QPL_TEST_HW_ACCELERATOR_STATUS_OK;

@@ -46,9 +46,10 @@ class hw_device final {
 
     static constexpr uint32_t max_working_queues = QPL_TEST_MAX_NUM_WQ;
 
-    using queues_container_t   = std::array<hw_queue, max_working_queues>;
-    using op_config_register_t = std::array<uint32_t, QPL_TEST_TOTAL_OP_CFG_BIT_GROUPS>;
-    using opcfg_container_t    = std::array<op_config_register_t, max_working_queues>;
+    using queues_container_t        = std::array<hw_queue, max_working_queues>;
+    using op_config_register_t      = std::array<uint32_t, QPL_TEST_TOTAL_OP_CFG_BIT_GROUPS>;
+    using opcfg_container_t         = std::array<op_config_register_t, max_working_queues>;
+    using transfer_size_container_t = std::array<uint64_t, max_working_queues>;
 
 public:
     using descriptor_t = void;
@@ -82,17 +83,22 @@ public:
 
     [[nodiscard]] auto get_engine_count() const noexcept -> uint32_t;
 
+    [[nodiscard]] auto get_max_transfer_size() const noexcept -> uint64_t;
+
 private:
     queues_container_t working_queues_ = {}; /**< Set of available HW working queues */
     opcfg_container_t  op_configs_     = {}; /**< Array of OPCFG register content for each available HW working queue */
-    uint32_t           queue_count_    = 0U; /**< Number of working queues that are available */
-    uint64_t           iaa_cap_register_ = 0U;    /**< IAACAP register content */
-    uint64_t           numa_node_id_     = 0U;    /**< NUMA node id of the device */
-    uint32_t           version_major_    = 0U;    /**< Major version of discovered device */
-    uint32_t           version_minor_    = 0U;    /**< Minor version of discovered device */
-    bool               op_cfg_enabled_   = false; /**< Need to check workqueue's OPCFG register */
-    uint32_t           engine_count_     = 0U;    /**< Number of engines */
-    uint64_t           socket_id_        = 0U;    /**< Socket id of the device */
+    transfer_size_container_t wq_transfer_sizes_ =
+            {};                          /**< Array of transfer sizes for each available HW working queue */
+    uint32_t queue_count_       = 0U;    /**< Number of working queues that are available */
+    uint64_t iaa_cap_register_  = 0U;    /**< IAACAP register content */
+    uint64_t numa_node_id_      = 0U;    /**< NUMA node id of the device */
+    uint32_t version_major_     = 0U;    /**< Major version of discovered device */
+    uint32_t version_minor_     = 0U;    /**< Minor version of discovered device */
+    bool     op_cfg_enabled_    = false; /**< Need to check workqueue's OPCFG register */
+    uint64_t dev_transfer_size_ = 0u;    /**< Device Transfer size */
+    uint32_t engine_count_      = 0U;    /**< Number of engines */
+    uint64_t socket_id_         = 0U;    /**< Socket id of the device */
 };
 
 bool is_device_matching_user_numa_policy(uint64_t numa_node_id_, uint64_t socket_id_,

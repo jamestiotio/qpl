@@ -72,6 +72,8 @@ typedef const char* (*accfg_device_get_devname_ptr)(accfg_dev* device);
 
 typedef int (*accfg_device_get_numa_node_ptr)(accfg_dev* device);
 
+typedef uint64_t (*accfg_device_get_max_transfer_size_ptr)(accfg_dev* device);
+
 typedef enum accfg_device_state (*accfg_device_get_state_ptr)(accfg_dev* device);
 
 typedef unsigned int (*accfg_device_get_version_ptr)(accfg_dev* device);
@@ -89,6 +91,8 @@ typedef uint64_t (*accfg_wq_get_size_ptr)(accfg_wq* wq);
 typedef int (*accfg_wq_get_priority_ptr)(accfg_wq* wq);
 
 typedef enum accfg_wq_state (*accfg_wq_get_state_ptr)(accfg_wq* wq);
+
+typedef uint64_t (*accfg_wq_get_max_transfer_size_ptr)(accfg_wq* wq);
 
 typedef int (*accfg_wq_get_user_dev_path_ptr)(accfg_wq* wq, char* buf, size_t size);
 
@@ -129,6 +133,8 @@ const char* qpl_test_accfg_device_get_devname(accfg_dev* device);
 
 int qpl_test_accfg_device_get_numa_node(accfg_dev* device);
 
+uint64_t qpl_test_accfg_device_get_max_transfer_size(accfg_dev* device);
+
 enum accfg_device_state qpl_test_accfg_device_get_state(accfg_dev* device);
 
 unsigned int qpl_test_accfg_device_get_version(accfg_dev* device);
@@ -146,6 +152,8 @@ uint64_t qpl_test_accfg_wq_get_size(accfg_wq* wq);
 int qpl_test_accfg_wq_get_priority(accfg_wq* wq);
 
 enum accfg_wq_state qpl_test_accfg_wq_get_state(accfg_wq* wq);
+
+uint64_t qpl_test_accfg_wq_get_max_transfer_size(accfg_wq* wq);
 
 int qpl_test_accfg_wq_get_user_dev_path(accfg_wq* wq, char* buf, size_t size);
 

@@ -34,8 +34,9 @@ public:
     [[nodiscard]] auto get_data() const -> const dataset_data_t&;
 
 protected:
-    dataset_data_t data_ {};
-    std::string    path_;
+    dataset_data_t data_ {}; //NOLINT(misc-non-private-member-variables-in-classes)
+private:
+    std::string path_;
 };
 } // namespace qpl::tools
 

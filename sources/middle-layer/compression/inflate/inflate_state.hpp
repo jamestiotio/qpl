@@ -163,8 +163,10 @@ public:
     };
 
     inflate_state(const inflate_state&) = default;
+    inflate_state(inflate_state&&)      = default;
 
     inflate_state& operator=(const inflate_state&) = delete;
+    inflate_state& operator=(inflate_state&&)      = delete;
 
     ~inflate_state() { this->execution_state_ptr->aecs_index ^= 1U; }
 

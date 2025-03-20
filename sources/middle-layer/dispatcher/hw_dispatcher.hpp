@@ -71,6 +71,11 @@ public:
 #endif //__linux__
 
     virtual ~hw_dispatcher() noexcept;
+    hw_dispatcher(const hw_dispatcher& other) = delete;
+    hw_dispatcher(hw_dispatcher&& other)      = delete;
+
+    auto operator=(const hw_dispatcher& other) -> hw_dispatcher& = delete;
+    auto operator=(hw_dispatcher&& other) -> hw_dispatcher&      = delete;
 
 protected:
     hw_dispatcher() noexcept;

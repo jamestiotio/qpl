@@ -35,6 +35,12 @@ public:
      */
     ~awaiter() noexcept;
 
+    awaiter(const awaiter&) = delete;
+    awaiter(awaiter&&)      = delete;
+
+    awaiter& operator=(const awaiter&) = delete;
+    awaiter& operator=(awaiter&&)      = delete;
+
     static void wait_for(volatile void* address, uint8_t initial_value) noexcept;
 
 private:

@@ -92,8 +92,10 @@ using scan_function_ptr         = scan_table_t::value_type;
 class kernels_dispatcher final {
 public:
     kernels_dispatcher(const kernels_dispatcher& other) = delete;
+    kernels_dispatcher(kernels_dispatcher&& other)      = delete;
 
     auto operator=(const kernels_dispatcher& other) -> kernels_dispatcher& = delete;
+    auto operator=(kernels_dispatcher&& other) -> kernels_dispatcher&      = delete;
 
     ~kernels_dispatcher() = default;
 

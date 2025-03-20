@@ -45,6 +45,8 @@ public:
                       // Empty constructor
               };
 
+        ~unpack_result_t() = default;
+
         constexpr unpack_result_t(const unpack_result_t& other) noexcept = default;
 
         constexpr unpack_result_t(unpack_result_t&& other) noexcept = default;

@@ -20,7 +20,8 @@ class implementation {
 public:
     using handler_t = auto (*)(stream_t&, compression_state_t&) noexcept -> qpl_ml_status;
 
-    implementation() = delete;
+    implementation()           = delete;
+    ~implementation() noexcept = default;
 
     constexpr explicit implementation(std::initializer_list<std::pair<compression_state_t, handler_t>> handlers) {
         for (const auto& it : handlers) {

@@ -44,6 +44,18 @@ extern "C" {
 #endif
 
 /**
+ * @brief Deprecation attribute for functions
+ * @note Use pragma deprecated for Windows
+ */
+#if !defined(QPL_DEPRECATED)
+#if defined(__GNUC__) || defined(__clang__)
+#define QPL_DEPRECATED(msg) __attribute__((deprecated(msg)))
+#else
+#define QPL_DEPRECATED(msg)
+#endif
+#endif
+
+/**
  * Unused variables which might be used later - warning removal
  */
 #define MAYBE_UNUSED(x) ((void)(x))

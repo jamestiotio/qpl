@@ -16,6 +16,8 @@
 #pragma GCC visibility push(default)
 #endif
 
+#include "qpl/c_api/defs.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -96,7 +98,7 @@ typedef enum {
     QPL_STS_INVALID_PARAM_ERR      = QPL_PARAMETER_ERROR(5U), /**< Invalid combination of fields in the qpl_job structure */
     QPL_STS_FLAG_CONFLICT_ERR      = QPL_PARAMETER_ERROR(6U), /**< qpl_job flags field contains conflicted values */
     QPL_STS_SIZE_ERR               = QPL_PARAMETER_ERROR(7U), /**< Incorrect size error */
-    QPL_STS_BUFFER_TOO_LARGE_ERR   __attribute__ ((deprecated ("QPL_STS_BUFFER_TOO_LARGE_ERR is deprecated, use QPL_STS_TRANSFER_SIZE_INVALID for buffers exceeding max size errors"))) = QPL_PARAMETER_ERROR(8U), /**< Buffer exceeds max size supported by library */
+    QPL_STS_BUFFER_TOO_LARGE_ERR QPL_DEPRECATED("QPL_STS_BUFFER_TOO_LARGE_ERR is deprecated, use QPL_STS_TRANSFER_SIZE_INVALID for buffers exceeding max size errors") = QPL_PARAMETER_ERROR(8U), /**< Buffer exceeds max size supported by library */
     QPL_STS_BUFFER_OVERLAP_ERR     = QPL_PARAMETER_ERROR(9U), /**< Buffers overlap */
 
 // <-- Simple Operations
@@ -222,6 +224,10 @@ typedef enum {
     QPL_STS_INIT_LIBACCEL_ERROR               = QPL_INIT_ERROR(2U), /**< libaccel internal error */
     QPL_STS_INIT_WORK_QUEUES_NOT_AVAILABLE    = QPL_INIT_ERROR(3U), /**< Supported and enabled work queues are not found (May be due to lack of privileges e.g. lack of sudo on linux)*/
 } qpl_status;
+
+#ifdef _MSC_VER
+#pragma deprecated(QPL_STS_BUFFER_TOO_LARGE_ERR, "QPL_STS_BUFFER_TOO_LARGE_ERR is deprecated, use QPL_STS_TRANSFER_SIZE_INVALID for buffers exceeding max size errors")
+#endif
 
 /** @} */
 

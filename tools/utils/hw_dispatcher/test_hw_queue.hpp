@@ -16,11 +16,15 @@
 #include "test_hw_status.h"
 
 // DEFINITIONS
-#define QPL_TEST_TOTAL_OP_CFG_BIT_GROUPS 8U        /**< 256 bits / 32 bit groups */
-#define QPL_TEST_OWN_PAGE_MASK           0x0FFFLLU /**< Defines page mask for portal incrementing */
+#define QPL_TEST_TOTAL_OP_CFG_BIT_GROUPS 8U /**< 256 bits / 32 bit groups */
 
 namespace qpl::test {
 
+/**
+ * This hw_queue class is just used to query and receive properties from libaccel-config 
+ * for the purpose of enabling tests to be dependent on different configurations.
+ * It doesn't provide the functionality of submission of descriptors
+ */
 class hw_queue {
 public:
     using descriptor_t = void;
@@ -33,13 +37,11 @@ public:
 
     auto operator=(const hw_queue& other) noexcept -> hw_queue& = delete;
 
-    hw_queue(hw_queue&& other) noexcept;
+    hw_queue(hw_queue&& other) noexcept = default;
 
-    auto operator=(hw_queue&& other) noexcept -> hw_queue&;
+    auto operator=(hw_queue&& other) noexcept -> hw_queue& = default;
 
     auto initialize_new_queue(descriptor_t* wq_descriptor_ptr) noexcept -> qpl_test_hw_accelerator_status;
-
-    [[nodiscard]] auto get_portal_ptr() const noexcept -> void*;
 
     [[nodiscard]] auto priority() const noexcept -> int32_t;
 
@@ -51,19 +53,14 @@ public:
 
     [[nodiscard]] auto get_transfer_size() const noexcept -> uint64_t;
 
-    void set_portal_ptr(void* portal_ptr) noexcept;
-
-    virtual ~hw_queue() noexcept;
+    virtual ~hw_queue() noexcept = default;
 
 private:
-    int32_t                       priority_        = 0U;
-    uint64_t                      portal_mask_     = 0U; /**< Mask for incrementing portals */
-    mutable void*                 portal_ptr_      = nullptr;
-    mutable std::atomic<uint64_t> portal_offset_   = 0U; /**< Portal for enqcmd (mod page size)*/
-    bool                          op_cfg_enabled_  = false;
-    op_config_register_t          op_cfg_register_ = {}; /**< OPCFG register content */
-    uint64_t                      size_            = 0U; /**< Size of queue */
-    uint64_t                      transfer_size_   = 0U; /**< Transfer size for WQ */
+    int32_t              priority_        = 0U;
+    bool                 op_cfg_enabled_  = false;
+    op_config_register_t op_cfg_register_ = {}; /**< OPCFG register content */
+    uint64_t             size_            = 0U; /**< Size of queue */
+    uint64_t             transfer_size_   = 0U; /**< Transfer size for WQ */
 };
 
 } // namespace qpl::test

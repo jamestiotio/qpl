@@ -222,9 +222,9 @@ static inline void base_counters(benchmark::State& state, statistics_t& stat, st
 
     if (state.iterations() != 0) {
         if (type == stat_type_e::compression || type == stat_type_e::crc64) {
-            throughput = static_cast<double>(stat.data_read / state.iterations());
+            throughput = static_cast<double>(stat.data_read) / static_cast<double>(state.iterations());
         } else if (type == stat_type_e::decompression) {
-            throughput = static_cast<double>(stat.data_written / state.iterations());
+            throughput = static_cast<double>(stat.data_written) / static_cast<double>(state.iterations());
         }
     }
 

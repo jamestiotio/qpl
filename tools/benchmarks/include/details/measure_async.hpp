@@ -22,8 +22,8 @@
 
 namespace bench::details {
 template <path_e path, typename OperationT, typename ParamsT>
-static statistics_t measure_async(benchmark::State& state, const case_params_t& common_params, OperationT&& operations,
-                                  ParamsT&& params) {
+static statistics_t measure_async(benchmark::State& state, const case_params_t& common_params, OperationT& operations,
+                                  ParamsT& params) {
     statistics_t res;
     auto         threads = state.threads();
     if constexpr (path == path_e::cpu) {

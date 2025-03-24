@@ -96,7 +96,7 @@ private:
     uint32_t version_major_     = 0U;    /**< Major version of discovered device */
     uint32_t version_minor_     = 0U;    /**< Minor version of discovered device */
     bool     op_cfg_enabled_    = false; /**< Need to check workqueue's OPCFG register */
-    uint64_t dev_transfer_size_ = 0u;    /**< Device Transfer size */
+    uint64_t dev_transfer_size_ = 0U;    /**< Device Transfer size */
     uint32_t engine_count_      = 0U;    /**< Number of engines */
     uint64_t socket_id_         = 0U;    /**< Socket id of the device */
 };

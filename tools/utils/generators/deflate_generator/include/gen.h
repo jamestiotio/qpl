@@ -72,29 +72,22 @@ public:
     void warn(warn_t warn_id);
 
     uint32_t* get_m_ll_lens() { return m_ll_lens; }
-
-    uint32_t get_m_num_ll_lens() { return m_num_ll_lens; }
-
+    uint32_t  get_m_num_ll_lens() const { return m_num_ll_lens; }
     uint32_t* get_m_d_lens() { return m_d_lens; }
-
-    uint32_t get_m_num_d_lens() { return m_num_d_lens; }
-
+    uint32_t  get_m_num_d_lens() const { return m_num_d_lens; }
     uint32_t* get_m_cl_lens() { return m_cl_lens; }
-    uint32_t  get_m_num_cl_lens() { return m_num_cl_lens; }
+    uint32_t  get_m_num_cl_lens() const { return m_num_cl_lens; }
     uint32_t* get_m_cl_lens_alt() { return m_cl_lens_alt; }
-
-    uint32_t  get_m_num_cl_lens_alt() { return m_num_cl_lens_alt; }
+    uint32_t  get_m_num_cl_lens_alt() const { return m_num_cl_lens_alt; }
     uint32_t* get_m_ll_enc_lens() { return m_ll_enc_lens; }
-
-    uint32_t get_m_num_ll_enc_lens() { return m_num_ll_enc_lens; }
-
+    uint32_t  get_m_num_ll_enc_lens() const { return m_num_ll_enc_lens; }
     uint32_t* get_m_d_enc_lens() { return m_d_enc_lens; }
-    uint32_t  get_m_num_d_enc_lens() { return m_num_d_enc_lens; }
+    uint32_t  get_m_num_d_enc_lens() const { return m_num_d_enc_lens; }
     uint32_t* get_m_cl_enc_lens() { return m_cl_enc_lens; }
-    uint32_t  get_m_num_cl_enc_lens() { return m_num_cl_enc_lens; }
-    uint32_t  get_m_testmode() { return m_testmode; }
-    uint32_t  get_m_testparam() { return m_testparam; }
-    bool      get_m_extra_len() { return m_extra_len; }
+    uint32_t  get_m_num_cl_enc_lens() const { return m_num_cl_enc_lens; }
+    uint32_t  get_m_testmode() const { return m_testmode; }
+    uint32_t  get_m_testparam() const { return m_testparam; }
+    bool      get_m_extra_len() const { return m_extra_len; }
 
 protected:
     uint32_t line_num();

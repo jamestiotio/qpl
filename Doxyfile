@@ -2158,7 +2158,21 @@ PREDEFINED             = "QPL_API(type,name,arg)=type name arg;" \
                          "HW_PATH_IAA_AECS_API(type,name,arg)=type hw_iaa_aecs_##name arg" \
                          "HW_PATH_BYTE_PACKED_STRUCTURE_BEGIN=typedef struct" \
                          "OWN_QPLC_API(type,name,arg)=type name arg;" \
-                         "OWN_QPLC_FUN(type,name,arg)=type name arg"
+                         "OWN_QPLC_FUN(type,name,arg)=type name arg" \
+                         "QPL_DEPRECATED(msg)=" \
+                         "QPL_PROCESSING_ERROR_BASE=0U" \
+                         "QPL_PARAMETER_ERROR_BASE=50U" \
+                         "QPL_SERVICE_LOGIC_ERROR_BASE=100U"\
+                         "QPL_OPERATION_ERROR_BASE=200U" \
+                         "QPL_OPERATION_STATUS_BASE=300U" \
+                         "QPL_INIT_ERROR_BASE=500U" \
+                         "QPL_PROCESSING_ERROR(x)=QPL_PROCESSING_ERROR_BASE+x" \
+                         "QPL_PARAMETER_ERROR(x)=QPL_PARAMETER_ERROR_BASE+x" \
+                         "QPL_SERVICE_LOGIC_ERROR(x)=QPL_SERVICE_LOGIC_ERROR_BASE+x" \
+                         "QPL_OPERATION_ERROR(x)=QPL_OPERATION_ERROR_BASE+x" \
+                         "QPL_OPERATION_STATUS(x)=QPL_OPERATION_STATUS_BASE+x" \
+                         "QPL_INIT_ERROR(x)=QPL_INIT_ERROR_BASE+x" \
+
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The

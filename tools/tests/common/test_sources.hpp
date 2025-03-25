@@ -32,6 +32,13 @@ public:
 
     AnalyticStream(size_t element_count, uint8_t bit_width, qpl_parser parser);
 
+    AnalyticStream(const AnalyticStream& other)                    = default;
+    AnalyticStream(AnalyticStream&& other)                         = delete;
+    auto operator=(const AnalyticStream& other) -> AnalyticStream& = delete;
+    auto operator=(AnalyticStream&& other) -> AnalyticStream&      = delete;
+
+    virtual ~AnalyticStream() = default;
+
     auto data() noexcept -> uint8_t*;
 
     auto size() noexcept -> size_t;

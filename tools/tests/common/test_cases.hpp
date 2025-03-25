@@ -53,6 +53,13 @@ public:
         // Do your setups for the current test case here
     }
 
+    TestCases(const TestCases& other)                    = delete;
+    TestCases(TestCases&& other)                         = delete;
+    auto operator=(const TestCases& other) -> TestCases& = delete;
+    auto operator=(TestCases&& other) -> TestCases&      = delete;
+
+    virtual ~TestCases() = default;
+
 protected:
     TestCases() = default;
 

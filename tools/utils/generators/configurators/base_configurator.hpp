@@ -20,6 +20,13 @@ class ITestConfigurator {
 public:
     virtual GenStatus                          generate()  = 0;
     virtual std::unique_ptr<std::stringstream> getConfig() = 0;
+    ITestConfigurator()                                    = default;
+    virtual ~ITestConfigurator()                           = default;
+
+    ITestConfigurator(const ITestConfigurator& other)                    = delete;
+    ITestConfigurator(ITestConfigurator&& other)                         = delete;
+    auto operator=(const ITestConfigurator& other) -> ITestConfigurator& = delete;
+    auto operator=(ITestConfigurator&& other) -> ITestConfigurator&      = delete;
 };
 
 static const float        STORED_BLOCK_PROBABILITY  = 0.33F;

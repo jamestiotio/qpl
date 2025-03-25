@@ -18,6 +18,7 @@
 #include "tb_ll_common.hpp"
 
 // tests_common
+#include "dispatcher_checks.hpp"
 #include "operation_test.hpp"
 
 // tool_common
@@ -196,6 +197,35 @@ QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(deflate, dictionary_and_verification) {
     set_operation_properties(job_ptr, DROP_INITIAL_BYTES, QPL_FLAG_FIRST, qpl_op_compress);
 
     ASSERT_EQ(run_job_api(job_ptr), QPL_STS_NOT_SUPPORTED_MODE_ERR);
+}
+
+/**
+ * @brief Bad argument test for @ref qpl_op_compress operation based on accelerator configuration
+ */
+QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(deflate, max_transfer_size) {
+    QPL_SKIP_TEST_FOR(qpl_path_software);
+    QPL_SKIP_TEST_FOR(qpl_path_auto);
+
+    uint64_t max_transfer_size = get_max_transfer_size();
+
+    // need to allocate one more byte to exceed the transfer size
+    auto source      = std::unique_ptr<uint8_t[]>(new uint8_t[max_transfer_size + 1]);
+    auto destination = std::unique_ptr<uint8_t[]>(new uint8_t[max_transfer_size + 1]);
+
+    // Preset
+    set_operation_properties(job_ptr, NOT_APPLICABLE_PARAMETER, QPL_FLAG_FIRST | QPL_FLAG_LAST, qpl_op_compress);
+    set_input_stream(job_ptr, source.get(), SOURCE_ARRAY_SIZE, NOT_APPLICABLE_PARAMETER, NOT_APPLICABLE_PARAMETER,
+                     static_cast<qpl_parser>(NOT_APPLICABLE_PARAMETER));
+    set_output_stream(job_ptr, destination.get(), DESTINATION_ARRAY_SIZE,
+                      static_cast<qpl_out_format>(NOT_APPLICABLE_PARAMETER));
+
+    job_ptr->available_in = static_cast<uint32_t>(max_transfer_size + 1);
+    ASSERT_EQ(run_job_api(job_ptr), QPL_STS_TRANSFER_SIZE_INVALID);
+    job_ptr->available_in = SOURCE_ARRAY_SIZE;
+
+    job_ptr->available_out = static_cast<uint32_t>(max_transfer_size + 1);
+    ASSERT_EQ(run_job_api(job_ptr), QPL_STS_TRANSFER_SIZE_INVALID);
+    job_ptr->available_out = DESTINATION_ARRAY_SIZE;
 }
 
 QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(compress_huffman_only, fixed) {

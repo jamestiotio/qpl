@@ -11,6 +11,7 @@
 #include "operation_test.hpp"
 
 // utils_common
+#include "dispatcher_checks.hpp"
 #include "iaa_features_checks.hpp"
 
 // tool_common
@@ -72,6 +73,40 @@ QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(select, buffer_overlap) {
 
     check_buffer_overlap<operation_group_e::filter_double_source>(job_ptr, qpl_op_select,
                                                                   OPERATION_FLAGS | QPL_FLAG_DECOMPRESS_ENABLE);
+}
+
+/**
+ * @brief A basic @ref qpl_op_select operations based on accelerator configuration
+ */
+QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(select, max_transfer_size) {
+    QPL_SKIP_TEST_FOR(qpl_path_software);
+    QPL_SKIP_TEST_FOR(qpl_path_auto);
+
+    uint64_t max_transfer_size = get_max_transfer_size();
+
+    // need to allocate one more byte to exceed the transfer size
+    auto source      = std::unique_ptr<uint8_t[]>(new uint8_t[max_transfer_size + 1]);
+    auto destination = std::unique_ptr<uint8_t[]>(new uint8_t[max_transfer_size + 1]);
+    auto mask        = std::unique_ptr<uint8_t[]>(new uint8_t[max_transfer_size + 1]);
+
+    // Preset correct parameters
+    set_input_stream(job_ptr, source.get(), SOURCE_ARRAY_SIZE, INPUT_BIT_WIDTH, ELEMENTS_TO_PROCESS, INPUT_FORMAT);
+    set_mask_stream(job_ptr, mask.get(), MASK_ARRAY_SIZE, MASK_BIT_WIDTH);
+    set_operation_properties(job_ptr, DROP_INITIAL_BYTES, OPERATION_FLAGS, qpl_op_select);
+
+    set_output_stream(job_ptr, destination.get(), DESTINATION_ARRAY_SIZE, qpl_ow_nom);
+
+    job_ptr->available_in = static_cast<uint32_t>(max_transfer_size + 1);
+    ASSERT_EQ(run_job_api(job_ptr), QPL_STS_TRANSFER_SIZE_INVALID);
+    job_ptr->available_in = SOURCE_ARRAY_SIZE;
+
+    job_ptr->available_src2 = static_cast<uint32_t>(max_transfer_size + 1);
+    ASSERT_EQ(run_job_api(job_ptr), QPL_STS_TRANSFER_SIZE_INVALID);
+    job_ptr->available_src2 = MASK_ARRAY_SIZE;
+
+    job_ptr->available_out = static_cast<uint32_t>(max_transfer_size + 1);
+    ASSERT_EQ(run_job_api(job_ptr), QPL_STS_TRANSFER_SIZE_INVALID);
+    job_ptr->available_out = DESTINATION_ARRAY_SIZE;
 }
 
 /////////////////////////////////////

@@ -14,6 +14,7 @@
 #include "util.hpp"
 
 // tests_common
+#include "dispatcher_checks.hpp"
 #include "operation_test.hpp"
 
 namespace qpl::test {
@@ -97,6 +98,39 @@ QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(scan, drop_initial_bytes) {
 
     check_drop_initial_bytes_verification<operation_group_e::filter_single_source>(
             job_ptr, operation, OPERATION_FLAGS | QPL_FLAG_DECOMPRESS_ENABLE);
+}
+
+/**
+ * @brief A basic @ref qpl_op_scan_* operations based on accelerator configuration
+ */
+QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(scan, max_transfer_size) {
+    QPL_SKIP_TEST_FOR(qpl_path_software);
+    QPL_SKIP_TEST_FOR(qpl_path_auto);
+
+    uint64_t max_transfer_size = get_max_transfer_size();
+
+    // need to allocate one more byte to exceed the transfer size
+    auto source      = std::unique_ptr<uint8_t[]>(new uint8_t[max_transfer_size + 1]);
+    auto destination = std::unique_ptr<uint8_t[]>(new uint8_t[max_transfer_size + 1]);
+
+    qpl::test::random random_scan_operation(qpl_op_scan_eq, qpl_op_scan_not_range,
+                                            TestEnviroment::GetInstance().GetSeed());
+
+    auto operation = (qpl_operation)((uint32_t)random_scan_operation);
+
+    // Preset correct parameters
+    set_input_stream(job_ptr, source.get(), SOURCE_ARRAY_SIZE, INPUT_BIT_WIDTH, ELEMENTS_TO_PROCESS, INPUT_FORMAT);
+    set_operation_properties(job_ptr, DROP_INITIAL_BYTES, OPERATION_FLAGS, operation);
+
+    set_output_stream(job_ptr, destination.get(), DESTINATION_ARRAY_SIZE, qpl_ow_nom);
+
+    job_ptr->available_in = static_cast<uint32_t>(max_transfer_size + 1);
+    ASSERT_EQ(run_job_api(job_ptr), QPL_STS_TRANSFER_SIZE_INVALID);
+    job_ptr->available_in = SOURCE_ARRAY_SIZE;
+
+    job_ptr->available_out = static_cast<uint32_t>(max_transfer_size + 1);
+    ASSERT_EQ(run_job_api(job_ptr), QPL_STS_TRANSFER_SIZE_INVALID);
+    job_ptr->available_out = DESTINATION_ARRAY_SIZE;
 }
 
 /////////////////////////////////////

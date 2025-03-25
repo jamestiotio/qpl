@@ -64,6 +64,23 @@ inline uint64_t max_descriptor_submissions(int32_t numa_id = -1) {
     return sum_descriptor_size;
 }
 
+inline uint64_t get_max_transfer_size() {
+    uint64_t max_transfer_size = 0;
+    int32_t  numa_id           = get_numa_id();
+
+#if defined(__linux__)
+    static auto& dispatcher = hw_dispatcher::get_instance();
+    if (dispatcher.is_hw_support()) {
+        for (size_t device_idx = 0; device_idx < dispatcher.device_count(); device_idx++) {
+            if (dispatcher.device(device_idx).numa_id() != numa_id) { continue; }
+            max_transfer_size = std::max(max_transfer_size, dispatcher.device(device_idx).get_max_transfer_size());
+        }
+    }
+#endif
+
+    return max_transfer_size;
+}
+
 } // namespace qpl::test
 
 #endif // QPL_TOOLS_UTILS_COMMON_DISPATCHER_CHECKS_HPP

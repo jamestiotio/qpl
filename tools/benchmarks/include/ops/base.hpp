@@ -103,6 +103,7 @@ public:
     // Getters for amount of processed bytes for throughput stats
     size_t get_bytes_read() { return bytes_read_; }
     size_t get_bytes_written() { return bytes_written_; }
+    double get_elapsed_time() { return elapsed_time_; }
 
 protected:
     const DerivedT& derived() const { return *static_cast<const DerivedT*>(this); }
@@ -114,6 +115,7 @@ protected:
     std::int32_t numa_id_ {-1};
     std::size_t  bytes_read_ {0};
     std::size_t  bytes_written_ {0};
+    double       elapsed_time_ {0.0};
 };
 } // namespace bench::ops
 

@@ -90,4 +90,15 @@ protected:
 };
 } // namespace bench::ops::c_api
 
+extern "C" {
+typedef enum {
+    QPL_EXECUTION_INFO_ELAPSED_TIME = 0,
+    QPL_EXECUTION_INFO_WQ_IDX,
+    QPL_EXECUTION_INFO_DEVICE_IDX
+} qpl_execution_info_t;
+
+extern qpl_status qpl_get_execution_record(const qpl_job* const job_ptr, qpl_execution_info_t info_type,
+                                           void* info_value);
+}
+
 #endif // QPL_TOOLS_BENCHMARKS_INCLUDE_OPS_C_API_BASE_HPP

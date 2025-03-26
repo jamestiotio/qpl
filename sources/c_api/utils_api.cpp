@@ -78,6 +78,10 @@ typedef enum { // NOLINT(performance-enum-size)
     QPL_EXECUTION_INFO_DEVICE_IDX
 } qpl_execution_record_t;
 
+#if defined(__GNUC__) || defined(__clang__)
+#pragma GCC visibility push(default)
+#endif
+
 /**
  * @brief Get execution record information for the given job.
  */
@@ -103,6 +107,10 @@ QPL_FUN(qpl_status, qpl_get_execution_record,
 
     return QPL_STS_OK;
 }
+
+#if defined(__GNUC__) || defined(__clang__)
+#pragma GCC visibility pop
+#endif
 
 #ifdef __cplusplus
 }

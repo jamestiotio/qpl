@@ -27,6 +27,9 @@ static statistics_t measure_sync(benchmark::State& state, const case_params_t& c
     if (res.queue_size != 1 && common_params.use_sync_api_) {
         throw std::runtime_error("Using --sync_api for measurements do not support queue size > 1");
     }
+    if (!common_params.use_sync_api_ && common_params.report_accel_time_) {
+        throw std::runtime_error("Reporting accelerator time requires --sync_api");
+    }
 
     res.operations_per_thread = res.operations;
     if (state.threads() > 1) throw std::runtime_error("Synchronous measurements do not support threading");
@@ -58,6 +61,7 @@ static statistics_t measure_sync(benchmark::State& state, const case_params_t& c
                 res.completed_operations++;
                 res.data_read += operation.get_bytes_read();
                 res.data_written += operation.get_bytes_written();
+                res.elapsed_iaa_time = operation.get_elapsed_time();
             }
         } else {
             for (auto& operation : operations) {

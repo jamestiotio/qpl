@@ -170,6 +170,7 @@ struct case_params_t {
     std::int32_t queue_size_ {cmd::FLAGS_queue_size};
     std::int32_t node_ {cmd::FLAGS_node};
     bool         use_sync_api_ {cmd::FLAGS_sync_api};
+    bool         report_accel_time_ {cmd::FLAGS_accel_time};
 };
 
 template <typename CaseT, typename CaseParamsT, typename... ArgsT>
@@ -245,14 +246,22 @@ static inline void base_counters(benchmark::State& state, statistics_t& stat, st
                                benchmark::Counter::kIsIterationInvariantRate | benchmark::Counter::kAvgThreads |
                                        benchmark::Counter::kInvert,
                                benchmark::Counter::kIs1000);
+
     state.counters["Latency/Op"] =
             benchmark::Counter(stat.operations_per_thread,
                                benchmark::Counter::kIsIterationInvariantRate | benchmark::Counter::kAvgThreads |
                                        benchmark::Counter::kInvert,
                                benchmark::Counter::kIs1000);
+
     state.counters["Throughput"] = benchmark::Counter(
             throughput, benchmark::Counter::kIsIterationInvariantRate | benchmark::Counter::kAvgThreads,
             benchmark::Counter::kIs1000);
+
+    if (cmd::FLAGS_accel_time) {
+        state.counters["IAA_Time_Percentage"] = benchmark::Counter(
+                stat.elapsed_iaa_time, benchmark::Counter::kIsIterationInvariantRate | benchmark::Counter::kAvgThreads,
+                benchmark::Counter::kIs1000);
+    }
 }
 
 extern std::vector<std::string> FILTER_op;

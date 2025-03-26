@@ -31,6 +31,7 @@ struct statistics_t {
     std::uint64_t completed_operations {0};
     std::uint64_t data_read {0};
     std::uint64_t data_written {0};
+    double        elapsed_iaa_time {0.0};
 };
 
 enum class api_e : std::uint8_t { c, ml };

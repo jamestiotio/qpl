@@ -26,6 +26,7 @@ private:
     using base_api_t::job_;
     using base_t::bytes_read_;
     using base_t::bytes_written_;
+    using base_t::elapsed_time_;
 
 public:
     inflate_t() noexcept {}
@@ -65,6 +66,10 @@ protected:
             data_size_     = job_->total_out;
             bytes_read_    = job_->total_in;
             bytes_written_ = job_->total_out;
+
+            if (cmd::FLAGS_accel_time) {
+                qpl_get_execution_record(job_, QPL_EXECUTION_INFO_ELAPSED_TIME, &elapsed_time_);
+            }
         } else
             throw std::runtime_error(format("qpl_execute_job() failed with status %d", status));
     }

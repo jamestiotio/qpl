@@ -21,6 +21,7 @@ BM_DECLARE_bool(no_hw);
 BM_DECLARE_string(in_mem);
 BM_DECLARE_string(out_mem);
 BM_DECLARE_bool(sync_api);
+BM_DECLARE_bool(accel_time);
 
 std::int32_t get_block_size();
 mem_loc_e    get_in_mem();

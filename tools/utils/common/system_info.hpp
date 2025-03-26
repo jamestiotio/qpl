@@ -82,18 +82,17 @@ static std::vector<uint32_t> get_digits_between_delims(const std::string& s, con
     std::vector<uint32_t> vector;
 
     size_t delim_pos = 0U, offset = 0U;
-    while (std::string::npos != delim_pos) {
-        delim_pos = s.find(delim, offset);
-
-        const size_t substr_start = offset;
-        const size_t substr_end   = (delim_pos == std::string::npos) ? s.length() : delim_pos - substr_start;
-
-        const std::string substr_to_check = s.substr(substr_start, substr_end);
+    while ((delim_pos = s.find(delim, offset)) != std::string::npos) {
+        const std::string substr_to_check = s.substr(offset, delim_pos - offset);
 
         if (is_number(substr_to_check)) { vector.push_back(std::stoi(substr_to_check)); }
 
         offset = delim_pos + delim.length();
     }
+
+    // Check the last segment
+    const std::string substr_to_check = s.substr(offset);
+    if (is_number(substr_to_check)) { vector.push_back(std::stoi(substr_to_check)); }
 
     return vector;
 }

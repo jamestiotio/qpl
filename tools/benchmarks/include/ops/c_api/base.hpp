@@ -55,6 +55,9 @@ public:
         return *this;
     }
 
+    operation_base_t(operation_base_t&&)            = delete;
+    operation_base_t& operator=(operation_base_t&&) = delete;
+
     void init_lib_impl() {
         if (!cache_control_) throw std::runtime_error("manual cache control option is not supported in C API");
 

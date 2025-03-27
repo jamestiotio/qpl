@@ -19,6 +19,10 @@ class operation_base_t {
 public:
     operation_base_t() noexcept {}
     ~operation_base_t() noexcept {}
+    operation_base_t(const operation_base_t&)            = delete;
+    operation_base_t(operation_base_t&&)                 = delete;
+    operation_base_t& operator=(const operation_base_t&) = delete;
+    operation_base_t& operator=(operation_base_t&&)      = delete;
 
     // Init library and set data for the measurement loop
     // Init has 3 parts:

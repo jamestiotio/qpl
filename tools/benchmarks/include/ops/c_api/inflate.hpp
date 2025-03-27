@@ -31,6 +31,10 @@ private:
 public:
     inflate_t() noexcept {}
     ~inflate_t() noexcept(false) { deinit_lib_impl(); }
+    inflate_t(const inflate_t&)            = default;
+    inflate_t(inflate_t&&)                 = delete;
+    inflate_t& operator=(const inflate_t&) = default;
+    inflate_t& operator=(inflate_t&&)      = delete;
 
 protected:
     // WARNING: initialization of buffers must be re-done on copying or assigning object

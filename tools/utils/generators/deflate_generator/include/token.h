@@ -175,6 +175,11 @@ public:
 
     ~token_parser_c() = default;
 
+    token_parser_c(const token_parser_c&)            = delete;
+    token_parser_c(token_parser_c&&)                 = delete;
+    token_parser_c& operator=(const token_parser_c&) = delete;
+    token_parser_c& operator=(token_parser_c&&)      = delete;
+
     token_type_t get_token_(token_c* token);
 
     token_type_t get_token(token_c* token) {

@@ -69,6 +69,8 @@ public:
 
     TestEnvironment(TestEnvironment const&) = delete;
 
+    ~TestEnvironment() = default;
+
     TestEnvironment(TestEnvironment&&) = delete;
 
     TestEnvironment& operator=(TestEnvironment const&) = delete;

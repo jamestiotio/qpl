@@ -35,6 +35,10 @@ private:
 public:
     crc64_t() noexcept {}
     ~crc64_t() noexcept(false) { deinit_lib_impl(); }
+    crc64_t(const crc64_t&)            = default;
+    crc64_t(crc64_t&&)                 = delete;
+    crc64_t& operator=(const crc64_t&) = default;
+    crc64_t& operator=(crc64_t&&)      = delete;
 
 protected:
     // WARNING: initialization of buffers must be re-done on copying or assigning object

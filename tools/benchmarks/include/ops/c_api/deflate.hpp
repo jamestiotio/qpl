@@ -31,6 +31,10 @@ private:
 public:
     deflate_t() noexcept {}
     ~deflate_t() noexcept(false) { deinit_lib_impl(); }
+    deflate_t(const deflate_t&)            = default;
+    deflate_t(deflate_t&&)                 = delete;
+    deflate_t& operator=(const deflate_t&) = default;
+    deflate_t& operator=(deflate_t&&)      = delete;
 
 protected:
     // WARNING: initialization of buffers must be re-done on copying or assigning object

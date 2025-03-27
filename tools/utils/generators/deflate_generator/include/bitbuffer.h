@@ -17,9 +17,11 @@ class BitBuffer {
 public:
     explicit BitBuffer(std::vector<uint8_t>* data);
 
-    BitBuffer() = delete;
+    BitBuffer()  = delete;
+    ~BitBuffer() = default;
 
     BitBuffer(const BitBuffer& buffer) = delete;
+    BitBuffer(BitBuffer&& buffer)      = delete;
 
     void flush(uint32_t pad = 0);
 
@@ -30,6 +32,7 @@ public:
     static uint16_t bitFlip(uint16_t word);
 
     BitBuffer& operator=(const BitBuffer& buffer) = delete;
+    BitBuffer& operator=(BitBuffer&& buffer)      = delete;
 
     uint32_t getBitsWritten() const;
 

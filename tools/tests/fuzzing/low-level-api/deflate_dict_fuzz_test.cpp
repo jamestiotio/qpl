@@ -3,8 +3,6 @@
  *
  * SPDX-License-Identifier: MIT
  ******************************************************************************/
-#ifndef QPL_TOOLS_TESTS_FUZZING_LOW_LEVEL_API_DEFLATE_CANNED_DICT_FUZZ_TEST_HPP
-#define QPL_TOOLS_TESTS_FUZZING_LOW_LEVEL_API_DEFLATE_CANNED_DICT_FUZZ_TEST_HPP
 
 #include <iostream>
 #include <memory>
@@ -18,15 +16,35 @@ struct deflate_properties {
     size_t dictionary_size;
 };
 
-static inline int deflate_canned_dict_fuzz(const uint8_t* Data, size_t Size, qpl_compression_levels compression_level,
-                                           qpl_path_t execution_path) {
+#ifndef QPL_EXECUTION_PATH
+#define QPL_EXECUTION_PATH qpl_path_software
+#endif
+
+constexpr qpl_path_t execution_path = QPL_EXECUTION_PATH;
+
+enum compression_mode {
+    fixed_compression   = 0,
+    dynamic_compression = 1,
+    static_compression  = 2,
+    canned_compression  = 3,
+};
+
+extern "C" int LLVMFuzzerTestOneInput(const uint8_t* Data, size_t Size) {
+    if (Size < 2) { return 0; }
+
+    qpl_compression_levels compression_level = qpl_default_level;
+    if ((Data[0] % 2) == 0) { compression_level = qpl_high_level; }
+
+    compression_mode compression_type = static_cast<compression_mode>(Data[0] % 4);
+
+    Data += 2;
+    Size -= 2;
+
     const uint8_t* source_data_ptr     = Data;
     const uint8_t* dictionary_data_ptr = Data;
     size_t         source_size         = Size;
     size_t         destination_size    = Size;
     size_t         dictionary_size     = Size;
-
-    if (0 == Size) { return 0; }
 
     if (Size > sizeof(deflate_properties) * 2) {
         deflate_properties* properties = (deflate_properties*)Data;
@@ -53,10 +71,9 @@ static inline int deflate_canned_dict_fuzz(const uint8_t* Data, size_t Size, qpl
     {
         qpl_histogram       histogram {};
         qpl_huffman_table_t c_huffman_table {};
-        qpl_status          status = QPL_STS_OK;
 
-        status = qpl_gather_deflate_statistics(source.data(), source.size(), &histogram, compression_level,
-                                               execution_path);
+        qpl_status status = qpl_gather_deflate_statistics(source.data(), source.size(), &histogram, compression_level,
+                                                          execution_path);
         if (status != QPL_STS_OK) { return 0; }
 
         status = qpl_deflate_huffman_table_create(combined_table_type, execution_path, DEFAULT_ALLOCATOR_C,
@@ -65,7 +82,10 @@ static inline int deflate_canned_dict_fuzz(const uint8_t* Data, size_t Size, qpl
 
         status = qpl_huffman_table_init_with_histogram(c_huffman_table, &histogram);
 
-        if (status != QPL_STS_OK) { return 0; }
+        if (status != QPL_STS_OK) {
+            qpl_huffman_table_destroy(c_huffman_table);
+            return 0;
+        }
 
         sw_compression_level sw_level = (qpl_high_level == compression_level) ? LEVEL_9 : LEVEL_3;
 
@@ -101,13 +121,18 @@ static inline int deflate_canned_dict_fuzz(const uint8_t* Data, size_t Size, qpl
         job_ptr->available_in  = source.size();
         job_ptr->next_out_ptr  = destination.data();
         job_ptr->available_out = static_cast<uint32_t>(destination.size());
-        job_ptr->huffman_table = c_huffman_table;
-        job_ptr->total_out     = 0;
-        job_ptr->dictionary    = dictionary_ptr;
+        if (compression_type != fixed_compression) { job_ptr->huffman_table = c_huffman_table; }
+        job_ptr->total_out  = 0;
+        job_ptr->dictionary = dictionary_ptr;
 
         job_ptr->op    = qpl_op_compress;
         job_ptr->level = compression_level;
-        job_ptr->flags = QPL_FLAG_CANNED_MODE | QPL_FLAG_FIRST | QPL_FLAG_LAST | QPL_FLAG_OMIT_VERIFY;
+        job_ptr->flags = QPL_FLAG_FIRST | QPL_FLAG_LAST | QPL_FLAG_OMIT_VERIFY;
+        switch (compression_type) {
+            case (dynamic_compression): job_ptr->flags |= QPL_FLAG_DYNAMIC_HUFFMAN; break;
+            case (canned_compression): job_ptr->flags |= QPL_FLAG_CANNED_MODE; break;
+            default: break;
+        }
 
         status = qpl_execute_job(job_ptr);
 
@@ -116,5 +141,3 @@ static inline int deflate_canned_dict_fuzz(const uint8_t* Data, size_t Size, qpl
 
     return 0;
 }
-
-#endif //QPL_TOOLS_TESTS_FUZZING_LOW_LEVEL_API_DEFLATE_CANNED_DICT_FUZZTEST_HPP

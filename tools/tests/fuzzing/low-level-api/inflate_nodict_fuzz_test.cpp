@@ -14,6 +14,8 @@
 #define QPL_EXECUTION_PATH qpl_path_software
 #endif
 
+constexpr qpl_path_t execution_path = QPL_EXECUTION_PATH;
+
 struct inflate_properties {
     size_t destination_size;
 };
@@ -24,7 +26,6 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* Data, size_t Size) {
     size_t         source_size         = Size;
     size_t         destination_size    = Size;
     size_t         dictionary_size     = Size;
-    qpl_path_t     execution_path      = QPL_EXECUTION_PATH;
 
     if (0 == Size) { return 0; }
 

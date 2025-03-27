@@ -15,6 +15,8 @@
 #define QPL_EXECUTION_PATH qpl_path_software
 #endif
 
+constexpr qpl_path_t execution_path = QPL_EXECUTION_PATH;
+
 struct inflate_properties {
     size_t destination_size;
     size_t compr_level;

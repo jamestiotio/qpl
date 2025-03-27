@@ -10,6 +10,8 @@
  *
  */
 
+#include <array>
+
 #include "qpl/qpl.h"
 
 #include "gtest/gtest.h"
@@ -20,9 +22,6 @@
 #include "operation_test.hpp"
 
 // tool_common
-#include <array>
-
-#include "operation_test.hpp"
 #include "util.hpp"
 
 extern uint32_t perform_crc64(qpl_job* const job_ptr) noexcept;
@@ -53,7 +52,7 @@ QPL_LOW_LEVEL_API_BAD_ARGUMENT_TEST(crc64, max_transfer_size) {
     QPL_SKIP_TEST_FOR(qpl_path_software);
     QPL_SKIP_TEST_FOR(qpl_path_auto);
 
-    uint64_t max_transfer_size = get_max_transfer_size();
+    const uint64_t max_transfer_size = get_max_transfer_size();
 
     // need to allocate one more byte to exceed the transfer size
     auto source = std::unique_ptr<uint8_t[]>(new uint8_t[max_transfer_size + 1]);

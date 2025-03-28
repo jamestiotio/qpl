@@ -42,6 +42,7 @@ public:
     void update_checksum(uint8_t* const begin, uint32_t size) noexcept;
 
 protected:
+    //NOLINTBEGIN(misc-non-private-member-variables-in-classes)
     util::checksum_accumulator checksum_ {};
 
     compression_mode_t compression_mode_ = dynamic_mode;
@@ -49,6 +50,7 @@ protected:
     chunk_type         chunk_type_ {};
     uint32_t           bytes_processed_ = 0;
     uint32_t           bytes_written_   = 0;
+    //NOLINTEND(misc-non-private-member-variables-in-classes)
 };
 
 } // namespace qpl::ml::compression

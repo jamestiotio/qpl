@@ -31,6 +31,7 @@ protected:
 
     uint32_t GetSeed() const;
 
+    //NOLINTBEGIN(misc-non-private-member-variables-in-classes)
     qpl_job*             sw_job_ptr;
     std::vector<uint8_t> sw_source;
     std::vector<uint8_t> sw_destination;
@@ -38,6 +39,7 @@ protected:
     qpl_job*             hw_job_ptr;
     std::vector<uint8_t> hw_source;
     std::vector<uint8_t> hw_destination;
+    //NOLINTEND(misc-non-private-member-variables-in-classes)
 
 private:
     void SetUpSoftwareJob();

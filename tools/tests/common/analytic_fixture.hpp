@@ -206,8 +206,8 @@ protected:
         reference_job_ptr->next_out_ptr  = reference_destination.data();
     }
 
-    AnalyticTestCase current_test_case;
-    IndexTable       index_table;
+    AnalyticTestCase current_test_case; //NOLINT(misc-non-private-member-variables-in-classes)
+    IndexTable       index_table;       //NOLINT(misc-non-private-member-variables-in-classes)
 };
 } // namespace qpl::test
 

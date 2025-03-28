@@ -52,7 +52,7 @@ protected:
         reference_job_ptr->next_out_ptr  = reference_destination.data();
     }
 
-    std::vector<uint8_t> mask;
+    std::vector<uint8_t> mask; //NOLINT(misc-non-private-member-variables-in-classes)
 };
 } // namespace qpl::test
 

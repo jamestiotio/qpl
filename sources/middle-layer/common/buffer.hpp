@@ -30,6 +30,19 @@ public:
 
     [[nodiscard]] auto end() const noexcept -> uint8_t*;
 
+    buffer_t(const buffer_t& other) {
+        this->begin_ = other.begin_;
+        this->end_   = other.end_;
+    }
+    buffer_t(buffer_t&& other)                         = delete;
+    auto operator=(const buffer_t& other) -> buffer_t& = delete;
+    auto operator=(buffer_t&& other) -> buffer_t&      = delete;
+
+    virtual ~buffer_t() {
+        begin_ = nullptr;
+        end_   = nullptr;
+    }
+
 protected:
     buffer_t() noexcept = default;
 

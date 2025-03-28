@@ -19,6 +19,14 @@ class compression_stream {
     friend class deflate_state_builder;
 
 public:
+    compression_stream()          = default;
+    virtual ~compression_stream() = default;
+
+    compression_stream(const compression_stream& other)                    = default;
+    compression_stream(compression_stream&& other)                         = delete;
+    auto operator=(const compression_stream& other) -> compression_stream& = delete;
+    auto operator=(compression_stream&& other) -> compression_stream&      = delete;
+
     virtual auto write_bytes(const uint8_t* data, uint32_t size) noexcept -> qpl_ml_status = 0;
 
     virtual void set_source(uint8_t* begin, uint32_t size) noexcept = 0;

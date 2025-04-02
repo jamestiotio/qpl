@@ -27,8 +27,8 @@
 #include "simple_memory_ops.hpp"
 #include "util/checksum.hpp"
 
-extern "C" const uint32_t fixed_literals_table[];
-extern "C" const uint32_t fixed_offsets_table[];
+extern "C" const uint32_t fixed_literals_table[]; //NOLINT(readability-redundant-declaration)
+extern "C" const uint32_t fixed_offsets_table[];  //NOLINT(readability-redundant-declaration)
 
 namespace qpl::ml::compression {
 

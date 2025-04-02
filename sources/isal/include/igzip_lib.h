@@ -1040,7 +1040,8 @@ int qpl_isal_inflate_stateless(struct inflate_state* state);
  *
  * @returns 32-bit Adler-32 checksum
  */
-uint32_t qpl_isal_adler32(uint32_t init, const unsigned char* buf, uint64_t len);
+uint32_t qpl_isal_adler32(uint32_t init, const unsigned char* buf, //NOLINT(readability-redundant-declaration)
+                          uint64_t len);
 
 #ifdef QPL_LIB
 int qpl_read_header(struct inflate_state* state);

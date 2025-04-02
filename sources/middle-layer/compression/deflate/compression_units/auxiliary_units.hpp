@@ -13,6 +13,7 @@
 
 namespace qpl::ml::compression {
 
+//NOLINTBEGIN(readability-redundant-declaration)
 template <typename stream_t>
 auto init_compression(stream_t& stream, compression_state_t& state) noexcept -> qpl_ml_status;
 
@@ -24,6 +25,8 @@ auto flush_bit_buffer(stream_t& stream, compression_state_t& state) noexcept -> 
 
 template <typename stream_t>
 auto flush_write_buffer(stream_t& stream, compression_state_t& state) noexcept -> qpl_ml_status;
+
+//NOLINTEND(readability-redundant-declaration)
 
 auto skip_rest_units(deflate_state<execution_path_t::software>& stream, compression_state_t& state) noexcept
         -> qpl_ml_status;

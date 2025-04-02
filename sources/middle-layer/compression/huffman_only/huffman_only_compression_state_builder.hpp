@@ -16,7 +16,7 @@
 #include "compression/huffman_only/huffman_only_compression_state.hpp"
 #include "core_deflate_api.h"
 
-extern "C" const struct isal_hufftables hufftables_static;
+extern "C" const struct isal_hufftables hufftables_static; //NOLINT(readability-redundant-declaration)
 
 namespace qpl::ml::compression {
 

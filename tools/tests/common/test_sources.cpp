@@ -87,64 +87,55 @@ auto AnalyticStream::data() noexcept -> uint8_t* {
     return data_.data();
 }
 
+void AnalyticStream::set_data(std::vector<uint8_t> data) {
+    data_ = std::move(data);
+}
+
 auto AnalyticStream::size() noexcept -> size_t {
     return data_.size();
 }
 
+auto AnalyticStream::parser() -> qpl_parser {
+    return parser_;
+}
+auto AnalyticStream::bit_width() noexcept -> uint8_t {
+    return bit_width_;
+}
+auto AnalyticStream::elements_count() const noexcept -> size_t {
+    return element_count_;
+}
 AnalyticInputStream::AnalyticInputStream(size_t element_count, uint8_t element_bit_width, qpl_parser parser,
                                          uint16_t prologue)
     : AnalyticStream(element_count, element_bit_width, parser), prologue_(prologue) {
-    data_ = format_generator::generate_uint_bit_sequence(static_cast<uint32_t>(element_count_), bit_width_,
-                                                         util::TestEnvironment::GetInstance().GetSeed(),
-                                                         parser_ == qpl_p_le_packed_array, prologue_);
-}
-
-auto AnalyticInputStream::bit_width() noexcept -> uint8_t {
-    return bit_width_;
-}
-
-auto AnalyticInputStream::parser() -> qpl_parser {
-    return parser_;
-}
-
-auto AnalyticInputStream::elements_count() noexcept -> size_t {
-    return element_count_;
+    set_data(format_generator::generate_uint_bit_sequence(
+            static_cast<uint32_t>(AnalyticStream::elements_count()), AnalyticStream::bit_width(),
+            util::TestEnvironment::GetInstance().GetSeed(), AnalyticStream::parser() == qpl_p_le_packed_array,
+            prologue_));
 }
 
 AnalyticMaskStream::AnalyticMaskStream(size_t element_count, qpl_parser parser)
     : AnalyticStream(element_count, BIT_WIDTH_, parser) {
-    source_provider mask_gen(static_cast<uint32_t>(element_count_), bit_width_,
-                             util::TestEnvironment::GetInstance().GetSeed(), parser_);
+    source_provider mask_gen(static_cast<uint32_t>(AnalyticStream::elements_count()), AnalyticStream::bit_width(),
+                             util::TestEnvironment::GetInstance().GetSeed(), AnalyticStream::parser());
 
-    data_ = mask_gen.get_source();
+    set_data(mask_gen.get_source());
 }
 
 auto AnalyticMaskStream::bit_width() noexcept -> uint8_t {
     return BIT_WIDTH_;
 }
 
-auto AnalyticMaskStream::parser() -> qpl_parser {
-    return parser_;
-}
-
 AnalyticCountersStream::AnalyticCountersStream(size_t counters_count, uint8_t counter_width, qpl_parser parser,
                                                uint16_t prologue)
     : AnalyticStream(counters_count, counter_width, parser), prologue_(prologue) {
     // Dynamic assert if bit width is not multiple of 8.
-    assert(bit_width_ == 8U);
-    source_provider counters_generator(static_cast<uint32_t>(element_count_), bit_width_,
-                                       util::TestEnvironment::GetInstance().GetSeed(), parser_);
+    assert(AnalyticStream::bit_width() == 8U);
+    source_provider counters_generator(static_cast<uint32_t>(AnalyticStream::elements_count()),
+                                       AnalyticStream::bit_width(), util::TestEnvironment::GetInstance().GetSeed(),
+                                       AnalyticStream::parser());
     // @todo add elements calculation depending on bit_width
-    data_                  = counters_generator.get_counter_source_expand_rle(prologue_);
+    set_data(counters_generator.get_counter_source_expand_rle(prologue_));
     packed_elements_count_ = counters_generator.get_count_expand_rle_value();
-}
-
-auto AnalyticCountersStream::bit_width() noexcept -> uint8_t {
-    return bit_width_;
-}
-
-auto AnalyticCountersStream::parser() -> qpl_parser {
-    return parser_;
 }
 
 auto AnalyticCountersStream::elements_count() noexcept -> size_t {

@@ -43,15 +43,18 @@ public:
 
     auto size() noexcept -> size_t;
 
-    virtual auto bit_width() noexcept -> uint8_t = 0;
+    virtual auto bit_width() noexcept -> uint8_t;
 
-    virtual auto parser() -> qpl_parser = 0;
+    auto parser() -> qpl_parser;
 
-protected:
-    qpl_parser parser_;
-    uint8_t    bit_width_;
-    size_t     element_count_;
+    void set_data(std::vector<uint8_t> data);
 
+    auto elements_count() const noexcept -> size_t;
+
+private:
+    qpl_parser           parser_;
+    uint8_t              bit_width_;
+    size_t               element_count_;
     std::vector<uint8_t> data_;
 };
 
@@ -61,12 +64,6 @@ public:
 
     AnalyticInputStream(size_t element_count, uint8_t element_bit_width, qpl_parser parser = qpl_p_le_packed_array,
                         uint16_t prologue = 0U);
-
-    auto elements_count() noexcept -> size_t;
-
-    auto bit_width() noexcept -> uint8_t override;
-
-    auto parser() -> qpl_parser override;
 
 private:
     uint16_t prologue_ = 0U;
@@ -80,8 +77,6 @@ public:
 
     auto bit_width() noexcept -> uint8_t override;
 
-    auto parser() -> qpl_parser override;
-
 private:
     static constexpr uint8_t BIT_WIDTH_ = 1U;
 };
@@ -94,10 +89,6 @@ public:
     static auto elements_count() noexcept -> size_t;
 
     auto packed_elements_count() const noexcept -> size_t;
-
-    auto bit_width() noexcept -> uint8_t override;
-
-    auto parser() -> qpl_parser override;
 
 private:
     uint16_t prologue_              = 0U;

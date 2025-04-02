@@ -101,4 +101,34 @@ QPL_LOW_LEVEL_API_NEGATIVE_TEST(submission, work_queues_are_busy) {
     }
 }
 
+/**
+ * @brief Test checks for the right behaviour of the library when passing qpl_path_hardware in qpl_init_job.
+ * @warning This test is expected to fail after qpl_init_job call with the QPL_STS_INIT_HW_NOT_SUPPORTED error code
+ * since qpl_path_hardware is not supported under Windows.
+*/
+QPL_LOW_LEVEL_API_NEGATIVE_TEST(init, try_to_use_hw_path_on_windows) {
+    // Set execution_path to hardware to run this regression tests
+    // independently from what was specified externally
+    const qpl_path_t execution_path = qpl_path_hardware;
+
+#ifdef __linux__
+    // Unconditionally skip on Linux
+    QPL_SKIP_TEST_FOR_EXPR_VERBOSE(
+            1, "Windows specific test, checks for the right behaviour when passing qpl_path_hardware in qpl_init_job");
+#endif
+
+    uint32_t job_size = 0U;
+    auto     status   = qpl_get_job_size(execution_path, &job_size);
+    ASSERT_EQ(QPL_STS_OK, status);
+
+    auto     job_buffer = std::make_unique<uint8_t[]>(job_size);
+    qpl_job* job_ptr    = reinterpret_cast<qpl_job*>(job_buffer.get());
+
+    status = qpl_init_job(execution_path, job_ptr);
+    ASSERT_EQ(QPL_STS_INIT_HW_NOT_SUPPORTED, status)
+            << "The library's behaviour is not correct for qpl_path_hardware\n";
+
+    status = qpl_fini_job(job_ptr);
+    ASSERT_EQ(QPL_STS_OK, status);
+}
 } // namespace qpl::test

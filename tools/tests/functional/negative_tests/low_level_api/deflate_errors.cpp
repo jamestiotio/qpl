@@ -280,5 +280,4 @@ QPL_LOW_LEVEL_API_NEGATIVE_TEST_F(deflate, JobFixture, fixed_high_overflow_with_
 
     ASSERT_EQ(compression_status, QPL_STS_MORE_OUTPUT_NEEDED);
 }
-
 } // namespace qpl::test

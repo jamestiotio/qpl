@@ -115,7 +115,13 @@ QPL_FUN(qpl_status, qpl_init_job, (qpl_path_t qpl_path, qpl_job* qpl_job_ptr)) {
         }
     }
 #else
-    if (qpl_path_software != qpl_path) { qpl_job_ptr->data_ptr.path = qpl_path_software; }
+    // qpl_path_software or qpl_path_auto were specified
+    if (qpl_path_hardware != qpl_path) {
+        qpl_job_ptr->data_ptr.path = qpl_path_software;
+    } else {
+        // the accelerator is not supported for Windows OS
+        return QPL_STS_INIT_HW_NOT_SUPPORTED;
+    }
 #endif
 
     // set internal structures to zero

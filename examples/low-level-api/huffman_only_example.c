@@ -18,7 +18,7 @@
  * In QPL, @ref qpl_path_software (`Software Path`) means that computations will be done with CPU.
  * Accelerator can be used instead of CPU. In this case, @ref qpl_path_hardware (`Hardware Path`) must be specified.
  * If there is no difference where calculations should be done, @ref qpl_path_auto (`Auto Path`) can be used to allow
- * the library to chose the path to execute. The Auto Path usage is not demonstrated by this example.
+ * the library to chose the path to execute.
  *
  * @warning ---! Important !---
  * `Hardware Path` doesn't support all features declared for `Software Path`

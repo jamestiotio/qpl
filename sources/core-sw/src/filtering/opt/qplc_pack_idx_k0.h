@@ -1448,7 +1448,7 @@ OWN_OPT_FUN(qplc_status_t, k0_qplc_pack_index_8u16u,
 
 #if defined(DEF_MM512_16U)
 
-#define STEP_SRC_8U16U (64u)
+#define STEP_SRC_8U16U (64U)
 
 OWN_OPT_FUN(qplc_status_t, k0_qplc_pack_index_8u16u,
             (const uint8_t* src_ptr, uint32_t num_elements, uint8_t** pp_dst, uint32_t dst_length,

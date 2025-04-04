@@ -48,7 +48,7 @@ inline auto process_descriptor(hw_descriptor* const                         desc
     hw_iaa_descriptor_set_completion_record(descriptor_ptr, completion_record_ptr);
     completion_record_ptr->status = AD_STATUS_INPROG; // Mark completion record as not completed
 
-    std::unique_ptr<execution_record_ext_t> record_ptr = std::make_unique<execution_record_ext_t>();
+    const std::unique_ptr<execution_record_ext_t> record_ptr = std::make_unique<execution_record_ext_t>();
 
     auto accel_status = hw_enqueue_descriptor(descriptor_ptr, numa_id, record_ptr.get());
 

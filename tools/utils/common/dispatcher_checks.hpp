@@ -65,8 +65,8 @@ inline uint64_t max_descriptor_submissions(int32_t numa_id = -1) {
 }
 
 inline uint64_t get_max_transfer_size() {
-    uint64_t max_transfer_size = 0;
-    int32_t  numa_id           = get_numa_id();
+    uint64_t      max_transfer_size = 0;
+    const int32_t numa_id           = get_numa_id();
 
 #if defined(__linux__)
     static auto& dispatcher = hw_dispatcher::get_instance();

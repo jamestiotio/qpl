@@ -281,7 +281,7 @@ public:
             stream_.initialize_sw_kernels();
         }
 
-        return std::move(stream_);
+        return stream_;
     }
 
 private:

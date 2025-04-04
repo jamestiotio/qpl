@@ -9,7 +9,7 @@
 GenStatus gz_generator::FirstLiteralLengthCode16Configurator::generate() {
     Gen32u* pLiteralLengthCodesTable = nullptr;
 
-    qpl::test::random rand(4U, 7U, m_seed);
+    qpl::test::random rand(4U, 7U, get_m_seed());
 
     const Gen8u repeatingCount = static_cast<Gen8u>(rand);
 

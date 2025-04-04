@@ -12,15 +12,17 @@ GenStatus gz_generator::BadStoredLengthConfigurator::generate() {
 
     TestConfigurator::declareStoredBlock();
 
-    if (static_cast<float>(m_random) < 0.67F) {
-        m_randomTokenCount.set_range(0U, 32U);
+    qpl::test::random tmp;
+
+    if (static_cast<float>(get_m_random()) < 0.67F) {
+        tmp = update_range_m_randomTokenCount(0U, 32U);
     } else {
-        m_randomTokenCount.set_range(0U, 0xFFFF);
+        tmp = update_range_m_randomTokenCount(0U, 0xFFFF);
     }
 
-    TestConfigurator::writeRandomLiteralSequence((Gen32u)m_randomTokenCount);
+    TestConfigurator::writeRandomLiteralSequence((Gen32u)tmp);
 
-    if (static_cast<float>(m_random) < 0.5F) {
+    if (static_cast<float>(get_m_random()) < 0.5F) {
         randomTestGroup.set_range(0U, 15U);
         testGroup = 1U << static_cast<Gen32u>(randomTestGroup);
     } else {

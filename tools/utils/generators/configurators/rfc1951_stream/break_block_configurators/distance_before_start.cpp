@@ -11,21 +11,17 @@ GenStatus gz_generator::DistanceCodeBeforeStartConfigurator::generate() {
     Gen32u match           = 0;
     Gen32u literalsEncoded = 0;
 
-    m_randomTokenCount.set_range(0U, 32U);
+    qpl::test::random tmp = update_range_m_randomTokenCount(0U, 32U);
     TestConfigurator::declareRandomHuffmanBlock();
 
-    literalsEncoded =
-            TestConfigurator::writeRandomReferenceSequence(static_cast<Gen32u>(m_randomTokenCount), 0U, 3800U);
-    if (0.5F > static_cast<float>(m_random)) {
-        m_randomOffset.set_range(1U, 16U);
-        offset = literalsEncoded + static_cast<Gen32u>(m_randomOffset);
+    literalsEncoded = TestConfigurator::writeRandomReferenceSequence(static_cast<Gen32u>(tmp), 0U, 3800U);
+    if (0.5F > static_cast<float>(get_m_random())) {
+        offset = literalsEncoded + static_cast<Gen32u>(update_range_m_randomOffset(1U, 16U));
     } else {
-        m_randomOffset.set_range(literalsEncoded + 1U, 4096U);
-        offset = static_cast<Gen32u>(m_randomOffset);
+        offset = static_cast<Gen32u>(update_range_m_randomOffset(literalsEncoded + 1U, 4096U));
     }
 
-    m_randomMatch.set_range(MIN_MATCH, GEN_MIN(literalsEncoded, MAX_MATCH));
-    match = static_cast<Gen32u>(m_randomMatch);
+    match = static_cast<Gen32u>(update_range_m_randomMatch(MIN_MATCH, GEN_MIN(literalsEncoded, MAX_MATCH)));
 
     TestConfigurator::declareReference(match, offset);
 

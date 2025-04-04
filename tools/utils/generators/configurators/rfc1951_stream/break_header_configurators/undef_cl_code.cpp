@@ -13,13 +13,13 @@ GenStatus gz_generator::UndefinedCodeLengthCodeConfigurator::generate() {
 
     Gen32u dataTokenCount = 0; // The tokens that directly describe data stream
 
-    qpl::test::random       randomLLCode(0U, 285U, m_seed);
-    const qpl::test::random randomMatchCode(257U, 285U, m_seed);
-    qpl::test::random       randomDistanceCode(0, 29U, m_seed);
-    qpl::test::random       randomControlLiteralCode(0, 10U, m_seed);
-    const qpl::test::random randomSmallMatch(3U, 10U, m_seed);
-    const qpl::test::random randomLargeMatch(11U, 258U, m_seed);
-    const qpl::test::random randomNoneControlLiteralCode(11U, 258U, m_seed);
+    qpl::test::random       randomLLCode(0U, 285U, get_m_seed());
+    const qpl::test::random randomMatchCode(257U, 285U, get_m_seed());
+    qpl::test::random       randomDistanceCode(0, 29U, get_m_seed());
+    qpl::test::random       randomControlLiteralCode(0, 10U, get_m_seed());
+    const qpl::test::random randomSmallMatch(3U, 10U, get_m_seed());
+    const qpl::test::random randomLargeMatch(11U, 258U, get_m_seed());
+    const qpl::test::random randomNoneControlLiteralCode(11U, 258U, get_m_seed());
 
     pLiteralLengthTable   = new Gen32u[DEFAULT_LL_TABLE_LENGTH];
     pDistanceLengthTable  = new Gen32u[DEFAULT_D_TABLE_LENGTH];
@@ -44,12 +44,12 @@ GenStatus gz_generator::UndefinedCodeLengthCodeConfigurator::generate() {
 
     TestConfigurator::declareDynamicBlock();
 
-    if (static_cast<float>(m_random) < 0.5F) // wreck D code
+    if (static_cast<float>(get_m_random()) < 0.5F) // wreck D code
     {
         pDistanceLengthTable[static_cast<Gen8u>(randomDistanceCode)] = 15U;
     } else //wreck LL code
     {
-        const float random = static_cast<float>(m_random);
+        const float random = static_cast<float>(get_m_random());
         if (random > 0.66F) {
             pLiteralLengthTable[static_cast<Gen8u>(randomLLCode)] = 15U;
         } else if (random > 0.33F) {
@@ -69,7 +69,7 @@ GenStatus gz_generator::UndefinedCodeLengthCodeConfigurator::generate() {
 
     TestConfigurator::declareVectorToken(CL_ENCODED_VECTOR, code_length_table_ptr, DEFAULT_CL_TABLE_LENGTH);
 
-    if (static_cast<float>(m_random) >= 0.05F) { dataTokenCount = static_cast<Gen8u>(m_randomTokenCount); }
+    if (static_cast<float>(get_m_random()) >= 0.05F) { dataTokenCount = static_cast<Gen8u>(get_m_randomTokenCount()); }
 
     TestConfigurator::writeRandomReferenceSequence(dataTokenCount);
 

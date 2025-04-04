@@ -9,7 +9,7 @@
 GenStatus gz_generator::OversubscribedDistanceTreeConfigurator::generate() {
     Gen32u distanceLengthCode = 0U;
 
-    qpl::test::random randomDistanceLengthCode(0U, 29U, m_seed);
+    qpl::test::random randomDistanceLengthCode(0U, 29U, get_m_seed());
 
     std::vector<Gen32u> distanceLengthsTable(DEFAULT_D_TABLE_LENGTH, 0U);
 

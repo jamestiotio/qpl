@@ -22,14 +22,14 @@ GenStatus gz_generator::LargeHeaderConfigurator::generate() {
     Gen32u    middleBytes          = 0U;
     Gen32u    possibleLiteralCount = 0U;
 
-    qpl::test::random random(0U, 0U, m_seed);
+    qpl::test::random random(0U, 0U, get_m_seed());
 
     random.set_range(1U, 8U);
 
     startingSize = 8U * static_cast<Gen32u>(random);
     endingSize   = 8U * static_cast<Gen32u>(random);
 
-    if (0.99F > static_cast<float>(m_random)) {
+    if (0.99F > static_cast<float>(get_m_random())) {
         random.set_range(3U, 34U);
         startingQWords = static_cast<Gen32u>(random);
         startingBits   = BITS_IN_QWORD * startingQWords;
@@ -46,7 +46,7 @@ GenStatus gz_generator::LargeHeaderConfigurator::generate() {
 
     startingBits = startingSize - startingBits;
 
-    if (0.5F > static_cast<float>(m_random)) {
+    if (0.5F > static_cast<float>(get_m_random())) {
         random.set_range(0U, 7U);
     } else {
         random.set_range(0U, endingSize - 1U);
@@ -65,16 +65,16 @@ GenStatus gz_generator::LargeHeaderConfigurator::generate() {
 
     if (status) { return status; }
 
-    m_randomLiteralCode.set_range(0U, possibleLiteralCount - 1U);
+    qpl::test::random tmp = update_range_m_randomLiteralCode(0U, possibleLiteralCount - 1U);
     {
         Gen32u              literalCount = 0U;
         std::vector<Gen32u> pLiteralVector;
 
         random.set_range(0U, 8U);
-        literalCount = static_cast<Gen32u>(m_random);
+        literalCount = static_cast<Gen32u>(get_m_random());
         if (literalCount != 0U) {
             for (Gen32u literal = 0U; literal < literalCount; literal++) {
-                pLiteralVector.push_back(static_cast<Gen32u>(m_randomLiteralCode));
+                pLiteralVector.push_back(static_cast<Gen32u>(tmp));
             }
             TestConfigurator::declareVectorToken(L_VECTOR, pLiteralVector.data(), (Gen32u)pLiteralVector.size());
 

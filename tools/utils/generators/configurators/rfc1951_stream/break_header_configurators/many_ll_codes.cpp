@@ -7,7 +7,7 @@
 #include "many_ll_codes.hpp"
 
 GenStatus gz_generator::ManyLiteralLengthCodesConfigurator::generate() {
-    const Gen32u extraLengthCodesCount = 1U + static_cast<Gen32u>(m_random);
+    const Gen32u extraLengthCodesCount = 1U + static_cast<Gen32u>(get_m_random());
     const Gen32u total_codes           = DEFAULT_LL_TABLE_LENGTH + extraLengthCodesCount;
 
     std::vector<Gen32u> literalLengthCodesTable(total_codes, 0);

@@ -9,7 +9,7 @@
 GenStatus gz_generator::OversubscribedCodeLengthsTreeConfigurator::generate() {
     Gen32u code_length = 0U;
 
-    qpl::test::random randomCodeLength(0U, DEFAULT_CL_TABLE_LENGTH - 1U, m_seed);
+    qpl::test::random randomCodeLength(0U, DEFAULT_CL_TABLE_LENGTH - 1U, get_m_seed());
 
     std::vector<Gen32u> codeLengthsTable(DEFAULT_CL_TABLE_LENGTH, 0U);
 

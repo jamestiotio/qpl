@@ -46,19 +46,10 @@ protected:
         CL_ENCODED_VECTOR,
         L_VECTOR
     };
-    Gen32u m_seed; //Can be used for custom randomizers in generators
 
-    std::unique_ptr<std::stringstream> m_config;
-
-    qpl::test::random m_random;
-    qpl::test::random m_randomMatch;
-    qpl::test::random m_randomLiteralCode;
-
-    qpl::test::random m_randomOffset;
-    qpl::test::random m_randomTokenCount;
+    std::unique_ptr<std::stringstream> m_config; //NOLINT(misc-non-private-member-variables-in-classes)
 
     /*TODO ADD COMMON RANDOM + TABLES*/
-
     /*writers*/
     void writeRandomBlock();
     void writeRandomStoredBlock();
@@ -101,6 +92,39 @@ public:
     TestConfigurator() = delete;
 
     std::unique_ptr<std::stringstream> getConfig() override;
+
+    Gen32u            get_m_seed() const { return m_seed; }
+    qpl::test::random get_m_random() const { return m_random; }
+    qpl::test::random update_range_m_randomOffset(double min, double max) {
+        m_randomOffset.set_range(min, max);
+        return m_randomOffset;
+    }
+
+    qpl::test::random update_range_m_randomMatch(double min, double max) {
+        m_randomMatch.set_range(min, max);
+        return m_randomMatch;
+    }
+    qpl::test::random update_range_m_randomLiteralCode(double min, double max) {
+        m_randomLiteralCode.set_range(min, max);
+        return m_randomLiteralCode;
+    }
+
+    qpl::test::random get_m_randomLiteralCode() const { return m_randomLiteralCode; }
+
+    qpl::test::random update_range_m_randomTokenCount(double min, double max) {
+        m_randomTokenCount.set_range(min, max);
+        return m_randomTokenCount;
+    }
+
+    qpl::test::random get_m_randomTokenCount() const { return m_randomTokenCount; }
+
+private:
+    Gen32u            m_seed; //Can be used for custom randomizers in generators
+    qpl::test::random m_random;
+    qpl::test::random m_randomOffset;
+    qpl::test::random m_randomLiteralCode;
+    qpl::test::random m_randomMatch;
+    qpl::test::random m_randomTokenCount;
 };
 } // namespace gz_generator
 

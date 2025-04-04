@@ -42,20 +42,15 @@ gz_generator::HuffmanOnlyNoErrorConfigurator::generateLiteralSequences(std::vect
     Gen32u              literalCount = 0U;
     std::vector<Gen32u> pLiteralSequence;
 
-    m_randomTokenCount.set_range(128U, 512U);
-    literalCount = static_cast<Gen32u>(m_randomTokenCount);
+    literalCount = static_cast<Gen32u>(update_range_m_randomTokenCount(128U, 512U));
 
     while (pLiteralSequence.size() < literalCount) {
-        if (pLiteralSequence.size() < 4U || (0.8F > static_cast<float>(m_random))) {
-            pLiteralSequence.push_back(static_cast<Gen32u>(m_randomLiteralCode));
+        if (pLiteralSequence.size() < 4U || (0.8F > static_cast<float>(get_m_random()))) {
+            pLiteralSequence.push_back(static_cast<Gen32u>(get_m_randomLiteralCode()));
         } else {
-            Gen32u match  = 0U;
-            Gen32u offset = 0U;
-
-            m_randomOffset.set_range(1U, GEN_MIN(MAX_OFFSET, (uint32_t)pLiteralSequence.size()));
-            m_randomMatch.set_range(4U, 7U);
-            offset = static_cast<Gen32u>(m_randomOffset);
-            match  = static_cast<Gen32u>(m_randomMatch);
+            const Gen32u offset = static_cast<Gen32u>(
+                    update_range_m_randomOffset(1U, GEN_MIN(MAX_OFFSET, (uint32_t)pLiteralSequence.size())));
+            const Gen32u match = static_cast<Gen32u>(update_range_m_randomMatch(4U, 7U));
 
             for (Gen32u repeat = 0U; repeat < match; repeat++) {
                 pLiteralSequence.push_back(pLiteralSequence[pLiteralSequence.size() - offset]);
@@ -75,7 +70,7 @@ gz_generator::HuffmanOnlyNoErrorConfigurator::generateLiteralSequences(std::vect
 
         if (0U != streamBitLength) {
             while (16U >= streamBitLength + minLength) {
-                literal = static_cast<Gen32u>(m_randomLiteralCode);
+                literal = static_cast<Gen32u>(get_m_randomLiteralCode());
                 pLiteralSequence.push_back(literal);
                 streamBitLength = (streamBitLength + pCodeLengthsTable[literal]) & 0xFF;
 

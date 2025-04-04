@@ -16,16 +16,13 @@ GenStatus gz_generator::BadDistanceConfigurator::generate() {
     literalsEncoded = TestConfigurator::writeRandomReferenceSequence(DEFAULT_MAX_OFFSET + 1U, literalsEncoded,
                                                                      DEFAULT_MAX_OFFSET + 1U);
 
-    if (0.5F > static_cast<float>(m_random)) {
-        m_randomOffset.set_range(1U, 16U);
-        offset = MAX_OFFSET + static_cast<Gen32u>(m_randomOffset);
+    if (0.5F > static_cast<float>(get_m_random())) {
+        offset = MAX_OFFSET + static_cast<Gen32u>(update_range_m_randomOffset(1U, 16U));
     } else {
-        m_randomOffset.set_range(MAX_OFFSET + 1U, DEFAULT_MAX_OFFSET);
-        offset = static_cast<Gen32u>(m_randomOffset);
+        offset = static_cast<Gen32u>(update_range_m_randomOffset(MAX_OFFSET + 1U, DEFAULT_MAX_OFFSET));
     }
 
-    m_randomMatch.set_range(MIN_MATCH, GEN_MIN(literalsEncoded, MAX_MATCH));
-    match = static_cast<Gen32u>(m_randomMatch);
+    match = static_cast<Gen32u>(update_range_m_randomMatch(MIN_MATCH, GEN_MIN(literalsEncoded, MAX_MATCH)));
 
     TestConfigurator::declareReference(match, offset);
 

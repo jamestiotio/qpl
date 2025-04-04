@@ -12,20 +12,20 @@
  */
 GenStatus gz_generator::UnallowableLiteralLengthCodeConfigurator::generate() {
     Gen32u            literalsEncoded = 0;
-    qpl::test::random randomUndefinedLiteral(286, 287, m_seed);
+    qpl::test::random randomUndefinedLiteral(286, 287, get_m_seed());
 
-    m_randomTokenCount.set_range(1, 50);
+    qpl::test::random tmp = update_range_m_randomTokenCount(1, 50);
 
     TestConfigurator::declareFixedBlock();
 
-    if (0.9F > static_cast<float>(m_random)) {
-        literalsEncoded = TestConfigurator::writeRandomReferenceSequence(static_cast<Gen32u>(m_randomTokenCount));
+    if (0.9F > static_cast<float>(get_m_random())) {
+        literalsEncoded = TestConfigurator::writeRandomReferenceSequence(static_cast<Gen32u>(tmp));
     }
     TestConfigurator::declareLiteral(static_cast<Gen32u>(randomUndefinedLiteral));
     literalsEncoded += 1;
 
-    if (0.9F > static_cast<float>(m_random)) {
-        TestConfigurator::writeRandomReferenceSequence(static_cast<Gen32u>(m_randomTokenCount), literalsEncoded);
+    if (0.9F > static_cast<float>(get_m_random())) {
+        TestConfigurator::writeRandomReferenceSequence(static_cast<Gen32u>(tmp), literalsEncoded);
     }
 
     TestConfigurator::writeRandomHuffmanBlock();

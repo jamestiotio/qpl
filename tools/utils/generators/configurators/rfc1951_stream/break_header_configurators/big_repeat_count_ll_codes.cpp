@@ -14,9 +14,9 @@ GenStatus gz_generator::BigRepeatCountLiteralLengthCodesConfigurator::generate()
     Gen32u  maximumLiteralCode        = 0U;
     Gen32u  writtenLiteralLengthCodes = 0U;
 
-    qpl::test::random random(0U, 0U, m_seed);
+    qpl::test::random random(0U, 0U, get_m_seed());
 
-    if (0.25F > static_cast<float>(m_random)) {
+    if (0.25F > static_cast<float>(get_m_random())) {
         random.set_range(1U, 8U);
         code_length = static_cast<Gen32u>(random);
         random.set_range(4U, 7U);
@@ -29,7 +29,7 @@ GenStatus gz_generator::BigRepeatCountLiteralLengthCodesConfigurator::generate()
         maximumLiteralCode = 285U;
     }
 
-    if (0.5F > static_cast<float>(m_random)) {
+    if (0.5F > static_cast<float>(get_m_random())) {
         random.set_range(DEFAULT_LL_TABLE_LENGTH + 1U - repeatingCount, maximumLiteralCode);
     } else {
         random.set_range(GEN_MAX(245, DEFAULT_LL_TABLE_LENGTH + 1U - repeatingCount), maximumLiteralCode);

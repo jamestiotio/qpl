@@ -8,7 +8,7 @@
 
 GenStatus gz_generator::FirstDistanceLengthCode16Configurator::generate() {
     Gen32u*           pDistanceLengthCodesTable = nullptr;
-    qpl::test::random rand(4U, 7U, m_seed);
+    qpl::test::random rand(4U, 7U, get_m_seed());
 
     const Gen8u repeatingCount = static_cast<Gen8u>(rand);
 

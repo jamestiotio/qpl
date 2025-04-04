@@ -62,10 +62,9 @@ Gen32u gz_generator::TestConfigurator::writeRandomReferenceSequence(Gen32u seque
             uint32_t       match               = 0U;
             const uint32_t max_available_match = GEN_MIN(encodedLiteralsCountLimit - numberLiteralsEncoded, MAX_MATCH);
 
-            m_randomOffset.set_range(1U, GEN_MIN(numberLiteralsEncoded, MAX_OFFSET));
-            m_randomMatch.set_range(MIN_MATCH, GEN_MIN(numberLiteralsEncoded, max_available_match));
-            offset = static_cast<uint32_t>(m_randomOffset);
-            match  = static_cast<uint32_t>(m_randomMatch);
+            offset = static_cast<uint32_t>(update_range_m_randomOffset(1U, GEN_MIN(numberLiteralsEncoded, MAX_OFFSET)));
+            match  = static_cast<uint32_t>(
+                    update_range_m_randomMatch(MIN_MATCH, GEN_MIN(numberLiteralsEncoded, max_available_match)));
 
             TestConfigurator::declareReference(match, offset);
             numberLiteralsEncoded += match;

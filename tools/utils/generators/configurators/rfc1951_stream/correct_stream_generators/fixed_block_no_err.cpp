@@ -8,8 +8,7 @@
 
 GenStatus gz_generator::FixedBlockNoErrorConfigurator::generate() {
     TestConfigurator::declareFixedBlock();
-    m_randomTokenCount.set_range(5000, 10000);
-    TestConfigurator::writeRandomReferenceSequence(static_cast<Gen8u>(m_randomTokenCount));
+    TestConfigurator::writeRandomReferenceSequence(static_cast<Gen8u>(update_range_m_randomTokenCount(5000U, 10000U)));
     TestConfigurator::declareFinishBlock();
 
     return GEN_OK;

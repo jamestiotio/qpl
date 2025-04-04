@@ -12,7 +12,7 @@ GenStatus gz_generator::NoLiteralLengthCodeConfigurator::generate() {
 
     // Indices 257-285 are the literal length codes
     // Stop at 285 so that not every LL code is 0, which is a different test with a different error code
-    qpl::test::random rand(257U, 285U, m_seed);
+    qpl::test::random rand(257U, 285U, get_m_seed());
     Gen32u            numberMissedCodes = 0U;
 
     pLiteralLengthCodesTable = new Gen32u[DEFAULT_LL_TABLE_LENGTH];

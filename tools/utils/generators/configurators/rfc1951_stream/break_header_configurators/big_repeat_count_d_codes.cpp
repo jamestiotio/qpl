@@ -14,9 +14,9 @@ GenStatus gz_generator::BigRepeatCountDistanceLengthCodesConfigurator::generate(
     Gen32u  maximumDistanceCode        = 0U;
     Gen32u  writtenDistanceLengthCodes = 0U;
 
-    qpl::test::random random(0U, 0U, m_seed);
+    qpl::test::random random(0U, 0U, get_m_seed());
 
-    if (0.25F > static_cast<float>(m_random)) {
+    if (0.25F > static_cast<float>(get_m_random())) {
         random.set_range(1U, 8U);
         code_length = static_cast<Gen32u>(random);
         random.set_range(4U, 7U);

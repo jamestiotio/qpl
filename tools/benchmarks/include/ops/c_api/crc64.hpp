@@ -25,8 +25,6 @@ public:
 private:
     using base_api_t::deinit_lib_impl;
     using base_api_t::job_;
-    using base_t::bytes_read_;
-    using base_t::bytes_written_;
     static constexpr const uint64_t poly_crc32_gzip_wimax = 0x04C11DB700000000;
     static constexpr const uint64_t poly_crc32_iscsi      = 0x1EDC6F4100000000;
     static constexpr const uint64_t poly_T10DIF           = 0x8BB7000000000000;
@@ -89,9 +87,9 @@ protected:
     void sync_execute_impl() {
         auto status = qpl_execute_job(job_);
         if (QPL_STS_OK == status) {
-            data_size_     = job_->total_out;
-            bytes_read_    = job_->total_in;
-            bytes_written_ = job_->total_out;
+            data_size_ = job_->total_out;
+            base_t::set_bytes_read(job_->total_in);
+            base_t::set_bytes_written(job_->total_out);
         } else
             throw std::runtime_error(format("qpl_execute_job() failed with status %d", status));
     }
@@ -104,9 +102,9 @@ protected:
     task_status_e async_wait_impl() {
         auto status = qpl_wait_job(job_);
         if (QPL_STS_OK == status) {
-            data_size_     = job_->total_out;
-            bytes_read_    = job_->total_in;
-            bytes_written_ = job_->total_out;
+            data_size_ = job_->total_out;
+            base_t::set_bytes_read(job_->total_in);
+            base_t::set_bytes_written(job_->total_out);
             return task_status_e::completed;
         } else
             throw std::runtime_error(format("qpl_wait_job() failed with status %d", status));
@@ -118,9 +116,9 @@ protected:
             return task_status_e::in_progress;
         else {
             if (QPL_STS_OK == status) {
-                data_size_     = job_->total_out;
-                bytes_read_    = job_->total_in;
-                bytes_written_ = job_->total_out;
+                data_size_ = job_->total_out;
+                base_t::set_bytes_read(job_->total_in);
+                base_t::set_bytes_written(job_->total_out);
                 return task_status_e::completed;
             } else
                 throw std::runtime_error(format("qpl_check_job() failed with status %d", status));

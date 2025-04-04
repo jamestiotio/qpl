@@ -24,9 +24,6 @@ public:
 private:
     using base_api_t::deinit_lib_impl;
     using base_api_t::job_;
-    using base_t::bytes_read_;
-    using base_t::bytes_written_;
-    using base_t::elapsed_time_;
 
 public:
     deflate_t() noexcept {}
@@ -77,12 +74,14 @@ protected:
     void sync_execute_impl() {
         auto status = qpl_execute_job(job_);
         if (QPL_STS_OK == status) {
-            stream_size_   = job_->total_out;
-            bytes_read_    = job_->total_in;
-            bytes_written_ = job_->total_out;
+            stream_size_ = job_->total_out;
+            base_t::set_bytes_read(job_->total_in);
+            base_t::set_bytes_written(job_->total_out);
 
             if (cmd::FLAGS_accel_time) {
-                qpl_get_execution_record(job_, QPL_EXECUTION_INFO_ELAPSED_TIME, &elapsed_time_);
+                double tmp = base_t::get_elapsed_time();
+                qpl_get_execution_record(job_, QPL_EXECUTION_INFO_ELAPSED_TIME, &tmp);
+                base_t::set_elapsed_time(tmp);
             }
         } else
             throw std::runtime_error(format("qpl_execute_job() failed with status %d", status));
@@ -96,9 +95,9 @@ protected:
     task_status_e async_wait_impl() {
         auto status = qpl_wait_job(job_);
         if (QPL_STS_OK == status) {
-            stream_size_   = job_->total_out;
-            bytes_read_    = job_->total_in;
-            bytes_written_ = job_->total_out;
+            stream_size_ = job_->total_out;
+            base_t::set_bytes_read(job_->total_in);
+            base_t::set_bytes_written(job_->total_out);
             return task_status_e::completed;
         } else
             throw std::runtime_error(format("qpl_wait_job() failed with status %d", status));
@@ -110,9 +109,9 @@ protected:
             return task_status_e::in_progress;
         else {
             if (QPL_STS_OK == status) {
-                stream_size_   = job_->total_out;
-                bytes_read_    = job_->total_in;
-                bytes_written_ = job_->total_out;
+                stream_size_ = job_->total_out;
+                base_t::set_bytes_read(job_->total_in);
+                base_t::set_bytes_written(job_->total_out);
                 return task_status_e::completed;
             } else
                 throw std::runtime_error(format("qpl_check_job() failed with status %d", status));

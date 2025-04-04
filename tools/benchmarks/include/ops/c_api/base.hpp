@@ -32,24 +32,19 @@ class operation_base_t : public ops::operation_base_t<DerivedT> {
 public:
     using base_t = ops::operation_base_t<DerivedT>;
 
-private:
-    using base_t::cache_control_;
-    using base_t::numa_id_;
-
-public:
     operation_base_t() noexcept {}
     ~operation_base_t() noexcept {}
     operation_base_t(const operation_base_t& other) {
-        cache_control_ = other.cache_control_;
-        numa_id_       = other.numa_id_;
+        base_t::set_cache_control(other.get_cache_control());
+        base_t::set_numa_id(other.get_numa_id());
         if (other.job_) { init_lib_impl(); }
     }
 
     operation_base_t& operator=(const operation_base_t& other) {
         if (this != &other) {
             deinit_lib_impl();
-            cache_control_ = other.cache_control_;
-            numa_id_       = other.numa_id_;
+            base_t::set_cache_control(other.get_cache_control());
+            base_t::set_numa_id(other.get_numa_id());
             if (other.job_) { init_lib_impl(); }
         }
         return *this;
@@ -59,7 +54,8 @@ public:
     operation_base_t& operator=(operation_base_t&&) = delete;
 
     void init_lib_impl() {
-        if (!cache_control_) throw std::runtime_error("manual cache control option is not supported in C API");
+        if (!base_t::get_cache_control())
+            throw std::runtime_error("manual cache control option is not supported in C API");
 
         std::uint32_t size   = 0U;
         auto          status = qpl_get_job_size(to_qpl_path<DerivedT::path_v>(), &size);
@@ -74,7 +70,7 @@ public:
             job_ = nullptr;
             throw std::runtime_error(format("qpl_init_job() failed with status %d", status));
         }
-        job_->numa_id = numa_id_;
+        job_->numa_id = base_t::get_numa_id();
     }
 
     void deinit_lib_impl() {

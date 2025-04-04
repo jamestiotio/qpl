@@ -105,14 +105,23 @@ public:
     auto get_result() noexcept -> typename traits<operation_base_t>::result_t& { return derived().get_result_impl(); }
 
     // Getters for amount of processed bytes for throughput stats
-    size_t get_bytes_read() { return bytes_read_; }
-    size_t get_bytes_written() { return bytes_written_; }
-    double get_elapsed_time() { return elapsed_time_; }
+    bool         get_cache_control() const { return cache_control_; }
+    std::int32_t get_numa_id() const { return numa_id_; }
+    size_t       get_bytes_read() const { return bytes_read_; }
+    size_t       get_bytes_written() const { return bytes_written_; }
+    double       get_elapsed_time() const { return elapsed_time_; }
+
+    void set_cache_control(bool cache_control) { this->cache_control_ = cache_control; }
+    void set_numa_id(std::int32_t numa_id) { this->numa_id_ = numa_id; }
+    void set_bytes_written(size_t bytes_written) { this->bytes_written_ = bytes_written; }
+    void set_bytes_read(size_t bytes_read) { this->bytes_read_ = bytes_read; }
+    void set_elapsed_time(double elapsed_time) { this->elapsed_time_ = elapsed_time; }
 
 protected:
     const DerivedT& derived() const { return *static_cast<const DerivedT*>(this); }
     DerivedT&       derived() { return *static_cast<DerivedT*>(this); }
 
+private:
     bool         cache_control_ {true};
     bool         full_time_ {false};
     bool         retired_ {true};

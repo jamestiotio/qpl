@@ -50,6 +50,8 @@ See [Intel QPL Testing](https://intel.github.io/qpl/documentation/get_started_do
 
 See [Contributing document](CONTRIBUTING.md) for details about contribution process.
 
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](CODE_OF_CONDUCT.md) code of conduct.
+
 ## How to Report Issues
 
 See [Issue Reporting](https://intel.github.io/qpl/documentation/contributing_docs/issue_reporting.html) chapter for details about issue reporting process.

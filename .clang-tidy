@@ -167,7 +167,7 @@ Checks: '
     portability-std-allocator-const,
     modernize-use-std-print,
     modernize-deprecated-headers'
-
+HeaderFilterRegex:   '.*(sources/c_api.*|sources/core-iaa.*|sources/core-sw.*|sources/isal.*|sources/middle-layer.*|tools/benchmarks/.*|tools/tests/.*|tools/ref/.*|tools/utils/.*).*'
 CheckOptions:
 - key: readability-uppercase-literal-suffix.IgnoreMacros
   value: 'false'

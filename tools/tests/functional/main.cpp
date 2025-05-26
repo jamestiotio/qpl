@@ -193,9 +193,9 @@ int main(int argc, char* argv[]) { //NOLINT(bugprone-exception-escape)
     const qpl::test::extended_info_t& info = qpl::test::get_sys_info();
     std::cout << info;
 
-    int init_with_fork_status = 0;
 #if defined(__linux__)
-    auto execution_path = environment::GetInstance().GetExecutionPath();
+    int  init_with_fork_status = 0;
+    auto execution_path        = environment::GetInstance().GetExecutionPath();
     if (execution_path == qpl_path_hardware) {
         std::cout << "Running HW dispatcher initialization check with multiprocessing\n";
         init_with_fork_status = test_init_with_fork();
@@ -206,11 +206,14 @@ int main(int argc, char* argv[]) { //NOLINT(bugprone-exception-escape)
 
     std::cout << "Tests seed = " << environment::GetInstance().GetSeed() << '\n';
 
-    const int status = RUN_ALL_TESTS();
+    int status = RUN_ALL_TESTS();
 
+    // Duplicate diagnostics at the end of the log
+#if defined(__linux__)
     if (init_with_fork_status) std::cout << "Hardware dispatcher initialization with fork() failed.\n";
+    status |= init_with_fork_status;
+#endif
     std::cout << "Tests seed = " << environment::GetInstance().GetSeed() << '\n';
 
-    const int final_status = status | init_with_fork_status;
-    return final_status;
+    return status;
 }

@@ -48,4 +48,17 @@ static inline int parse_execution_path(int argc, char** argv, qpl_path_t* path_p
     return 0;
 }
 
+inline int exception_handler() {
+    try {
+        throw;
+    } catch (const std::exception& std_exception) {
+        std::cout << "std::exception was caught: " << std_exception.what() << "\n";
+        return -2;
+    } catch (...) {
+        std::cout << "An unrecognized exception was caught!\n";
+        return -1;
+    }
+    return 0;
+}
+
 #endif // QPL_EXAMPLES_UTILS_HPP_

@@ -208,69 +208,71 @@ auto sw_decompression(std::vector<uint8_t>& destination, std::vector<uint8_t>& r
 }
 
 auto main(int argc, char** argv) -> int {
-    std::cout << "Intel(R) Query Processing Library version is " << qpl_get_library_version() << ".\n";
+    try {
+        std::cout << "Intel(R) Query Processing Library version is " << qpl_get_library_version() << ".\n";
 
-    // Default to Hardware Path
-    qpl_path_t execution_path = qpl_path_hardware;
+        // Default to Hardware Path
+        qpl_path_t execution_path = qpl_path_hardware;
 
-    // Get path from input argument
-    const int parse_ret = parse_execution_path(argc, argv, &execution_path);
-    if (parse_ret != 0) { return 1; }
+        // Get path from input argument
+        const int parse_ret = parse_execution_path(argc, argv, &execution_path);
+        if (parse_ret != 0) { return 1; }
 
-    // Get compression buffer size estimate
-    const uint32_t compression_size = qpl_get_safe_deflate_compression_buffer_size(source_size);
-    if (compression_size == 0) {
-        std::cout << "Invalid source size. Source size exceeds the maximum supported size.\n";
-        return 1;
-    }
-
-    // Source and output containers
-    std::vector<uint8_t> source(source_size, 5);
-    std::vector<uint8_t> destination(compression_size, 4);
-    std::vector<uint8_t> reference(source_size, 7);
-
-    // Dictionary initialization
-    qpl_dictionary* dictionary_ptr = nullptr;
-
-    // Build dictionary and check if building failed
-    if (create_dictionary(execution_path, source, &dictionary_ptr) != 0) { return 1; }
-
-    // Compression and check if compression failed
-    const uint8_t comp_status = compression(execution_path, source, destination, dictionary_ptr);
-    if (comp_status == QPL_STS_NOT_SUPPORTED_MODE_ERR) {
-        // Free dictionary
-        destroy_dictionary(&dictionary_ptr);
-        return 0;
-    } else if (comp_status != 0) {
-        // Free dictionary
-        destroy_dictionary(&dictionary_ptr);
-        return comp_status;
-    }
-
-    // Decompression with software_path and check if decompression failed
-    const uint8_t decomp_status = sw_decompression(destination, reference, dictionary_ptr);
-    if (decomp_status != 0) {
-        // Free dictionary
-        destroy_dictionary(&dictionary_ptr);
-        return decomp_status;
-    }
-
-    // Free dictionary
-    destroy_dictionary(&dictionary_ptr);
-
-    // Compare source and reference
-    for (size_t i = 0; i < source.size(); i++) {
-        if (source[i] != reference[i]) {
-            std::cout << "Content wasn't successfully compressed and decompressed with dictionary.\n";
+        // Get compression buffer size estimate
+        const uint32_t compression_size = qpl_get_safe_deflate_compression_buffer_size(source_size);
+        if (compression_size == 0) {
+            std::cout << "Invalid source size. Source size exceeds the maximum supported size.\n";
             return 1;
         }
-    }
 
-    std::cout << "Content was successfully compressed and decompressed with dictionary.\n";
-    std::cout << "Input size: " << source.size() << ", compressed size: " << destination.size()
-              << ", compression ratio: " << (float)source.size() / (float)destination.size() << ".\n";
+        // Source and output containers
+        std::vector<uint8_t> source(source_size, 5);
+        std::vector<uint8_t> destination(compression_size, 4);
+        std::vector<uint8_t> reference(source_size, 7);
 
-    return 0;
+        // Dictionary initialization
+        qpl_dictionary* dictionary_ptr = nullptr;
+
+        // Build dictionary and check if building failed
+        if (create_dictionary(execution_path, source, &dictionary_ptr) != 0) { return 1; }
+
+        // Compression and check if compression failed
+        const uint8_t comp_status = compression(execution_path, source, destination, dictionary_ptr);
+        if (comp_status == QPL_STS_NOT_SUPPORTED_MODE_ERR) {
+            // Free dictionary
+            destroy_dictionary(&dictionary_ptr);
+            return 0;
+        } else if (comp_status != 0) {
+            // Free dictionary
+            destroy_dictionary(&dictionary_ptr);
+            return comp_status;
+        }
+
+        // Decompression with software_path and check if decompression failed
+        const uint8_t decomp_status = sw_decompression(destination, reference, dictionary_ptr);
+        if (decomp_status != 0) {
+            // Free dictionary
+            destroy_dictionary(&dictionary_ptr);
+            return decomp_status;
+        }
+
+        // Free dictionary
+        destroy_dictionary(&dictionary_ptr);
+
+        // Compare source and reference
+        for (size_t i = 0; i < source.size(); i++) {
+            if (source[i] != reference[i]) {
+                std::cout << "Content wasn't successfully compressed and decompressed with dictionary.\n";
+                return 1;
+            }
+        }
+
+        std::cout << "Content was successfully compressed and decompressed with dictionary.\n";
+        std::cout << "Input size: " << source.size() << ", compressed size: " << destination.size()
+                  << ", compression ratio: " << (float)source.size() / (float)destination.size() << ".\n";
+
+        return 0;
+    } catch (...) { return exception_handler(); }
 }
 
 //* [QPL_LOW_LEVEL_MIX_PATHS_COMP_DECOMP_W_DICT_EXAMPLE] */

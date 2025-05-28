@@ -16,39 +16,18 @@
 
 namespace qpl::ml {
 
+#define QPL_AWAITER_PERIOD_CYCLES   2000U
+#define QPL_AWAITER_TIMEOUT_SECONDS 8.0
+
 /**
- * @brief Class that allows to defer scope exit to the moment when a certain address is changed
+ * @brief Wait function looks for changes in address until timeout time reached
+ *
+ * @param[in] address         Pointer to memory that should be asynchronously changed
+ * @param[in] initial_value   Value to compare with
+ *
+ * @return none
  */
-class awaiter final {
-public:
-    /**
-     * @brief Constructor of the class
-     *
-     * @param address       pointer to memory that should be asynchronously changed
-     * @param initial_value value to compare with
-     * @param period        number of clocks between checks
-     */
-    explicit awaiter(volatile void* address, uint8_t initial_value, uint32_t period = 200U) noexcept;
-
-    /**
-     * @brief Destructor that performs actual wait
-     */
-    ~awaiter() noexcept;
-
-    awaiter(const awaiter&) = delete;
-    awaiter(awaiter&&)      = delete;
-
-    awaiter& operator=(const awaiter&) = delete;
-    awaiter& operator=(awaiter&&)      = delete;
-
-    static void wait_for(volatile void* address, uint8_t initial_value) noexcept;
-
-private:
-    volatile uint8_t* address_ptr_   = nullptr; /**< Pointer to memory that should be asynchronously changed */
-    uint32_t          period_        = 0U;      /**< Number of clocks between checks */
-    uint8_t           initial_value_ = 0U;      /**< Value to compare with */
-    uint32_t          idle_state_    = 0U;      /**< State for CPU wait control */
-};
+void wait_for(volatile uint8_t* address, uint8_t initial_value);
 
 } // namespace qpl::ml
 

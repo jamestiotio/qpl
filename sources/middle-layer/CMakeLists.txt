@@ -72,3 +72,24 @@ target_include_directories(middle_layer_lib
         PUBLIC $<TARGET_PROPERTY:core_iaa,INTERFACE_INCLUDE_DIRECTORIES>)
 
 target_compile_definitions(middle_layer_lib PUBLIC -DQPL_LIB)
+
+if ("${CMAKE_VERSION}" VERSION_GREATER "3.19")
+    message(STATUS "Performing Test HAVE_CXX_KNOWS_WAITPKG")
+    set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+    try_compile(
+        HAVE_CXX_KNOWS_WAITPKG
+	"${CMAKE_CURRENT_BINARY_DIR}/test_compile_waitpkg"
+	"${CMAKE_CURRENT_SOURCE_DIR}/util/awaiter.cpp"
+	CXX_STANDARD 17
+	COMPILE_DEFINITIONS "-DHAVE_CXX_KNOWS_WAITPKG"
+	CMAKE_FLAGS "-DINCLUDE_DIRECTORIES=${CMAKE_SOURCE_DIR}/sources/core-iaa/include"
+	)
+    if(HAVE_CXX_KNOWS_WAITPKG)
+        target_compile_definitions(middle_layer_lib PUBLIC -DHAVE_CXX_KNOWS_WAITPKG)
+    endif()
+endif ()
+if(HAVE_CXX_KNOWS_WAITPKG)
+    message(STATUS "Performing Test HAVE_CXX_KNOWS_WAITPKG - success")
+else()
+    message(STATUS "Performing Test HAVE_CXX_KNOWS_WAITPKG - failure")
+endif()

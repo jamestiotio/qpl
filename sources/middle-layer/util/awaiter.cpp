@@ -6,69 +6,57 @@
 
 #include "awaiter.hpp"
 
+#include <chrono>
+
+#include "hw_status.h"
+
 #if defined(__linux__)
-
 #include <x86intrin.h>
-
 #else
 #include <emmintrin.h>
 #include <intrin.h>
 #endif
 
-/**
- * Unused variables which might be used later - warning removal
- */
-#define MAYBE_UNUSED(x) ((void)(x))
-
 namespace qpl::ml {
 
-#ifdef QPL_EFFICIENT_WAIT
-static inline uint64_t current_time() {
-    return __rdtsc();
-}
-
-static inline void monitor_address(volatile void* address) {
-    asm volatile(".byte 0xf3, 0x48, 0x0f, 0xae, 0xf0" : : "a"(address));
-}
-
-static inline int wait_until(uint64_t timeout, uint32_t state) {
-    uint8_t r            = 0u;
-    auto    timeout_low  = static_cast<uint32_t>(timeout);
-    auto    timeout_high = static_cast<uint32_t>(timeout >> 32);
-
-    asm volatile(
-            ".byte 0xf2, 0x48, 0x0f, 0xae, 0xf1\t\n"
-            "setc %0\t\n"
-            : "=r"(r)
-            : "c"(state), "a"(timeout_low), "d"(timeout_high));
-
-    return r;
-}
+#if defined(HAVE_CXX_KNOWS_WAITPKG) || defined(QPL_EFFICIENT_WAIT)
+#if defined(__linux__)
+__attribute__((target("waitpkg")))
 #endif
+void wait_for(volatile uint8_t* address, uint8_t initial_value) {
+    const auto start_time = std::chrono::high_resolution_clock::now();
+    double     age        = 0.0;
 
-awaiter::awaiter(volatile void* address, uint8_t initial_value, uint32_t period) noexcept
-    : address_ptr_(reinterpret_cast<volatile uint8_t*>(address)), period_(period), initial_value_(initial_value) {
-    // Empty constructor
-}
-
-awaiter::~awaiter() noexcept {
-#ifdef QPL_EFFICIENT_WAIT
-    while (initial_value_ == *address_ptr_) {
-        monitor_address(address_ptr_);
-
-        auto start = current_time();
-        wait_until(start + period_, idle_state_);
-    }
-#else
-    MAYBE_UNUSED(period_);
-    MAYBE_UNUSED(idle_state_);
-    while (initial_value_ == *address_ptr_) {
+    while ((initial_value == *address) && (age < QPL_AWAITER_TIMEOUT_SECONDS)) {
         _mm_pause();
+        auto future_wait_to = __rdtsc() + QPL_AWAITER_PERIOD_CYCLES;
+        _umonitor(const_cast<uint8_t*>(address)); // Technically casting off volatile is undefined but the unlikely
+                                                  // side effect of non-volatile would be only lack of an optimization.
+        _umwait(0, future_wait_to);
+        auto sample_time = std::chrono::high_resolution_clock::now();
+        age              = std::chrono::duration<double>(sample_time - start_time).count();
     }
-#endif
-}
 
-void awaiter::wait_for(volatile void* address, uint8_t initial_value) noexcept {
-    const awaiter wait_for(address, initial_value);
+    if ((initial_value == *address) && (age > QPL_AWAITER_TIMEOUT_SECONDS)) *address = AD_ERROR_CODE_TIMEOUT;
 }
+#endif
+
+#if defined(HAVE_CXX_KNOWS_WAITPKG) || !defined(QPL_EFFICIENT_WAIT)
+#if defined(__linux__)
+__attribute__((target("default")))
+#endif
+void wait_for(volatile uint8_t* address, uint8_t initial_value) {
+    const auto start_time = std::chrono::high_resolution_clock::now();
+    double     age        = 0.0;
+
+    while ((initial_value == *address) && (age < QPL_AWAITER_TIMEOUT_SECONDS)) {
+        _mm_pause();
+        auto sample_time = std::chrono::high_resolution_clock::now();
+        age              = std::chrono::duration<double>(sample_time - start_time).count();
+    }
+
+    if ((initial_value == *address) && (age > QPL_AWAITER_TIMEOUT_SECONDS)) *address = AD_ERROR_CODE_TIMEOUT;
+}
+#endif
+
 } // namespace qpl::ml

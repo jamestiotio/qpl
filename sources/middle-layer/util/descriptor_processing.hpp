@@ -28,7 +28,7 @@ enum class execution_mode_t : std::uint8_t { sync, async };
 template <typename return_t>
 inline auto wait_descriptor_result(HW_PATH_VOLATILE hw_completion_record* const completion_record_ptr,
                                    execution_record_ext_t*                      record) -> return_t {
-    awaiter::wait_for(&completion_record_ptr->status, AD_STATUS_INPROG);
+    wait_for(&completion_record_ptr->status, AD_STATUS_INPROG);
 
 #ifdef QPL_EXPERIMENTAL_LOG_IAA
     ml::util::record_end_time(record);

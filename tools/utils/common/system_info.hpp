@@ -154,7 +154,7 @@ static uint32_t get_total_numa_nodes() {
 /*
  * @brief Structure to keep information about accelerators.
  */
-static inline accel_info_t& get_accels_info() noexcept {
+static inline accel_info_t& get_accels_info() {
     static accel_info_t info;
 
 #if defined(__linux__)

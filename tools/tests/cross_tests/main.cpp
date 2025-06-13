@@ -9,6 +9,9 @@
 #include "gtest/gtest.h"
 #include "qpl_test_environment.hpp"
 
+// tool_common
+#include "exception_handler.hpp"
+
 namespace qpl::test {
 
 static inline void show_help() {
@@ -58,20 +61,22 @@ static inline util::arguments_list_t get_testing_settings(int argc, char* argv[]
 
 } // namespace qpl::test
 
-int main(int argc, char* argv[]) { //NOLINT(bugprone-exception-escape)
-    testing::InitGoogleTest(&argc, argv);
+int main(int argc, char* argv[]) {
+    try {
+        testing::InitGoogleTest(&argc, argv);
 
-    auto arguments_list = qpl::test::get_testing_settings(argc, argv);
+        auto arguments_list = qpl::test::get_testing_settings(argc, argv);
 
-    using environment = qpl::test::util::TestEnvironment;
+        using environment = qpl::test::util::TestEnvironment;
 
-    environment::GetInstance().Initialize(arguments_list);
+        environment::GetInstance().Initialize(arguments_list);
 
-    std::cout << "Tests seed = " << environment::GetInstance().GetSeed() << '\n';
+        std::cout << "Tests seed = " << environment::GetInstance().GetSeed() << '\n';
 
-    const int status = RUN_ALL_TESTS();
+        const int status = RUN_ALL_TESTS();
 
-    std::cout << "Tests seed = " << environment::GetInstance().GetSeed() << '\n';
+        std::cout << "Tests seed = " << environment::GetInstance().GetSeed() << '\n';
 
-    return status;
+        return status;
+    } catch (...) { return qpl::test::exception_handler(); }
 }

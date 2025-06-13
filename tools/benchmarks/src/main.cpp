@@ -16,6 +16,7 @@
 #include "test_hw_dispatcher.hpp"
 
 // tool_common
+#include "exception_handler.hpp"
 #include "system_info.hpp"
 
 #if defined(__linux__)
@@ -277,35 +278,36 @@ std::string format(const char* format, ...) noexcept {
 //
 // Main
 //
-int main(int argc, char** argv) //NOLINT(bugprone-exception-escape)
-{
-    // Parse command line arguments
-    bench::cmd::parse_cmd_line(&argc, argv);
+int main(int argc, char** argv) {
+    try {
+        // Parse command line arguments
+        bench::cmd::parse_cmd_line(&argc, argv);
 
-    // Initialize the benchmark framework
-    ::benchmark::Initialize(&argc, argv);
-    if (::benchmark::ReportUnrecognizedArguments(argc, argv)) return 1;
+        // Initialize the benchmark framework
+        ::benchmark::Initialize(&argc, argv);
+        if (::benchmark::ReportUnrecognizedArguments(argc, argv)) return 1;
 
-    // Retrieve system information
-    auto& sys_info = qpl::test::get_sys_info();
-    std::cout << sys_info;
+        // Retrieve system information
+        auto& sys_info = qpl::test::get_sys_info();
+        std::cout << sys_info;
 
-    // Initialize accelerator hardware if enabled
-    if (!bench::cmd::FLAGS_no_hw) bench::details::init_hw();
+        // Initialize accelerator hardware if enabled
+        if (!bench::cmd::FLAGS_no_hw) bench::details::init_hw();
 
-    // Parse the benchmark filter
-    bench::parse_benchmark_filter(benchmark::GetBenchmarkFilter());
+        // Parse the benchmark filter
+        bench::parse_benchmark_filter(benchmark::GetBenchmarkFilter());
 
-    // Register benchmarks
-    auto& registry = bench::details::get_registry();
-    for (auto& reg : registry)
-        reg();
+        // Register benchmarks
+        auto& registry = bench::details::get_registry();
+        for (auto& reg : registry)
+            reg();
 
-    // Run benchmarks
-    ::benchmark::RunSpecifiedBenchmarks();
+        // Run benchmarks
+        ::benchmark::RunSpecifiedBenchmarks();
 
-    // Shutdown the benchmark framework
-    ::benchmark::Shutdown();
+        // Shutdown the benchmark framework
+        ::benchmark::Shutdown();
 
-    return 0;
+        return 0;
+    } catch (...) { return qpl::test::exception_handler(); }
 }

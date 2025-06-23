@@ -24,7 +24,7 @@ import docutils
 project = 'Intel® QPL'
 copyright = '2022, Intel'
 author = 'Intel'
-release = 'v1.7.0'
+release = 'v1.8.0'
 
 # -- General configuration ---------------------------------------------------
 

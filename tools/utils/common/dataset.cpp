@@ -14,9 +14,22 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <system_error>
 
 namespace qpl::tools {
 dataset_t::dataset_t(const std::string& path) {
+    // Check if the path is not empty
+    if (path.empty()) { throw std::invalid_argument("Dataset path is empty"); }
+    // Check if the path exists
+    if (!std::filesystem::exists(path)) {
+        throw std::filesystem::filesystem_error("Dataset path doesn't exist", path,
+                                                std::make_error_code(std::errc::no_such_file_or_directory));
+    }
+    // Check if the path is a directory
+    if (!std::filesystem::is_directory(path)) {
+        throw std::filesystem::filesystem_error("Dataset path is not a directory", path,
+                                                std::make_error_code(std::errc::not_a_directory));
+    }
     auto real_path = canonical(absolute(std::filesystem::path(path.c_str())));
     path_          = real_path.string();
 

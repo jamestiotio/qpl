@@ -1,0 +1,16 @@
+# ==========================================================================
+# Copyright (C) 2025 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+# ==========================================================================
+
+# Default
+* @gbtucker @ElenaTyuleneva @kiselik @nmizonov @paveldyakov @tizmajlo
+
+# GitHub automation
+/.github/workflows/ @Smirnov1gor
+/.github/ @kiselik @paveldyakov
+
+# Documentation
+/doc/ @kiselik @paveldyakov
+*.md @kiselik @paveldyakov

@@ -1,0 +1,38 @@
+name: "Clang-tidy"
+
+"on":
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "*" ]
+  workflow_dispatch:
+
+
+env:
+  LLVM_VERSION: "18"
+
+jobs:
+  scan:
+    runs-on: ${{ github.repository_owner == 'intel' && 'ubuntu-latest' || 'service' }}
+    container:
+      image: "ubuntu:latest"
+
+    steps:
+      - name: "Install dependencies"
+        run: |
+          apt-get update && apt-get install -y git cmake nasm lsb-release wget software-properties-common
+          wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && /bin/bash llvm.sh ${{ env.LLVM_VERSION }} all
+          ln -s /usr/bin/clang-tidy-${{ env.LLVM_VERSION }} /usr/bin/clang-tidy
+
+      - name: "Checkout repository"
+        uses: "actions/checkout@v4"
+        with:
+          submodules: "true"
+
+      - name: "Run clang-tidy scan"
+        run: |
+          mkdir build && cd build
+          export CC=clang-${{ env.LLVM_VERSION }}
+          export CXX=clang++-${{ env.LLVM_VERSION }}
+          cmake .. -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release -DQPL_USE_CLANG_TIDY=ON
+          cmake --build . --target install --parallel 8

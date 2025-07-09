@@ -24,11 +24,12 @@ jobs:
       packages: "read"
       statuses: "write"
     steps:
-      - name: "Checkout Code"
+      - name: "Checkout repository"
         uses: "actions/checkout@v4"
         with:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
+          clean: "true"
 
       - name: "Validation with Super-Linter"
         uses: "super-linter/super-linter@v6.3.0"

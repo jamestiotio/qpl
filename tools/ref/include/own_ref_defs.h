@@ -143,13 +143,8 @@ extern "C" {
 /**
  * @todo
  */
-#define REF_FREE_PTR(ptr)    \
-    {                        \
-        if (NULL != (ptr)) { \
-            free(ptr);       \
-            (ptr) = NULL;    \
-        }                    \
-    }
+#define REF_FREE_PTR(ptr) \
+    { free(ptr); }
 
 /**
  * @todo

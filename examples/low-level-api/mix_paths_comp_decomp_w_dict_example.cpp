@@ -29,15 +29,6 @@
  */
 constexpr const uint32_t source_size = 2048U;
 
-// Deallocate dictionary
-uint8_t destroy_dictionary(qpl_dictionary** dictionary_ptr) {
-    if (*dictionary_ptr != nullptr) {
-        free(*dictionary_ptr); //NOLINT(cppcoreguidelines-no-malloc)
-        *dictionary_ptr = nullptr;
-    }
-    return 0;
-}
-
 // Create dictionary with defined path
 uint8_t create_dictionary(qpl_path_t execution_path, std::vector<uint8_t>& source, qpl_dictionary** dictionary_ptr) {
     std::size_t          dictionary_buffer_size = 0;
@@ -77,7 +68,11 @@ uint8_t create_dictionary(qpl_path_t execution_path, std::vector<uint8_t>& sourc
             qpl_build_dictionary(*dictionary_ptr, sw_compr_level, hw_compr_level, raw_dict_ptr, raw_dict_size);
     if (status != QPL_STS_OK) {
         std::cout << "An error " << status << " occurred during dictionary building.\n";
-        destroy_dictionary(dictionary_ptr); // Clean up allocated memory
+
+        // Clean up allocated memory
+        free(*dictionary_ptr); //NOLINT(cppcoreguidelines-no-malloc)
+        *dictionary_ptr = nullptr;
+
         return 1;
     }
 
@@ -240,11 +235,11 @@ auto main(int argc, char** argv) -> int {
         const uint8_t comp_status = compression(execution_path, source, destination, dictionary_ptr);
         if (comp_status == QPL_STS_NOT_SUPPORTED_MODE_ERR) {
             // Free dictionary
-            destroy_dictionary(&dictionary_ptr);
+            free(dictionary_ptr); //NOLINT(cppcoreguidelines-no-malloc)
             return 0;
         } else if (comp_status != 0) {
             // Free dictionary
-            destroy_dictionary(&dictionary_ptr);
+            free(dictionary_ptr); //NOLINT(cppcoreguidelines-no-malloc)
             return comp_status;
         }
 
@@ -252,12 +247,12 @@ auto main(int argc, char** argv) -> int {
         const uint8_t decomp_status = sw_decompression(destination, reference, dictionary_ptr);
         if (decomp_status != 0) {
             // Free dictionary
-            destroy_dictionary(&dictionary_ptr);
+            free(dictionary_ptr); //NOLINT(cppcoreguidelines-no-malloc)
             return decomp_status;
         }
 
         // Free dictionary
-        destroy_dictionary(&dictionary_ptr);
+        free(dictionary_ptr); //NOLINT(cppcoreguidelines-no-malloc)
 
         // Compare source and reference
         for (size_t i = 0; i < source.size(); i++) {

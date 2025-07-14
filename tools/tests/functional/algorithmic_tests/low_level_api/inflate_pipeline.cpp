@@ -31,8 +31,9 @@ public:
         source = dataset[GetTestCase()];
         // Huge size due to potentially tiny block compression
         // Huge size is necessary due to overhead incurred by new block
-        compressed_source.resize(source.size() * 20, 0U);
-        destination.resize(source.size(), 0U);
+        constexpr uint32_t safe_compression_coef = 20U;
+        compressed_source.resize(source.size() * safe_compression_coef);
+        destination.resize(source.size());
 
         auto status = qpl_init_job(GetExecutionPath(), deflate_job_ptr);
         ASSERT_EQ(QPL_STS_OK, status);

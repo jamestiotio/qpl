@@ -67,8 +67,11 @@ QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_F(inflate_stop_conditions, dont_stop_on_eob, 
     const auto& dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
     source              = dataset["file1"];
 
-    std::vector<uint8_t> compressed_source(source.size() * 2);
-    destination.resize(compressed_source.size() * 2);
+    // Huge size due to potentially tiny block compression
+    // Huge size is necessary due to overhead incurred by new block
+    constexpr uint32_t   safe_compression_coef = 20U;
+    std::vector<uint8_t> compressed_source(source.size() * safe_compression_coef);
+    destination.resize(source.size());
 
     auto              source_size = static_cast<uint32_t>(source.size());
     qpl::test::random random(0U, 0U, GetSeed());
@@ -102,8 +105,11 @@ QPL_LOW_LEVEL_API_ALGORITHMIC_TEST_F(inflate_stop_conditions, stop_on_eob, infla
     const auto& dataset = util::TestEnvironment::GetInstance().GetCompleteDataset();
     source              = dataset["file1"];
 
-    std::vector<uint8_t> compressed_source(source.size() * 2);
-    destination.resize(compressed_source.size() * 2);
+    // Huge size due to potentially tiny block compression
+    // Huge size is necessary due to overhead incurred by new block
+    constexpr uint32_t   safe_compression_coef = 20U;
+    std::vector<uint8_t> compressed_source(source.size() * safe_compression_coef);
+    destination.resize(source.size());
 
     auto              source_size = static_cast<uint32_t>(source.size());
     qpl::test::random random(0U, 0U, GetSeed());

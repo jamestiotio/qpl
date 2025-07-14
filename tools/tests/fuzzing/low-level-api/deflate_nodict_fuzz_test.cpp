@@ -110,6 +110,8 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* Data, size_t Size) {
         }
 
         status = qpl_execute_job(job_ptr);
+
+        if (nullptr != c_huffman_table) { qpl_huffman_table_destroy(c_huffman_table); }
     }
 
     return 0;
